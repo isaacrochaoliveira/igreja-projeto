@@ -1,0 +1,39 @@
+@charset "UTF-8";
+
+@font-face {
+    font-family: ComfortaaRegular;
+    src: url('../font/Comfortaa/static/Comfortaa-Regular.ttf');
+}
+
+@font-face {
+    font-family: 'SourceSerifLight';
+    src: url('../font/Source-Serif-4/static/SourceSerif4/SourceSerif4-Light.ttf');
+}
+
+@font-face {
+    font-family: 'SourceSerifMediumItalic';
+    src: url('../font/Source-Serif-4/static/SourceSerif4/SourceSerif4-MediumItalic.ttf.ttf');
+}
+
+@font-face {
+    font-family: 'Lobster-Two';
+    src: url("../font/Lobster-Two/LobsterTwo-Regular.ttf");
+}
+
+.f-family-Lobster {
+    font-family: 'Lobster-Two';
+    letter-spacing: 1px;
+}
+
+.dropdown-menu {
+    font-family: 'SourceSerifMediumItalic' !important;
+}
+
+.f-family-SourceSerifMediumItalic {
+    font-family: 'SourceSerifMediumItalic' !important;
+}
+
+* {
+    margin: 0px;
+    padding: 0px;
+}

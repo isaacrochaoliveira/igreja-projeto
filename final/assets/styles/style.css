@@ -1,0 +1,72 @@
+@charset "UTF-8";
+
+@font-face {
+    font-family: ComfortaaRegular;
+    src: url('../font/Comfortaa/static/Comfortaa-Regular.ttf');
+}
+
+@font-face {
+    font-family: 'SourceSerif';
+    src: url('../font/Source-Serif-4/static/SourceSerif4/SourceSerif4-Light.ttf');
+}
+
+* {
+    margin: 0px;
+    padding: 0px;
+}
+
+body {
+    font-family: 'ComfortaaRegular';
+    text-align: center;
+    background-color: white;
+}
+
+.caixa-login {
+    background: linear-gradient(to right, #1796f0 36%, #0863a3 65%);
+    width: 50%;
+    margin: 20px auto;
+    padding: 60px 80px;
+    color: white;
+}
+
+.caixa-login-brand {
+    margin-bottom: 50px;
+}
+
+.caixa-login-brand h1 {
+    font-size: 40px;
+}
+
+.caixa-login-form {
+    text-align: left;
+    border: 1px solid white;
+    padding: 0px 20px;
+}
+
+.caixa-login-form label {
+    margin: 10px 0px;
+}
+
+.caixa-login-form input {
+    border-radius: 0px;
+}
+
+.btn-warning {
+    margin-bottom: 30px;
+}
+
+button {
+    margin: 5px 0px;
+}
+
+.text-left {
+    text-align: left;
+}
+
+.width-70 {
+    width: 70% !important;
+}
+
+.f-family-sourceserif {
+    font-family: 'SourceSerif' !important;
+}
