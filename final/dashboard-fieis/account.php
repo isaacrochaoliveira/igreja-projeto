@@ -73,18 +73,43 @@ require_once('../protect.php');
                     </div>
                 </div>
                 <div class="col-lg-3 col-6">
-                    <div class="small-box bg-info">
+                    <div class="small-box bg-warning">
                         <div class="inner">
                             <h3>15</h3>
                             <p>Grupos - Totais</p>
                         </div>
                         <div class="icon">
-                            <i class="fa-solid fa-people-group"></i>
+                            <i class="fa-solid fa-chalkboard-user"></i>
                         </div>
                         <a href="#" class="small-box-footer">
                             Visualizar <i class="fa-sharp fa-solid fa-right-long"></i>
                         </a>
                     </div>
+                </div>
+                <div class="col-lg-3 col-6">
+                    <div class="small-box bg-danger">
+                        <div class="inner">
+                            <h3>1</h3>
+                            <p>Grupos - Exclui</p>
+                        </div>
+                        <div class="icon">
+                            <i class="fa-solid fa-circle-xmark"></i>
+                        </div>
+                        <a href="#" class="small-box-footer">
+                            Visualizar <i class="fa-sharp fa-solid fa-right-long"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div class="d-flex mt-4">
+                <div>
+                    <iframe width="560" height="315" src="https://www.youtube-nocookie.com/embed/NI0FCLkCwQg" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+                </div>
+                <div class="mx-2">
+                    <h2>Tempo de Oração</h2>
+                    <p>Vós, portanto, orai assim: Pai nosso que estás nos céus, santificado seja o teu nome; venha o teu Reino; seja feita a tua vontade, como no céu, assim também na terra.<br><a href="https://www.bibliaon.com/versiculo/mateus_6_9-13/" target="_blank" rel="autor">Mateus 6:7-15</a></p>
+                    <hr>
+                    <p style="width: 60%; line-height: 32px;">Tirar um tempo para conversar com <strong><a href="https://www.bibliaonline.com.br/nvi/mt/12" target="_blank" rel="author">NOSSO IRMÃO (MT 12:46-50)</a></strong> é necessário para cada vez mais ter intimidade com ele.</p>
                 </div>
             </div>
             <div class="mx-3 mt-5">
