@@ -1,6 +1,7 @@
 <?php
 
 require_once('../config.php');
+require_once('../conexao.php');
 require_once('../protect.php');
 @session_start();
 
@@ -111,6 +112,32 @@ require_once('../protect.php');
                     <hr>
                     <p style="width: 60%; line-height: 32px;">Tirar um tempo para conversar com <strong><a href="https://www.bibliaonline.com.br/nvi/mt/12" target="_blank" rel="author">NOSSO IRMÃO (MT 12:46-50)</a></strong> é necessário para cada vez mais ter intimidade com ele.</p>
                 </div>
+            </div>
+            <div style="border: 2px solid black">
+                <?php
+                    $query = $pdo->query("SELECT * FROM citacoes");
+                    $res = $query->fetchAll(PDO::FETCH_ASSOC);
+                    if (count($res) > 0) { ?>
+                        <div class="row">
+                            <?php
+                            for ($i = 0; $i < count($res); $i++) {
+                                foreach ($res[$i] as $key => $value) {
+                                }
+                                $author = $res[$i]['author'];
+                                $citacao = $res[$i]['citacao'];
+                                ?>
+                                <div class="card mx-2" style="width: 18rem; margin: 10px 0px">
+                                    <div class="card-body">
+                                        <h5 class="card-title"><?=$author?></h5>
+                                        <p class="card-text"><?=$citacao?></p>
+                                        <a href="#" style="font-size: 13px">Guarda anotação em seu perfil</a>
+                                  </div>
+                                </div>
+                                <?php
+                            } ?>
+                        </div><?php
+                    }
+                ?>
             </div>
             <div class="mx-3 mt-5">
                 <h1 class="font-s-4">Edite seu Perfil</h1>
