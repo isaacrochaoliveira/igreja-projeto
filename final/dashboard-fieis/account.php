@@ -5,6 +5,8 @@ require_once('../conexao.php');
 require_once('../protect.php');
 @session_start();
 
+$pag = "account";
+
 ?>
 <!DOCTYPE html>
 <html lang="pt-br" dir="ltr">
@@ -161,7 +163,7 @@ require_once('../protect.php');
                         </div>
                         <div class="col-md-3  mb-3">
                             <label for="idade">E-mail</label>
-                            <input type="email" name="idade" id="idade" class="form-control" value="<?=$_SESSION['email']?>">
+                            <input type="email" name="email" "email" class="form-control" value="<?=$_SESSION['email']?>">
                         </div>
                         <div class="col-md-3  mb-3">
                             <label for="senha">Senha</label>
@@ -243,7 +245,7 @@ require_once('../protect.php');
                             </div>
                             <div class="col-md-3">
                                 <label for=""horario_inicio>Horário de Saída</label>
-                                <input type="time" class="form-control" name="horario_inicio" value="<?=$_SESSION['horario_fim']?>">
+                                <input type="time" class="form-control" name="horario_fim" value="<?=$_SESSION['horario_fim']?>">
                             </div>
                             <?php
                         }
@@ -294,6 +296,15 @@ function carregarImg() {
     $(document).ready(function() {
         $('#btn_salvar_alteracoes').click(function(event) {
             event.preventDefault();
+            $.ajax({
+                url: "account/update-profile.php",
+                method: "post",
+                data: $('form').serialize(),
+                dataType: "text",
+                success: function(mensagem) {
+                    alert(mensagem);
+                }
+            })
         })
     })
 </script>
