@@ -53,6 +53,10 @@ if ($res->execute()) {
     $_SESSION['email'] = $res[0]['email'];
     $_SESSION['senha'] = $res[0]['senha'];
     $_SESSION['imagem'] = $res[0]['perfil'];
+    $_SESSION['nasc'] = $res[0]['nasc'];
+    $_SESSION['estado_civil'] = $res[0]['estado_civil'];
+    $_SESSION['cargo'] = $res[0]['cargo'];
+
     echo "<script>location.href = 'copy/copy.php'</script>";
 } else {
     echo "Erro no cadastramento do Pedido!";

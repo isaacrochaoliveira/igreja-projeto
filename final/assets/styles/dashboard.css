@@ -49,3 +49,11 @@
 .mt-6 {
     margin-top: 6rem;
 }
+
+.text-card {
+    line-height: 30px;
+}
+
+.title-card {
+    color: #ccc;
+}

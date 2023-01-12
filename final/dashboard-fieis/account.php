@@ -128,8 +128,8 @@ require_once('../protect.php');
                                 ?>
                                 <div class="card mx-2" style="width: 18rem; margin: 10px 0px">
                                     <div class="card-body">
-                                        <h5 class="card-title"><?=$author?></h5>
-                                        <p class="card-text"><?=$citacao?></p>
+                                        <h5 class="card-title title-card"><?=$author?></h5>
+                                        <p class="card-text text-card"><?=$citacao?></p>
                                         <a href="#" style="font-size: 13px">Guarda anotação em seu perfil</a>
                                   </div>
                                 </div>
