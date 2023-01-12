@@ -1,4 +1,4 @@
-<?php
+k<?php
 
 require_once('../config.php');
 require_once('../conexao.php');
