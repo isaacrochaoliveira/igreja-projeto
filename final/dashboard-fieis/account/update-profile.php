@@ -7,7 +7,7 @@ require_once('../../conexao.php');
 $nome = addslashes($_POST['nome']);
 $cpf = addslashes($_POST['cpf']);
 $sexo = addslashes($_POST['sexo']);
-$nasc = addslashes($_POST['idade']);
+$nasc = $_SESSION['nasc'];
 $trab = addslashes($_POST['work']);
 $email = addslashes($_POST['email']);
 $senha = addslashes($_POST['senha']);
