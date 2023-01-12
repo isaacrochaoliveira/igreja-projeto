@@ -26,6 +26,12 @@ if (!(empty($email) && empty($senha))) {
         $_SESSION['nasc'] = $res[0]['nasc'];
         $_SESSION['estado_civil'] = $res[0]['estado_civil'];
         $_SESSION['cargo'] = $res[0]['cargo'];
+        $_SESSION['sexo'] = $res[0]['sexo'];
+        $_SESSION['work'] = $res[0]['trabalho'];
+        if ($_SESSION['word'] == 'S') {
+            $_SESSION['horario_inicio'] = $res[0]['horario_inicio'];
+            $_SESSION['horario_fim'] = $res[0]['horario_fim'];
+        }
 
         echo "<script>location.href = 'dashboard-fieis/index.php'</script>";
     } else {

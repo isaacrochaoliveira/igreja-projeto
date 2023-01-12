@@ -189,6 +189,57 @@ require_once('../protect.php');
                                 ?>
                             </select>
                         </div>
+                        <div class="col-md-3">
+                            <label for="sexo">Sexo</label>
+                            <select class="form-select" name="sexo">
+                                <?php
+                                if ($_SESSION['sexo'] == 'M') {
+                                    ?>
+                                    <option value="" selected>Masculino</option>
+                                    <option value="F">Femino</option>
+                                    <option value="Prefiro Não Responder">Prefiro Não Responder</option>
+                                    <?php
+                                } else if ($_SESSION['sexo'] == 'F') {
+                                    ?>
+                                    <option value="M">Masculino</option>
+                                    <option value="" selected>Femino</option>
+                                    <option value="Prefiro Não Responder">Prefiro Não Responder</option>
+                                    <?php
+                                } else {
+                                    ?>
+                                    <option value="M">Masculino</option>
+                                    <option value="F">Femino</option>
+                                    <option value="" selected>Prefiro Não Responder</option>
+                                    <?php
+                                }
+                                ?>
+                            </select>
+                        </div>
+                        <div class="col-md-3">
+                            <label for="work"></label>
+                            <select class="form-select" name="work">
+                                <?php
+                                    if ($_SESSION['work'] == 'S') {
+                                        ?>
+                                        <option value="" selected>Sim, estou trabalhando até o momento</option>
+                                        <option value="N" selected>Não, estou desempregado até o momento</option>
+                                        <?php
+                                    }
+                                ?>
+
+                            </select>
+                        </div>
+                        <?php
+                        if ($_SESSION['work'] == 'S') {
+                            ?>
+                            <div class="col-md-3">
+                                <label for=""horario_inicio>Horário de Chegada</label>
+                                <input type="time" class="form-control" name="horario_inicio" value="<?=$_SESSION['horario_inicio']?>">
+                            </div>
+                            <?php
+                        }
+                        ?>
+                        </div>
                     </div>
                 </form>
 
