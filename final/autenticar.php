@@ -27,7 +27,6 @@ if (!(empty($email) && empty($senha))) {
         $_SESSION['estado_civil'] = $res[0]['estado_civil'];
         $_SESSION['cargo'] = $res[0]['cargo'];
 
-
         echo "<script>location.href = 'dashboard-fieis/index.php'</script>";
     } else {
         echo "<script>window.alert('Email/CPF e/ou Senha Incorretos!')</script>";

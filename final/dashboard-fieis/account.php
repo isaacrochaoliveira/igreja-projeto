@@ -113,7 +113,7 @@ require_once('../protect.php');
                     <p style="width: 60%; line-height: 32px;">Tirar um tempo para conversar com <strong><a href="https://www.bibliaonline.com.br/nvi/mt/12" target="_blank" rel="author">NOSSO IRMÃO (MT 12:46-50)</a></strong> é necessário para cada vez mais ter intimidade com ele.</p>
                 </div>
             </div>
-            <div style="border: 2px solid black">
+            <div class="border-left-right mt-5 mb-5">
                 <?php
                     $query = $pdo->query("SELECT * FROM citacoes");
                     $res = $query->fetchAll(PDO::FETCH_ASSOC);
@@ -141,7 +141,56 @@ require_once('../protect.php');
             </div>
             <div class="mx-3 mt-5">
                 <h1 class="font-s-4">Edite seu Perfil</h1>
-                <img src="<?=UPLOADS.$_SESSION['imagem']?>" alt="Foto de Perfil do Usuário" width="200" height="200">
+                <form action="" method="POST">
+                    <div class="col-md-4">
+                        <img src="<?=UPLOADS.$_SESSION['imagem']?>" alt="Foto de Perfil do Usuário" width="200" height="200">
+                        <p><input type="file" name="perfil" id="perfil"></p>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-3 mb-3">
+                            <label for="nome">Nome</label>
+                            <input type="text" name="nome" id="nome" value="<?=$_SESSION['nome']?>" class="form-control">
+                        </div>
+                        <div class="col-md-3  mb-3">
+                            <label for="cpf">CPF</label>
+                            <input type="text" name="cpf" id="cpf" value="<?=$_SESSION['cpf']?>" class="form-control" disabled>
+                        </div>
+                        <div class="col-md-3  mb-3">
+                            <label for="idade">Idade</label>
+                            <input type="text" name="idade" id="idade" class="form-control" disabled value="<?=Date("Y") - intVal($_SESSION['nasc'])?>">
+                        </div>
+                        <div class="col-md-3  mb-3">
+                            <label for="idade">E-mail</label>
+                            <input type="email" name="idade" id="idade" class="form-control" value="<?=$_SESSION['email']?>">
+                        </div>
+                        <div class="col-md-3  mb-3">
+                            <label for="senha">Senha</label>
+                            <input type="password" name="senha" id="senha" value="<?=$_SESSION['senha']?>" class="form-control">
+                        </div>
+                        <div class="col-md-3 mb-3">
+                            <label for="cargo">Sua Função - <?=$_SESSION['cargo']?></label>
+                            <select class="form-select" name="cargo">
+                                <?php
+                                $query = $pdo->query("SELECT * FROM cargos");
+                                $res = $query->fetchAll(PDO::FETCH_ASSOC);
+                                if (count($res) > 0) {
+                                    for ($i = 0; $i < count($res); $i++) {
+                                        foreach ($res[$i] as $key => $v) {
+                                        }
+                                        $cargo = $res[$i]['cargo'];
+                                        $id_cargo = $res[$i]['id_cargo'];
+                                        if ($_SESSION['cargo'] != $cargo) {
+                                            ?>
+                                            <option value="<?=$id_cargo?>"><?=$cargo?></option>
+                                            <?php
+                                        }
+                                    }
+                                }
+                                ?>
+                            </select>
+                        </div>
+                    </div>
+                </form>
 
             </div>
         </section>
