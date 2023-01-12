@@ -5,9 +5,7 @@ require_once('../../conexao.php');
 
 
 $nome = addslashes($_POST['nome']);
-$cpf = addslashes($_POST['cpf']);
 $sexo = addslashes($_POST['sexo']);
-$nasc = $_SESSION['nasc'];
 $trab = addslashes($_POST['work']);
 $email = addslashes($_POST['email']);
 $senha = addslashes($_POST['senha']);
@@ -18,9 +16,9 @@ $horario_fim = addslashes($_POST['horario_fim']);
 
 $res = $pdo->prepare("UPDATE usuarios SET nome = :nome, cpf = :cpf, sexo = :sexo, nasc = :nasc, trabalho = :trab, email = :email, senha = :senha, id_cargo = :cargo, estado_civil = :estado, horario_inicio = :horario_inicio, horario_fim = :horario_fim WHERE id = '$_SESSION[id]'");
 $res->bindValue(':nome', $nome);
-$res->bindValue(':cpf', $cpf);
+$res->bindValue(':cpf', $_SESSION['cpf']);
 $res->bindValue(':sexo', $sexo);
-$res->bindValue(':nasc', $nasc);
+$res->bindValue(':nasc', $_SESSION['nasc']);
 $res->bindValue(':trab', $trab);
 $res->bindValue(':email', $email);
 $res->bindValue(':senha', $senha);
