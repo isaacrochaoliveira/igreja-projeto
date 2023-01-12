@@ -28,11 +28,10 @@ if (!(empty($email) && empty($senha))) {
         $_SESSION['cargo'] = $res[0]['cargo'];
         $_SESSION['sexo'] = $res[0]['sexo'];
         $_SESSION['work'] = $res[0]['trabalho'];
-        if ($_SESSION['word'] == 'S') {
+        if ($_SESSION['work'] == 'S') {
             $_SESSION['horario_inicio'] = $res[0]['horario_inicio'];
             $_SESSION['horario_fim'] = $res[0]['horario_fim'];
         }
-
         echo "<script>location.href = 'dashboard-fieis/index.php'</script>";
     } else {
         echo "<script>window.alert('Email/CPF e/ou Senha Incorretos!')</script>";

@@ -141,10 +141,10 @@ require_once('../protect.php');
             </div>
             <div class="mx-3 mt-5">
                 <h1 class="font-s-4">Edite seu Perfil</h1>
-                <form action="" method="POST">
+                <form action="" method="POST" enctype="multipart/form-data">
                     <div class="col-md-4">
-                        <img src="<?=UPLOADS.$_SESSION['imagem']?>" alt="Foto de Perfil do Usuário" width="200" height="200">
-                        <p><input type="file" name="perfil" id="perfil"></p>
+                        <img src="<?=UPLOADS.$_SESSION['imagem']?>" alt="Foto de Perfil do Usuário" width="200" height="200" name="target"  id="target">
+                        <p><input type="file" name="perfil" id="perfil" onchange="carregarImg()"></p>
                     </div>
                     <div class="row">
                         <div class="col-md-3 mb-3">
@@ -195,34 +195,39 @@ require_once('../protect.php');
                                 <?php
                                 if ($_SESSION['sexo'] == 'M') {
                                     ?>
-                                    <option value="" selected>Masculino</option>
+                                    <option value="M" selected>Masculino</option>
                                     <option value="F">Femino</option>
                                     <option value="Prefiro Não Responder">Prefiro Não Responder</option>
                                     <?php
                                 } else if ($_SESSION['sexo'] == 'F') {
                                     ?>
                                     <option value="M">Masculino</option>
-                                    <option value="" selected>Femino</option>
+                                    <option value="F" selected>Femino</option>
                                     <option value="Prefiro Não Responder">Prefiro Não Responder</option>
                                     <?php
                                 } else {
                                     ?>
                                     <option value="M">Masculino</option>
                                     <option value="F">Femino</option>
-                                    <option value="" selected>Prefiro Não Responder</option>
+                                    <option value="Prefiro Não Responder" selected>Prefiro Não Responder</option>
                                     <?php
                                 }
                                 ?>
                             </select>
                         </div>
                         <div class="col-md-3">
-                            <label for="work"></label>
+                            <label for="work">Trabalhando</label>
                             <select class="form-select" name="work">
                                 <?php
                                     if ($_SESSION['work'] == 'S') {
                                         ?>
-                                        <option value="" selected>Sim, estou trabalhando até o momento</option>
-                                        <option value="N" selected>Não, estou desempregado até o momento</option>
+                                        <option value="S" selected>Sim, estou trabalhando</option>
+                                        <option value="N">Não, estou desempregado</option>
+                                        <?php
+                                    } else {
+                                        ?>
+                                        <option value="S" >Sim, estou trabalhando</option>
+                                        <option value="N" selected>Não, estou desempregado</option>
                                         <?php
                                     }
                                 ?>
@@ -236,14 +241,59 @@ require_once('../protect.php');
                                 <label for=""horario_inicio>Horário de Chegada</label>
                                 <input type="time" class="form-control" name="horario_inicio" value="<?=$_SESSION['horario_inicio']?>">
                             </div>
+                            <div class="col-md-3">
+                                <label for=""horario_inicio>Horário de Saída</label>
+                                <input type="time" class="form-control" name="horario_inicio" value="<?=$_SESSION['horario_fim']?>">
+                            </div>
                             <?php
                         }
                         ?>
+                        <div class="col-md-3 mb-3">
+                            <label for="estado_civil">Estado Civil: <?=$_SESSION['estado_civil']?></label>
+                            <select class="form-select" name="estado_civil">
+                                <option value="Casado">Casado(a)</option>
+                                <option value="Solteiro">Solteiro(a)</option>
+                                <option value="Divorciado">Divorciado(a)</option>
+                                <option value="Viuvo">Viuvo(a)</option>
+                                <option value="Separado">Separado(a)</option>
+                                <option value="Namorando">Namorando</option>
+                                <option value="Noivo">Noivo(a)</option>
+                            </select>
                         </div>
                     </div>
+                    <div class="col-md-6 mb-3">
+                        <button type="button" name="btn_salvar_alteracoes" id="btn_salvar_alteracoes" class="btn btn-outline-primary">SALVAR ALTERAÇÔES</button>
+                    </div>
                 </form>
-
             </div>
         </section>
     </body>
 </html>
+
+<script type="text/javascript">
+function carregarImg() {
+
+    var target = document.getElementById('target');
+    var file = document.querySelector("input[type=file]").files[0];
+    var reader = new FileReader();
+
+    reader.onloadend = function () {
+        target.src = reader.result;
+    };
+
+    if (file) {
+        reader.readAsDataURL(file);
+
+    } else {
+        target.src = "";
+    }
+}
+</script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script type="text/javascript">
+    $(document).ready(function() {
+        $('#btn_salvar_alteracoes').click(function(event) {
+            event.preventDefault();
+        })
+    })
+</script>
