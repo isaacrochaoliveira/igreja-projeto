@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Tempo de geração: 13-Jan-2023 às 12:59
+-- Tempo de geração: 13-Jan-2023 às 20:53
 -- Versão do servidor: 10.4.24-MariaDB
 -- versão do PHP: 8.1.6
 
@@ -55,6 +55,45 @@ INSERT INTO `cargos` (`id_cargo`, `cargo`) VALUES
 -- --------------------------------------------------------
 
 --
+-- Estrutura da tabela `categorias`
+--
+
+CREATE TABLE `categorias` (
+  `id_cat` tinyint(4) NOT NULL,
+  `categorias` varchar(50) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Extraindo dados da tabela `categorias`
+--
+
+INSERT INTO `categorias` (`id_cat`, `categorias`) VALUES
+(1, 'Espiritualidade'),
+(2, 'Material'),
+(3, 'Financeiro'),
+(4, 'Emocional'),
+(5, 'Sentimental'),
+(6, 'Amadurecimento'),
+(7, 'Confiança'),
+(8, 'Relacionamentos'),
+(9, 'Inimizade'),
+(10, 'Desconfiança'),
+(11, 'Inveja'),
+(12, 'Cobiça'),
+(13, 'Prova de Foto'),
+(14, 'Processo'),
+(15, 'Dificuldades'),
+(16, 'Pensamentos Puros'),
+(17, 'Casamento'),
+(18, 'Divorcio'),
+(19, 'Brigas Conjugais'),
+(20, 'Brigas Familiares'),
+(21, 'Brigas entre Irmãos'),
+(22, 'Apostas');
+
+-- --------------------------------------------------------
+
+--
 -- Estrutura da tabela `citacoes`
 --
 
@@ -85,6 +124,33 @@ CREATE TABLE `oracao` (
   `descricao` text NOT NULL,
   `orando` int(11) DEFAULT 0
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Extraindo dados da tabela `oracao`
+--
+
+INSERT INTO `oracao` (`id`, `id_criador`, `titulo`, `descricao`, `orando`) VALUES
+(4, 8, 'Varoa', 'A Mulher Prudente vem do Senhor. Me ajudem em oração', 24),
+(5, 7, 'Amigos', 'Ajudem a orar pelos meus amigos', 0);
+
+-- --------------------------------------------------------
+
+--
+-- Estrutura da tabela `oracao_relacionada_com_a_categoria`
+--
+
+CREATE TABLE `oracao_relacionada_com_a_categoria` (
+  `id` tinyint(4) NOT NULL,
+  `id_oracao` tinyint(4) DEFAULT NULL,
+  `id_categoria` tinyint(4) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Extraindo dados da tabela `oracao_relacionada_com_a_categoria`
+--
+
+INSERT INTO `oracao_relacionada_com_a_categoria` (`id`, `id_oracao`, `id_categoria`) VALUES
+(1, 4, 4);
 
 -- --------------------------------------------------------
 
@@ -121,7 +187,7 @@ INSERT INTO `usuarios` (`id`, `id_cargo`, `nome`, `nasc`, `sexo`, `cpf`, `email`
 (6, 11, 'Marcos', '1986-01-23', 'M', '321456987', 'marcos_marcos@gmail.com', 'XyZ22419hJlM', '63bb1fe1e6e05.jpg', 'Casado', 'N', '00:00:00', '00:00:00'),
 (7, 1, 'Val dos ossos secos', '2000-01-01', 'M', '122134435665', 'pai.amado@gmail.com', 'XyZ22419hJlM', '63bb209eee5a7.jpg', 'Casado', 'S', '00:00:00', '00:00:00'),
 (8, 2, 'Marcos', '2004-07-23', 'M', '142154541010', 'negao_rocha@gmail.com', 'negao', '63bb214604be3.jpg', 'Casado', 'S', '08:00:00', '18:00:00'),
-(9, 7, 'Paula', '2003-04-12', 'F', '77777777777', 'paulinha@gmail.com', 'ppp123', '63bebe64a49b3.jpg', 'Namorando', 'N', '00:00:00', '00:00:00');
+(9, 7, 'Paula', '2003-04-12', 'F', '77777777777', 'paulinha@gmail.com', 'ppp123', 'sem-foto.jpg', 'Namorando', 'N', '00:00:00', '00:00:00');
 
 --
 -- Índices para tabelas despejadas
@@ -132,6 +198,12 @@ INSERT INTO `usuarios` (`id`, `id_cargo`, `nome`, `nasc`, `sexo`, `cpf`, `email`
 --
 ALTER TABLE `cargos`
   ADD PRIMARY KEY (`id_cargo`);
+
+--
+-- Índices para tabela `categorias`
+--
+ALTER TABLE `categorias`
+  ADD PRIMARY KEY (`id_cat`);
 
 --
 -- Índices para tabela `citacoes`
@@ -145,6 +217,14 @@ ALTER TABLE `citacoes`
 ALTER TABLE `oracao`
   ADD PRIMARY KEY (`id`),
   ADD KEY `id_criador` (`id_criador`);
+
+--
+-- Índices para tabela `oracao_relacionada_com_a_categoria`
+--
+ALTER TABLE `oracao_relacionada_com_a_categoria`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `id_oracao` (`id_oracao`),
+  ADD KEY `id_categoria` (`id_categoria`);
 
 --
 -- Índices para tabela `usuarios`
@@ -166,6 +246,12 @@ ALTER TABLE `cargos`
   MODIFY `id_cargo` tinyint(4) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
 
 --
+-- AUTO_INCREMENT de tabela `categorias`
+--
+ALTER TABLE `categorias`
+  MODIFY `id_cat` tinyint(4) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
+
+--
 -- AUTO_INCREMENT de tabela `citacoes`
 --
 ALTER TABLE `citacoes`
@@ -175,7 +261,13 @@ ALTER TABLE `citacoes`
 -- AUTO_INCREMENT de tabela `oracao`
 --
 ALTER TABLE `oracao`
-  MODIFY `id` tinyint(4) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` tinyint(4) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+
+--
+-- AUTO_INCREMENT de tabela `oracao_relacionada_com_a_categoria`
+--
+ALTER TABLE `oracao_relacionada_com_a_categoria`
+  MODIFY `id` tinyint(4) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT de tabela `usuarios`
@@ -192,6 +284,13 @@ ALTER TABLE `usuarios`
 --
 ALTER TABLE `oracao`
   ADD CONSTRAINT `oracao_ibfk_1` FOREIGN KEY (`id_criador`) REFERENCES `usuarios` (`id`);
+
+--
+-- Limitadores para a tabela `oracao_relacionada_com_a_categoria`
+--
+ALTER TABLE `oracao_relacionada_com_a_categoria`
+  ADD CONSTRAINT `oracao_relacionada_com_a_categoria_ibfk_1` FOREIGN KEY (`id_oracao`) REFERENCES `oracao` (`id`),
+  ADD CONSTRAINT `oracao_relacionada_com_a_categoria_ibfk_2` FOREIGN KEY (`id_categoria`) REFERENCES `categorias` (`id_cat`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
