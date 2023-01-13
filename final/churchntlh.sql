@@ -2,10 +2,10 @@
 -- version 5.2.0
 -- https://www.phpmyadmin.net/
 --
--- Host: 127.0.0.1:3306
--- Tempo de geração: 11-Jan-2023 às 03:34
--- Versão do servidor: 8.0.31
--- versão do PHP: 8.0.26
+-- Host: 127.0.0.1
+-- Tempo de geração: 13-Jan-2023 às 12:59
+-- Versão do servidor: 10.4.24-MariaDB
+-- versão do PHP: 8.1.6
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -27,12 +27,10 @@ SET time_zone = "+00:00";
 -- Estrutura da tabela `cargos`
 --
 
-DROP TABLE IF EXISTS `cargos`;
-CREATE TABLE IF NOT EXISTS `cargos` (
-  `id_cargo` tinyint NOT NULL AUTO_INCREMENT,
-  `cargo` varchar(100) COLLATE utf8mb4_general_ci NOT NULL,
-  PRIMARY KEY (`id_cargo`)
-) ENGINE=MyISAM AUTO_INCREMENT=15 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+CREATE TABLE `cargos` (
+  `id_cargo` tinyint(4) NOT NULL,
+  `cargo` varchar(100) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Extraindo dados da tabela `cargos`
@@ -60,13 +58,11 @@ INSERT INTO `cargos` (`id_cargo`, `cargo`) VALUES
 -- Estrutura da tabela `citacoes`
 --
 
-DROP TABLE IF EXISTS `citacoes`;
-CREATE TABLE IF NOT EXISTS `citacoes` (
-  `id` tinyint NOT NULL AUTO_INCREMENT,
-  `author` varchar(50) COLLATE utf8mb4_general_ci NOT NULL,
-  `citacao` text COLLATE utf8mb4_general_ci,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+CREATE TABLE `citacoes` (
+  `id` tinyint(4) NOT NULL,
+  `author` varchar(50) NOT NULL,
+  `citacao` text DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Extraindo dados da tabela `citacoes`
@@ -79,13 +75,26 @@ INSERT INTO `citacoes` (`id`, `author`, `citacao`) VALUES
 -- --------------------------------------------------------
 
 --
+-- Estrutura da tabela `oracao`
+--
+
+CREATE TABLE `oracao` (
+  `id` tinyint(4) NOT NULL,
+  `id_criador` tinyint(4) DEFAULT NULL,
+  `titulo` varchar(100) DEFAULT NULL,
+  `descricao` text NOT NULL,
+  `orando` int(11) DEFAULT 0
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+-- --------------------------------------------------------
+
+--
 -- Estrutura da tabela `usuarios`
 --
 
-DROP TABLE IF EXISTS `usuarios`;
-CREATE TABLE IF NOT EXISTS `usuarios` (
-  `id` tinyint NOT NULL AUTO_INCREMENT,
-  `id_cargo` tinyint DEFAULT NULL,
+CREATE TABLE `usuarios` (
+  `id` tinyint(4) NOT NULL,
+  `id_cargo` tinyint(4) DEFAULT NULL,
   `nome` varchar(200) NOT NULL,
   `nasc` date DEFAULT NULL,
   `sexo` varchar(50) NOT NULL,
@@ -96,12 +105,8 @@ CREATE TABLE IF NOT EXISTS `usuarios` (
   `estado_civil` varchar(15) DEFAULT 'Solteiro',
   `trabalho` enum('S','N') DEFAULT 'N',
   `horario_inicio` time DEFAULT NULL,
-  `horario_fim` time DEFAULT NULL,
-  PRIMARY KEY (`id`),
-  UNIQUE KEY `cpf` (`cpf`),
-  UNIQUE KEY `email` (`email`),
-  KEY `id_cargo` (`id_cargo`)
-) ENGINE=MyISAM AUTO_INCREMENT=9 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+  `horario_fim` time DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Extraindo dados da tabela `usuarios`
@@ -115,7 +120,78 @@ INSERT INTO `usuarios` (`id`, `id_cargo`, `nome`, `nasc`, `sexo`, `cpf`, `email`
 (5, 9, 'Maria', '1993-07-07', 'F', '12139839334', 'maria@123gmail.com', 'XyZ22419hJlM', 'http://localhost/sistemas/final/assets/i', 'Noivo', 'S', '07:30:00', '15:00:00'),
 (6, 11, 'Marcos', '1986-01-23', 'M', '321456987', 'marcos_marcos@gmail.com', 'XyZ22419hJlM', '63bb1fe1e6e05.jpg', 'Casado', 'N', '00:00:00', '00:00:00'),
 (7, 1, 'Val dos ossos secos', '2000-01-01', 'M', '122134435665', 'pai.amado@gmail.com', 'XyZ22419hJlM', '63bb209eee5a7.jpg', 'Casado', 'S', '00:00:00', '00:00:00'),
-(8, 10, 'Negão', '2004-07-23', 'M', '70602791128', 'negao_rocha@gmail.com', 'negao', '63bb214604be3.jpg', 'Solteiro', 'S', '08:00:00', '18:00:00');
+(8, 2, 'Marcos', '2004-07-23', 'M', '142154541010', 'negao_rocha@gmail.com', 'negao', '63bb214604be3.jpg', 'Casado', 'S', '08:00:00', '18:00:00'),
+(9, 7, 'Paula', '2003-04-12', 'F', '77777777777', 'paulinha@gmail.com', 'ppp123', '63bebe64a49b3.jpg', 'Namorando', 'N', '00:00:00', '00:00:00');
+
+--
+-- Índices para tabelas despejadas
+--
+
+--
+-- Índices para tabela `cargos`
+--
+ALTER TABLE `cargos`
+  ADD PRIMARY KEY (`id_cargo`);
+
+--
+-- Índices para tabela `citacoes`
+--
+ALTER TABLE `citacoes`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Índices para tabela `oracao`
+--
+ALTER TABLE `oracao`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `id_criador` (`id_criador`);
+
+--
+-- Índices para tabela `usuarios`
+--
+ALTER TABLE `usuarios`
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `cpf` (`cpf`),
+  ADD UNIQUE KEY `email` (`email`),
+  ADD KEY `id_cargo` (`id_cargo`);
+
+--
+-- AUTO_INCREMENT de tabelas despejadas
+--
+
+--
+-- AUTO_INCREMENT de tabela `cargos`
+--
+ALTER TABLE `cargos`
+  MODIFY `id_cargo` tinyint(4) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
+
+--
+-- AUTO_INCREMENT de tabela `citacoes`
+--
+ALTER TABLE `citacoes`
+  MODIFY `id` tinyint(4) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
+-- AUTO_INCREMENT de tabela `oracao`
+--
+ALTER TABLE `oracao`
+  MODIFY `id` tinyint(4) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+
+--
+-- AUTO_INCREMENT de tabela `usuarios`
+--
+ALTER TABLE `usuarios`
+  MODIFY `id` tinyint(4) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+
+--
+-- Restrições para despejos de tabelas
+--
+
+--
+-- Limitadores para a tabela `oracao`
+--
+ALTER TABLE `oracao`
+  ADD CONSTRAINT `oracao_ibfk_1` FOREIGN KEY (`id_criador`) REFERENCES `usuarios` (`id`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
