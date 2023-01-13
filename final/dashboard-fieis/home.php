@@ -7,14 +7,17 @@ require_once('../conexao.php');
 ?>
 
 <section class="d-flex mt-60-px mx-3 flex-wrap">
-    <div class="d-flex bg-dark mb-3" style="width: 50%;">
+    
         <?php
             $query = $pdo->query("SELECT * FROM oracao JOIN usuarios ON oracao.id_criador = usuarios.id");
             $res = $query->fetchAll(PDO::FETCH_ASSOC);
-            if (count($res) > 0) {
+            if (count($res) > 0) { 
                 for ($i = 0; $i < count($res); $i++) {
                     foreach ($res[$i] as $key => $value) {
                     }
+                    ?>
+                    <div class="d-flex bg-dark mb-3" style="width: 50%;">
+                    <?php
                     $titulo = $res[$i]['titulo'];
                     $descricao = $res[$i]['descricao'];
                     ?>
@@ -25,8 +28,11 @@ require_once('../conexao.php');
                         <p><?=$titulo?></p>
                     </div>
                     <?php
+                    ?>
+                    </div>
+                    <?php
                 }
             }
         ?>
-    </div>
+    
 </section>
