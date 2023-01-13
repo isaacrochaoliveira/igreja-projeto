@@ -42,6 +42,10 @@
     padding: 0px;
 }
 
+body {
+    margin: 0px 5px;
+}
+
 .font-s-7 {
     font-size: 46px;
 }
@@ -65,4 +69,23 @@
 
 .mt-60-px {
     margin-top: 60px;
+}
+
+.span-style-oracao {
+    font-size: 25px;
+    color: #ccc;
+    font-family: Lobster-Two;
+    letter-spacing: 1px;
+}
+
+.p-style-oracao {
+    font-family: 'ComfortaaRegular';
+    font-size: 16px;
+    line-height: 29px;
+    margin-top: 10px;
+}
+
+.nome-style-oracao {
+    font-size: 13px;
+    color: rgba(0, 0, 0, 0.3);
 }
