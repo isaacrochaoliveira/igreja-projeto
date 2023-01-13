@@ -10,8 +10,11 @@ require_once('../conexao.php');
 </div>
 <section class="d-flex mt-60-px mx-3 flex-wrap">
     <?php
-        $query = $pdo->query("SELECT * FROM oracao JOIN usuarios ON oracao.id_criador = usuarios.id");
+        $query = $pdo->query("SELECT * FROM oracao_relacionada_com_a_categoria as rc JOIN categorias ON rc.id_categoria = categorias.id_cat JOIN oracao ON rc.id_oracao = oracao.id JOIN usuarios ON oracao.id_criador = usuarios.id");
         $res = $query->fetchAll(PDO::FETCH_ASSOC);
+        echo "<pre>";
+        print_r($res);
+        exit();
         if (count($res) > 0) { 
             for ($i = 0; $i < count($res); $i++) {
                 foreach ($res[$i] as $key => $value) {
