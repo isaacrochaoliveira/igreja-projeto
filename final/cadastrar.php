@@ -58,6 +58,7 @@ if ($res->execute()) {
     $_SESSION['cargo'] = $res[0]['cargo'];
     $_SESSION['sexo'] = $res[0]['sexo'];
     $_SESSION['work'] = $res[0]['trabalho'];
+    $_SESSION['id_cargo'] = $res[0]['id_cargo'];
     if ($_SESSION['work'] == 'S') {
         $_SESSION['horario_inicio'] = $res[0]['horario_inicio'];
         $_SESSION['horario_fim'] = $res[0]['horario_fim'];

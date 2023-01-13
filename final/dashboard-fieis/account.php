@@ -170,12 +170,16 @@ $pag = "account";
                             <input type="password" name="senha" id="senha" value="<?=$_SESSION['senha']?>" class="form-control">
                         </div>
                         <div class="col-md-3 mb-3">
-                            <label for="cargo">Sua Função - <?=$_SESSION['cargo']?></label>
+                            <label for="cargo">Sua Função</label>
                             <select class="form-select" name="cargo">
+
                                 <?php
                                 $query = $pdo->query("SELECT * FROM cargos");
                                 $res = $query->fetchAll(PDO::FETCH_ASSOC);
                                 if (count($res) > 0) {
+                                    ?>
+                                    <option value="<?=$_SESSION['id_cargo']?>" selected><?=$_SESSION['cargo']?></option>
+                                    <?php
                                     for ($i = 0; $i < count($res); $i++) {
                                         foreach ($res[$i] as $key => $v) {
                                         }

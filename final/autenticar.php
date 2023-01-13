@@ -26,6 +26,7 @@ if (!(empty($email) && empty($senha))) {
         $_SESSION['nasc'] = $res[0]['nasc'];
         $_SESSION['estado_civil'] = $res[0]['estado_civil'];
         $_SESSION['cargo'] = $res[0]['cargo'];
+        $_SESSION['id_cargo'] = $res[0]['id_cargo'];
         $_SESSION['sexo'] = $res[0]['sexo'];
         $_SESSION['work'] = $res[0]['trabalho'];
         if ($_SESSION['work'] == 'S') {
