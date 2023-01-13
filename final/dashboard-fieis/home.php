@@ -6,7 +6,7 @@ require_once('../conexao.php');
 
 ?>
 <div class="mt-5 ml-2">
-    <button type="button" class="btn btn-default" data-bs-toggle="modal" data-bs-target="#exampleModal"><i class="fa-solid fa-plus"></i> Nova Oração</button>
+    <button type="button" class="btn btn-default" data-bs-toggle="modal" data-bs-target="#modalNovaOracao"><i class="fa-solid fa-plus"></i> Nova Oração</button>
 </div>
 <section class="d-flex mt-60-px mx-3 flex-wrap">
     <?php
@@ -42,7 +42,7 @@ require_once('../conexao.php');
     ?>
 </section>
 
-<div class="modal fade" id="exampleModal" data-bs-backdrop="static" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="modal fade" id="modalNovaOracao" data-bs-backdrop="static" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
@@ -50,7 +50,11 @@ require_once('../conexao.php');
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-                ...
+                <form action="" method="POST">
+                    <div class="row">
+                        <label for="title">Título da sua Oração</label>
+                    </div>
+                </form>
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
