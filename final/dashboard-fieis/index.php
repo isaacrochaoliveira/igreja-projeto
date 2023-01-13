@@ -37,7 +37,7 @@
         <nav class="navbar navbar-dark bg-dark f-family-Lobster" aria-label="Dark offcanvas navbar">
             <div class="container-fluid">
                 <a class="navbar-brand" style="font-size: 25px" href="index.php"><?=$_SESSION['nome']?></a>
-                <img src="<?=IMAGEM."logo-branco.png"?>" style="margin-left: -115px;">
+                <a href="index.php"><img src="<?=IMAGEM."logo-branco.png"?>" style="margin-left: -115px;"></a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbarDark" aria-controls="offcanvasNavbarDark">
                     <span class="navbar-toggler-icon"></span>
                 </button>

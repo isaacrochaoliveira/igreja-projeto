@@ -1,4 +1,4 @@
-k<?php
+<?php
 
 require_once('../config.php');
 require_once('../conexao.php');
@@ -146,7 +146,6 @@ $pag = "account";
                 <form action="" method="POST" enctype="multipart/form-data">
                     <div class="col-md-4">
                         <img src="<?=UPLOADS.$_SESSION['imagem']?>" alt="Foto de Perfil do Usuário" width="200" height="200" name="target"  id="target">
-                        <p><input type="file" name="perfil" id="perfil" onchange="carregarImg()"></p>
                     </div>
                     <div class="row">
                         <div class="col-md-3 mb-3">

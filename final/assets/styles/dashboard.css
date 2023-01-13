@@ -62,3 +62,7 @@
     border-left: 2px solid black;
     border-right: 2px solid black;
 }
+
+.mt-60-px {
+    margin-top: 60px;
+}
