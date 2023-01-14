@@ -10,11 +10,8 @@ require_once('../conexao.php');
 </div>
 <section class="d-flex mt-60-px mx-3 flex-wrap">
     <?php
-        $query = $pdo->query("SELECT * FROM oracao_relacionada_com_a_categoria as rc JOIN categorias ON rc.id_categoria = categorias.id_cat JOIN oracao ON rc.id_oracao = oracao.id JOIN usuarios ON oracao.id_criador = usuarios.id");
+        $query = $pdo->query("SELECT * FROM oracao as o JOIN usuarios as u ON o.id_criador = u.id");
         $res = $query->fetchAll(PDO::FETCH_ASSOC);
-        echo "<pre>";
-        print_r($res);
-        exit();
         if (count($res) > 0) { 
             for ($i = 0; $i < count($res); $i++) {
                 foreach ($res[$i] as $key => $value) {
@@ -22,6 +19,7 @@ require_once('../conexao.php');
                 ?>
                 <div class="d-flex mb-3 py-5 px-3" style="width: 50%;">
                     <?php
+                    $id_oracao = $res[$i]['id_pray'];
                     $titulo = $res[$i]['titulo'];
                     $descricao = $res[$i]['descricao'];
                     $imagem = $res[$i]['perfil'];
@@ -31,12 +29,33 @@ require_once('../conexao.php');
                     $joelhos_dobrados = $res[$i]['orando'];
                     ?>
 
-                    <img src="<?=UPLOADS.$imagem?>" class="my-auto" alt="Sem Foto de Perfil" width="140" height="140">
+                    <img src="<?=UPLOADS.$imagem?>" class="my-auto" alt="Sem Foto de Perfil" width="150" height="150">
                     <div class="ml-2">
                         <span class="span-style-oracao"><?=$titulo?></span>
                         <p class="p-style-oracao"><?=$descricao?></p>
+                        <p style="margin-bottom: -4px"><i class="fa-solid fa-person-praying"></i><?=" Joelhos Dobrados: ".$joelhos_dobrados?></p>
+                        <p>Categoria: 
+                            <?php
+                                $query_cat = $pdo->query("SELECT * FROM oracao_relacionada_com_a_categoria as oc JOIN categorias ON oc.id_categoria = categorias.id_cat JOIN oracao ON oracao.id_pray = oc.id_oracao");
+                                $res_cat = $query_cat->fetchAll(PDO::FETCH_ASSOC);
+                                if (count($res_cat) > 0) {
+                                    for ($c = 0; $c < count($res_cat); $c++) {
+                                        foreach ($res_cat[$c] as $key => $v) {
+                                        }
+                                        if ($res_cat[$c]['id_oracao'] == $id_oracao) {
+                                            $categoria = $res_cat[$c]['categorias'];
+                                            echo $categoria.". ";
+                                        }
+                                    }
+                                } else {
+                                    ?>
+                                    Sem Categoria
+                                    <?php
+                                }
+
+                            ?> 
+                        </p>
                         <p class="nome-style-oracao"><?=$nome_usuario." - ". $idade. " Anos(s) "?></p>
-                        <p><i class="fa-solid fa-person-praying"></i><?=" Joelhos Dobrados: ".$joelhos_dobrados?></p>
                     </div>
                 </div>
                 <?php
