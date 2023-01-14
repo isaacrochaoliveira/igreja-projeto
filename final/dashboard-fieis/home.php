@@ -5,10 +5,10 @@ require_once('../config.php');
 require_once('../conexao.php');
 
 ?>
-<div class="mt-5 ml-2">
+<div class="mt-1 mx-2">
     <button type="button" class="btn btn-default" data-bs-toggle="modal" data-bs-target="#modalNovaOracao"><i class="fa-solid fa-plus"></i> Nova Oração</button>
 </div>
-<section class="d-flex mt-60-px mx-3 flex-wrap">
+<section class="d-flex mx-2 flex-wrap">
     <?php
         $query = $pdo->query("SELECT * FROM oracao as o JOIN usuarios as u ON o.id_criador = u.id");
         $res = $query->fetchAll(PDO::FETCH_ASSOC);
@@ -33,8 +33,8 @@ require_once('../conexao.php');
                     <div class="ml-2">
                         <span class="span-style-oracao"><?=$titulo?></span>
                         <p class="p-style-oracao"><?=$descricao?></p>
-                        <p style="margin-bottom: -4px"><i class="fa-solid fa-person-praying"></i><?=" Joelhos Dobrados: ".$joelhos_dobrados?></p>
-                        <p>Categoria: 
+                        <p style="margin-bottom: 0px"><i class="fa-solid fa-person-praying"></i><?=" Joelhos Dobrados: ".$joelhos_dobrados?></p>
+                        <p style="margin-bottom: 0px;">Categoria: 
                             <?php
                                 $query_cat = $pdo->query("SELECT * FROM oracao_relacionada_com_a_categoria as oc JOIN categorias ON oc.id_categoria = categorias.id_cat JOIN oracao ON oracao.id_pray = oc.id_oracao");
                                 $res_cat = $query_cat->fetchAll(PDO::FETCH_ASSOC);
@@ -68,21 +68,128 @@ require_once('../conexao.php');
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
-                <h1 class="modal-title fs-5" id="exampleModalLabel">Modal title</h1>
+                <h1 class="modal-title fs-5" id="exampleModalLabel">Sua Oração</h1>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
-            <div class="modal-body">
-                <form action="" method="POST">
-                    <div class="row">
+            <form action="" method="POST">
+                <div class="modal-body">
+                    <div class="col mb-2">
                         <label for="title">Título da sua Oração</label>
+                        <input type="text" name="titulo" id="titulo" class="form-control">
                     </div>
-                </form>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-primary">Save changes</button>
-            </div>
+                    <div class="col mb-2">
+                        <label for="desc">Escreva aqui sua oração</label>
+                        <textarea rows="3" cols="4" class="form-control"></textarea>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6 mb-3">
+                            <label for="cat1">1º Categorias</label>
+                            <select class="form-select" name="cat1">
+                                <?php
+                                    $query_cate = $pdo->query("SELECT * FROM categorias");
+                                    $res_cate = $query_cate->fetchAll(PDO::FETCH_ASSOC);
+                                    if (count($res_cate) > 0) {
+                                        for ($i = 0; $i < count($res_cate); $i++) {
+                                            foreach ($res_cate[$i] as $key => $value) {
+                                            }
+                                            $id = $res_cate[$i]['id_cat'];
+                                            $categorias = $res_cate[$i]['categorias'];
+                                            ?>
+                                            <option value="<?php echo $id ?>"><?php echo $categorias?></option>
+                                            <?php
+                                        }
+                                    }
+                                ?>
+                            </select>
+                        </div>
+                        <div class="col-md-6 mb-3">
+                            <label for="cat2">2º Categoria</label>
+                            <select class="form-select" name="cat2">
+                                 <?php
+                                    $query_cate = $pdo->query("SELECT * FROM categorias");
+                                    $res_cate = $query_cate->fetchAll(PDO::FETCH_ASSOC);
+                                    if (count($res_cate) > 0) {
+                                        for ($i = 0; $i < count($res_cate); $i++) {
+                                            foreach ($res_cate[$i] as $key => $value) {
+                                            }
+                                            $id = $res_cate[$i]['id_cat'];
+                                            $categorias = $res_cate[$i]['categorias'];
+                                            ?>
+                                            <option value="<?php echo $id ?>"><?php echo $categorias?></option>
+                                            <?php
+                                        }
+                                    }
+                                ?>                               
+                            </select>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6 mb-3">
+                            <label for="cat3">3º Categorias</label>
+                            <select class="form-select" name="cat3">
+                                <?php
+                                    $query_cate = $pdo->query("SELECT * FROM categorias");
+                                    $res_cate = $query_cate->fetchAll(PDO::FETCH_ASSOC);
+                                    if (count($res_cate) > 0) {
+                                        for ($i = 0; $i < count($res_cate); $i++) {
+                                            foreach ($res_cate[$i] as $key => $value) {
+                                            }
+                                            $id = $res_cate[$i]['id_cat'];
+                                            $categorias = $res_cate[$i]['categorias'];
+                                            ?>
+                                            <option value="<?php echo $id ?>"><?php echo $categorias?></option>
+                                            <?php
+                                        }
+                                    }
+                                ?>
+                            </select>
+                        </div>
+                        <div class="col-md-6 mb-3">
+                            <label for="cat4">4º Categoria</label>
+                            <select class="form-select" name="cat4">
+                                 <?php
+                                    $query_cate = $pdo->query("SELECT * FROM categorias");
+                                    $res_cate = $query_cate->fetchAll(PDO::FETCH_ASSOC);
+                                    if (count($res_cate) > 0) {
+                                        for ($i = 0; $i < count($res_cate); $i++) {
+                                            foreach ($res_cate[$i] as $key => $value) {
+                                            }
+                                            $id = $res_cate[$i]['id_cat'];
+                                            $categorias = $res_cate[$i]['categorias'];
+                                            ?>
+                                            <option value="<?php echo $id ?>"><?php echo $categorias?></option>
+                                            <?php
+                                        }
+                                    }
+                                ?>                               
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-success" name="btn-salvar-pedido" id="btn-salvar-pedido">Adicionar</button>
+                </div>
+            </form>
         </div>
     </div>
 </div>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script type="text/javascript">
+    $(document).ready(function() {
+        $('#btn-salvar-pedido').click(function(event) {
+            event.preventDefault();
+            $.ajax({
+                url: pag + "/inserir_oracao.php",
+                method: "post",
+                data: $('form').serialize();
+                dataType: "text",
+                success: function(msg) {
+                    alert(msg);
+                }
+            })
+        })
+    });
+</script>
 
