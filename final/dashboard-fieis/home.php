@@ -88,6 +88,9 @@ require_once('../conexao.php');
                                 <?php
                                     $query_cate = $pdo->query("SELECT * FROM categorias");
                                     $res_cate = $query_cate->fetchAll(PDO::FETCH_ASSOC);
+                                     ?>
+                                    <option value="" selected>Selecione Um</option>
+                                    <?php
                                     if (count($res_cate) > 0) {
                                         for ($i = 0; $i < count($res_cate); $i++) {
                                             foreach ($res_cate[$i] as $key => $value) {
@@ -108,6 +111,9 @@ require_once('../conexao.php');
                                  <?php
                                     $query_cate = $pdo->query("SELECT * FROM categorias");
                                     $res_cate = $query_cate->fetchAll(PDO::FETCH_ASSOC);
+                                     ?>
+                                    <option value="" selected>Selecione Um</option>
+                                    <?php
                                     if (count($res_cate) > 0) {
                                         for ($i = 0; $i < count($res_cate); $i++) {
                                             foreach ($res_cate[$i] as $key => $value) {
@@ -130,6 +136,9 @@ require_once('../conexao.php');
                                 <?php
                                     $query_cate = $pdo->query("SELECT * FROM categorias");
                                     $res_cate = $query_cate->fetchAll(PDO::FETCH_ASSOC);
+                                     ?>
+                                    <option value="" selected>Selecione Um</option>
+                                    <?php
                                     if (count($res_cate) > 0) {
                                         for ($i = 0; $i < count($res_cate); $i++) {
                                             foreach ($res_cate[$i] as $key => $value) {
@@ -150,6 +159,9 @@ require_once('../conexao.php');
                                  <?php
                                     $query_cate = $pdo->query("SELECT * FROM categorias");
                                     $res_cate = $query_cate->fetchAll(PDO::FETCH_ASSOC);
+                                    ?>
+                                    <option value="" selected>Selecione Um</option>
+                                    <?php
                                     if (count($res_cate) > 0) {
                                         for ($i = 0; $i < count($res_cate); $i++) {
                                             foreach ($res_cate[$i] as $key => $value) {
