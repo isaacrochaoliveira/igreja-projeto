@@ -4,6 +4,8 @@ require_once('../protect.php');
 require_once('../config.php');
 require_once('../conexao.php');
 
+$pag = "home";
+
 ?>
 <div class="mt-1 mx-2">
     <button type="button" class="btn btn-default" data-bs-toggle="modal" data-bs-target="#modalNovaOracao"><i class="fa-solid fa-plus"></i> Nova Oração</button>
@@ -79,7 +81,7 @@ require_once('../conexao.php');
                     </div>
                     <div class="col mb-2">
                         <label for="desc">Escreva aqui sua oração</label>
-                        <textarea rows="3" cols="4" class="form-control"></textarea>
+                        <textarea rows="3" cols="4" class="form-control" name="desc" id="desc"></textarea>
                     </div>
                     <div class="row">
                         <div class="col-md-6 mb-3">
@@ -193,9 +195,9 @@ require_once('../conexao.php');
         $('#btn-salvar-pedido').click(function(event) {
             event.preventDefault();
             $.ajax({
-                url: pag + "/inserir_oracao.php",
+                url: "home/inserir_oracao.php",
                 method: "post",
-                data: $('form').serialize();
+                data: $('form').serialize(),
                 dataType: "text",
                 success: function(msg) {
                     alert(msg);
