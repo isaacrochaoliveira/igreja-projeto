@@ -125,19 +125,14 @@ require_once('../conexao.php');
                                             $query_c = $pdo->query("SELECT * FROM oracao_relacionada_com_a_categoria WHERE id_oracao = '$pray' LIMIT 4");
                                             $res_c = $query_c->fetchAll(PDO::FETCH_ASSOC);
                                             $id_1 = $res_c[0]['id_categoria'];
-                                            $id_2 = $res_c[1]['id_categoria'];
-                                            $id_3 = $res_c[2]['id_categoria'];
-                                            $id_4 = $res_c[3]['id_categoria'];
-                                            if (!($id == $id_1)) {
-                                                if (!($id == $id_2)) {
-                                                    if (!($id == $id_3)) {
-                                                        if (!($id == $id_4)) {
-                                                            ?>
-                                                            <option><?=$categoria?></option>
-                                                            <?php
-                                                        }
-                                                    }
-                                                }
+                                            if (($id == $id_1)) {
+                                                ?>
+                                                <option value="<?=$id?>" selected><?=$categoria?></option>
+                                                <?php
+                                            } else {
+                                                ?>
+                                                <option value="<?=$id?>"><?=$categoria?></option>
+                                                <?php
                                             }
                                         }
                                     }
@@ -161,18 +156,14 @@ require_once('../conexao.php');
                                             $res_c = $query_c->fetchAll(PDO::FETCH_ASSOC);
                                             $id_1 = $res_c[0]['id_categoria'];
                                             $id_2 = $res_c[1]['id_categoria'];
-                                            $id_3 = $res_c[2]['id_categoria'];
-                                            $id_4 = $res_c[3]['id_categoria'];
-                                            if (!($id == $id_1)) {
-                                                if (!($id == $id_2)) {
-                                                    if (!($id == $id_3)) {
-                                                        if (!($id == $id_4)) {
-                                                            ?>
-                                                            <option><?=$categoria?></option>
-                                                            <?php
-                                                        }
-                                                    }
-                                                }
+                                            if (($id == $id_2)) {
+                                                ?>
+                                                <option value="<?=$id?>" selected><?=$categoria?></option>
+                                                <?php
+                                            } else {
+                                                ?>
+                                                <option value="<?=$id?>"><?=$categoria?></option>
+                                                <?php
                                             }
                                         }
                                     }
@@ -196,20 +187,15 @@ require_once('../conexao.php');
 
                                             $query_c = $pdo->query("SELECT * FROM oracao_relacionada_com_a_categoria WHERE id_oracao = '$pray' LIMIT 4");
                                             $res_c = $query_c->fetchAll(PDO::FETCH_ASSOC);
-                                            $id_1 = $res_c[0]['id_categoria'];
-                                            $id_2 = $res_c[1]['id_categoria'];
                                             $id_3 = $res_c[2]['id_categoria'];
-                                            $id_4 = $res_c[3]['id_categoria'];
-                                            if (!($id == $id_1)) {
-                                                if (!($id == $id_2)) {
-                                                    if (!($id == $id_3)) {
-                                                        if (!($id == $id_4)) {
-                                                            ?>
-                                                            <option><?=$categoria?></option>
-                                                            <?php
-                                                        }
-                                                    }
-                                                }
+                                            if (($id == $id_3)) {
+                                                ?>
+                                                <option value="<?=$id?>" selected><?=$categoria?></option>
+                                                <?php
+                                            } else {
+                                                ?>
+                                                <option value="<?=$id?>"><?=$categoria?></option>
+                                                <?php
                                             }
                                         }
                                     }
@@ -231,20 +217,15 @@ require_once('../conexao.php');
 
                                             $query_c = $pdo->query("SELECT * FROM oracao_relacionada_com_a_categoria WHERE id_oracao = '$pray' LIMIT 4");
                                             $res_c = $query_c->fetchAll(PDO::FETCH_ASSOC);
-                                            $id_1 = $res_c[0]['id_categoria'];
-                                            $id_2 = $res_c[1]['id_categoria'];
-                                            $id_3 = $res_c[2]['id_categoria'];
                                             $id_4 = $res_c[3]['id_categoria'];
-                                            if (!($id == $id_1)) {
-                                                if (!($id == $id_2)) {
-                                                    if (!($id == $id_3)) {
-                                                        if (!($id == $id_4)) {
-                                                            ?>
-                                                            <option><?=$categoria?></option>
-                                                            <?php
-                                                        }
-                                                    }
-                                                }
+                                            if (($id == $id_4)) {
+                                                ?>
+                                                <option value="<?=$id?>" selected><?=$categoria?></option>
+                                                <?php
+                                            } else {
+                                                ?>
+                                                <option value="<?=$id?>"><?=$categoria?></option>
+                                                <?php
                                             }
                                         }
                                     }
@@ -254,6 +235,10 @@ require_once('../conexao.php');
                     </div>
                 </div>
                 <div class="modal-footer">
+                    <input type="hidden" name="cat1_at" value="<?=$id_1?>">
+                    <input type="hidden" name="cat2_at" value="<?=$id_2?>">
+                    <input type="hidden" name="cat3_at" value="<?=$id_3?>">
+                    <input type="hidden" name="cat4_at" value="<?=$id_4?>">
                     <input type="hidden" name="id_oracao_edit_id" id="id_oracao_edit_id" value="<?=$_GET['id_pray_edit']?>">
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" name="btn-fechar-pedido" id="btn-fechar-pedido">Voltar</button>
                     <button type="button" class="btn btn-success" name="btn-editar-pedido" id="btn-editar-pedido">Alterar</button>
@@ -334,4 +319,20 @@ if (isset($_GET['id_pray_edit'])) {
             })
         })
     }
+</script>
+
+<script type="text/javascript">
+    $(document).ready(function() {
+        $('#btn-editar-pedido').click(function(event) {
+            $.ajax({
+                url: 'minhas-oracoes/editar_oracao.php',
+                method: 'post',
+                data: $('form').serialize(),
+                dataType: 'text',
+                success: function(msg) {
+                    alert(msg);
+                }
+            })
+        }) 
+    })
 </script>
