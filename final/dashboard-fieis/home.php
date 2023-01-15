@@ -36,12 +36,15 @@ $pag = "home";
                         <div class="ml-2" style="width: 100%;">
                             <div class="d-flex justify-content-between">
                                 <span class="span-style-oracao"><?=$titulo?> - </span>
-                                <button style="border: none; background-color: white;" onclick="emProposito(<?=$id_oracao?>)" name="btn_emproposito" id="btn_emproposito">
-                                    <i id="fa-solid-fa-heart-<?=$id_oracao?>" style="font-size: 20px;" title="Em Propósito" class="fa-solid fa-heart"></i>
+                                <button style="border: none; background-color: white;" onclick="emProposito(<?=$id_oracao?>)" name="btn_emproposito" id="btn_emproposito_<?=$id_oracao?>">
+                                    <i id="fa-solid-fa-heart-<?=$id_oracao?>" style="font-size: 20px;" title="Em Propósito" class="fa-regular fa-heart"></i>
+                                </button>
+                                <button style="border: none; background-color: white; display: none;" onclick="desEmProposito(<?=$id_oracao?>)"  name="btn_desemproposito_<?=$id_oracao?>" id="btn_desemproposito_<?=$id_oracao?>">
+                                    <i title="Não estou mais em Propósito" class="fa-solid fa-heart" style="font-size: 20px;"></i>
                                 </button>
                             </div>
                             <p class="p-style-oracao"><?=$descricao?></p>
-                            <p style="margin-bottom: 0px"><i class="fa-solid fa-person-praying"></i><?=" Joelhos Dobrados: "?></p><span id="joelhor_dobrados_<?=$id_oracao?>"><?=$joelhos_dobrados?></span>
+                            <p style="margin-bottom: 0px"><i class="fa-solid fa-person-praying"></i><?=" Joelhos Dobrados: "?><span id="joelhor_dobrados_<?=$id_oracao?>"><?=$joelhos_dobrados?></span></p>
                             <p style="margin-bottom: 0px;">Categoria: 
                                 <?php
                                     $query_cat = $pdo->query("SELECT * FROM oracao_relacionada_com_a_categoria as oc JOIN categorias ON oc.id_categoria = categorias.id_cat JOIN oracao ON oracao.id_pray = oc.id_oracao");
@@ -217,7 +220,6 @@ $pag = "home";
 
 <script type="text/javascript">
     function emProposito(id) {
-        document.getElementById('fa-solid-fa-heart-'+id).style.color = 'red';
         $(document).ready(function() {
             $.ajax({
                 url: 'home/inserir_proposito.php',
@@ -226,9 +228,28 @@ $pag = "home";
                 success: function(msg) {
                     var Json = JSON.parse(msg);
                     $('#joelhor_dobrados_'+id).html(Json);
+                    document.getElementById('btn_emproposito_'+id).style.display = 'none';
+                    document.getElementById('btn_desemproposito_'+id).style.display = 'block';
                 }
             })
         })
     }
 </script>
 
+<script type="text/javascript">
+    function desEmProposito(id) {
+        $(document).ready(function() {
+            $.ajax({
+                url: 'home/deletar_proposito.php',
+                method: 'post',
+                data: {id},
+                success: function(msg) {
+                    var Json = JSON.parse(msg);
+                    $('#joelhor_dobrados_'+id).html(Json);
+                    document.getElementById('btn_emproposito_'+id).style.display = 'block';
+                    document.getElementById('btn_desemproposito_'+id).style.display = 'none';
+                }
+            })
+        })
+    }
+</script>
