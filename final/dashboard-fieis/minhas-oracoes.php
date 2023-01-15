@@ -209,16 +209,16 @@ require_once('../conexao.php');
     </div>
 </div>
 
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 <?php 
-if (!isset($_GET['id_pray_edit'])) {
-    echo "<script>$('#modalPrayEdit').modal('show')</script";
+if (isset($_GET['id_pray_edit'])) {
+    echo "<script>$('#modalPrayEdit').modal('show')</script>";
 }
     
 ?>
 
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-
-<script type="text/javascript">
+<script type="text/javascript"> 
     function EditarOracao(id) {
         $('#id_oracao_edit_id').val(id);
         $('#modalPrayEdit').modal('show');
