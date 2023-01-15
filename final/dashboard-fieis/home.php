@@ -219,7 +219,15 @@ $pag = "home";
     function emProposito(id) {
         document.getElementById('fa-solid-fa-heart-'+id).style.color = 'red';
         $(document).ready(function() {
-            //Code
+            $.ajax({
+                url: 'home/inserir_proposito.php',
+                method: 'post',
+                data: {id},
+                dataType: 'text',
+                success: function(msg) {
+                    alert(msg);
+                }
+            })
         })
     }
 </script>
