@@ -34,7 +34,7 @@ require_once('../conexao.php');
                                     <button style="border: none; background-color: white; margin: 0px 3px" name="btn_emproposito" id="btn_emprsoposito_<?=$id_oracao?>">
                                         <i class="fa-solid fa-file" style="font-size: 20px;" title="Editar Oração"></i>
                                     </button>
-                                    <button style="border: none; background-color: white; margin: 0px 3px" name="btn_emproposito" id="btn_empropsosito_<?=$id_oracao?>">
+                                    <button onclick="ExcluirOracao(<?=$id_oracao?>)" style="border: none; color: red; background-color: white; margin: 0px 3px" onclick="">
                                         <i class="fa-solid fa-trash" style="font-size: 20px;" title="Excluir Oração"></i>
                                     </button>
                                     <button style="border: none; background-color: white; margin: 0px 3px" onclick="emProposito(<?=$id_oracao?>)" name="btn_emproposito" id="btn_emproposito_<?=$id_oracao?>">
@@ -78,7 +78,48 @@ require_once('../conexao.php');
     ?>
 </section>
 
+<div class="modal fade" id="modalPrayEdit" tabindex="-1" data-bs-backdrop="static" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5" id="exampleModalLabel">Modal title</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                ...
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary">Save changes</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+
+
+
+<script type="text/javascript">
+    function ExcluirOracao(id) {
+        $(document).ready(function() {
+            var confirma = confirm('Quer Realmente excluir sua oração?');
+            if (confirma) {
+                $.ajax({
+                    url: 'minhas-oracoes/excluir.php',
+                    method: 'post',
+                    data: {id},
+                    dataType: 'text',
+                    success: function(msg) {
+                        window.location = 'index.php?pag=minhas-oracoes';
+                    }
+                })
+            }
+        })
+    }
+</script>
+
 <script type="text/javascript">
     function emProposito(id) {
         $(document).ready(function() {
