@@ -5,11 +5,27 @@ require_once('../config.php');
 require_once('../conexao.php');
 
 $pag = "home";
+$menu1 = "grupo-de-oracoes";
+$menu2 = "pedidos-de-oracoes";
+$menu3 = "oracoes-especiais";
+$menu4 = "criar-grupo";
+$menu5 = "leitura-individual";
+$menu6 = "leitura-compartilhada";
+$menu7 = "leitura-em-1-ano";
+$menu8 = "principais-temas";
+$menu9 = "pastores";
+$menu10 = "jejum-21-dias";
+$menu11 = "jejum-3-dias";
+$menu12 = "jejum-14-dias";
+$menu13 = "jejum-40-dias";
+$menu14 = "jejum-personalisado";
+$menu15 = 'account';
+$menu16 = "minhas-oracoes";
 
 ?>
 <div class="mt-1 mx-2">
     <button type="button" class="btn btn-default" data-bs-toggle="modal" data-bs-target="#modalNovaOracao"><i class="fa-solid fa-plus"></i> Nova Oração</button>
-    <a href="index.php?pag=minhas-oracoes">Visualizar todas as minhas orações</a>
+    <a href="index.php?pag=<?=$menu16?>">Visualizar todas as minhas orações</a>
 </div>
 <section class="d-flex mx-2 flex-wrap" style="margin: 0px;">
     <?php

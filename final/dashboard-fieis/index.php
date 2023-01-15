@@ -19,7 +19,6 @@
     $menu13 = "jejum-40-dias";
     $menu14 = "jejum-personalisado";
     $menu15 = 'account';
-    $menu16 = "minhas-oracoes";
 
 ?>
 <!DOCTYPE html>
@@ -182,8 +181,8 @@
         @include_once(@$menu14 . ".php");
     } else if (@$pag == $menu15) {
         @include_once(@$menu15 . ".php");
-    } else if (@$pag == $menu16) {
-        @include_once(@$meun16 . ".php");
+    } else if (@$pag == 'minhas-oracoes') {
+        @include_once('minhas-oracoes.php');
     }else {
         @include_once("home.php");
     }
