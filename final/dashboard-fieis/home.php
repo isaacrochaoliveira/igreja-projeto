@@ -9,6 +9,7 @@ $pag = "home";
 ?>
 <div class="mt-1 mx-2">
     <button type="button" class="btn btn-default" data-bs-toggle="modal" data-bs-target="#modalNovaOracao"><i class="fa-solid fa-plus"></i> Nova Oração</button>
+    <a href="index.php?pag=minhas-oracoes">Visualizar todas as minhas orações</a>
 </div>
 <section class="d-flex mx-2 flex-wrap" style="margin: 0px;">
     <?php
@@ -80,7 +81,7 @@ $pag = "home";
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
-                <h1 class="modal-title fs-5" id="exampleModalLabel">Sua Oração - <a href="index.php?pag=pedidos-de-oracoes" target="_blank">Ver todas as minhas orações</a></h1>
+                <h1 class="modal-title fs-5" id="exampleModalLabel">Sua Oração - <a href="index.php?pag=meus-pedidos-de-oracoes" target="_blank">Ver todas as minhas orações</a></h1>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <form action="" method="POST">
