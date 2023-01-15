@@ -41,7 +41,7 @@ $pag = "home";
                                 </button>
                             </div>
                             <p class="p-style-oracao"><?=$descricao?></p>
-                            <p style="margin-bottom: 0px"><i class="fa-solid fa-person-praying"></i><?=" Joelhos Dobrados: ".$joelhos_dobrados?></p>
+                            <p style="margin-bottom: 0px"><i class="fa-solid fa-person-praying"></i><?=" Joelhos Dobrados: "?></p><p id="joelhor_dobrados"><?=$joelhos_dobrados?></p>
                             <p style="margin-bottom: 0px;">Categoria: 
                                 <?php
                                     $query_cat = $pdo->query("SELECT * FROM oracao_relacionada_com_a_categoria as oc JOIN categorias ON oc.id_categoria = categorias.id_cat JOIN oracao ON oracao.id_pray = oc.id_oracao");
@@ -225,7 +225,7 @@ $pag = "home";
                 data: {id},
                 dataType: 'text',
                 success: function(msg) {
-                    alert(msg);
+                    document.getElementById('joelhor_dobrados').innerHTML(msg);
                 }
             })
         })

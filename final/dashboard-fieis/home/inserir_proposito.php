@@ -11,7 +11,7 @@ if (count($res) > 0) {
 	$mais_um += 1;
 	$pdo->query("UPDATE oracao SET orando = '$mais_um' WHERE id_pray = '$id'");
 
-	echo "Oração Curtida com Sucesso!";
+	echo "$id";
 }
 
 
