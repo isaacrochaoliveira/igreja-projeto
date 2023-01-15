@@ -10,7 +10,7 @@ $pag = "home";
 <div class="mt-1 mx-2">
     <button type="button" class="btn btn-default" data-bs-toggle="modal" data-bs-target="#modalNovaOracao"><i class="fa-solid fa-plus"></i> Nova Oração</button>
 </div>
-<section class="d-flex mx-2 flex-wrap">
+<section class="d-flex mx-2 flex-wrap" style="margin: 0px;">
     <?php
         $query = $pdo->query("SELECT * FROM oracao as o JOIN usuarios as u ON o.id_criador = u.id");
         $res = $query->fetchAll(PDO::FETCH_ASSOC);
@@ -20,7 +20,7 @@ $pag = "home";
                 }
                 if (!($res[$i]['id_criador'] == $_SESSION['id'])) {
                     ?>
-                    <div class="d-flex mb-3 py-5 px-3" style="width: 50%;">
+                    <div class="d-flex mb-1 px-3" style="width: 50%;">
                         <?php
                         $id_oracao = $res[$i]['id_pray'];
                         $titulo = $res[$i]['titulo'];
@@ -32,9 +32,14 @@ $pag = "home";
                         $joelhos_dobrados = $res[$i]['orando'];
                         ?>
 
-                        <img src="<?=UPLOADS.$imagem?>" class="my-auto" alt="Sem Foto de Perfil" width="150" height="150">
-                        <div class="ml-2">
-                            <span class="span-style-oracao"><?=$titulo?></span>
+                        <img src="<?=UPLOADS.$imagem?>" class="my-auto border-radius" alt="Sem Foto de Perfil" width="150" height="150">
+                        <div class="ml-2" style="width: 100%;">
+                            <div class="d-flex justify-content-between">
+                                <span class="span-style-oracao"><?=$titulo?> - </span>
+                                <button style="border: none; background-color: white;" onclick="emProposito(<?=$id_oracao?>)" name="btn_emproposito" id="btn_emproposito">
+                                    <i id="fa-solid-fa-heart-<?=$id_oracao?>" style="font-size: 20px;" title="Em Propósito" class="fa-solid fa-heart"></i>
+                                </button>
+                            </div>
                             <p class="p-style-oracao"><?=$descricao?></p>
                             <p style="margin-bottom: 0px"><i class="fa-solid fa-person-praying"></i><?=" Joelhos Dobrados: ".$joelhos_dobrados?></p>
                             <p style="margin-bottom: 0px;">Categoria: 
@@ -208,5 +213,14 @@ $pag = "home";
             })
         })
     });
+</script>
+
+<script type="text/javascript">
+    function emProposito(id) {
+        document.getElementById('fa-solid-fa-heart-'+id).style.color = 'red';
+        $(document).ready(function() {
+            //Code
+        })
+    }
 </script>
 
