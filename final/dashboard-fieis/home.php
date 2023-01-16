@@ -79,7 +79,7 @@ require_once('../conexao.php');
     </div>
     <div class="card-grupo">
         <div class="border-gold">
-            <img src="<?=UPLOADS."grupo-de-intercessao.png"?>" width="200" height='100' class="my-auto">
+            <img src="<?=UPLOADS."grupo-de-intercessao.png"?>" width="200" height='80' class="my-auto">
             <h1 class="title-card-grupo">Grupo de Intercessão</h1>
             <p class="description-card-grupo">Buscamos a face de Deus dia após dia, a bíblia nos fala orai sem cesar. Por que nós oramos? Simples! Você não pediria um ajuda para a única pessoa que consegue fazer aquilo que você tanto deseja?</p>
             <div class="d-flex justify-content-end">

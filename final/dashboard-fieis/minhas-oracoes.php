@@ -35,13 +35,13 @@ require_once('../conexao.php');
                             <div class="d-flex justify-content-between">
                                 <span class="span-style-oracao"><?=$titulo?></span>
                                 <div class="d-flex flex-wrap">
-                                    <button type="button" title="Nova Oração" style="border: none; color: red; background-color: white; margin: 7px 3px" data-bs-toggle="modal" data-bs-target="#modalNovaOracao">
+                                    <button type="button" title="Nova Oração" style="border: none; color: blue; background-color: white; margin: 7px 3px" data-bs-toggle="modal" data-bs-target="#modalNovaOracao">
                                         <i class="fa-solid fa-plus"></i>
                                     </button>
-                                    <a href="index.php?pag=minhas-oracoes&id_pray_edit=<?=$id_oracao?>" style="border: none; color: red; background-color: white; margin: 7px 3px" name="btn_emproposito" id="btn_emprsoposito_<?=$id_oracao?>">
-                                        <i class="fa-solid fa-file" style="font-size: 20px;" title="Editar Oração"></i>
+                                    <a href="index.php?pag=minhas-oracoes&id_pray_edit=<?=$id_oracao?>" style="border: none; color: blueviolet; background-color: white; margin: 7px 3px" name="btn_emproposito" id="btn_emprsoposito_<?=$id_oracao?>">
+                                        <i class="fa-solid fa-file-zipper" style="font-size: 20px;" title="Editar Oração"></i>
                                     </a>
-                                    <button onclick="ExcluirOracao(<?=$id_oracao?>)" style="border: none; color: red; background-color: white; margin: 0px 3px" onclick="">
+                                    <button onclick="ExcluirOracao(<?=$id_oracao?>)" style="border: none; color: darkred; background-color: white; margin: 0px 3px" onclick="">
                                         <i class="fa-solid fa-trash" style="font-size: 20px;" title="Excluir Oração"></i>
                                     </button>
                                     <button style="border: none; color: red;background-color: white; margin: 0px 3px" onclick="emProposito(<?=$id_oracao?>)" name="btn_emproposito" id="btn_emproposito_<?=$id_oracao?>">
