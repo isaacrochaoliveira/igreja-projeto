@@ -4,8 +4,9 @@ require_once('../protect.php');
 require_once('../config.php');
 require_once('../conexao.php');
 ?>
-<div class="">
+<div class="d-flex justify-content-between">
     <button type="button" class="btn btn-primary mx-1 mt-1" data-bs-toggle="modal" data-bs-target="#modalNovaOracao"><i class="fa-solid fa-plus"></i> Nova Oração</button>
+    <a href="index.php" class="btn btn-outline-danger mx-1 mt-1"><i class="fa-solid fa-arrow-left"></i></a>
 </div>
 <section class="d-flex mx-2 flex-wrap" style="margin: 0px;">
     <?php
