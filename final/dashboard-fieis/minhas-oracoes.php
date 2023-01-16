@@ -331,6 +331,7 @@ if (isset($_GET['id_pray_edit'])) {
                 dataType: 'text',
                 success: function(msg) {
                     alert(msg);
+                    window.location = 'index.php?pag=minhas-oracoes';
                 }
             })
         }) 

@@ -27,32 +27,36 @@ if ($res->execute()) {
 		$id_oracao = $res_[0]['id_pray'];
 		if (!empty($categorias1)) {
 			if (!($categorias1 == $cat1)) {
-				$res_cat = $pdo->prepare("UPDATE oracao_relacionada_com_a_categoria SET id_categoria = :id_cat WHERE id_oracao = :id_oracao");
+				$res_cat = $pdo->prepare("UPDATE oracao_relacionada_com_a_categoria SET id_categoria = :id_cat WHERE id_oracao = :id_oracao AND id_categoria = :id_cat_ant");
 				$res_cat->bindValue(':id_oracao', $id_oracao);
+				$res_cat->bindValue(':id_cat_ant', $cat1);
 				$res_cat->bindValue(':id_cat', $categorias1);
 				$res_cat->execute();
 			}
 		} 
 		if (!empty($categorias2)) {
 			if (!($categorias2 == $cat2)) {
-				$res_cat = $pdo->prepare("UPDATE oracao_relacionada_com_a_categoria SET id_categoria = :id_cat WHERE id_oracao = :id_oracao");
+				$res_cat = $pdo->prepare("UPDATE oracao_relacionada_com_a_categoria SET id_categoria = :id_cat WHERE id_oracao = :id_oracao AND id_categoria = :id_cat_ant");
 				$res_cat->bindValue(':id_oracao', $id_oracao);
+				$res_cat->bindValue(':id_cat_ant', $cat2);
 				$res_cat->bindValue(':id_cat', $categorias2);
 				$res_cat->execute();
 			}
 		}
 		if (!empty($categorias3)) {
 			if (!($categorias3 == $cat3)) {
-				$res_cat = $pdo->prepare("UPDATE oracao_relacionada_com_a_categoria SET id_categoria = :id_cat WHERE id_oracao = :id_oracao");
+				$res_cat = $pdo->prepare("UPDATE oracao_relacionada_com_a_categoria SET id_categoria = :id_cat WHERE id_oracao = :id_oracao AND id_categoria = :id_cat_ant");
 				$res_cat->bindValue(':id_oracao', $id_oracao);
+				$res_cat->bindValue(':id_cat_ant', $cat3);
 				$res_cat->bindValue(':id_cat', $categorias3);
 				$res_cat->execute();
 			}
 		}
 		if (!empty($categorias4)) {
 			if (!($categorias4 == $cat4)) {
-				$res_cat = $pdo->prepare("UPDATE oracao_relacionada_com_a_categoria SET id_categoria = :id_cat WHERE id_oracao = :id_oracao");
+				$res_cat = $pdo->prepare("UPDATE oracao_relacionada_com_a_categoria SET id_categoria = :id_cat WHERE id_oracao = :id_oracao AND id_categoria = :id_cat_ant");
 				$res_cat->bindValue(':id_oracao', $id_oracao);
+				$res_cat->bindValue(':id_cat_ant', $cat4);
 				$res_cat->bindValue(':id_cat', $categorias4);
 				$res_cat->execute();
 			}
