@@ -4,6 +4,9 @@ require_once('../protect.php');
 require_once('../config.php');
 require_once('../conexao.php');
 ?>
+<div class="">
+    <button type="button" class="btn btn-primary mx-1 mt-1" data-bs-toggle="modal" data-bs-target="#modalNovaOracao"><i class="fa-solid fa-plus"></i> Nova Oração</button>
+</div>
 <section class="d-flex mx-2 flex-wrap" style="margin: 0px;">
     <?php
         $query = $pdo->query("SELECT * FROM oracao as o JOIN usuarios as u ON o.id_criador = u.id");
@@ -31,13 +34,16 @@ require_once('../conexao.php');
                             <div class="d-flex justify-content-between">
                                 <span class="span-style-oracao"><?=$titulo?></span>
                                 <div class="d-flex flex-wrap">
-                                    <a href="index.php?pag=minhas-oracoes&id_pray_edit=<?=$id_oracao?>" style="border: none; background-color: white; margin: 0px 3px" name="btn_emproposito" id="btn_emprsoposito_<?=$id_oracao?>">
+                                    <button type="button" title="Nova Oração" style="border: none; color: red; background-color: white; margin: 7px 3px" data-bs-toggle="modal" data-bs-target="#modalNovaOracao">
+                                        <i class="fa-solid fa-plus"></i>
+                                    </button>
+                                    <a href="index.php?pag=minhas-oracoes&id_pray_edit=<?=$id_oracao?>" style="border: none; color: red; background-color: white; margin: 7px 3px" name="btn_emproposito" id="btn_emprsoposito_<?=$id_oracao?>">
                                         <i class="fa-solid fa-file" style="font-size: 20px;" title="Editar Oração"></i>
                                     </a>
                                     <button onclick="ExcluirOracao(<?=$id_oracao?>)" style="border: none; color: red; background-color: white; margin: 0px 3px" onclick="">
                                         <i class="fa-solid fa-trash" style="font-size: 20px;" title="Excluir Oração"></i>
                                     </button>
-                                    <button style="border: none; background-color: white; margin: 0px 3px" onclick="emProposito(<?=$id_oracao?>)" name="btn_emproposito" id="btn_emproposito_<?=$id_oracao?>">
+                                    <button style="border: none; color: red;background-color: white; margin: 0px 3px" onclick="emProposito(<?=$id_oracao?>)" name="btn_emproposito" id="btn_emproposito_<?=$id_oracao?>">
                                         <i id="fa-solid-fa-heart-<?=$id_oracao?>" style="font-size: 20px;" title="Em Propósito" class="fa-regular fa-heart"></i>
                                     </button>
                                     <button style="border: none; background-color: white; display: none; margin: 0px 3px" onclick="desEmProposito(<?=$id_oracao?>)"  name="btn_desemproposito_<?=$id_oracao?>" id="btn_desemproposito_<?=$id_oracao?>">
@@ -240,8 +246,131 @@ require_once('../conexao.php');
                     <input type="hidden" name="cat3_at" value="<?=$id_3?>">
                     <input type="hidden" name="cat4_at" value="<?=$id_4?>">
                     <input type="hidden" name="id_oracao_edit_id" id="id_oracao_edit_id" value="<?=$_GET['id_pray_edit']?>">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" name="btn-fechar-pedido" id="btn-fechar-pedido">Voltar</button>
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" name="btn-fechar-pedido_" id="btn-fechar-pedido_">Voltar</button>
                     <button type="button" class="btn btn-success" name="btn-editar-pedido" id="btn-editar-pedido">Alterar</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="modalNovaOracao" data-bs-backdrop="static" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5" id="exampleModalLabel">Sua Oração </h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <form action="" method="POST">
+                <div class="modal-body">
+                    <div class="col mb-2">
+                        <label for="titulo_novo">Título da sua Oração</label>
+                        <input type="text" name="titulo_novo" id="titulo_novo" class="form-control">
+                    </div>
+                    <div class="col mb-2">
+                        <label for="desc_novo">Escreva aqui sua oração</label>
+                        <textarea rows="3" cols="4" class="form-control" name="desc_novo" id="desc_novo"></textarea>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6 mb-3">
+                            <label for="cat1_novo">1º Categorias</label>
+                            <select class="form-select" name="cat1_novo">
+                                <?php
+                                    $query_cate = $pdo->query("SELECT * FROM categorias");
+                                    $res_cate = $query_cate->fetchAll(PDO::FETCH_ASSOC);
+                                     ?>
+                                    <option value="" selected>Selecione Um</option>
+                                    <?php
+                                    if (count($res_cate) > 0) {
+                                        for ($i = 0; $i < count($res_cate); $i++) {
+                                            foreach ($res_cate[$i] as $key => $value) {
+                                            }
+                                            $id = $res_cate[$i]['id_cat'];
+                                            $categorias = $res_cate[$i]['categorias'];
+                                            ?>
+                                            <option value="<?php echo $id ?>"><?php echo $categorias?></option>
+                                            <?php
+                                        }
+                                    }
+                                ?>
+                            </select>
+                        </div>
+                        <div class="col-md-6 mb-3">
+                            <label for="cat2_novo">2º Categoria</label>
+                            <select class="form-select" name="cat2_novo">
+                                 <?php
+                                    $query_cate = $pdo->query("SELECT * FROM categorias");
+                                    $res_cate = $query_cate->fetchAll(PDO::FETCH_ASSOC);
+                                     ?>
+                                    <option value="" selected>Selecione Um</option>
+                                    <?php
+                                    if (count($res_cate) > 0) {
+                                        for ($i = 0; $i < count($res_cate); $i++) {
+                                            foreach ($res_cate[$i] as $key => $value) {
+                                            }
+                                            $id = $res_cate[$i]['id_cat'];
+                                            $categorias = $res_cate[$i]['categorias'];
+                                            ?>
+                                            <option value="<?php echo $id ?>"><?php echo $categorias?></option>
+                                            <?php
+                                        }
+                                    }
+                                ?>                               
+                            </select>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6 mb-3">
+                            <label for="cat3_novo">3º Categorias</label>
+                            <select class="form-select" name="cat3_novo">
+                                <?php
+                                    $query_cate = $pdo->query("SELECT * FROM categorias");
+                                    $res_cate = $query_cate->fetchAll(PDO::FETCH_ASSOC);
+                                     ?>
+                                    <option value="" selected>Selecione Um</option>
+                                    <?php
+                                    if (count($res_cate) > 0) {
+                                        for ($i = 0; $i < count($res_cate); $i++) {
+                                            foreach ($res_cate[$i] as $key => $value) {
+                                            }
+                                            $id = $res_cate[$i]['id_cat'];
+                                            $categorias = $res_cate[$i]['categorias'];
+                                            ?>
+                                            <option value="<?php echo $id ?>"><?php echo $categorias?></option>
+                                            <?php
+                                        }
+                                    }
+                                ?>
+                            </select>
+                        </div>
+                        <div class="col-md-6 mb-3">
+                            <label for="cat4_novo">4º Categoria</label>
+                            <select class="form-select" name="cat4_novo">
+                                 <?php
+                                    $query_cate = $pdo->query("SELECT * FROM categorias");
+                                    $res_cate = $query_cate->fetchAll(PDO::FETCH_ASSOC);
+                                    ?>
+                                    <option value="" selected>Selecione Um</option>
+                                    <?php
+                                    if (count($res_cate) > 0) {
+                                        for ($i = 0; $i < count($res_cate); $i++) {
+                                            foreach ($res_cate[$i] as $key => $value) {
+                                            }
+                                            $id = $res_cate[$i]['id_cat'];
+                                            $categorias = $res_cate[$i]['categorias'];
+                                            ?>
+                                            <option value="<?php echo $id ?>"><?php echo $categorias?></option>
+                                            <?php
+                                        }
+                                    }
+                                ?>                               
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" name="btn-fechar-pedido" id="btn-fechar-pedido">Voltar</button>
+                    <button type="button" class="btn btn-success" name="btn-salvar-pedido" id="btn-salvar-pedido">Adicionar</button>
                 </div>
             </form>
         </div>
@@ -289,7 +418,7 @@ if (isset($_GET['id_pray_edit'])) {
     function emProposito(id) {
         $(document).ready(function() {
             $.ajax({
-                url: 'home/inserir_proposito.php',
+                url: 'minhas-oracoes/inserir_proposito.php',
                 method: 'post',
                 data: {id},
                 success: function(msg) {
@@ -307,7 +436,7 @@ if (isset($_GET['id_pray_edit'])) {
     function desEmProposito(id) {
         $(document).ready(function() {
             $.ajax({
-                url: 'home/deletar_proposito.php',
+                url: 'minhas-oracoes/deletar_proposito.php',
                 method: 'post',
                 data: {id},
                 success: function(msg) {
@@ -336,4 +465,22 @@ if (isset($_GET['id_pray_edit'])) {
             })
         }) 
     })
+</script>
+
+<script type="text/javascript">
+    $(document).ready(function() {
+        $('#btn-salvar-pedido').click(function(event) {
+            event.preventDefault();
+            $.ajax({
+                url: "minhas-oracoes/inserir_oracao.php",
+                method: "post",
+                data: $('form').serialize(),
+                dataType: "text",
+                success: function(msg) {
+                    alert(msg);
+                    window.location = 'index.php?pag=minhas-oracoes';
+                }
+            })
+        })
+    });
 </script>

@@ -62,7 +62,7 @@ if ($res->execute()) {
 			}
 		}
 	}
-	echo "Oração inserida com Sucesso! Vamos vincular a sua foto com a oração.";
+	echo "Oração Atualizada com Sucesso!";
 } else {
 	echo "ERRO! Tente novamente mais tarde.";
 }
