@@ -20,6 +20,11 @@
     src: url("../font/Lobster-Two/LobsterTwo-Regular.ttf");
 }
 
+@font-face {
+    font-family: 'Lobster-Two-BoldItalic';
+    src: url("../font/Lobster-Two/LobsterTwo-BoldItalic.ttf");
+}
+
 .f-family-Lobster {
     font-family: 'Lobster-Two';
     letter-spacing: 1px;
@@ -88,4 +93,45 @@
 
 .border-radius {
     border-radius: 100%;
+}
+
+.w-50porc {
+    width: 50%;
+}
+
+.w-25porc {
+    width: 25%;
+}
+
+.w-75porc {
+    width: 75%;
+}
+
+.w-65porc {
+    width: 65%;
+}
+
+.card-grupo {
+    background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('../img/images-web/background-black.webp');
+    background-size: 100%;
+    background-repeat: no-repeat;
+    width: 50%;
+    text-align: center;
+    color: white;
+}
+
+.border-gold {
+    border: 5px white groove;
+    margin: 10px;
+    height: 95%;
+    padding-top: 10px;
+}
+
+.title-card-grupo {
+    font-family: Lobster-Two-BoldItalic;
+}
+
+.description-card-grupo {
+    font-family: SourceSerifLight;
+    line-height: 31px;
 }
