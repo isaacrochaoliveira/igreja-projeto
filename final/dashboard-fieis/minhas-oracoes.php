@@ -28,6 +28,10 @@ require_once('../conexao.php');
                         $nasc = $res[$i]['nasc'];
                         $idade = date('Y') - intVal($nasc);
                         $joelhos_dobrados = $res[$i]['orando'];
+
+                        $query_eno = $pdo->query("SELECT * FROM emproposito_na_oracao WHERE id_usuario = '$_SESSION[id]' AND id_oracao = '$id_oracao'");
+                        $res_eno = $query_eno->fetchAll(PDO::FETCH_ASSOC);
+                        $propo = count($res_eno);
                         ?>
 
                         <img src="<?=UPLOADS.$imagem?>" class="my-auto border-radius" alt="Sem Foto de Perfil" width="150" height="150">
@@ -44,12 +48,27 @@ require_once('../conexao.php');
                                     <button onclick="ExcluirOracao(<?=$id_oracao?>)" style="border: none; color: darkred; background-color: white; margin: 0px 3px" onclick="">
                                         <i class="fa-solid fa-trash" style="font-size: 20px;" title="Excluir Oração"></i>
                                     </button>
-                                    <button style="border: none; color: red;background-color: white; margin: 0px 3px" onclick="emProposito(<?=$id_oracao?>)" name="btn_emproposito" id="btn_emproposito_<?=$id_oracao?>">
-                                        <i id="fa-solid-fa-heart-<?=$id_oracao?>" style="font-size: 20px;" title="Em Propósito" class="fa-regular fa-heart"></i>
-                                    </button>
-                                    <button style="border: none; background-color: white; display: none; margin: 0px 3px" onclick="desEmProposito(<?=$id_oracao?>)"  name="btn_desemproposito_<?=$id_oracao?>" id="btn_desemproposito_<?=$id_oracao?>">
-                                        <i title="Não estou mais em Propósito" class="fa-solid fa-heart" style="font-size: 20px;"></i>
-                                    </button>
+                                    <?php 
+                                        if ($propo == 0) {
+                                            ?>
+                                              <button style="color: red; border: none; background-color: white;" onclick="emProposito(<?=$id_oracao?>)" name="btn_emproposito" id="btn_emproposito_<?=$id_oracao?>">
+                                                <i id="fa-solid-fa-heart-<?=$id_oracao?>" style="font-size: 20px;" title="Em Propósito" class="fa-regular fa-heart"></i>
+                                            </button>
+                                            <button style="color: red; border: none; background-color: white; display: none;" onclick="desEmProposito(<?=$id_oracao?>)"  name="btn_desemproposito_<?=$id_oracao?>" id="btn_desemproposito_<?=$id_oracao?>">
+                                                <i title="Não estou mais em Propósito" class="fa-solid fa-heart" style="font-size: 20px;"></i>
+                                            </button>
+                                            <?php
+                                        } else if ($propo == 1) {
+                                            ?>
+                                            <button style="color: red; display: none; border: none; background-color: white;" onclick="emProposito(<?=$id_oracao?>)" name="btn_emproposito" id="btn_emproposito_<?=$id_oracao?>">
+                                                <i id="fa-solid-fa-heart-<?=$id_oracao?>" style="font-size: 20px;" title="Em Propósito" class="fa-regular fa-heart"></i>
+                                            </button>
+                                            <button style="color: red; border: none; background-color: white; display: block;" onclick="desEmProposito(<?=$id_oracao?>)"  name="btn_desemproposito_<?=$id_oracao?>" id="btn_desemproposito_<?=$id_oracao?>">
+                                                <i title="Não estou mais em Propósito" class="fa-solid fa-heart" style="font-size: 20px;"></i>
+                                            </button>
+                                            <?php
+                                        }
+                                    ?>
                                 </div>
                             </div>
                             <p class="p-style-oracao"><?=$descricao?></p>

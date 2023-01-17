@@ -14,9 +14,9 @@ if (count($res) > 0) {
 	$res_eno = $pdo->prepare("INSERT INTO emproposito_na_oracao SET id_usuario = :id_user, id_oracao = :id_pray");
 	$res_eno->bindValue(':id_user', $_SESSION['id']);
 	$res_eno->bindValue(':id_pray', $id);
-	$res->execute();
+	$res_eno->execute();
 
-	echo "$mais_um";
+	echo $mais_um;
 }
 
 
