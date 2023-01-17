@@ -67,6 +67,10 @@ button {
     width: 70% !important;
 }
 
+.width-90 {
+    width: 90% !important;
+}
+
 .f-family-sourceserif {
     font-family: 'SourceSerif' !important;
 }

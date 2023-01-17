@@ -251,6 +251,7 @@ require_once('../conexao.php');
                         $query = $pdo->query("SELECT * FROM grupos_de_oracao JOIN usuarios ON grupos_de_oracao.id_criador = usuarios.id JOIN cargos ON usuarios.id_cargo = cargos.id_cargo LIMIT 1");
                         $res = $query->fetchAll(PDO::FETCH_ASSOC);
                         if (count($res) > 0) {
+                            $logo = $res[0]['logo'];
                             $criadoEm = $res[0]['criado_em'];
                             $hora_criado_em = $res[0]['hora_criado_em'];
                             $part = $res[0]['pessoas_part'];
@@ -270,9 +271,7 @@ require_once('../conexao.php');
                             ?>
                             <div class="d-flex">
                                 <div class="d-block">
-                                    <h3>Dados do Criador do Grupo</h3>
-                                </div>
-                                <div class="d-block">
+                                    <h4>Dados do Criador do Grupo</h4>
                                     <div class="d-flex ml-2 mt-2">
                                         <img class="border-radius" src="<?=UPLOADS.$perfil?>" width="120" height="120" alt="Foto de Perfil do Usuário">
                                         <div class="ml-3">
@@ -281,6 +280,16 @@ require_once('../conexao.php');
                                             <p style="margin: 0px;">Estado Civil: <?=$estado_civil?></p>
                                             <p style="margin: 0px;">E-mail: <?=$email?></p>
                                             <p style="margin: 0px;">Cargo: <?=$cargo?></p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="d-block">
+                                    <h4>Dados Adicionais do Grupo</h4>
+                                    <div class="d-flex ml-2 mt-2">
+                                        <img src="<?=UPLOADS.$logo?>" alt="Logo Do grupo">
+                                        <div class="ml-3">
+                                            <p style="margin: 0px;">Criado: <?=$criadoEm?> às <?=$hora_criado_em?></p>
+                                            <p style="margin: 0px;">Participando: <?=$part?> Pessoas</p>
                                         </div>
                                     </div>
                                 </div>

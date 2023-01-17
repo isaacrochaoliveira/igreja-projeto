@@ -14,7 +14,7 @@ require_once('conexao.php');
         <link rel="stylesheet" href="assets/styles/style.css">
     </head>
     <body class="f-family-sourceserif">
-        <div class="caixa-login text-left width-70">
+        <div class="caixa-login text-left width-90">
             <img src="<?=IMAGEM."logo-branco.png"?>" alt="ChurchNtlH" class="mb-3">
             <form action="cadastrar.php" method="POST">
                 <div class="row">

@@ -41,7 +41,7 @@
                     <input type="password" value="<?=$_SESSION['senha']?>" class="form-control" disabled>
                     <form action="" method="POST" enctype="multipart/form-data">
                         <input type="file" name="perfil" onchange="carregarImg()" class="form-control mt-2">
-                        <button type="submit" class="btn btn-primary mt-2">Iniciar Sessão</button>
+                        <button type="submit" class="btn btn-primary mt-2 w-100">Iniciar Sessão</button>
                         <?php
                             if (isset($_FILES['perfil'])) {
                                 $perfil = $_FILES['perfil'];
