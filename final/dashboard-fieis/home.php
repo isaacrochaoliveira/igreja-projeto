@@ -99,7 +99,7 @@ require_once('../conexao.php');
                         <div class="d-flex flex-wrap">
                             <div class="">
                                 <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modalJoinIntoGruop">Entrar no grupo</button>
-                                <button type="button" class="btn btn-danger">Sair do Grupo</button>
+                                <button style="display: none;" type="button" class="btn btn-danger" name="btn-fechar-jointogorup" id="btn-fechar-jointogorup">Sair do Grupo</button>
                             </div>
                             <div style="margin-left: 29%">
                                 <a href="index.php?pag=grupo-de-oracoes">Ver todos os grupos</a>
@@ -255,6 +255,7 @@ require_once('../conexao.php');
                             $criadoEm = $res[0]['criado_em'];
                             $hora_criado_em = $res[0]['hora_criado_em'];
                             $part = $res[0]['pessoas_part'];
+                            $ativo = $res[0]['ativo'];
 
                             // Pegando dados da tabela usuarios
                             $perfil = $res[0]['perfil'];
@@ -270,7 +271,7 @@ require_once('../conexao.php');
                             $criadoEm = implode('/', array_reverse(explode('-', $criadoEm)));
                             ?>
                             <div class="d-flex">
-                                <div class="d-block">
+                                <div class="d-block w-50porc">
                                     <h4>Dados do Criador do Grupo</h4>
                                     <div class="d-flex ml-2 mt-2">
                                         <img class="border-radius" src="<?=UPLOADS.$perfil?>" width="120" height="120" alt="Foto de Perfil do Usuário">
@@ -283,13 +284,14 @@ require_once('../conexao.php');
                                         </div>
                                     </div>
                                 </div>
-                                <div class="d-block">
+                                <div class="d-block w-50porc">
                                     <h4>Dados Adicionais do Grupo</h4>
                                     <div class="d-flex ml-2 mt-2">
-                                        <img src="<?=UPLOADS.$logo?>" alt="Logo Do grupo">
+                                        <img src="<?=UPLOADS.$logo?>" alt="Logo Do grupo" width="120">
                                         <div class="ml-3">
                                             <p style="margin: 0px;">Criado: <?=$criadoEm?> às <?=$hora_criado_em?></p>
                                             <p style="margin: 0px;">Participando: <?=$part?> Pessoas</p>
+                                            <p style="margin: 0px;">Status: <?=($ativo == 'S') ? 'Ativo' : 'Fechado' ?></p>
                                         </div>
                                     </div>
                                 </div>
@@ -300,8 +302,16 @@ require_once('../conexao.php');
                 </div>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" name="btn-fechar-pedido" id="btn-fechar-pedido">Cancelar Inscrição</button>
-                <button type="button" class="btn btn-success" name="btn-salvar-pedido" id="btn-salvar-pedido">Confirmar Inscrição</button>
+                <input type="hidden" id="idJoinToGroup" value="-1">
+                <?php
+                    if ($ativo == 'N') {
+                        ?>
+                        <button type="button" class="btn btn-light">Pedir por Reabertura</button>
+                        <?php
+                    }
+                ?>
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar Inscrição</button>
+                <button type="button" class="btn btn-success" name="btn-salvar-jointogorup" id="btn-salvar-jointogorup">Confirmar Inscrição</button>
             </div>
         </div>
     </div>
@@ -360,4 +370,21 @@ require_once('../conexao.php');
             })
         })
     }
+</script>
+
+<script type="text/javascript">
+    $(document).ready(function() {
+        $('#btn-salvar-jointogorup').click(function(event) {
+            var id = document.getElementById('idJoinToGroup').value;
+            $.ajax({
+                url: 'home/entrar-grupo.php',
+                method: "POST",
+                data: {id},
+                dataType: 'text',
+                success: function(msg) {
+                    document.getElementById('btn-fechar-jointogorup').style.display = 'block';
+                }
+            })
+        })
+    })
 </script>
