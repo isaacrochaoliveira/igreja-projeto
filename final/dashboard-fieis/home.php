@@ -74,20 +74,44 @@ require_once('../conexao.php');
     ?>
 </section>
 <section class="d-flex">
-    <div class="w-50porc">
-        <img src="<?=IMAGEM."images-web/holy-bible.webp"?>" alt="Bíblia Sagrada">
+    <div class="w-50porc background">
+       Olá
     </div>
     <div class="card-grupo">
-        <div class="border-gold">
-            <img src="<?=UPLOADS."grupo-de-intercessao.png"?>" width="200" height='80' class="my-auto">
-            <h1 class="title-card-grupo">Grupo de Intercessão</h1>
-            <p class="description-card-grupo">Buscamos a face de Deus dia após dia, a bíblia nos fala orai sem cesar. Por que nós oramos? Simples! Você não pediria um ajuda para a única pessoa que consegue fazer aquilo que você tanto deseja?</p>
-            <div class="d-flex justify-content-end">
-                <button type="button" class="btn btn-outline-light mx-2">Entrar</button>
-                <button type="button" class="btn btn-outline-danger mx-2">Sair</button>
-            </div>
+        <?php
+            $query = $pdo->query("SELECT * FROM grupos_de_oracao LIMIT 1");
+            $res = $query->fetchAll(PDO::FETCH_ASSOC);
+            if (count($res) > 0) {
+                $logo = $res[0]['logo'];
+                $title = $res[0]['title'];
+                $desc = $res[0]['descricao'];
+                $criadoEm = $res[0]['criado_em'];
+                $hora_criado_em = $res[0]['hora_criado_em'];
+                $part = $res[0]['pessoas_part'];
 
-        </div>
+                $criadoEm = implode('/', array_reverse(explode('-', $criadoEm)));
+                ?>
+                <div class="border-gold">
+                    <div style="margin-left: 10px">
+                        <img src="<?=UPLOADS.$logo?>" width="200" height='80' class="my-auto">
+                        <h1 class="title-card-grupo"><?=$title?></h1>
+                        <p class="description-card-grupo"><?=$desc?></p>
+                        <div class="d-flex flex-wrap">
+                            <div class="">
+                                <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modalJoinIntoGruop">Entrar no grupo</button>
+                                <button type="button" class="btn btn-danger">Sair do Grupo</button>
+                            </div>
+                            <div style="margin-left: 29%">
+                                <a href="index.php?pag=grupo-de-oracoes">Ver todos os grupos</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                </div>
+                <?php
+            }
+        ?>
     </div>
 </section>
 
@@ -210,6 +234,66 @@ require_once('../conexao.php');
                     <button type="button" class="btn btn-success" name="btn-salvar-pedido" id="btn-salvar-pedido">Adicionar</button>
                 </div>
             </form>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="modalJoinIntoGruop" data-bs-backdrop="static" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5" id="exampleModalLabel">Sua Oração - <a href="index.php?pag=meus-pedidos-de-oracoes" target="_blank">Ver todas as minhas orações</a></h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <div>
+                    <?php
+                        $query = $pdo->query("SELECT * FROM grupos_de_oracao JOIN usuarios ON grupos_de_oracao.id_criador = usuarios.id JOIN cargos ON usuarios.id_cargo = cargos.id_cargo LIMIT 1");
+                        $res = $query->fetchAll(PDO::FETCH_ASSOC);
+                        if (count($res) > 0) {
+                            $criadoEm = $res[0]['criado_em'];
+                            $hora_criado_em = $res[0]['hora_criado_em'];
+                            $part = $res[0]['pessoas_part'];
+
+                            // Pegando dados da tabela usuarios
+                            $perfil = $res[0]['perfil'];
+                            $nome_usuario = $res[0]['nome'];
+                            $nasc = $res[0]['nasc'];
+                            $idade = Date("Y") - $nasc;
+                            $estado_civil = $res[0]['estado_civil'];
+                            $email = $res[0]['email'];
+                            
+                            // Pegando dados da tabela cargos
+                            $cargo = $res[0]['cargo'];
+
+                            $criadoEm = implode('/', array_reverse(explode('-', $criadoEm)));
+                            ?>
+                            <div class="d-flex">
+                                <div class="d-block">
+                                    <h3>Dados do Criador do Grupo</h3>
+                                </div>
+                                <div class="d-block">
+                                    <div class="d-flex ml-2 mt-2">
+                                        <img class="border-radius" src="<?=UPLOADS.$perfil?>" width="120" height="120" alt="Foto de Perfil do Usuário">
+                                        <div class="ml-3">
+                                            <p style="margin: 0px;">Nome: <?=$nome_usuario?></p>
+                                            <p style="margin: 0px;">Idade: <?=$idade?> Anos</p>
+                                            <p style="margin: 0px;">Estado Civil: <?=$estado_civil?></p>
+                                            <p style="margin: 0px;">E-mail: <?=$email?></p>
+                                            <p style="margin: 0px;">Cargo: <?=$cargo?></p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <?php
+                        }
+                    ?>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" name="btn-fechar-pedido" id="btn-fechar-pedido">Cancelar Inscrição</button>
+                <button type="button" class="btn btn-success" name="btn-salvar-pedido" id="btn-salvar-pedido">Confirmar Inscrição</button>
+            </div>
         </div>
     </div>
 </div>

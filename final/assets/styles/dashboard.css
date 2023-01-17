@@ -112,11 +112,10 @@
 }
 
 .card-grupo {
-    background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('../img/images-web/background-black.webp');
+    background-color: #010101;
     background-size: 100%;
     background-repeat: no-repeat;
     width: 50%;
-    text-align: center;
     color: white;
 }
 
@@ -134,4 +133,15 @@
 .description-card-grupo {
     font-family: SourceSerifLight;
     line-height: 31px;
+}
+
+.date-begin {
+    font-size: 13px;
+    font-family: SourceSerifMediumItalic;
+}
+
+.background {
+    background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('../img/images-web/holy-bible.webp');
+    background-size: 100%;
+    background-repeat: no-repeat;
 }
