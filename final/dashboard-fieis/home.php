@@ -98,7 +98,7 @@ require_once('../conexao.php');
                         <p class="description-card-grupo"><?=$desc?></p>
                         <div class="d-flex flex-wrap">
                             <div class="">
-                                <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modalJoinIntoGruop">Entrar no grupo</button>
+                                <button type="button" class="btn btn-primary" name="btn-join-group" id="btn-join-group" data-bs-toggle="modal" data-bs-target="#modalJoinIntoGruop">Entrar no grupo</button>
                                 <button style="display: none;" type="button" class="btn btn-danger" name="btn-fechar-jointogorup" id="btn-fechar-jointogorup">Sair do Grupo</button>
                             </div>
                             <div style="margin-left: 29%">
@@ -310,7 +310,7 @@ require_once('../conexao.php');
                         <?php
                     }
                 ?>
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar Inscrição</button>
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" name="fechar-jointogroup" id="fechar-jointogroup">Cancelar Inscrição</button>
                 <button type="button" class="btn btn-success" name="btn-salvar-jointogorup" id="btn-salvar-jointogorup">Confirmar Inscrição</button>
             </div>
         </div>
@@ -382,7 +382,11 @@ require_once('../conexao.php');
                 data: {id},
                 dataType: 'text',
                 success: function(msg) {
-                    document.getElementById('btn-fechar-jointogorup').style.display = 'block';
+                    if (msg.trim() == 'Sucesso!') {
+                        $('#fechar-jointogroup').click();
+                        document.getElementById('btn-fechar-jointogorup').style.display = 'block';
+                        document.getElementById('btn-join-group').style.display = 'none';
+                    }
                 }
             })
         })
