@@ -103,7 +103,7 @@ require_once('../conexao.php');
             $query = $pdo->query("SELECT * FROM grupos_de_oracao LIMIT 1");
             $res = $query->fetchAll(PDO::FETCH_ASSOC);
             if (count($res) > 0) {
-                $id = $res[0]['id'];
+                $id = $res[0]['id_group'];
                 $logo = $res[0]['logo'];
                 $title = $res[0]['title'];
                 $desc = $res[0]['descricao'];
@@ -123,25 +123,25 @@ require_once('../conexao.php');
                         <img src="<?=UPLOADS.$logo?>" width="200" height='80' class="my-auto">
                         <h1 class="title-card-grupo"><?=$title?></h1>
                         <p class="description-card-grupo"><?=$desc?></p>
-                        <div class="d-flex flex-wrap">
-                            <div class="">
+                        <div class="d-block">
+                            <div class="d-flex">
                                 <?php
-                                if ($grj == 0) {
+                                if ($grj == 1) {
                                     ?>
-                                    <button type="button" onclick="EntrarnoGrupo(<?=$id?>)" class="btn btn-primary" name="btn-join-group" id="btn-join-group" data-bs-toggle="modal" data-bs-target="#modalJoinIntoGruop">Entrar no grupo</button>
-                                    <button type="button" onclick="SairdoGrupo(<?=$id?>)" style="display: none;" type="button" class="btn btn-danger" name="btn-fechar-jointogorup" id="btn-fechar-jointogorup">Sair do Grupo</button>
+                                    <button type="button" class="btn btn-primary" style="display: none;" name="btn-join-group" id="btn-join-group" data-bs-toggle="modal" data-bs-target="#modalJoinIntoGruop">Entrar no grupo</button>
+                                    <button type="button" onclick="SairdoGrupo(<?=$id?>)" style="display: block;" type="button" class="btn btn-danger" name="btn-fechar-jointogorup" id="btn-fechar-jointogorup">Sair do Grupo</button>
                                     <?php
-                                } else if ($grj == 1) {
+                                } else if ($grj == 0) {
                                     ?>
-                                    <button style="display: none;" type="button" class="btn btn-primary" name="btn-join-group" id="btn-join-group" data-bs-toggle="modal" data-bs-target="#modalJoinIntoGruop">Entrar no grupo</button>
-                                    <button type="button" onclick="SairdoGrupo(<?=$id?>)" class="btn btn-danger" name="btn-fechar-jointogorup" id="btn-fechar-jointogorup">Sair do Grupo</button>
-                                    <button type="button" class="btn btn-light" data-bs-toggle="modal" data-bs-target="#modalJoinIntoGruop">Ver Detalhes</button>
+                                    <button style="display: block;" type="button" class="btn btn-primary" name="btn-join-group" id="btn-join-group" data-bs-toggle="modal" data-bs-target="#modalJoinIntoGruop">Entrar no grupo</button>
+                                    <button style="display: none;" type="button" onclick="SairdoGrupo(<?=$id?>)" class="btn btn-danger" name="btn-fechar-jointogorup" id="btn-fechar-jointogorup">Sair do Grupo</button>
                                     <?php
                                 }
                                 ?>
                             </div>
-                            <div style="margin-left: 29%">
-                                <a href="index.php?pag=grupo-de-oracoes">Ver todos os grupos</a>
+                            <div>
+                                <a href="index.php?pag=grupo-de-oracoes">Ver todos os grupos</a><br>
+                                <a style="cursor: pointer;" data-bs-toggle="modal" data-bs-target="#modalJoinIntoGruop">Mais Detalhes</a>
                             </div>
                         </div>
                     </div>
@@ -290,7 +290,7 @@ require_once('../conexao.php');
                         $query = $pdo->query("SELECT * FROM grupos_de_oracao JOIN usuarios ON grupos_de_oracao.id_criador = usuarios.id JOIN cargos ON usuarios.id_cargo = cargos.id_cargo LIMIT 1");
                         $res = $query->fetchAll(PDO::FETCH_ASSOC);
                         if (count($res) > 0) {
-                            $id = $res[0]['id'];
+                            $id = $res[0]['id_group'];
                             $logo = $res[0]['logo'];
                             $criadoEm = $res[0]['criado_em'];
                             $hora_criado_em = $res[0]['hora_criado_em'];
@@ -353,14 +353,13 @@ require_once('../conexao.php');
                         ?>
                         <button type="button" class="btn btn-light">Pedir por Reabertura</button>
                         <?php
-                    }
-                ?>
-                <?php
-                    if ($grj == 1) {
+                    } else if ($ativo == 'S') {
+                        if ($grj == 0) {
                         ?>
-                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" name="fechar-jointogroup" id="fechar-jointogroup">Cancelar Inscrição</button>
-                        <button type="button" class="btn btn-success" name="btn-salvar-jointogorup" id="btn-salvar-jointogorup">Confirmar Inscrição</button>
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" name="fechar-jointogroup" id="fechar-jointogroup">Cancelar Inscrição</button>
+                            <button type="button" onclick="EntrarnoGrupo(<?=$id?>)" class="btn btn-success" name="btn-salvar-jointogorup" id="btn-salvar-jointogorup">Confirmar Inscrição</button>
                         <?php
+                        }
                     }
                 ?>
             </div>
@@ -434,9 +433,11 @@ require_once('../conexao.php');
                 success: function(msg) {
                     if (msg.trim() == 'Sucesso!') {
                         $('#fechar-jointogroup').click();
-                        document.getElementById('btn-fechar-jointogorup').style.display = 'block';
                         document.getElementById('btn-join-group').style.display = 'none';
+                        document.getElementById('btn-fechar-jointogorup').style.display = 'block';
                     }
+                    document.getElementById('btn-salvar-jointogorup').style.display = 'none';
+                    document.getElementById('fechar-jointogroup').style.display = 'none';
                 }
             })
         })
@@ -456,6 +457,8 @@ require_once('../conexao.php');
                         document.getElementById('btn-join-group').style.display = 'block';
                         document.getElementById('btn-fechar-jointogorup').style.display = 'none';
                     }
+                    document.getElementById('btn-salvar-jointogorup').style.display = 'block';
+                    document.getElementById('fechar-jointogroup').style.display = 'block';
                 }
             })
         })

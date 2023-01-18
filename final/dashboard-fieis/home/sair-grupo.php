@@ -5,11 +5,11 @@ require_once('../../conexao.php');
 
 $id = $_POST['id'];
 
-$query = $pdo->query("SELECT pessoas_part FROM grupos_de_oracao WHERE id = '$id''");
+$query = $pdo->query("SELECT pessoas_part FROM grupos_de_oracao WHERE id_group = '$id'");
 $res = $query->fetchAll(PDO::FETCH_ASSOC);
 if (count($res) > 0) {
 	$mais_um = intVal($res[0]['pessoas_part']) - 1;
-	$res_upd = $pdo->prepare("UPDATE grupos_de_oracao SET pessoas_part = :mais_um WHERE id = :id");
+	$res_upd = $pdo->prepare("UPDATE grupos_de_oracao SET pessoas_part = :mais_um WHERE id_group = :id");
 	$res_upd->bindValue(':mais_um', $mais_um);
 	$res_upd->bindValue(':id', $id);
 	$res_upd->execute();
