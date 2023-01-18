@@ -103,6 +103,7 @@ require_once('../conexao.php');
             $query = $pdo->query("SELECT * FROM grupos_de_oracao LIMIT 1");
             $res = $query->fetchAll(PDO::FETCH_ASSOC);
             if (count($res) > 0) {
+                $id = $res[0]['id'];
                 $logo = $res[0]['logo'];
                 $title = $res[0]['title'];
                 $desc = $res[0]['descricao'];
@@ -111,6 +112,11 @@ require_once('../conexao.php');
                 $part = $res[0]['pessoas_part'];
 
                 $criadoEm = implode('/', array_reverse(explode('-', $criadoEm)));
+
+                $query_ujg = $pdo->query("SELECT * FROM participando_do_grupo WHERE id_usuario = '$_SESSION[id]' AND id_grupo = '$id'");
+                $res_ujg = $query_ujg->fetchAll(PDO::FETCH_ASSOC);
+                $grj = count($res_ujg);
+
                 ?>
                 <div class="border-gold">
                     <div style="margin-left: 10px">
@@ -119,8 +125,20 @@ require_once('../conexao.php');
                         <p class="description-card-grupo"><?=$desc?></p>
                         <div class="d-flex flex-wrap">
                             <div class="">
-                                <button type="button" class="btn btn-primary" name="btn-join-group" id="btn-join-group" data-bs-toggle="modal" data-bs-target="#modalJoinIntoGruop">Entrar no grupo</button>
-                                <button style="display: none;" type="button" class="btn btn-danger" name="btn-fechar-jointogorup" id="btn-fechar-jointogorup">Sair do Grupo</button>
+                                <?php
+                                if ($grj == 0) {
+                                    ?>
+                                    <button type="button" onclick="EntrarnoGrupo(<?=$id?>)" class="btn btn-primary" name="btn-join-group" id="btn-join-group" data-bs-toggle="modal" data-bs-target="#modalJoinIntoGruop">Entrar no grupo</button>
+                                    <button type="button" onclick="SairdoGrupo(<?=$id?>)" style="display: none;" type="button" class="btn btn-danger" name="btn-fechar-jointogorup" id="btn-fechar-jointogorup">Sair do Grupo</button>
+                                    <?php
+                                } else if ($grj == 1) {
+                                    ?>
+                                    <button style="display: none;" type="button" class="btn btn-primary" name="btn-join-group" id="btn-join-group" data-bs-toggle="modal" data-bs-target="#modalJoinIntoGruop">Entrar no grupo</button>
+                                    <button type="button" onclick="SairdoGrupo(<?=$id?>)" class="btn btn-danger" name="btn-fechar-jointogorup" id="btn-fechar-jointogorup">Sair do Grupo</button>
+                                    <button type="button" class="btn btn-light" data-bs-toggle="modal" data-bs-target="#modalJoinIntoGruop">Ver Detalhes</button>
+                                    <?php
+                                }
+                                ?>
                             </div>
                             <div style="margin-left: 29%">
                                 <a href="index.php?pag=grupo-de-oracoes">Ver todos os grupos</a>
@@ -272,6 +290,7 @@ require_once('../conexao.php');
                         $query = $pdo->query("SELECT * FROM grupos_de_oracao JOIN usuarios ON grupos_de_oracao.id_criador = usuarios.id JOIN cargos ON usuarios.id_cargo = cargos.id_cargo LIMIT 1");
                         $res = $query->fetchAll(PDO::FETCH_ASSOC);
                         if (count($res) > 0) {
+                            $id = $res[0]['id'];
                             $logo = $res[0]['logo'];
                             $criadoEm = $res[0]['criado_em'];
                             $hora_criado_em = $res[0]['hora_criado_em'];
@@ -288,6 +307,11 @@ require_once('../conexao.php');
                             
                             // Pegando dados da tabela cargos
                             $cargo = $res[0]['cargo'];
+
+                            // Verificando Entrada no Grupo
+                            $query_ujg = $pdo->query("SELECT * FROM participando_do_grupo WHERE id_usuario = '$_SESSION[id]' AND id_grupo = '$id'");
+                            $res_ujg = $query_ujg->fetchAll(PDO::FETCH_ASSOC);
+                            $grj = count($res_ujg);
 
                             $criadoEm = implode('/', array_reverse(explode('-', $criadoEm)));
                             ?>
@@ -331,8 +355,14 @@ require_once('../conexao.php');
                         <?php
                     }
                 ?>
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" name="fechar-jointogroup" id="fechar-jointogroup">Cancelar Inscrição</button>
-                <button type="button" class="btn btn-success" name="btn-salvar-jointogorup" id="btn-salvar-jointogorup">Confirmar Inscrição</button>
+                <?php
+                    if ($grj == 1) {
+                        ?>
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" name="fechar-jointogroup" id="fechar-jointogroup">Cancelar Inscrição</button>
+                        <button type="button" class="btn btn-success" name="btn-salvar-jointogorup" id="btn-salvar-jointogorup">Confirmar Inscrição</button>
+                        <?php
+                    }
+                ?>
             </div>
         </div>
     </div>
@@ -394,9 +424,8 @@ require_once('../conexao.php');
 </script>
 
 <script type="text/javascript">
-    $(document).ready(function() {
-        $('#btn-salvar-jointogorup').click(function(event) {
-            var id = document.getElementById('idJoinToGroup').value;
+    function EntrarnoGrupo(id) {
+        $(document).ready(function() {
             $.ajax({
                 url: 'home/entrar-grupo.php',
                 method: "POST",
@@ -411,5 +440,24 @@ require_once('../conexao.php');
                 }
             })
         })
-    })
+    }
+</script>
+
+<script type="text/javascript">
+    function SairdoGrupo(id) {
+        $(document).ready(function() {
+            $.ajax({
+                url: "home/sair-grupo.php",
+                method: "post",
+                data: {id},
+                dataType: 'text',
+                success: function(msg) {
+                    if (msg.trim() == "Sucesso!") {
+                        document.getElementById('btn-join-group').style.display = 'block';
+                        document.getElementById('btn-fechar-jointogorup').style.display = 'none';
+                    }
+                }
+            })
+        })
+    }
 </script>
