@@ -120,7 +120,7 @@ require_once('../conexao.php');
                 ?>
                 <div class="border-gold">
                     <div style="margin-left: 10px">
-                        <img src="<?=UPLOADS.$logo?>" width="200" height='80' class="my-auto">
+                        <img src="<?=IMAGEM."fotos-grupos/$logo"?>" width="200" height='80' class="my-auto">
                         <h1 class="title-card-grupo"><?=$title?></h1>
                         <p class="description-card-grupo"><?=$desc?></p>
                         <div class="d-block">
@@ -332,7 +332,7 @@ require_once('../conexao.php');
                                 <div class="d-block w-50porc">
                                     <h4>Dados Adicionais do Grupo</h4>
                                     <div class="d-flex ml-2 mt-2">
-                                        <img src="<?=UPLOADS.$logo?>" alt="Logo Do grupo" width="120">
+                                        <img src="<?=IMAGEM."fotos-grupos/$logo"?>" alt="Logo Do grupo" width="120">
                                         <div class="ml-3">
                                             <p style="margin: 0px;">Criado: <?=$criadoEm?> às <?=$hora_criado_em?></p>
                                             <p style="margin: 0px;">Participando: <?=$part?> Pessoas</p>
