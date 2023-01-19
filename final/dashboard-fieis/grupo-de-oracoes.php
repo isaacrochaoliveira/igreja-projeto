@@ -40,13 +40,13 @@ $pag = "grupo-de-oracoes";
 		            <?php
 		            if ($grj == 1) {
 		                ?>
-		                <button type="button" class="btn btn-primary" style="display: none;" name="btn-join-group" id="btn-join-group" data-bs-toggle="modal" data-bs-target="#modalJoinIntoGruop">Entrar no grupo</button>
-		                <button type="button" onclick="SairdoGrupo(<?=$id?>)" style="display: block;" type="button" class="btn btn-danger" name="btn-fechar-jointogorup" id="btn-fechar-jointogorup">Sair do Grupo</button>
+		                <button type="button" class="btn btn-primary" style="display: none;" name="btn-join-group_<?=$id?>" id="btn-join-group_<?=$id?>" data-bs-toggle="modal" data-bs-target="#modalJoinIntoGruop">Entrar no grupo</button>
+		                <button type="button" onclick="SairdoGrupo(<?=$id?>)" style="display: block;" type="button" class="btn btn-danger" name="btn-fechar-jointogorup_<?=$id?>" id="btn-fechar-jointogorup_<?=$id?>">Sair do Grupo</button>
 		                <?php
 		            } else if ($grj == 0) {
 		                ?>
-		                <a href="index.php?pag=<?=$pag?>&jointogroup=<?=$id?>" class="btn btn-primary">Entrar no grupo</a>
-		                <button style="display: none;" type="button" onclick="SairdoGrupo(<?=$id?>)" class="btn btn-danger" name="btn-fechar-jointogorup" id="btn-fechar-jointogorup">Sair do Grupo</button>
+		                <a href="index.php?pag=<?=$pag?>&jointogroup=<?=$id?>" class="btn btn-primary" name="btn-join-group_<?=$id?>" id="btn-join-group_<?=$id?>">Entrar no grupo</a>
+		                <button style="display: none;" type="button" onclick="SairdoGrupo(<?=$id?>)" class="btn btn-danger" name="btn-fechar-jointogorup_<?=$id?>" id="btn-fechar-jointogorup_<?=$id?>">Sair do Grupo</button>
 		                <?php
 		            }
 		            ?>
@@ -75,61 +75,65 @@ $pag = "grupo-de-oracoes";
                 <div>
                     <?php
                     	$id = $_GET['jointogroup'];
-                        $query = $pdo->query("SELECT * FROM grupos_de_oracao JOIN usuarios ON grupos_de_oracao.id_criador = usuarios.id JOIN cargos ON usuarios.id_cargo = cargos.id_cargo LIMIT 1");
+                        $query = $pdo->query("SELECT * FROM grupos_de_oracao JOIN usuarios ON grupos_de_oracao.id_criador = usuarios.id JOIN cargos ON usuarios.id_cargo = cargos.id_cargo WHERE id_group = '$id'");
                         $res = $query->fetchAll(PDO::FETCH_ASSOC);
                         if (count($res) > 0) {
-                            $id = $res[0]['id_group'];
-                            $logo = $res[0]['logo'];
-                            $criadoEm = $res[0]['criado_em'];
-                            $hora_criado_em = $res[0]['hora_criado_em'];
-                            $part = $res[0]['pessoas_part'];
-                            $ativo = $res[0]['ativo'];
+                        	for ($i = 0; $i < count($res); $i++) {
+                        		foreach ($res[$i] as $key => $chave) {
+                        		}
+	                            $id = $res[$i]['id_group'];
+	                            $logo = $res[$i]['logo'];
+	                            $criadoEm = $res[$i]['criado_em'];
+	                            $hora_criado_em = $res[$i]['hora_criado_em'];
+	                            $part = $res[$i]['pessoas_part'];
+	                            $ativo = $res[$i]['ativo'];
 
-                            // Pegando dados da tabela usuarios
-                            $perfil = $res[0]['perfil'];
-                            $nome_usuario = $res[0]['nome'];
-                            $nasc = $res[0]['nasc'];
-                            $idade = Date("Y") - $nasc;
-                            $estado_civil = $res[0]['estado_civil'];
-                            $email = $res[0]['email'];
-                            
-                            // Pegando dados da tabela cargos
-                            $cargo = $res[0]['cargo'];
+	                            // Pegando dados da tabela usuarios
+	                            $perfil = $res[$i]['perfil'];
+	                            $nome_usuario = $res[$i]['nome'];
+	                            $nasc = $res[$i]['nasc'];
+	                            $idade = Date("Y") - $nasc;
+	                            $estado_civil = $res[$i]['estado_civil'];
+	                            $email = $res[$i]['email'];
+	                            
+	                            // Pegando dados da tabela cargos
+	                            $cargo = $res[$i]['cargo'];
 
-                            // Verificando Entrada no Grupo
-                            $query_ujg = $pdo->query("SELECT * FROM participando_do_grupo WHERE id_usuario = '$_SESSION[id]' AND id_grupo = '$id'");
-                            $res_ujg = $query_ujg->fetchAll(PDO::FETCH_ASSOC);
-                            $grj = count($res_ujg);
+	                            // Verificando Entrada no Grupo
+	                            $query_ujg = $pdo->query("SELECT * FROM participando_do_grupo WHERE id_usuario = '$_SESSION[id]' AND id_grupo = '$id'");
+	                            $res_ujg = $query_ujg->fetchAll(PDO::FETCH_ASSOC);
+	                            $grj = count($res_ujg);
 
-                            $criadoEm = implode('/', array_reverse(explode('-', $criadoEm)));
-                            ?>
-                            <div class="d-flex">
-                                <div class="d-block w-50porc">
-                                    <h4>Dados do Criador do Grupo</h4>
-                                    <div class="d-flex ml-2 mt-2">
-                                        <img class="border-radius" src="<?=UPLOADS.$perfil?>" width="120" height="120" alt="Foto de Perfil do Usuário">
-                                        <div class="ml-3">
-                                            <p style="margin: 0px;">Nome: <?=$nome_usuario?></p>
-                                            <p style="margin: 0px;">Idade: <?=$idade?> Anos</p>
-                                            <p style="margin: 0px;">Estado Civil: <?=$estado_civil?></p>
-                                            <p style="margin: 0px;">E-mail: <?=$email?></p>
-                                            <p style="margin: 0px;">Cargo: <?=$cargo?></p>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="d-block w-50porc">
-                                    <h4>Dados Adicionais do Grupo</h4>
-                                    <div class="d-flex ml-2 mt-2">
-                                        <img src="<?=IMAGEM."fotos-grupos/$logo"?>" alt="Logo Do grupo" width="120">
-                                        <div class="ml-3">
-                                            <p style="margin: 0px;">Criado: <?=$criadoEm?> às <?=$hora_criado_em?></p>
-                                            <p style="margin: 0px;">Participando: <?=$part?> Pessoas</p>
-                                            <p style="margin: 0px;">Status: <?=($ativo == 'S') ? 'Ativo' : 'Fechado' ?></p>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <?php
+	                            $criadoEm = implode('/', array_reverse(explode('-', $criadoEm)));
+	                            ?>
+	                            <div class="d-flex">
+	                                <div class="d-block w-50porc">
+	                                    <h4>Dados do Criador do Grupo</h4>
+	                                    <div class="d-flex ml-2 mt-2">
+	                                        <img class="border-radius" src="<?=UPLOADS.$perfil?>" width="120" height="120" alt="Foto de Perfil do Usuário">
+	                                        <div class="ml-3">
+	                                            <p style="margin: 0px;">Nome: <?=$nome_usuario?></p>
+	                                            <p style="margin: 0px;">Idade: <?=$idade?> Anos</p>
+	                                            <p style="margin: 0px;">Estado Civil: <?=$estado_civil?></p>
+	                                            <p style="margin: 0px;">E-mail: <?=$email?></p>
+	                                            <p style="margin: 0px;">Cargo: <?=$cargo?></p>
+	                                        </div>
+	                                    </div>
+	                                </div>
+	                                <div class="d-block w-50porc">
+	                                    <h4>Dados Adicionais do Grupo</h4>
+	                                    <div class="d-flex ml-2 mt-2">
+	                                        <img src="<?=IMAGEM."fotos-grupos/$logo"?>" alt="Logo Do grupo" width="120">
+	                                        <div class="ml-3">
+	                                            <p style="margin: 0px;">Criado: <?=$criadoEm?> às <?=$hora_criado_em?></p>
+	                                            <p style="margin: 0px;">Participando: <?=$part?> Pessoas</p>
+	                                            <p style="margin: 0px;">Status: <?=($ativo == 'S') ? 'Ativo' : 'Fechado' ?></p>
+	                                        </div>
+	                                    </div>
+	                                </div>
+	                            </div>
+	                            <?php
+                        	}
                         }
                     ?>
                 </div>
@@ -177,6 +181,7 @@ if (isset($_GET['jointogroup'])) {
     function EntrarnoGrupo(id) {
         $(document).ready(function() {
         	var pag = "<?=$pag?>";
+        	alert(id);
             $.ajax({
                 url: pag + '/entrar-grupo.php',
                 method: "POST",
@@ -185,8 +190,8 @@ if (isset($_GET['jointogroup'])) {
                 success: function(msg) {
                     if (msg.trim() == 'Sucesso!') {
                         $('#fechar-jointogroup').click();
-                        document.getElementById('btn-join-group').style.display = 'none';
-                        document.getElementById('btn-fechar-jointogorup').style.display = 'block';
+                        document.getElementById('btn-join-group_'+id).style.display = 'none';
+                        document.getElementById('btn-fechar-jointogorup_'+id).style.display = 'block';
                     }
                     document.getElementById('btn-salvar-jointogorup').style.display = 'none';
                     document.getElementById('fechar-jointogroup').style.display = 'none';
@@ -207,8 +212,8 @@ if (isset($_GET['jointogroup'])) {
                 dataType: 'text',
                 success: function(msg) {
                     if (msg.trim() == "Sucesso!") {
-                        document.getElementById('btn-join-group').style.display = 'block';
-                        document.getElementById('btn-fechar-jointogorup').style.display = 'none';
+                        document.getElementById('btn-join-group_'+id).style.display = 'block';
+                        document.getElementById('btn-fechar-jointogorup_'+id).style.display = 'none';
                     }
                     document.getElementById('btn-salvar-jointogorup').style.display = 'block';
                     document.getElementById('fechar-jointogroup').style.display = 'block';
