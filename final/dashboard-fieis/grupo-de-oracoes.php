@@ -4,6 +4,7 @@ require_once('../protect.php');
 require_once('../config.php');
 require_once('../conexao.php');
 ?>
+<section class="d-flex">
 	<?php
 	$query = $pdo->query("SELECT * FROM grupos_de_oracao");
     $res = $query->fetchAll(PDO::FETCH_ASSOC);
@@ -26,8 +27,8 @@ require_once('../conexao.php');
             $grj = count($res_ujg);
 
     ?>
-    <div class="card" style="width: 18rem;">
-	 	<img src="<?=UPLOADS.$logo?>" class="card-img-top" alt="Imagem do Grupo">
+    <div class="card mx-3 mt-2" style="width: 18rem;">
+	 	<img src="<?=IMAGEM."fotos-grupos/".$logo?>" class="card-img-top" alt="Imagem do Grupo">
 	 	<div class="card-body">
 	    	<h5 class="card-title"><?=$title?></h5>
 	    	<p class="card-text"><?=$desc?></p>
@@ -57,3 +58,5 @@ require_once('../conexao.php');
   	<?php
   		}
   	}
+  ?>
+</section>
