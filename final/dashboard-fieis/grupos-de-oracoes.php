@@ -241,6 +241,9 @@ $data = date("Y-m-d");
     	<div class="modal-content">
       		<div class="modal-header">
         		<h1 class="modal-title fs-5" id="staticBackdropLabel">Novo Grupo</h1>
+        		<div>
+        			<h4 id="beforeSendCreateGrupo" class="text-success"></h4>
+        		</div>
         		<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       		</div>
       		<form method="POST" action="" enctype="multipart/form-data">
@@ -353,17 +356,19 @@ $data = date("Y-m-d");
 		$('#button-criargrupo-create').click(function() {
 			var pag = "<?=$pag?>";
 			$.ajax({
-				url: pag + 'criar-grupo.php',
+				url: pag + '/criar-grupo.php',
 				method: "POST",
 				data: $('form').serialize(),
 				dataType: 'text',
-				success: function () {
-					if (msg.trim() == "Criado com Sucesso!") {
-						window.location = 'index.php?pag='+pag;
-					} else {
-						alert(msg);
-					}
-				}
+				/*beforeSend: function() {
+					$('#beforeSendCreateGrupo').html("Processando...");
+				},
+				complete: function() {
+					$('#beforeSendCreateGrupo').html("Sucesso!");
+				},*/
+				success: function(msg) {
+					alert(msg);
+				} 
 			})
 		})
 	})
