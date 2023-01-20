@@ -40,8 +40,12 @@ $pag = "grupos-de-oracoes";
 		            <?php
 		            if ($grj == 1) {
 		                ?>
-		                <button type="button" class="btn btn-primary" style="display: none;" data-bs-toggle="modal" data-bs-target="#modalJoinIntoGruop">Entrar no grupo</button>
-		                <button type="button" onclick="SairdoGrupo(<?=$id?>)" style="display: block;" class="btn btn-danger">Sair do Grupo</button>
+		                <div id="div_joinTOGROUP<?=$id?>" class="d-none"> 
+		                	<a href="index.php?pag=<?=$pag?>&jointogroup=<?=$id?>" class="btn btn-primary">Entrar no grupo</a>
+		                </div>
+		                <div id="div_outTOGROUP<?=$id?>" class="d-block">
+		                	<button type="button" onclick="SairdoGrupo(<?=$id?>)" class="btn btn-danger">Sair do Grupo</button>
+		                </div>
 		                <?php
 		            } else if ($grj == 0) {
 		                ?>
@@ -49,7 +53,7 @@ $pag = "grupos-de-oracoes";
 		                	<a href="index.php?pag=<?=$pag?>&jointogroup=<?=$id?>" class="btn btn-primary">Entrar no grupo</a>
 		                </div>
 		                <div id="div_outTOGROUP<?=$id?>" class="d-none">
-		                	<button style="display: none;" type="button" onclick="SairdoGrupo(<?=$id?>)" class="btn btn-danger">Sair do Grupo</button>
+		                	<button type="button" onclick="SairdoGrupo(<?=$id?>)" class="btn btn-danger">Sair do Grupo</button>
 		                </div>
 		                <?php
 		            }
@@ -194,10 +198,33 @@ if (isset($_GET['jointogroup'])) {
 						$('#fechar-jointogroup').click();
 						$('#div_joinTOGROUP'+id).addClass('d-none');
 						$('#div_outTOGROUP'+id).addClass('d-block');
-						//$('#btn-join-group_'+id).style.display = 'none';
 					}
 					$('#btn-salvar-jointogorup').style.display = 'none';
 					$('#fechar-jointogroup').style.display = 'none';
+				}
+			})
+		})
+	}
+</script>
+
+<script type="text/javascript">
+	function SairdoGrupo(id) {
+		$(document).ready(function() {
+			var pag = "<?=$pag?>";
+			$.ajax({
+				url: pag + '/sair-grupo.php',
+				method: 'post',
+				data: {id},
+				dataType: 'text',
+				success: function(msg) {
+					if (msg.trim() == "Sucesso!") {
+						$('#div_joinTOGROUP'+id).removeClass();
+						$('#div_outTOGROUP'+id).removeClass();
+						$('#div_joinTOGROUP'+id).addClass('d-block');
+						$('#div_outTOGROUP'+id).addClass('d-none');
+					}
+					$('#btn-salvar-jointogorup').style.display = 'block';
+					$('#fechar-jointogroup').style.display = 'block';
 				}
 			})
 		})
