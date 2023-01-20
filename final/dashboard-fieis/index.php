@@ -201,5 +201,15 @@
         <?php
     }
 
+    if (isset($_GET['comoparticipar'])) {
+        ?>
+        <script type="text/javascript">
+            var myModal = new bootstrap.Modal(document.getElementById('modalRegras'), {
+
+            })
+            myModal.show();
+        </script>
+        <?php
+    }
 ?>
 </html>

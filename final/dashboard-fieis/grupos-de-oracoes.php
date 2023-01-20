@@ -175,6 +175,68 @@ $pag = "grupos-de-oracoes";
 </div>
 
 
+<div class="modal fade" id="modalRegras" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+ 	<div class="modal-dialog modal-xl">
+    	<div class="modal-content">
+      		<div class="modal-header">
+        		<h1 class="modal-title fs-5" id="staticBackdropLabel">Regras & Licença</h1>
+        		<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        		<?php 
+        			$_oracao = addslashes($_GET['comoparticipar']);
+        			$query = $pdo->query("SELECT * FROM grupos_de_oracao as g JOIN licenca l ON g.id_licenca = l.id WHERE id_group = '$_oracao'");
+        			$res = $query->fetchAll(PDO::FETCH_ASSOC);
+        			if (count($res) > 0) {
+    					$nome_da_licenca = $res[0]['nome_da_licenca'];
+    					$descricao_da_licenca = $res[0]['descricao_da_licenca'];
+
+    					$query_regras = $pdo->query("SELECT * FROM regras_do_grupo WHERE id_grupo = '$_oracao'");
+    					$res_regras = $query_regras->fetchAll(PDO::FETCH_ASSOC);
+    					if (count($res_regras) > 0) {
+    						$_r1 = $res_regras[0]['_regras1'];
+    						$_r2 = $res_regras[0]['_regras2'];
+    						$_r3 = $res_regras[0]['_regras3'];
+    						$_r4 = $res_regras[0]['_regras4'];
+    						$_r5 = $res_regras[0]['_regras5'];
+    						$_r6 = $res_regras[0]['_regras6'];
+    						$_r7 = $res_regras[0]['_regras7'];
+    						$_r8 = $res_regras[0]['_regras8'];
+    						$_r9 = $res_regras[0]['_regras9'];
+    						$_r10 = $res_regras[0]['_regras10'];
+    					}
+        			}
+        		?>
+      		</div>
+      		<div class="modal-body">
+      			<div>
+      				<div class="row">
+      					<div class="w-50porc">
+      						<h5 class="f-family-Lobster f-size-28px">Licença:</h5>
+      						<p class="text-card"><?=$nome_da_licenca?> - <?=$descricao_da_licenca?></p>
+      					</div>
+      					<div class="w-50porc">
+      						<h5 class="f-family-Lobster f-size-28px">Regras:</h5>
+      						<p class="m-0">1º Regra -> <?=$_r1?></p>
+      						<p class="m-0">2º Regra -> <?=$_r2?></p>
+      						<p class="m-0">3º Regra  -> <?=$_r3?></p>
+      						<p class="m-0">4º Regra -> <?=$_r4?></p>
+      						<p class="m-0">5º Regra -> <?=$_r5?></p>
+      						<p class="m-0">6º Regra -> <?=$_r6?></p>
+      						<p class="m-0">7º Regra -> <?=$_r7?></p>
+      						<p class="m-0">8º Regra -> <?=$_r8?></p>
+      						<p class="m-0">9º Regra -> <?=$_r9?></p>
+      						<p class="m-0">10º Regra -> <?=$_r10?></p>
+      					</div>
+      				</div>
+      			</div>
+		    </div>
+      		<div class="modal-footer">
+        		<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
+      		</div>
+    	</div>
+  	</div>
+</div>
+
+
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 
 <script type="text/javascript">
