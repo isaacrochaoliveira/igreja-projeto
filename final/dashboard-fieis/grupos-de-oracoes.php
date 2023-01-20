@@ -4,7 +4,7 @@ require_once('../protect.php');
 require_once('../config.php');
 require_once('../conexao.php');
 
-$pag = "grupo-de-oracoes";
+$pag = "grupos-de-oracoes";
 
 ?>
 <section class="d-flex">
@@ -40,19 +40,22 @@ $pag = "grupo-de-oracoes";
 		            <?php
 		            if ($grj == 1) {
 		                ?>
-		                <button type="button" class="btn btn-primary" style="display: none;" name="btn-join-group_<?=$id?>" id="btn-join-group_<?=$id?>" data-bs-toggle="modal" data-bs-target="#modalJoinIntoGruop">Entrar no grupo</button>
-		                <button type="button" onclick="SairdoGrupo(<?=$id?>)" style="display: block;" type="button" class="btn btn-danger" name="btn-fechar-jointogorup_<?=$id?>" id="btn-fechar-jointogorup_<?=$id?>">Sair do Grupo</button>
+		                <button type="button" class="btn btn-primary" style="display: none;" data-bs-toggle="modal" data-bs-target="#modalJoinIntoGruop">Entrar no grupo</button>
+		                <button type="button" onclick="SairdoGrupo(<?=$id?>)" style="display: block;" class="btn btn-danger">Sair do Grupo</button>
 		                <?php
 		            } else if ($grj == 0) {
 		                ?>
-		                <a href="index.php?pag=<?=$pag?>&jointogroup=<?=$id?>" class="btn btn-primary" name="btn-join-group_<?=$id?>" id="btn-join-group_<?=$id?>">Entrar no grupo</a>
-		                <button style="display: none;" type="button" onclick="SairdoGrupo(<?=$id?>)" class="btn btn-danger" name="btn-fechar-jointogorup_<?=$id?>" id="btn-fechar-jointogorup_<?=$id?>">Sair do Grupo</button>
+		                <div id="div_joinTOGROUP<?=$id?>">
+		                	<a href="index.php?pag=<?=$pag?>&jointogroup=<?=$id?>" class="btn btn-primary">Entrar no grupo</a>
+		                </div>
+		                <div id="div_outTOGROUP<?=$id?>" class="d-none">
+		                	<button style="display: none;" type="button" onclick="SairdoGrupo(<?=$id?>)" class="btn btn-danger">Sair do Grupo</button>
+		                </div>
 		                <?php
 		            }
 		            ?>
 		        </div>
 		        <div>
-		            <a href="index.php?pag=grupo-de-oracoes">Ver todos os grupos</a><br>
 		            <a style="cursor: pointer;" href="index.php?pag=<?=$pag?>&jointogroup=<?=$id?>">Mais Detalhes</a>
 		        </div>
 		    </div>
@@ -174,49 +177,29 @@ if (isset($_GET['jointogroup'])) {
     </script>
     <?php
 }
-    
+
 ?>
-<script type="text/javascript">
-    function EntrarnoGrupo(id) {
-        $(document).ready(function() {
-        	var pag = "<?=$pag?>";
-            $.ajax({
-                url: pag + '/entrar-grupo.php',
-                method: "POST",
-                data: {id},
-                dataType: 'text',
-                success: function(msg) {
-                    if (msg.trim() == 'Sucesso!') {
-                        $('#fechar-jointogroup').click();
-                        document.getElementById('btn-join-group_'+id).style.display = 'none';
-                        document.getElementById('btn-fechar-jointogorup_'+id).style.display = 'block';
-                    }
-                    document.getElementById('btn-salvar-jointogorup').style.display = 'none';
-                    document.getElementById('fechar-jointogroup').style.display = 'none';
-                }
-            })
-        })
-    }
-</script>
 
 <script type="text/javascript">
-    function SairdoGrupo(id) {
-        $(document).ready(function() {
-        	var pag = "<?=$pag?>";
-            $.ajax({
-                url: pag + "/sair-grupo.php",
-                method: "post",
-                data: {id},
-                dataType: 'text',
-                success: function(msg) {
-                    if (msg.trim() == "Sucesso!") {
-                        document.getElementById('btn-join-group_'+id).style.display = 'block';
-                        document.getElementById('btn-fechar-jointogorup_'+id).style.display = 'none';
-                    }
-                    document.getElementById('btn-salvar-jointogorup').style.display = 'block';
-                    document.getElementById('fechar-jointogroup').style.display = 'block';
-                }
-            })
-        })
-    }
+	function EntrarnoGrupo(id) {
+		$(document).ready(function() {
+			var pag = "<?=$pag?>";
+			$.ajax({
+				url: pag + '/entrar-grupo.php',
+				method: 'post',
+				data: {id},
+				dataType: 'text',
+				success: function(msg) {
+					if (msg.trim() == "Sucesso!") {
+						$('#fechar-jointogroup').click();
+						$('#div_joinTOGROUP'+id).addClass('d-none');
+						$('#div_outTOGROUP'+id).addClass('d-block');
+						//$('#btn-join-group_'+id).style.display = 'none';
+					}
+					$('#btn-salvar-jointogorup').style.display = 'none';
+					$('#fechar-jointogroup').style.display = 'none';
+				}
+			})
+		})
+	}
 </script>

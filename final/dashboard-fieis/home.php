@@ -140,7 +140,7 @@ require_once('../conexao.php');
                                 ?>
                             </div>
                             <div>
-                                <a href="index.php?pag=grupo-de-oracoes">Ver todos os grupos</a><br>
+                                <a href="index.php?pag=grupos-de-oracoes">Ver todos os grupos</a><br>
                                 <a style="cursor: pointer;" data-bs-toggle="modal" data-bs-target="#modalJoinIntoGruop">Mais Detalhes</a>
                             </div>
                         </div>

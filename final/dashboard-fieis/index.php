@@ -4,7 +4,7 @@
     @session_start();
 
     $pag = @$_GET["pag"];
-    $menu1 = "grupo-de-oracoes";
+    $menu1 = "grupos-de-oracoes";
     $menu2 = "pedidos-de-oracoes";
     $menu3 = "oracoes-especiais";
     $menu4 = "criar-grupo";

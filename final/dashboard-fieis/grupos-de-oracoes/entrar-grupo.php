@@ -13,7 +13,6 @@ if (count($res) > 0) {
 	$res_upd->bindValue(':id', $id_grupo);
 	$res_upd->execute();
 
-
 	$res_peng = $pdo->prepare("INSERT INTO participando_do_grupo SET id_usuario = :id_user, id_grupo = :id_grupo");
 	$res_peng->bindValue(':id_user', $_SESSION['id']);
 	$res_peng->bindValue(':id_grupo', $id_grupo);
@@ -21,5 +20,4 @@ if (count($res) > 0) {
 
 	echo "Sucesso!";
 }
-
 ?>
