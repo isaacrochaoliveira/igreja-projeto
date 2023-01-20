@@ -74,7 +74,7 @@ $pag = "grupo-de-oracoes";
             <div class="modal-body">
                 <div>
                     <?php
-                    	$id = $_GET['jointogroup'];
+                    	$id = addslashes($_GET['jointogroup']);
                         $query = $pdo->query("SELECT * FROM grupos_de_oracao JOIN usuarios ON grupos_de_oracao.id_criador = usuarios.id JOIN cargos ON usuarios.id_cargo = cargos.id_cargo WHERE id_group = '$id'");
                         $res = $query->fetchAll(PDO::FETCH_ASSOC);
                         if (count($res) > 0) {
@@ -139,7 +139,6 @@ $pag = "grupo-de-oracoes";
                 </div>
             </div>
             <div class="modal-footer">
-                <input type="hidden" id="idJoinToGroup" value="-1">
                 <?php
                     if ($ativo == 'N') {
                         ?>
@@ -181,7 +180,6 @@ if (isset($_GET['jointogroup'])) {
     function EntrarnoGrupo(id) {
         $(document).ready(function() {
         	var pag = "<?=$pag?>";
-        	alert(id);
             $.ajax({
                 url: pag + '/entrar-grupo.php',
                 method: "POST",
