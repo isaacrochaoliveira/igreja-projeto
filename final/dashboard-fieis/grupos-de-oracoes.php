@@ -7,6 +7,14 @@ require_once('../conexao.php');
 $pag = "grupos-de-oracoes";
 
 ?>
+<div class="d-flex justify-content-around my-3">
+	<div>
+		<button type="button" class="btn btn-light"><i class="fa-sharp fa-solid fa-plus"></i> Cadastrar Novo Grupo</button>
+	</div>
+	<div>
+		<button class="btn btn-danger"><i class="fa-solid fa-person-walking-arrow-right"></i> Voltar</button>
+	</div>
+</div>
 <section class="d-flex">
 	<?php
 	$query = $pdo->query("SELECT * FROM grupos_de_oracao");
