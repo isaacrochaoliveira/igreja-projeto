@@ -2,7 +2,7 @@
 
 
 function getData() {
-	return Date('Y-m-d')
+	return Date('Y-m-d');
 }
 
 function getHora() {

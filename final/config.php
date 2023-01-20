@@ -14,4 +14,6 @@ define('CHARSET', 'utf8');
 define('TITLE', 'Church NTLH');
 define('BRAND', 'Sistema da Ass');
 
+
+define('TIMEZONE', date_default_timezone_set('America/Sao_Paulo'));
 ?>

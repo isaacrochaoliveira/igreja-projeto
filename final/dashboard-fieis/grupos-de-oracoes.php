@@ -3,11 +3,9 @@
 require_once('../protect.php');
 require_once('../config.php');
 require_once('../conexao.php');
-require_once('../assets/helpers');
-
-
+require_once('../assets/helpers/datetime.php');
 $pag = "grupos-de-oracoes";
-
+$data = date("Y-m-d");
 ?>
 <div class="d-flex justify-content-around my-3">
 	<div>
@@ -255,19 +253,22 @@ $pag = "grupos-de-oracoes";
 		      						<input type="file" name="upload_grupo" id="upload_grupo" onchange="carregarImg()" class="mb-2 form-control mt-2">
 		      						<label>Nome do Grupo</label>
 		      						<input type="text" name="titulo_grupo" id="titulo_grupo" class="form-control" placeholder="Não Obrigatório">
-		      						<label>Descrição do Grupo</label>
+		      						<label>Descrição do Grupo<strong>*</strong></label>
 		      					</div>
 	      					</div>
-	      					<textarea cols="4" rows="4" class="form-control"></textarea>
+	      					<textarea cols="4" rows="4" class="form-control" placeholder="Obrigatório"></textarea>
 	      					<div class="row">
-	      							<label class="my-2">Data e Hora da Criação</label>
+	      							<label class="my-2">Data de Criação e de Fechamento</label>
 	      						<div class="col-md-6">
-	      							<input type="date" name="criado_em" id="criado_em" class="form-control" value="<?=$hoje?>">
+	      							<input type="date" name="criado_em" id="criado_em" class="form-control" value="<?=$data?>">
 	      						</div>
 	      						<div class="col-md-6">
-	      							<input type="time" name="hora_criado_em" id="hora_criado_em" value="<?=$agora?>" class="form-control">
+	      							<input type="date" name="fechadoEm" id="fechadoEm" value="" class="form-control">
 	      						</div>
 	      					</div>
+	      				</div>
+	      				<div class="w-50porc">
+	      					<h4>Regras</h4>
 	      				</div>
 	      			</div>
 			    </div>
