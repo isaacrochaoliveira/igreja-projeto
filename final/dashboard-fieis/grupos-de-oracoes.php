@@ -9,7 +9,7 @@ $pag = "grupos-de-oracoes";
 ?>
 <div class="d-flex justify-content-around my-3">
 	<div>
-		<button type="button" class="btn btn-light"><i class="fa-sharp fa-solid fa-plus"></i> Cadastrar Novo Grupo</button>
+		<button type="button" class="btn btn-light" data-bs-toggle="modal" data-bs-target="#modalNovoGrupo"><i class="fa-sharp fa-solid fa-plus"></i> Cadastrar Novo Grupo</button>
 	</div>
 	<div>
 		<a href="index.php" class="btn btn-danger">Voltar <i class="fa-solid fa-person-walking-arrow-right"></i></a>
@@ -236,8 +236,58 @@ $pag = "grupos-de-oracoes";
   	</div>
 </div>
 
+<div class="modal fade" id="modalNovoGrupo" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+ 	<div class="modal-dialog modal-xl">
+    	<div class="modal-content">
+      		<div class="modal-header">
+        		<h1 class="modal-title fs-5" id="staticBackdropLabel">Novo Grupo</h1>
+        		<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      		</div>
+      		<form method="POST" action="" enctype="multipart/form-data">
+	      		<div class="modal-body">
+	      			<div class="row">
+	      				<div class="w-50porc">
+	      					<div class="d-flex">
+	      						<img src="<?=IMAGEM."/fotos-grupos/sem-foto"?>" alt="Coloque a sua Foto do Grupo" id="target" name="target" width="150" height="150">
+		      					<div class="d-block ml-2">
+		      						<input type="file" name="upload_grupo" id="upload_grupo" onchange="carregarImg()" class="mb-2 form-control mt-2">
+		      						<label>Nome do Grupo</label>
+		      						<input type="text" name="titulo_grupo" id="titulo_grupo" class="form-control" placeholder="Não Obrigatório">
+		      						<label>Descrição do Grupo</label>
+		      					</div>
+	      					</div>
+	      				</div>
+	      			</div>
+			    </div>
+	      		<div class="modal-footer">
+	        		<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
+	      		</div>
+    	</div>
+  	</div>
+</div>
+
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+
+<script type="text/javascript">
+function carregarImg() {
+
+    var target = document.getElementById('target');
+    var file = document.querySelector("input[type=file]").files[0];
+    var reader = new FileReader();
+
+    reader.onloadend = function () {
+        target.src = reader.result;
+    };
+
+    if (file) {
+        reader.readAsDataURL(file);
+
+    } else {
+        target.src = "";
+    }
+}
+</script>
 
 <script type="text/javascript">
 	function EntrarnoGrupo(id) {
