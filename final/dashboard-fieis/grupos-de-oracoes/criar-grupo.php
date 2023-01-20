@@ -19,13 +19,14 @@ $_r10 = addslashes($_POST['_regras10']);
 $agora = Date('H:i:m', date_default_timezone_set("America/Sao_Paulo"));
 $hoje = Date('Y-m-d');
 
-$res = $pdo->prepare("INSERT INTO grupos_de_oracao SET id_criador = :id_criador, id_licenca = :id_licenca, title = :title, descricao = :descricao, criador_em = :criador_em, hora_criado_em = :hora_criado_em");
+$res = $pdo->prepare("INSERT INTO grupos_de_oracao SET id_criador = :id_criador, id_licenca = :id_licenca, title = :title, descricao = :descricao, criado_em = :criado_em, hora_criado_em = :hora_criado_em");
 $res->bindValue(':id_criador', $_SESSION['id']);
 $res->bindValue(':id_licenca', $id_licenca);
 $res->bindValue(':title', $titulo_grupo);
 $res->bindValue(':descricao', $descrica_do_grupo);
 $res->bindValue(':criado_em' , $hoje);
 $res->bindValue(':hora_criado_em', $agora);
+$res->execute();
 
 $query_group = $pdo->query("SELECT * FROM grupos_de_oracao ORDER BY id_group DESC");
 $res_group = $query_group->fetchAll(PDO::FETCH_ASSOC);
@@ -44,8 +45,8 @@ if (!$_r2 == "") {
 	$res_verifica = $query_verifica->fetchAll(PDO::FETCH_ASSOC);
 	if (count($res_verifica) > 0) {
 		$res_regras = $pdo->prepare("UPDATE regras_do_grupo SET _regras2 = :_r2 WHERE id_grupo = :id_group");
-		$res->bindValue(':_r2', $_r2);
-		$res->bindValue(':id_group', $id_gruop);
+		$res_regras->bindValue(':_r2', $_r2);
+		$res_regras->bindValue(':id_group', $id_gruop);
 	} else {
 		$res_regras = $pdo->prepare("INSERT INTO regras_do_grupo SET id_grupo = :id_grupo, _regras2 = :r2");
 		$res_regras->bindValue(':id_grupo', $id_gruop);
@@ -58,8 +59,8 @@ if (!$_r3 == "") {
 	$res_verifica = $query_verifica->fetchAll(PDO::FETCH_ASSOC);
 	if (count($res_verifica) > 0) {
 		$res_regras = $pdo->prepare("UPDATE regras_do_grupo SET _regras3 = :_r3 WHERE id_grupo = :id_group");
-		$res->bindValue(':_r3', $_r3);
-		$res->bindValue(':id_group', $id_gruop);
+		$res_regras->bindValue(':_r3', $_r3);
+		$res_regras->bindValue(':id_group', $id_gruop);
 	} else {
 		$res_regras = $pdo->prepare("INSERT INTO regras_do_grupo SET id_grupo = :id_grupo, _regras3 = :r3");
 		$res_regras->bindValue(':id_grupo', $id_gruop);
@@ -72,8 +73,8 @@ if (!$_r4 == "") {
 	$res_verifica = $query_verifica->fetchAll(PDO::FETCH_ASSOC);
 	if (count($res_verifica) > 0) {
 		$res_regras = $pdo->prepare("UPDATE regras_do_grupo SET _regras4 = :_r4 WHERE id_grupo = :id_group");
-		$res->bindValue(':_r4', $_r4);
-		$res->bindValue(':id_group', $id_gruop);
+		$res_regras->bindValue(':_r4', $_r4);
+		$res_regras->bindValue(':id_group', $id_gruop);
 	} else {
 		$res_regras = $pdo->prepare("INSERT INTO regras_do_grupo SET id_grupo = :id_grupo, _regras4 = :r4");
 		$res_regras->bindValue(':id_grupo', $id_gruop);
@@ -86,8 +87,8 @@ if (!$_r5 == "") {
 	$res_verifica = $query_verifica->fetchAll(PDO::FETCH_ASSOC);
 	if (count($res_verifica) > 0) {
 		$res_regras = $pdo->prepare("UPDATE regras_do_grupo SET _regras5 = :_r5 WHERE id_grupo = :id_group");
-		$res->bindValue(':_r5', $_r5);
-		$res->bindValue(':id_group', $id_gruop);
+		$res_regras->bindValue(':_r5', $_r5);
+		$res_regras->bindValue(':id_group', $id_gruop);
 	} else {
 		$res_regras = $pdo->prepare("INSERT INTO regras_do_grupo SET id_grupo = :id_grupo, _regras5 = :r5");
 		$res_regras->bindValue(':id_grupo', $id_gruop);
@@ -100,8 +101,8 @@ if (!$_r6 == "") {
 	$res_verifica = $query_verifica->fetchAll(PDO::FETCH_ASSOC);
 	if (count($res_verifica) > 0) {
 		$res_regras = $pdo->prepare("UPDATE regras_do_grupo SET _regras6 = :_r6 WHERE id_grupo = :id_group");
-		$res->bindValue(':_r6', $_r6);
-		$res->bindValue(':id_group', $id_gruop);
+		$res_regras->bindValue(':_r6', $_r6);
+		$res_regras->bindValue(':id_group', $id_gruop);
 	} else {
 		$res_regras = $pdo->prepare("INSERT INTO regras_do_grupo SET id_grupo = :id_grupo, _regras6 = :r6");
 		$res_regras->bindValue(':id_grupo', $id_gruop);
@@ -114,8 +115,8 @@ if (!$_r7 == "") {
 	$res_verifica = $query_verifica->fetchAll(PDO::FETCH_ASSOC);
 	if (count($res_verifica) > 0) {
 		$res_regras = $pdo->prepare("UPDATE regras_do_grupo SET _regras7 = :_r7 WHERE id_grupo = :id_group");
-		$res->bindValue(':_r7', $_r7);
-		$res->bindValue(':id_group', $id_gruop);
+		$res_regras->bindValue(':_r7', $_r7);
+		$res_regras->bindValue(':id_group', $id_gruop);
 	} else {
 		$res_regras = $pdo->prepare("INSERT INTO regras_do_grupo SET id_grupo = :id_grupo, _regras7 = :r7");
 		$res_regras->bindValue(':id_grupo', $id_gruop);
@@ -128,8 +129,8 @@ if (!$_r8 == "") {
 	$res_verifica = $query_verifica->fetchAll(PDO::FETCH_ASSOC);
 	if (count($res_verifica) > 0) {
 		$res_regras = $pdo->prepare("UPDATE regras_do_grupo SET _regras8 = :_r8 WHERE id_grupo = :id_group");
-		$res->bindValue(':_r8', $_r8);
-		$res->bindValue(':id_group', $id_gruop);
+		$res_regras->bindValue(':_r8', $_r8);
+		$res_regras->bindValue(':id_group', $id_gruop);
 	} else {
 		$res_regras = $pdo->prepare("INSERT INTO regras_do_grupo SET id_grupo = :id_grupo, _regras8 = :r8");
 		$res_regras->bindValue(':id_grupo', $id_gruop);
@@ -142,8 +143,8 @@ if (!$_r9 == "") {
 	$res_verifica = $query_verifica->fetchAll(PDO::FETCH_ASSOC);
 	if (count($res_verifica) > 0) {
 		$res_regras = $pdo->prepare("UPDATE regras_do_grupo SET _regras9 = :_r9 WHERE id_grupo = :id_group");
-		$res->bindValue(':_r9', $_r9);
-		$res->bindValue(':id_group', $id_gruop);
+		$res_regras->bindValue(':_r9', $_r9);
+		$res_regras->bindValue(':id_group', $id_gruop);
 	} else {
 		$res_regras = $pdo->prepare("INSERT INTO regras_do_grupo SET id_grupo = :id_grupo, _regras9 = :r9");
 		$res_regras->bindValue(':id_grupo', $id_gruop);
@@ -156,8 +157,8 @@ if (!$_r10 == "") {
 	$res_verifica = $query_verifica->fetchAll(PDO::FETCH_ASSOC);
 	if (count($res_verifica) > 0) {
 		$res_regras = $pdo->prepare("UPDATE regras_do_grupo SET _regras10 = :_r10 WHERE id_grupo = :id_group");
-		$res->bindValue(':_r10', $_r10);
-		$res->bindValue(':id_group', $id_gruop);
+		$res_regras->bindValue(':_r10', $_r10);
+		$res_regras->bindValue(':id_group', $id_gruop);
 	} else {
 		$res_regras = $pdo->prepare("INSERT INTO regras_do_grupo SET id_grupo = :id_grupo, _regras10 = :r10");
 		$res_regras->bindValue(':id_grupo', $id_gruop);
@@ -165,7 +166,9 @@ if (!$_r10 == "") {
 	}
 	$res_regras->execute();
 }	
-if ($res->execute()) {
+$query_verifica = $pdo->query("SELECT * FROM regras_do_grupo WHERE id_grupo = '$id_gruop'");
+$res_verifica = $query_verifica->fetchAll(PDO::FETCH_ASSOC);
+if (count($res_verifica) > 0) {
 	echo "Criado com Sucesso!";
 } else {
 	echo "Erro ao Cadastrar o Grupo!";

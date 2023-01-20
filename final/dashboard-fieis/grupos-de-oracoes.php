@@ -273,7 +273,6 @@ $data = date("Y-m-d");
 	      				<div class="w-50porc">
 	      					<h4>Licença</h4>
 	      					<select class="form-select mb-2" name="id_licenca">
-	      						<option value="">NONE</option>
 	      						<?php
 	      							$query = $pdo->query("SELECT * FROM licenca;");
 	      							$res = $query->fetchAll(PDO::FETCH_ASSOC);
