@@ -3,6 +3,8 @@
 require_once('../protect.php');
 require_once('../config.php');
 require_once('../conexao.php');
+require_once('../assets/helpers');
+
 
 $pag = "grupos-de-oracoes";
 
@@ -256,12 +258,23 @@ $pag = "grupos-de-oracoes";
 		      						<label>Descrição do Grupo</label>
 		      					</div>
 	      					</div>
+	      					<textarea cols="4" rows="4" class="form-control"></textarea>
+	      					<div class="row">
+	      							<label class="my-2">Data e Hora da Criação</label>
+	      						<div class="col-md-6">
+	      							<input type="date" name="criado_em" id="criado_em" class="form-control" value="<?=$hoje?>">
+	      						</div>
+	      						<div class="col-md-6">
+	      							<input type="time" name="hora_criado_em" id="hora_criado_em" value="<?=$agora?>" class="form-control">
+	      						</div>
+	      					</div>
 	      				</div>
 	      			</div>
 			    </div>
 	      		<div class="modal-footer">
 	        		<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
 	      		</div>
+	      	</form>
     	</div>
   	</div>
 </div>
