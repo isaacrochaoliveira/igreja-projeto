@@ -12,7 +12,7 @@ $pag = "grupos-de-oracoes";
 		<button type="button" class="btn btn-light"><i class="fa-sharp fa-solid fa-plus"></i> Cadastrar Novo Grupo</button>
 	</div>
 	<div>
-		<button class="btn btn-danger"><i class="fa-solid fa-person-walking-arrow-right"></i> Voltar</button>
+		<a href="index.php" class="btn btn-danger">Voltar <i class="fa-solid fa-person-walking-arrow-right"></i></a>
 	</div>
 </div>
 <section class="d-flex">
@@ -67,8 +67,9 @@ $pag = "grupos-de-oracoes";
 		            }
 		            ?>
 		        </div>
-		        <div>
+		        <div class="d-flex justify-content-around mt-2">
 		            <a style="cursor: pointer;" href="index.php?pag=<?=$pag?>&jointogroup=<?=$id?>">Mais Detalhes</a>
+		            <a href="index.php?pag=<?=$pag?>&comoparticipar=<?=$id?>">Como Participar</a>
 		        </div>
 		    </div>
 	  	</div>
@@ -174,23 +175,7 @@ $pag = "grupos-de-oracoes";
 </div>
 
 
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-<?php 
-
-if (isset($_GET['jointogroup'])) {
-    ?>
-    <script type="text/javascript">
-        var myModal = new bootstrap.Modal(document.getElementById('modalJoinIntoGruop'), {
-            
-        })
-
-        myModal.show();
-    </script>
-    <?php
-}
-
-?>
 
 <script type="text/javascript">
 	function EntrarnoGrupo(id) {
