@@ -2,10 +2,10 @@
 -- version 5.2.0
 -- https://www.phpmyadmin.net/
 --
--- Host: 127.0.0.1
--- Tempo de geração: 17-Jan-2023 às 21:08
--- Versão do servidor: 10.4.24-MariaDB
--- versão do PHP: 8.1.6
+-- Host: 127.0.0.1:3306
+-- Tempo de geração: 20-Jan-2023 às 23:05
+-- Versão do servidor: 8.0.31
+-- versão do PHP: 8.0.26
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -27,10 +27,12 @@ SET time_zone = "+00:00";
 -- Estrutura da tabela `cargos`
 --
 
-CREATE TABLE `cargos` (
-  `id_cargo` tinyint(4) NOT NULL,
-  `cargo` varchar(100) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+DROP TABLE IF EXISTS `cargos`;
+CREATE TABLE IF NOT EXISTS `cargos` (
+  `id_cargo` tinyint NOT NULL AUTO_INCREMENT,
+  `cargo` varchar(100) NOT NULL,
+  PRIMARY KEY (`id_cargo`)
+) ENGINE=InnoDB AUTO_INCREMENT=15 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
 -- Extraindo dados da tabela `cargos`
@@ -58,10 +60,12 @@ INSERT INTO `cargos` (`id_cargo`, `cargo`) VALUES
 -- Estrutura da tabela `categorias`
 --
 
-CREATE TABLE `categorias` (
-  `id_cat` tinyint(4) NOT NULL,
-  `categorias` varchar(50) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+DROP TABLE IF EXISTS `categorias`;
+CREATE TABLE IF NOT EXISTS `categorias` (
+  `id_cat` tinyint NOT NULL AUTO_INCREMENT,
+  `categorias` varchar(50) NOT NULL,
+  PRIMARY KEY (`id_cat`)
+) ENGINE=InnoDB AUTO_INCREMENT=23 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
 -- Extraindo dados da tabela `categorias`
@@ -97,11 +101,13 @@ INSERT INTO `categorias` (`id_cat`, `categorias`) VALUES
 -- Estrutura da tabela `citacoes`
 --
 
-CREATE TABLE `citacoes` (
-  `id` tinyint(4) NOT NULL,
+DROP TABLE IF EXISTS `citacoes`;
+CREATE TABLE IF NOT EXISTS `citacoes` (
+  `id` tinyint NOT NULL AUTO_INCREMENT,
   `author` varchar(50) NOT NULL,
-  `citacao` text DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+  `citacao` text,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
 -- Extraindo dados da tabela `citacoes`
@@ -114,28 +120,83 @@ INSERT INTO `citacoes` (`id`, `author`, `citacao`) VALUES
 -- --------------------------------------------------------
 
 --
+-- Estrutura da tabela `emproposito_na_oracao`
+--
+
+DROP TABLE IF EXISTS `emproposito_na_oracao`;
+CREATE TABLE IF NOT EXISTS `emproposito_na_oracao` (
+  `id` tinyint NOT NULL AUTO_INCREMENT,
+  `id_usuario` tinyint DEFAULT NULL,
+  `id_oracao` tinyint DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `id_usuario` (`id_usuario`),
+  KEY `id_oracao` (`id_oracao`)
+) ENGINE=InnoDB AUTO_INCREMENT=34 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Extraindo dados da tabela `emproposito_na_oracao`
+--
+
+INSERT INTO `emproposito_na_oracao` (`id`, `id_usuario`, `id_oracao`) VALUES
+(22, 11, 9),
+(23, 11, 4),
+(24, 4, 23),
+(25, NULL, 23),
+(32, 11, 24),
+(33, 11, 23);
+
+-- --------------------------------------------------------
+
+--
 -- Estrutura da tabela `grupos_de_oracao`
 --
 
-CREATE TABLE `grupos_de_oracao` (
-  `id` tinyint(4) NOT NULL,
-  `id_criador` tinyint(4) DEFAULT NULL,
+DROP TABLE IF EXISTS `grupos_de_oracao`;
+CREATE TABLE IF NOT EXISTS `grupos_de_oracao` (
+  `id_group` tinyint NOT NULL AUTO_INCREMENT,
+  `id_criador` tinyint DEFAULT NULL,
+  `id_licenca` tinyint DEFAULT NULL,
   `logo` varchar(100) DEFAULT NULL,
   `title` varchar(200) NOT NULL,
-  `descricao` text DEFAULT NULL,
-  `pessoas_part` int(11) DEFAULT 0,
+  `descricao` text,
+  `pessoas_part` int DEFAULT '0',
   `criado_em` date DEFAULT NULL,
   `hora_criado_em` time DEFAULT NULL,
   `fechado_em` datetime DEFAULT NULL,
-  `ativo` enum('S','N') DEFAULT 'S'
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+  `ativo` enum('S','N') DEFAULT 'S',
+  PRIMARY KEY (`id_group`),
+  KEY `id_criador` (`id_criador`),
+  KEY `id_licenca` (`id_licenca`)
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
 -- Extraindo dados da tabela `grupos_de_oracao`
 --
 
-INSERT INTO `grupos_de_oracao` (`id`, `id_criador`, `logo`, `title`, `descricao`, `pessoas_part`, `criado_em`, `hora_criado_em`, `fechado_em`, `ativo`) VALUES
-(1, 8, 'grupo-de-intercessao.png', 'Grupo de Intercessão', 'Buscamos a face de Deus dia após dia, a bíblia nos fala orai sem cesar. Por que nós oramos? Simples! Você não pediria um ajuda para a única pessoa que consegue fazer aquilo que você tanto deseja?', 0, '2023-01-16', '00:53:32', '0000-00-00 00:00:00', 'S');
+INSERT INTO `grupos_de_oracao` (`id_group`, `id_criador`, `id_licenca`, `logo`, `title`, `descricao`, `pessoas_part`, `criado_em`, `hora_criado_em`, `fechado_em`, `ativo`) VALUES
+(1, 8, NULL, 'grupo-de-intercessao.png', 'Grupo de Intercessão', 'Buscamos a face de Deus dia após dia, a bíblia nos fala orai sem cesar. Por que nós oramos? Simples! Você não pediria um ajuda para a única pessoa que consegue fazer aquilo que você tanto deseja?', 18, '2023-01-16', '00:53:32', '0000-00-00 00:00:00', 'S'),
+(2, 10, 1, '63ac6ec8ee488.png', 'Oração para as Solteiras', 'Eu vim para orar pelo meu futuro marido, porque eu vim com sapatinho de fogo', 15, '2023-01-18', '23:52:15', '0000-00-00 00:00:00', 'S');
+
+-- --------------------------------------------------------
+
+--
+-- Estrutura da tabela `licenca`
+--
+
+DROP TABLE IF EXISTS `licenca`;
+CREATE TABLE IF NOT EXISTS `licenca` (
+  `id` tinyint NOT NULL AUTO_INCREMENT,
+  `nome_da_licenca` varchar(200) COLLATE utf8mb4_general_ci NOT NULL,
+  `descricao_da_licenca` text COLLATE utf8mb4_general_ci,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Extraindo dados da tabela `licenca`
+--
+
+INSERT INTO `licenca` (`id`, `nome_da_licenca`, `descricao_da_licenca`) VALUES
+(1, 'EVAN', 'A Licença EVAN é baseada na estutura de devocional completo. Onde nós, evangélicos não acreditamos que existe um horario expecifíco para orar');
 
 -- --------------------------------------------------------
 
@@ -143,24 +204,28 @@ INSERT INTO `grupos_de_oracao` (`id`, `id_criador`, `logo`, `title`, `descricao`
 -- Estrutura da tabela `oracao`
 --
 
-CREATE TABLE `oracao` (
-  `id_pray` tinyint(4) NOT NULL,
-  `id_criador` tinyint(4) DEFAULT NULL,
+DROP TABLE IF EXISTS `oracao`;
+CREATE TABLE IF NOT EXISTS `oracao` (
+  `id_pray` tinyint NOT NULL AUTO_INCREMENT,
+  `id_criador` tinyint DEFAULT NULL,
   `titulo` varchar(100) DEFAULT NULL,
   `descricao` text NOT NULL,
-  `orando` int(11) DEFAULT 0
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+  `orando` int DEFAULT '0',
+  PRIMARY KEY (`id_pray`),
+  KEY `id_criador` (`id_criador`)
+) ENGINE=InnoDB AUTO_INCREMENT=25 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
 -- Extraindo dados da tabela `oracao`
 --
 
 INSERT INTO `oracao` (`id_pray`, `id_criador`, `titulo`, `descricao`, `orando`) VALUES
-(4, 8, 'Varoa', 'A Mulher Prudente vem do Senhor. Me ajudem em oração', 121),
-(9, 10, 'Varão', 'Esposa, obedeça ao seu marido, como você obedece ao Senhor. Pois o marido tem autoridade sobre a esposa, assim como Cristo tem autoridade sobre a Igreja', 3),
+(4, 8, 'Varoa', 'A Mulher Prudente vem do Senhor. Me ajudem em oração', 122),
+(9, 10, 'Varão', 'Esposa, obedeça ao seu marido, como você obedece ao Senhor. Pois o marido tem autoridade sobre a esposa, assim como Cristo tem autoridade sobre a Igreja', 8),
 (21, 4, 'Obrigado!', 'Me ajudem a agradecer meu Deus por tudo. Obrigado', 1),
-(22, 9, 'Aqui é a Paula', 'Estou atualmente querendo entrar em um emprego, mas preciso saber se é da vontade do meu Pai. Me ajudem em oração, Obrigado!', 0),
-(23, 11, 'Oração', 'Estou em processo de um relacionamento pessoal\r\n', 1);
+(22, 9, 'Aqui é a Paula', 'Estou atualmente querendo entrar em um emprego, mas preciso saber se é da vontade do meu Pai. Me ajudem em oração, Obrigado!', 5),
+(23, 11, 'Oração', 'Estou em processo de um relacionamento pessoal\r\n', 4),
+(24, 11, 'Salmos 125:1', 'Me ajude a orar a ficar mais parecido com o Monte Sião. Além disso, quando vocês orarem ao meu favor, automaticamente Deus vai pelejar ao seu favor', 0);
 
 -- --------------------------------------------------------
 
@@ -168,11 +233,15 @@ INSERT INTO `oracao` (`id_pray`, `id_criador`, `titulo`, `descricao`, `orando`) 
 -- Estrutura da tabela `oracao_relacionada_com_a_categoria`
 --
 
-CREATE TABLE `oracao_relacionada_com_a_categoria` (
-  `id` tinyint(4) NOT NULL,
-  `id_oracao` tinyint(4) DEFAULT NULL,
-  `id_categoria` tinyint(4) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+DROP TABLE IF EXISTS `oracao_relacionada_com_a_categoria`;
+CREATE TABLE IF NOT EXISTS `oracao_relacionada_com_a_categoria` (
+  `id` tinyint NOT NULL AUTO_INCREMENT,
+  `id_oracao` tinyint DEFAULT NULL,
+  `id_categoria` tinyint DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `id_oracao` (`id_oracao`),
+  KEY `id_categoria` (`id_categoria`)
+) ENGINE=InnoDB AUTO_INCREMENT=44 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
 -- Extraindo dados da tabela `oracao_relacionada_com_a_categoria`
@@ -197,7 +266,11 @@ INSERT INTO `oracao_relacionada_com_a_categoria` (`id`, `id_oracao`, `id_categor
 (36, 23, 14),
 (37, 23, 4),
 (38, 23, 6),
-(39, 23, 1);
+(39, 23, 1),
+(40, 24, 6),
+(41, 24, 4),
+(42, 24, 3),
+(43, 24, 15);
 
 -- --------------------------------------------------------
 
@@ -205,11 +278,44 @@ INSERT INTO `oracao_relacionada_com_a_categoria` (`id`, `id_oracao`, `id_categor
 -- Estrutura da tabela `participando_do_grupo`
 --
 
-CREATE TABLE `participando_do_grupo` (
-  `id` tinyint(4) NOT NULL,
-  `id_usuario` tinyint(4) DEFAULT NULL,
-  `id_grupo` tinyint(4) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+DROP TABLE IF EXISTS `participando_do_grupo`;
+CREATE TABLE IF NOT EXISTS `participando_do_grupo` (
+  `id` tinyint NOT NULL AUTO_INCREMENT,
+  `id_usuario` tinyint DEFAULT NULL,
+  `id_grupo` tinyint DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=18 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Estrutura da tabela `regras_do_grupo`
+--
+
+DROP TABLE IF EXISTS `regras_do_grupo`;
+CREATE TABLE IF NOT EXISTS `regras_do_grupo` (
+  `id` tinyint NOT NULL AUTO_INCREMENT,
+  `id_grupo` tinyint DEFAULT NULL,
+  `_regras1` text COLLATE utf8mb4_general_ci,
+  `_regras2` text COLLATE utf8mb4_general_ci,
+  `_regras3` text COLLATE utf8mb4_general_ci,
+  `_regras4` text COLLATE utf8mb4_general_ci,
+  `_regras5` text COLLATE utf8mb4_general_ci,
+  `_regras6` text COLLATE utf8mb4_general_ci,
+  `_regras7` text COLLATE utf8mb4_general_ci,
+  `_regras8` text COLLATE utf8mb4_general_ci,
+  `_regras9` text COLLATE utf8mb4_general_ci,
+  `_regras10` text COLLATE utf8mb4_general_ci,
+  PRIMARY KEY (`id`),
+  KEY `id_grupo` (`id_grupo`)
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Extraindo dados da tabela `regras_do_grupo`
+--
+
+INSERT INTO `regras_do_grupo` (`id`, `id_grupo`, `_regras1`, `_regras2`, `_regras3`, `_regras4`, `_regras5`, `_regras6`, `_regras7`, `_regras8`, `_regras9`, `_regras10`) VALUES
+(1, 2, 'Ler Mais', 'Orar Mais', 'Seja a sua melhor versão', 'Seja Emocionalmente forte', 'Vamos acordar 6:00 para orar', 'Exclua os contatinhos', 'Não fale com os te desviam do camihno', 'Vamos Jejuar 1 vez por semana', 'todas vão orar nesse horario', NULL);
 
 -- --------------------------------------------------------
 
@@ -217,9 +323,10 @@ CREATE TABLE `participando_do_grupo` (
 -- Estrutura da tabela `usuarios`
 --
 
-CREATE TABLE `usuarios` (
-  `id` tinyint(4) NOT NULL,
-  `id_cargo` tinyint(4) DEFAULT NULL,
+DROP TABLE IF EXISTS `usuarios`;
+CREATE TABLE IF NOT EXISTS `usuarios` (
+  `id` tinyint NOT NULL AUTO_INCREMENT,
+  `id_cargo` tinyint DEFAULT NULL,
   `nome` varchar(200) NOT NULL,
   `nasc` date DEFAULT NULL,
   `sexo` varchar(50) NOT NULL,
@@ -230,8 +337,12 @@ CREATE TABLE `usuarios` (
   `estado_civil` varchar(15) DEFAULT 'Solteiro',
   `trabalho` enum('S','N') DEFAULT 'N',
   `horario_inicio` time DEFAULT NULL,
-  `horario_fim` time DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+  `horario_fim` time DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `cpf` (`cpf`),
+  UNIQUE KEY `email` (`email`),
+  KEY `id_cargo` (`id_cargo`)
+) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
 -- Extraindo dados da tabela `usuarios`
@@ -251,125 +362,22 @@ INSERT INTO `usuarios` (`id`, `id_cargo`, `nome`, `nasc`, `sexo`, `cpf`, `email`
 (11, 11, 'Latrel', '2004-07-23', 'M', '21316465464', 'latrel@gmail.com', 'latrel', '63c6adee0eb03.jpg', 'Namorando', 'S', '08:00:00', '18:30:00');
 
 --
--- Índices para tabelas despejadas
---
-
---
--- Índices para tabela `cargos`
---
-ALTER TABLE `cargos`
-  ADD PRIMARY KEY (`id_cargo`);
-
---
--- Índices para tabela `categorias`
---
-ALTER TABLE `categorias`
-  ADD PRIMARY KEY (`id_cat`);
-
---
--- Índices para tabela `citacoes`
---
-ALTER TABLE `citacoes`
-  ADD PRIMARY KEY (`id`);
-
---
--- Índices para tabela `grupos_de_oracao`
---
-ALTER TABLE `grupos_de_oracao`
-  ADD PRIMARY KEY (`id`),
-  ADD KEY `id_criador` (`id_criador`);
-
---
--- Índices para tabela `oracao`
---
-ALTER TABLE `oracao`
-  ADD PRIMARY KEY (`id_pray`),
-  ADD KEY `id_criador` (`id_criador`);
-
---
--- Índices para tabela `oracao_relacionada_com_a_categoria`
---
-ALTER TABLE `oracao_relacionada_com_a_categoria`
-  ADD PRIMARY KEY (`id`),
-  ADD KEY `id_oracao` (`id_oracao`),
-  ADD KEY `id_categoria` (`id_categoria`);
-
---
--- Índices para tabela `participando_do_grupo`
---
-ALTER TABLE `participando_do_grupo`
-  ADD PRIMARY KEY (`id`);
-
---
--- Índices para tabela `usuarios`
---
-ALTER TABLE `usuarios`
-  ADD PRIMARY KEY (`id`),
-  ADD UNIQUE KEY `cpf` (`cpf`),
-  ADD UNIQUE KEY `email` (`email`),
-  ADD KEY `id_cargo` (`id_cargo`);
-
---
--- AUTO_INCREMENT de tabelas despejadas
---
-
---
--- AUTO_INCREMENT de tabela `cargos`
---
-ALTER TABLE `cargos`
-  MODIFY `id_cargo` tinyint(4) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
-
---
--- AUTO_INCREMENT de tabela `categorias`
---
-ALTER TABLE `categorias`
-  MODIFY `id_cat` tinyint(4) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
-
---
--- AUTO_INCREMENT de tabela `citacoes`
---
-ALTER TABLE `citacoes`
-  MODIFY `id` tinyint(4) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
-
---
--- AUTO_INCREMENT de tabela `grupos_de_oracao`
---
-ALTER TABLE `grupos_de_oracao`
-  MODIFY `id` tinyint(4) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
-
---
--- AUTO_INCREMENT de tabela `oracao`
---
-ALTER TABLE `oracao`
-  MODIFY `id_pray` tinyint(4) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
-
---
--- AUTO_INCREMENT de tabela `oracao_relacionada_com_a_categoria`
---
-ALTER TABLE `oracao_relacionada_com_a_categoria`
-  MODIFY `id` tinyint(4) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=40;
-
---
--- AUTO_INCREMENT de tabela `participando_do_grupo`
---
-ALTER TABLE `participando_do_grupo`
-  MODIFY `id` tinyint(4) NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT de tabela `usuarios`
---
-ALTER TABLE `usuarios`
-  MODIFY `id` tinyint(4) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
-
---
 -- Restrições para despejos de tabelas
 --
+
+--
+-- Limitadores para a tabela `emproposito_na_oracao`
+--
+ALTER TABLE `emproposito_na_oracao`
+  ADD CONSTRAINT `emproposito_na_oracao_ibfk_1` FOREIGN KEY (`id_usuario`) REFERENCES `usuarios` (`id`),
+  ADD CONSTRAINT `emproposito_na_oracao_ibfk_2` FOREIGN KEY (`id_oracao`) REFERENCES `oracao` (`id_pray`);
 
 --
 -- Limitadores para a tabela `grupos_de_oracao`
 --
 ALTER TABLE `grupos_de_oracao`
-  ADD CONSTRAINT `grupos_de_oracao_ibfk_1` FOREIGN KEY (`id_criador`) REFERENCES `usuarios` (`id`);
+  ADD CONSTRAINT `grupos_de_oracao_ibfk_1` FOREIGN KEY (`id_criador`) REFERENCES `usuarios` (`id`),
+  ADD CONSTRAINT `grupos_de_oracao_ibfk_2` FOREIGN KEY (`id_licenca`) REFERENCES `licenca` (`id`);
 
 --
 -- Limitadores para a tabela `oracao`
@@ -383,6 +391,12 @@ ALTER TABLE `oracao`
 ALTER TABLE `oracao_relacionada_com_a_categoria`
   ADD CONSTRAINT `oracao_relacionada_com_a_categoria_ibfk_1` FOREIGN KEY (`id_oracao`) REFERENCES `oracao` (`id_pray`),
   ADD CONSTRAINT `oracao_relacionada_com_a_categoria_ibfk_2` FOREIGN KEY (`id_categoria`) REFERENCES `categorias` (`id_cat`);
+
+--
+-- Limitadores para a tabela `regras_do_grupo`
+--
+ALTER TABLE `regras_do_grupo`
+  ADD CONSTRAINT `regras_do_grupo_ibfk_1` FOREIGN KEY (`id_grupo`) REFERENCES `grupos_de_oracao` (`id_group`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
