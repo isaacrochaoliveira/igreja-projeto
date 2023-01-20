@@ -268,12 +268,77 @@ $data = date("Y-m-d");
 	      					</div>
 	      				</div>
 	      				<div class="w-50porc">
+	      					<h4>Licença</h4>
+	      					<select class="form-select mb-2" name="id_licenca">
+	      						<option value="">NONE</option>
+	      						<?php
+	      							$query = $pdo->query("SELECT * FROM licenca;");
+	      							$res = $query->fetchAll(PDO::FETCH_ASSOC);
+	      							if (count($res) > 0) {
+	      								for ($i = 0; $i < count($res); $i++) {
+	      									foreach ($res[$i] as $key => $row) {
+	      									}
+	      									$id_licenca = $res[$i]['id'];
+	      									$titulo_da_licenca = $res[$i]['nome_da_licenca'];
+	      									$descricao_da_licenca = $res[$i]['descricao_da_licenca'];
+
+	      									?>
+	      									<option value="<?=$id_licenca?>"><?=$titulo_da_licenca?></option>
+	      									<?php
+	      								}
+	      							}
+	      						?>
+	      					</select>
 	      					<h4>Regras</h4>
+	      					<div class="row">
+	      						<div class="col-md-4">
+	      							<label>1º Regra</label>
+	      							<input type="text" name="_regras1" id="_regras1" class="form-control" placeholder="Não Obrigatório">
+	      						</div>
+	      						<div class="col-md-4">
+	      							<label>2º Regra</label>
+	      							<input type="text" name="_regras2" id="_regras2" class="form-control" placeholder="Não Obrigatório">
+	      						</div>
+	      						<div class="col-md-4">
+	      							<label>3º Regra</label>
+	      							<input type="text" name="_regras3" id="_regras3" class="form-control" placeholder="Não Obrigatório">
+	      						</div>
+	      						<div class="col-md-4">
+	      							<label>4º Regra</label>
+	      							<input type="text" name="_regras4" id="_regras4" class="form-control" placeholder="Não Obrigatório">
+	      						</div>
+	      						<div class="col-md-4">
+	      							<label>5º Regra</label>
+	      							<input type="text" name="_regras5" id="_regras5" class="form-control" placeholder="Não Obrigatório">
+	      						</div>
+	      						<div class="col-md-4">
+	      							<label>6º Regra</label>
+	      							<input type="text" name="_regras6" id="_regras6" class="form-control" placeholder="Não Obrigatório">
+	      						</div>
+	      						<div class="col-md-4">
+	      							<label>7º Regra</label>
+	      							<input type="text" name="_regras7" id="_regras7" class="form-control" placeholder="Não Obrigatório">
+	      						</div>
+	      						<div class="col-md-4">
+	      							<label>8º Regra</label>
+	      							<input type="text" name="_regras8" id="_regras8" class="form-control" placeholder="Não Obrigatório">
+	      						</div>
+	      						<div class="col-md-4">
+	      							<label>9º Regra</label>
+	      							<input type="text" name="_regras9" id="_regras9" class="form-control" placeholder="Não Obrigatório">
+	      						</div>
+	      						<div class="col-md-4">
+	      							<label>10º Regra</label>
+	      							<input type="text" name="_regras10" id="_regras10" class="form-control" placeholder="Não Obrigatório">
+	      						</div>
+
+	      					</div>
 	      				</div>
 	      			</div>
 			    </div>
 	      		<div class="modal-footer">
-	        		<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
+	        		<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar <i class="fa-solid fa-right-from-bracket"></i></button>
+	        		<button type="button" class="btn btn-success">Criar Grupo <i class="fa-solid fa-check-double"></i></button>
 	      		</div>
 	      	</form>
     	</div>
