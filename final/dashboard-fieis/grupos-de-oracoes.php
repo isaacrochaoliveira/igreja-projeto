@@ -256,7 +256,7 @@ $data = date("Y-m-d");
 		      						<label>Descrição do Grupo<strong>*</strong></label>
 		      					</div>
 	      					</div>
-	      					<textarea cols="4" rows="4" class="form-control" placeholder="Obrigatório"></textarea>
+	      					<textarea cols="4" rows="4" class="form-control" placeholder="Obrigatório" name="descricao_grupo" id="descricao_grupo"></textarea>
 	      					<div class="row">
 	      							<label class="my-2">Data de Criação e de Fechamento</label>
 	      						<div class="col-md-6">
@@ -338,7 +338,7 @@ $data = date("Y-m-d");
 			    </div>
 	      		<div class="modal-footer">
 	        		<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar <i class="fa-solid fa-right-from-bracket"></i></button>
-	        		<button type="button" class="btn btn-success">Criar Grupo <i class="fa-solid fa-check-double"></i></button>
+	        		<button type="button" class="btn btn-success" name="button-criargrupo-create" id="button-criargrupo-create">Criar Grupo <i class="fa-solid fa-check-double"></i></button>
 	      		</div>
 	      	</form>
     	</div>
@@ -347,6 +347,27 @@ $data = date("Y-m-d");
 
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+
+<script type="text/javascript">
+	$(document).ready(function() {
+		$('#button-criargrupo-create').click(function() {
+			var pag = "<?=$pag?>";
+			$.ajax({
+				url: pag + 'criar-grupo.php',
+				method: "POST",
+				data: $('form').serialize(),
+				dataType: 'text',
+				success: function () {
+					if (msg.trim() == "Criado com Sucesso!") {
+						window.location = 'index.php?pag='+pag;
+					} else {
+						alert(msg);
+					}
+				}
+			})
+		})
+	})
+</script>
 
 <script type="text/javascript">
 function carregarImg() {
