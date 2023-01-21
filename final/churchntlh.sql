@@ -32,7 +32,7 @@ CREATE TABLE IF NOT EXISTS `cargos` (
   `id_cargo` tinyint NOT NULL AUTO_INCREMENT,
   `cargo` varchar(100) NOT NULL,
   PRIMARY KEY (`id_cargo`)
-) ENGINE=InnoDB AUTO_INCREMENT=15 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=15 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Extraindo dados da tabela `cargos`
@@ -65,7 +65,7 @@ CREATE TABLE IF NOT EXISTS `categorias` (
   `id_cat` tinyint NOT NULL AUTO_INCREMENT,
   `categorias` varchar(50) NOT NULL,
   PRIMARY KEY (`id_cat`)
-) ENGINE=InnoDB AUTO_INCREMENT=23 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=23 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Extraindo dados da tabela `categorias`
@@ -107,7 +107,7 @@ CREATE TABLE IF NOT EXISTS `citacoes` (
   `author` varchar(50) NOT NULL,
   `citacao` text,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Extraindo dados da tabela `citacoes`
@@ -167,7 +167,7 @@ CREATE TABLE IF NOT EXISTS `grupos_de_oracao` (
   PRIMARY KEY (`id_group`),
   KEY `id_criador` (`id_criador`),
   KEY `id_licenca` (`id_licenca`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Extraindo dados da tabela `grupos_de_oracao`
@@ -213,7 +213,7 @@ CREATE TABLE IF NOT EXISTS `oracao` (
   `orando` int DEFAULT '0',
   PRIMARY KEY (`id_pray`),
   KEY `id_criador` (`id_criador`)
-) ENGINE=InnoDB AUTO_INCREMENT=25 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=25 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Extraindo dados da tabela `oracao`
@@ -241,7 +241,7 @@ CREATE TABLE IF NOT EXISTS `oracao_relacionada_com_a_categoria` (
   PRIMARY KEY (`id`),
   KEY `id_oracao` (`id_oracao`),
   KEY `id_categoria` (`id_categoria`)
-) ENGINE=InnoDB AUTO_INCREMENT=44 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=44 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Extraindo dados da tabela `oracao_relacionada_com_a_categoria`
@@ -284,7 +284,7 @@ CREATE TABLE IF NOT EXISTS `participando_do_grupo` (
   `id_usuario` tinyint DEFAULT NULL,
   `id_grupo` tinyint DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=18 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=18 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
 
@@ -342,7 +342,7 @@ CREATE TABLE IF NOT EXISTS `usuarios` (
   UNIQUE KEY `cpf` (`cpf`),
   UNIQUE KEY `email` (`email`),
   KEY `id_cargo` (`id_cargo`)
-) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Extraindo dados da tabela `usuarios`
