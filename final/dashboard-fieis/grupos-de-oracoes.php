@@ -15,7 +15,7 @@ $data = date("Y-m-d");
 		<a href="index.php" class="btn btn-danger">Voltar <i class="fa-solid fa-person-walking-arrow-right"></i></a>
 	</div>
 </div>
-<section class="d-flex">
+<section class="d-flex flex-wrap justify-content-around">
 	<?php
 	$query = $pdo->query("SELECT * FROM grupos_de_oracao");
     $res = $query->fetchAll(PDO::FETCH_ASSOC);
@@ -38,7 +38,7 @@ $data = date("Y-m-d");
             $grj = count($res_ujg);
 
     ?>
-    <div class="card mx-3 mt-2" style="width: 18rem;">
+    <div class="card mx-2 mt-2" style="width: 18rem;">
 	 	<img src="<?=IMAGEM."fotos-grupos/".$logo?>" class="card-img-top" alt="Imagem do Grupo">
 	 	<div class="card-body">
 	    	<h5 class="card-title"><?=$title?></h5>

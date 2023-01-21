@@ -166,10 +166,17 @@ if (!$_r10 == "") {
 	}
 	$res_regras->execute();
 }	
-$query_verifica = $pdo->query("SELECT * FROM regras_do_grupo WHERE id_grupo = '$id_gruop'");
+$query_verifica = $pdo->query("SELECT * FROM grupos_de_oracao WHERE id_group = '$id_gruop'");
 $res_verifica = $query_verifica->fetchAll(PDO::FETCH_ASSOC);
+
+$query_verifica_r = $pdo->query("SELECT * FROM regras_do_grupo WHERE id_grupo = '$id_gruop'");
+$res_verifica_r = $query_verifica_r->fetchAll(PDO::FETCH_ASSOC);
 if (count($res_verifica) > 0) {
-	echo "Criado com Sucesso!";
+	if (count($res_verifica_r) > 0) {
+		echo "Criado com Sucesso!";
+	} else {
+		echo "Erro ao Cadastrar as suas Regras!";
+	}
 } else {
 	echo "Erro ao Cadastrar o Grupo!";
 }
