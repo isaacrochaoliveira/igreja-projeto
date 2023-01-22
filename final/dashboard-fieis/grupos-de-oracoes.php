@@ -1,4 +1,5 @@
 <?php
+@session_start();
 
 require_once('../protect.php');
 require_once('../config.php');
@@ -24,6 +25,7 @@ $data = date("Y-m-d");
     		foreach ($res[$i] as $key => $chave) {
     		}
             $id = $res[$i]['id_group'];
+            $id_cridor = $res[$i]['id_criador'];
             $logo = $res[$i]['logo'];
             $title = $res[$i]['title'];
             $desc = $res[$i]['descricao'];
@@ -43,34 +45,58 @@ $data = date("Y-m-d");
 	 	<div class="card-body">
 	    	<h5 class="card-title"><?=$title?></h5>
 	    	<p class="card-text"><?=$desc?></p>
-	    	<div class="d-block">
-		        <div class="d-flex">
-		            <?php
-		            if ($grj == 1) {
-		                ?>
-		                <div id="div_joinTOGROUP<?=$id?>" class="d-none"> 
-		                	<a href="index.php?pag=<?=$pag?>&jointogroup=<?=$id?>" class="btn btn-primary">Entrar no grupo</a>
-		                </div>
-		                <div id="div_outTOGROUP<?=$id?>" class="d-block">
-		                	<button type="button" onclick="SairdoGrupo(<?=$id?>)" class="btn btn-danger">Sair do Grupo</button>
-		                </div>
-		                <?php
-		            } else if ($grj == 0) {
-		                ?>
-		                <div id="div_joinTOGROUP<?=$id?>">
-		                	<a href="index.php?pag=<?=$pag?>&jointogroup=<?=$id?>" class="btn btn-primary">Entrar no grupo</a>
-		                </div>
-		                <div id="div_outTOGROUP<?=$id?>" class="d-none">
-		                	<button type="button" onclick="SairdoGrupo(<?=$id?>)" class="btn btn-danger">Sair do Grupo</button>
-		                </div>
-		                <?php
-		            }
-		            ?>
-		        </div>
-		        <div class="d-flex justify-content-around mt-2">
-		            <a style="cursor: pointer;" href="index.php?pag=<?=$pag?>&jointogroup=<?=$id?>">Mais Detalhes</a>
-		            <a href="index.php?pag=<?=$pag?>&comoparticipar=<?=$id?>">Como Participar</a>
-		        </div>
+	    	<?php
+	    		if (!($id_cridor == $_SESSION['id'])) {
+	    			?>
+			    	<div class="d-block">
+				        <div class="d-flex">
+				            <?php
+				            if ($grj == 1) {
+				                ?>
+				                <div id="div_joinTOGROUP<?=$id?>" class="d-none"> 
+				                	<a href="index.php?pag=<?=$pag?>&jointogroup=<?=$id?>" class="btn btn-primary">Entrar no grupo</a>
+				                </div>
+				                <div id="div_outTOGROUP<?=$id?>" class="d-block">
+				                	<button type="button" onclick="SairdoGrupo(<?=$id?>)" class="btn btn-danger">Sair do Grupo</button>
+				                </div>
+				                <?php
+				            } else if ($grj == 0) {
+				                ?>
+				                <div id="div_joinTOGROUP<?=$id?>">
+				                	<a href="index.php?pag=<?=$pag?>&jointogroup=<?=$id?>" class="btn btn-primary">Entrar no grupo</a>
+				                </div>
+				                <div id="div_outTOGROUP<?=$id?>" class="d-none">
+				                	<button type="button" onclick="SairdoGrupo(<?=$id?>)" class="btn btn-danger">Sair do Grupo</button>
+				                </div>
+				                <?php
+				            }
+				            ?>
+				        </div>
+				    </div>
+			        <div class="d-flex justify-content-around mt-2">
+			            <a style="cursor: pointer;" href="index.php?pag=<?=$pag?>&jointogroup=<?=$id?>">Mais Detalhes</a>
+			            <a href="index.php?pag=<?=$pag?>&comoparticipar=<?=$id?>">Como Participar</a>
+			        </div>
+				    <?php
+	    		}
+			    ?>
+		        <?php
+		        	if ($id_cridor == $_SESSION['id']) {
+		        		?>
+	        			<div class="d-flex mt-2">
+	        				<a href="index.php?pag=<?=$pag?>&editar-grupo=<?=$id?>" class="btn btn-primary mr-2" title="Editar Grupo"><i class="fa-solid fa-pen"></i></a>
+	        				<a href="index.php?pag=<?=$pag?>&delete-grupo=<?=$id?>" class="btn btn-outline-danger mr-2" title="Fechar Grupo"><i class="fa-solid fa-trash"></i></a>
+	        				<a href="index.php?pag=<?=$pag?>&anotacoes-grupo=<?=$id?>" class="btn btn-success mr-2" title="Fazer Anotações para os participantes"><i class="fa-solid fa-book-open"></i></a>
+	        				<a href="index.php?pag=<?=$pag?>&comments-grupo=<?=$id?>" class="btn btn-dark mr-2" title="Comentários"><i class="fa-regular fa-comment"></i></a>
+	        				<a href="index.php?pag=<?=$pag?>&upload-foto-grupo=<?=$id?>" class="btn btn-info mr-2" title="Upload de Foto do Grupo"><i class="fa-solid fa-cloud-arrow-up"></i></a>
+        				</div>
+        				<div class="d-flex justify-content-around mt-2">
+				            <a style="cursor: pointer;" href="index.php?pag=<?=$pag?>&jointogroup=<?=$id?>">Mais Detalhes</a>
+				            <a href="index.php?pag=<?=$pag?>&comoparticipar=<?=$id?>">Como Participar</a>
+			        	</div>
+		        		<?php
+		        	}
+		        ?>
 		    </div>
 	  	</div>
 	</div>
@@ -126,7 +152,7 @@ $data = date("Y-m-d");
 	                                <div class="d-block w-50porc">
 	                                    <h4>Dados do Criador do Grupo</h4>
 	                                    <div class="d-flex ml-2 mt-2">
-	                                        <img class="border-radius" src="<?=UPLOADS.$perfil?>" width="120" height="120" alt="Foto de Perfil do Usuário">
+	                                        <img class="border-radius" src="<?=UPLOADS.$perfil?>" width="150" height="150" alt="Foto de Perfil do Usuário">
 	                                        <div class="ml-3">
 	                                            <p style="margin: 0px;">Nome: <?=$nome_usuario?></p>
 	                                            <p style="margin: 0px;">Idade: <?=$idade?> Anos</p>
@@ -250,18 +276,16 @@ $data = date("Y-m-d");
 	      		<div class="modal-body">
 	      			<div class="row">
 	      				<div class="w-50porc">
-	      					<div class="d-flex">
-	      						<img src="<?=IMAGEM."/fotos-grupos/sem-foto"?>" alt="Coloque a sua Foto do Grupo" id="target" name="target" width="150" height="150">
-		      					<div class="d-block ml-2">
-		      						<input type="file" name="upload_grupo" id="upload_grupo" onchange="carregarImg()" class="mb-2 form-control mt-2">
-		      						<label>Nome do Grupo</label>
-		      						<input type="text" name="titulo_grupo" id="titulo_grupo" class="form-control" placeholder="Não Obrigatório">
-		      						<label>Descrição do Grupo<strong>*</strong></label>
-		      					</div>
+	      					<div class="col">
+	      						<label>Nome do Grupo</label>
+	      						<input type="text" name="titulo_grupo" id="titulo_grupo" class="form-control" placeholder="Não Obrigatório">
 	      					</div>
-	      					<textarea cols="4" rows="4" class="form-control" placeholder="Obrigatório" name="descricao_grupo" id="descricao_grupo"></textarea>
+	      					<div class="col">
+      							<label>Descrição do Grupo<strong>*</strong></label>
+	      						<textarea required cols="4" rows="4" class="form-control" placeholder="Obrigatório" name="descricao_grupo" id="descricao_grupo"></textarea>
+	      					</div>
 	      					<div class="row">
-	      							<label class="my-2">Data de Criação e de Fechamento</label>
+      							<label class="my-2">Data de Criação e de Fechamento</label>
 	      						<div class="col-md-6">
 	      							<input type="date" name="criado_em" id="criado_em" class="form-control" value="<?=$data?>">
 	      						</div>
@@ -347,6 +371,30 @@ $data = date("Y-m-d");
   	</div>
 </div>
 
+<div class="modal fade" id="ModalDeletarGrupo" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+ 	<div class="modal-dialog modal-dialog-centered">
+    	<div class="modal-content">
+      		<div class="modal-header">
+        		<h1 class="modal-title fs-5" id="staticBackdropLabel">Tem Certeza?</h1>
+        		<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      		</div>
+      		<div class="modal-body">
+        		<h4>Deseja realmente fechar esse Grupo?</h4>
+        		<p>Pessoas poderão pedir para reabrir caso esteja fechado!</p>
+				<form method="POST">
+					<p>Por questão de Segurança, vamos pedir a sua senha para fazer o fechamento</p>
+					<input type="password" name="password" id="passowrd" placeholder="Informe sua Senha..." class="form-control" required>
+				</form>        		
+      		</div>
+      		<div class="modal-footer">
+        		<button type="button" class="btn btn-outline-success" data-bs-dismiss="modal">Deixar Aberto</button>
+        		<button type="button" class="btn btn-danger">Fechar Grupo</button>
+      		</div>
+    	</div>
+  	</div>
+</div>
+
+
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 
@@ -359,15 +407,15 @@ $data = date("Y-m-d");
 				method: "POST",
 				data: $('form').serialize(),
 				dataType: 'text',
-				/*beforeSend: function() {
+				beforeSend: function() {
 					$('#beforeSendCreateGrupo').html("Processando...");
 				},
 				complete: function() {
-					$('#beforeSendCreateGrupo').html("Sucesso!");
-				},*/
-				success: function(msg) {
+					window.location = 'index.php?pag='+pag;
+				},
+				error: function(msg) {
 					alert(msg);
-				} 
+				}
 			})
 		})
 	})

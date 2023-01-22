@@ -211,5 +211,15 @@
         </script>
         <?php
     }
+    if (isset($_GET['delete-grupo'])) {
+        ?>
+        <script type="text/javascript">
+            var myModal = new bootstrap.Modal(document.getElementById('ModalDeletarGrupo'), {
+
+            })
+            myModal.show();
+        </script>
+        <?php
+    }
 ?>
 </html>

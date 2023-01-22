@@ -124,7 +124,7 @@ require_once('../conexao.php');
                         <h1 class="title-card-grupo"><?=$title?></h1>
                         <p class="description-card-grupo"><?=$desc?></p>
                         <div class="d-block">
-                            <div class="d-flex">
+                            <div class="d-flex mb-3">
                                 <?php
                                 if ($grj == 1) {
                                     ?>

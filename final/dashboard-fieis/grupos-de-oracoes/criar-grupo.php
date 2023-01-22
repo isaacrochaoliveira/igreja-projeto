@@ -19,9 +19,11 @@ $_r10 = addslashes($_POST['_regras10']);
 $agora = Date('H:i:m', date_default_timezone_set("America/Sao_Paulo"));
 $hoje = Date('Y-m-d');
 
-$res = $pdo->prepare("INSERT INTO grupos_de_oracao SET id_criador = :id_criador, id_licenca = :id_licenca, title = :title, descricao = :descricao, criado_em = :criado_em, hora_criado_em = :hora_criado_em");
+
+$res = $pdo->prepare("INSERT INTO grupos_de_oracao SET id_criador = :id_criador, id_licenca = :id_licenca, logo = :logo, title = :title, descricao = :descricao, criado_em = :criado_em, hora_criado_em = :hora_criado_em");
 $res->bindValue(':id_criador', $_SESSION['id']);
 $res->bindValue(':id_licenca', $id_licenca);
+$res->bindValue(':logo', "sem-foto.jpg");
 $res->bindValue(':title', $titulo_grupo);
 $res->bindValue(':descricao', $descrica_do_grupo);
 $res->bindValue(':criado_em' , $hoje);
@@ -175,7 +177,7 @@ if (count($res_verifica) > 0) {
 	if (count($res_verifica_r) > 0) {
 		echo "Criado com Sucesso!";
 	} else {
-		echo "Erro ao Cadastrar as suas Regras!";
+		echo "Criado com Sucesso!";
 	}
 } else {
 	echo "Erro ao Cadastrar o Grupo!";
