@@ -382,13 +382,13 @@ $data = date("Y-m-d");
         		<h4>Deseja realmente fechar esse Grupo?</h4>
         		<p>Pessoas poderão pedir para reabrir caso esteja fechado!</p>
 				<form method="POST">
-					<p>Por questão de Segurança, vamos pedir a sua senha para fazer o fechamento</p>
-					<input type="password" name="password" id="passowrd" placeholder="Informe sua Senha..." class="form-control" required>
+					<p>Por questão de Segurança, vamos pedir a sua CPF para fazer o fechamento</p>
+					<input type="text" name="CPF" id="CPF" placeholder="Informe sua Senha..." class="form-control" required>
 				</form>        		
       		</div>
       		<div class="modal-footer">
-        		<button type="button" class="btn btn-outline-success" data-bs-dismiss="modal">Deixar Aberto</button>
-        		<button type="button" class="btn btn-danger">Fechar Grupo</button>
+        		<button type="button" class="btn btn-outline-success" id="btn-fechar-excluir-grupo" data-bs-dismiss="modal">Deixar Aberto</button>
+        		<button type="button" class="btn btn-danger" onclick="ExcluirGrupo(<?=$_GET['delete-grupo']?>)">Fechar Grupo</button>
       		</div>
     	</div>
   	</div>
@@ -482,6 +482,27 @@ function carregarImg() {
 					}
 					$('#btn-salvar-jointogorup').style.display = 'block';
 					$('#fechar-jointogroup').style.display = 'block';
+				}
+			})
+		})
+	}k
+</script>
+
+<script type="text/javascript">
+	function ExcluirGrupo(id) {
+		$(document).ready(function() {
+			var pag = "<?=$pag?>";
+			$.ajax({
+				url: pag + '/excluir-grupo.php',
+				method: 'post',
+				data: {id, $('form').serialize()},
+				dataType: 'text',
+				success: function(msg) {
+					if (msg.trim() == "Excluído com Sucesso!") {
+						window.location = 'index.php?pag='+pag;
+					} else {
+						console.log(msg);
+					}
 				}
 			})
 		})
