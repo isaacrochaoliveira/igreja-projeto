@@ -32,6 +32,7 @@ $data = date("Y-m-d");
             $criadoEm = $res[$i]['criado_em'];
             $hora_criado_em = $res[$i]['hora_criado_em'];
             $part = $res[$i]['pessoas_part'];
+            $ativo = $res[$i]['ativo'];
 
             $criadoEm = implode('/', array_reverse(explode('-', $criadoEm)));
 
@@ -85,7 +86,19 @@ $data = date("Y-m-d");
 		        		?>
 	        			<div class="d-flex mt-2">
 	        				<a href="index.php?pag=<?=$pag?>&editar-grupo=<?=$id?>" class="btn btn-primary mr-2" title="Editar Grupo"><i class="fa-solid fa-pen"></i></a>
-	        				<a href="index.php?pag=<?=$pag?>&delete-grupo=<?=$id?>" class="btn btn-outline-danger mr-2" title="Fechar Grupo"><i class="fa-solid fa-trash"></i></a>
+	        				<?php
+	        				if ($ativo == 'N') {
+	        					?>
+	        					<a id="reabrirgrupo" href="index.php?pag=<?=$pag?>&open-grupo=<?=$id?>" class="btn btn-outline-success mr-2" title="Abrir Grupo"><i class="fa-solid fa-up-right-and-down-left-from-center"></i></a>
+	        					<a id="fechargrupo" style="display: none;"> href="index.php?pag=<?=$pag?>&delete-grupo=<?=$id?>" class="btn btn-outline-danger mr-2" title="Fechar Grupo"><i class="fa-solid fa-trash"></i></a>
+	        					<?php	
+	        				} else if ($ativo == 'S') {
+	        					?>
+	        					<a id="fechargrupo" href="index.php?pag=<?=$pag?>&delete-grupo=<?=$id?>" class="btn btn-outline-danger mr-2" title="Fechar Grupo"><i class="fa-solid fa-trash"></i></a>
+	        					<a id="reabrirgrupo" style="display: none;" href="index.php?pag=<?=$pag?>&open-grupo=<?=$id?>" class="btn btn-outline-success mr-2" title="Abrir Grupo"><i class="fa-solid fa-up-right-and-down-left-from-center"></i></a>
+	        					<?php
+	        				}
+	        				?>
 	        				<a href="index.php?pag=<?=$pag?>&anotacoes-grupo=<?=$id?>" class="btn btn-success mr-2" title="Fazer Anotações para os participantes"><i class="fa-solid fa-book-open"></i></a>
 	        				<a href="index.php?pag=<?=$pag?>&comments-grupo=<?=$id?>" class="btn btn-dark mr-2" title="Comentários"><i class="fa-regular fa-comment"></i></a>
 	        				<a href="index.php?pag=<?=$pag?>&upload-foto-grupo=<?=$id?>" class="btn btn-info mr-2" title="Upload de Foto do Grupo"><i class="fa-solid fa-cloud-arrow-up"></i></a>
@@ -500,8 +513,31 @@ function carregarImg() {
 				success: function(msg) {
 					if (msg.trim() == "Fechado com Sucesso!") {
 						$('#btn-fechar-excluir-grupo').click();
-						$('#divcorGrupo'+id).addClass('bg-dark');
+						$('#reabrirgrupo').addClass('d-block');
+						$('#fechargrupo').addClass('d-none');
 						//$('#divcorGrupo'+id).style.backgroundColor = 'lightred';
+					}
+				}
+			})
+		})
+	}
+</script>
+
+<script type="text/javascript">
+	function ReabrirGrupo(id) {
+		$(document).ready(function() {
+			var pag = "<?=$pag?>";
+			$.ajax({
+				url: pag + '/reabri.grupo.php',
+				method: "post",
+				url: {id},
+				dataType: 'text',
+				success: function(msg) {
+					if (msg.trim() == "Reaberto com Sucesso!") {
+						$('#reabrirgrupo').removeClass();
+						$('#fechargrupo').removeClass();
+						$('#reabrirgrupo').addClass('d-none');
+						$('#fechargrupo').addClass('d-block');
 					}
 				}
 			})
