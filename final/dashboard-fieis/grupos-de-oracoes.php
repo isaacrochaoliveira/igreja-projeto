@@ -40,7 +40,7 @@ $data = date("Y-m-d");
             $grj = count($res_ujg);
 
     ?>
-    <div class="card mx-2 mt-2" style="width: 18rem;">
+    <div class="card mx-2 mt-2" style="width: 18rem;" id="divcorGrupo">
 	 	<img src="<?=IMAGEM."fotos-grupos/".$logo?>" class="card-img-top" alt="Imagem do Grupo">
 	 	<div class="card-body">
 	    	<h5 class="card-title"><?=$title?></h5>
@@ -385,11 +385,6 @@ $data = date("Y-m-d");
       		<div class="modal-body">
         		<h4>Deseja realmente fechar esse Grupo?</h4>
         		<p>Pessoas poderão pedir para reabrir caso esteja fechado!</p>
-				<form method="POST">
-					<p>Por questão de Segurança, vamos pedir a sua CPF para fazer o fechamento</p>
-					<input type="text" name="CPF" id="CPF" placeholder="Informe sua Senha..." class="form-control" required>
-					<input type="hidden" name="id" value="<?=$id?>">
-				</form>        		
       		</div>
       		<div class="modal-footer">
         		<button type="button" class="btn btn-outline-success" id="btn-fechar-excluir-grupo" data-bs-dismiss="modal">Deixar Aberto</button>
@@ -494,21 +489,17 @@ function carregarImg() {
 </script>
 
 <script type="text/javascript">
-	function ExcluirGrupo() {
+	function ExcluirGrupo(id) {
 		$(document).ready(function() {
 			var pag = "<?=$pag?>";
 			$.ajax({
 				url: pag + '/excluir-grupo.php',
 				method: 'post',
-				data: $('form').serialize(),
+				data: {id},
 				dataType: 'text',
 				success: function(msg) {
-					if (msg.trim() == "Excluído com Sucesso!") {
-						window.location = 'index.php?pag='+pag;
-					} else if (msg.trim() == "CPF Incorreto ou inexistente na nossa base de Dados!"){
-						alert(msg);
-					} else {
-						console.log(msg);
+					if (msg.trim() == "Fechado com Sucesso!") {
+						$('#divcorGrupo').style.backgroundColor = 'lightred';
 					}
 				}
 			})
