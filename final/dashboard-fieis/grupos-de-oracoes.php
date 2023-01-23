@@ -408,6 +408,29 @@ $data = date("Y-m-d");
 </div>
 
 
+<div class="modal fade" id="ModalReabrirGrupo" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+ 	<div class="modal-dialog modal-dialog-centered">
+    	<div class="modal-content">
+      		<div class="modal-header">
+        		<h1 class="modal-title fs-5" id="staticBackdropLabel">Reabrir Grupo</h1>
+
+        		<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        		<?php
+        			$id = addslashes($_GET['delete-grupo']);
+        		?>
+      		</div>
+      		<div class="modal-body">
+        		<h4>Deseja realmente Abrir esse Grupo?</h4>
+      		</div>
+      		<div class="modal-footer">
+        		<button type="button" class="btn btn-warning" id="btn-fechar-excluir-grupo" data-bs-dismiss="modal">Continuar Fechado</button>
+        		<button type="button" class="btn btn-success" onclick="ReabrirGrupo(<?=$id?>)">Reabrir Agora</button>
+      		</div>
+    	</div>
+  	</div>
+</div>
+
+
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 
@@ -515,7 +538,6 @@ function carregarImg() {
 						$('#btn-fechar-excluir-grupo').click();
 						$('#reabrirgrupo').addClass('d-block');
 						$('#fechargrupo').addClass('d-none');
-						//$('#divcorGrupo'+id).style.backgroundColor = 'lightred';
 					}
 				}
 			})
@@ -528,12 +550,13 @@ function carregarImg() {
 		$(document).ready(function() {
 			var pag = "<?=$pag?>";
 			$.ajax({
-				url: pag + '/reabri.grupo.php',
+				url: pag + '/reabrir-grupo.php',
 				method: "post",
 				url: {id},
 				dataType: 'text',
 				success: function(msg) {
 					if (msg.trim() == "Reaberto com Sucesso!") {
+						$('#btn-fechar-excluir-grupo').click();
 						$('#reabrirgrupo').removeClass();
 						$('#fechargrupo').removeClass();
 						$('#reabrirgrupo').addClass('d-none');

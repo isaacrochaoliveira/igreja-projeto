@@ -221,5 +221,15 @@
         </script>
         <?php
     }
+    if (isset($_GET['open-grupo'])) {
+        ?>
+        <script type="text/javascript">
+            var myModal = new bootstrap.Modal(document.getElementById('ModalReabrirGrupo'), {
+
+            })
+            myModal.show();
+        </script>
+        <?php
+    }
 ?>
 </html>
