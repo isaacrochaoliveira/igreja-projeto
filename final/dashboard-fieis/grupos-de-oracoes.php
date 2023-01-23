@@ -39,7 +39,6 @@ $data = date("Y-m-d");
             $query_ujg = $pdo->query("SELECT * FROM participando_do_grupo WHERE id_usuario = '$_SESSION[id]' AND id_grupo = '$id'");
             $res_ujg = $query_ujg->fetchAll(PDO::FETCH_ASSOC);
             $grj = count($res_ujg);
-
     ?>
     <div class="card mx-2 mt-2" style="width: 18rem;">
 	 	<img src="<?=IMAGEM."fotos-grupos/".$logo?>" class="card-img-top" alt="Imagem do Grupo">
@@ -551,16 +550,16 @@ function carregarImg() {
 			var pag = "<?=$pag?>";
 			$.ajax({
 				url: pag + '/reabrir-grupo.php',
-				method: "post",
-				url: {id},
+				method: 'post',
+				data: {id},
 				dataType: 'text',
 				success: function(msg) {
 					if (msg.trim() == "Reaberto com Sucesso!") {
 						$('#btn-fechar-excluir-grupo').click();
 						$('#reabrirgrupo').removeClass();
 						$('#fechargrupo').removeClass();
-						$('#reabrirgrupo').addClass('d-none');
 						$('#fechargrupo').addClass('d-block');
+						$('#reabrirgrupo').addClass('d-none');
 					}
 				}
 			})
