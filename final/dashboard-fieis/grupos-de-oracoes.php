@@ -40,9 +40,9 @@ $data = date("Y-m-d");
             $grj = count($res_ujg);
 
     ?>
-    <div class="card mx-2 mt-2" style="width: 18rem;" id="divcorGrupo">
+    <div class="card mx-2 mt-2" style="width: 18rem;">
 	 	<img src="<?=IMAGEM."fotos-grupos/".$logo?>" class="card-img-top" alt="Imagem do Grupo">
-	 	<div class="card-body">
+	 	<div class="card-body" id="divcorGrupo<?=$id?>">
 	    	<h5 class="card-title"><?=$title?></h5>
 	    	<p class="card-text"><?=$desc?></p>
 	    	<?php
@@ -499,7 +499,9 @@ function carregarImg() {
 				dataType: 'text',
 				success: function(msg) {
 					if (msg.trim() == "Fechado com Sucesso!") {
-						$('#divcorGrupo').style.backgroundColor = 'lightred';
+						$('#btn-fechar-excluir-grupo').click();
+						$('#divcorGrupo'+id).addClass('bg-dark');
+						//$('#divcorGrupo'+id).style.backgroundColor = 'lightred';
 					}
 				}
 			})
