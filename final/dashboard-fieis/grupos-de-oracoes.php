@@ -376,7 +376,11 @@ $data = date("Y-m-d");
     	<div class="modal-content">
       		<div class="modal-header">
         		<h1 class="modal-title fs-5" id="staticBackdropLabel">Tem Certeza?</h1>
+
         		<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        		<?php
+        			$id = addslashes($_GET['delete-grupo']);
+        		?>
       		</div>
       		<div class="modal-body">
         		<h4>Deseja realmente fechar esse Grupo?</h4>
@@ -384,11 +388,12 @@ $data = date("Y-m-d");
 				<form method="POST">
 					<p>Por questão de Segurança, vamos pedir a sua CPF para fazer o fechamento</p>
 					<input type="text" name="CPF" id="CPF" placeholder="Informe sua Senha..." class="form-control" required>
+					<input type="hidden" name="id" value="<?=$id?>">
 				</form>        		
       		</div>
       		<div class="modal-footer">
         		<button type="button" class="btn btn-outline-success" id="btn-fechar-excluir-grupo" data-bs-dismiss="modal">Deixar Aberto</button>
-        		<button type="button" class="btn btn-danger" onclick="ExcluirGrupo(<?=$_GET['delete-grupo']?>)">Fechar Grupo</button>
+        		<button type="button" class="btn btn-danger" onclick="ExcluirGrupo(<?=$id?>)">Fechar Grupo</button>
       		</div>
     	</div>
   	</div>
@@ -489,17 +494,19 @@ function carregarImg() {
 </script>
 
 <script type="text/javascript">
-	function ExcluirGrupo(id) {
+	function ExcluirGrupo() {
 		$(document).ready(function() {
 			var pag = "<?=$pag?>";
 			$.ajax({
 				url: pag + '/excluir-grupo.php',
 				method: 'post',
-				data: {id, $('form').serialize()},
+				data: $('form').serialize(),
 				dataType: 'text',
 				success: function(msg) {
 					if (msg.trim() == "Excluído com Sucesso!") {
 						window.location = 'index.php?pag='+pag;
+					} else if (msg.trim() == "CPF Incorreto ou inexistente na nossa base de Dados!"){
+						alert(msg);
 					} else {
 						console.log(msg);
 					}
