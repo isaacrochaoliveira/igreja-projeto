@@ -53,7 +53,7 @@ $data = date("Y-m-d");
 				            <?php
 				            if ($grj == 1) {
 				                ?>
-				                <div id="div_joinTOGROUP<?=$id?>" class="d-none"> 
+				                <div id="div_joinTOGROUP<?=$id?>" class="d-none">
 				                	<a href="index.php?pag=<?=$pag?>&jointogroup=<?=$id?>" class="btn btn-primary">Entrar no grupo</a>
 				                </div>
 				                <div id="div_outTOGROUP<?=$id?>" class="d-block">
@@ -89,8 +89,8 @@ $data = date("Y-m-d");
 	        				if ($ativo == 'N') {
 	        					?>
 	        					<a id="reabrirgrupo" href="index.php?pag=<?=$pag?>&open-grupo=<?=$id?>" class="btn btn-outline-success mr-2" title="Abrir Grupo"><i class="fa-solid fa-up-right-and-down-left-from-center"></i></a>
-	        					<a id="fechargrupo" style="display: none;"> href="index.php?pag=<?=$pag?>&delete-grupo=<?=$id?>" class="btn btn-outline-danger mr-2" title="Fechar Grupo"><i class="fa-solid fa-trash"></i></a>
-	        					<?php	
+	        					<a id="fechargrupo" style="display: none;" href="index.php?pag=<?=$pag?>&delete-grupo=<?=$id?>" class="btn btn-outline-danger mr-2" title="Fechar Grupo"><i class="fa-solid fa-trash"></i></a>
+	        					<?php
 	        				} else if ($ativo == 'S') {
 	        					?>
 	        					<a id="fechargrupo" href="index.php?pag=<?=$pag?>&delete-grupo=<?=$id?>" class="btn btn-outline-danger mr-2" title="Fechar Grupo"><i class="fa-solid fa-trash"></i></a>
@@ -149,7 +149,7 @@ $data = date("Y-m-d");
 	                            $idade = Date("Y") - $nasc;
 	                            $estado_civil = $res[$i]['estado_civil'];
 	                            $email = $res[$i]['email'];
-	                            
+
 	                            // Pegando dados da tabela cargos
 	                            $cargo = $res[$i]['cargo'];
 
@@ -219,7 +219,7 @@ $data = date("Y-m-d");
       		<div class="modal-header">
         		<h1 class="modal-title fs-5" id="staticBackdropLabel">Regras & Licença</h1>
         		<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-        		<?php 
+        		<?php
         			$_oracao = addslashes($_GET['comoparticipar']);
         			$query = $pdo->query("SELECT * FROM grupos_de_oracao as g JOIN licenca l ON g.id_licenca = l.id WHERE id_group = '$_oracao'");
         			$res = $query->fetchAll(PDO::FETCH_ASSOC);
@@ -412,10 +412,9 @@ $data = date("Y-m-d");
     	<div class="modal-content">
       		<div class="modal-header">
         		<h1 class="modal-title fs-5" id="staticBackdropLabel">Reabrir Grupo</h1>
-
         		<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         		<?php
-        			$id = addslashes($_GET['delete-grupo']);
+        			$id = addslashes($_GET['open-grupo']);
         		?>
       		</div>
       		<div class="modal-body">
@@ -423,7 +422,7 @@ $data = date("Y-m-d");
       		</div>
       		<div class="modal-footer">
         		<button type="button" class="btn btn-warning" id="btn-fechar-excluir-grupo" data-bs-dismiss="modal">Continuar Fechado</button>
-        		<button type="button" class="btn btn-success" onclick="ReabrirGrupo(<?=$id?>)">Reabrir Agora</button>
+        		<button type="button" class="btn btn-success" name="btn-reabrirgrupo" id="btn-reabrirgrupo" onclick="ReabrirGrupo(<?=$id?>)">Reabrir Agora</button>
       		</div>
     	</div>
   	</div>
