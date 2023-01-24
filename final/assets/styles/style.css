@@ -19,9 +19,8 @@ body {
     font-family: 'ComfortaaRegular';
     text-align: center;
     background-color: white;
-    background: linear-gradient(to right, #A36100A7 36%, #A36100 65%);
+    background: linear-gradient(to top right, #0000ff 37%, #9128d7 75%);
 }
-
 .caixa-login {
     /*background: linear-gradient(to right, #1796f0 36%, #0863a3 65%);*/
     width: 50%;

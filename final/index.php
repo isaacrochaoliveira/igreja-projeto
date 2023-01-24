@@ -25,8 +25,8 @@ require_once('config.php');
                     <label for="senha">Senha</label>
                     <input type="password" name="senha" id="senha" placeholder="Sua Senha" class="form-control">
                     <div>
-                        <button type="submit" name="button" class="btn btn-primary w-100"><i class="fa-solid fa-right-to-bracket"></i> Iniciar Sessão</button>
-                        <p><a href="cad.php" name="button" class="btn btn-warning w-100"><i class="fa-sharp fa-solid fa-check-double"></i> Cadastre-se Gratuitamente</a></p>
+                        <button type="submit" name="button" class="btn btn-dark w-100"><i class="fa-solid fa-right-to-bracket"></i> Iniciar Sessão</button>
+                        <p><a href="cad.php" name="button" class="btn btn-outline-warning w-100"><i class="fa-sharp fa-solid fa-check-double"></i> Cadastre-se Gratuitamente</a></p>
                     </div>
                 </form>
             </div>
