@@ -13,22 +13,24 @@ require_once('config.php');
         <link rel="stylesheet" href="assets/styles/style.css">
     </head>
     <body>
-        <div class="caixa-login">
-            <div class="caixa-login-brand">
-                <h1>Projeto Final</h1>
-                <img src="assets/img/logo-branco.png" alt="Logo ChurchNtlH">
-            </div>
-            <div class="caixa-login-form">
-                <form action="autenticar.php" method="POST">
-                    <label for="senha" style="margin-top: 30px">E-mail ou CPF</label>
-                    <input type="text" name="email" id="email" placeholder="E-mail ou CPF" class="form-control">
-                    <label for="senha">Senha</label>
-                    <input type="password" name="senha" id="senha" placeholder="Sua Senha" class="form-control">
-                    <div>
-                        <button type="submit" name="button" class="btn btn-dark w-100"><i class="fa-solid fa-right-to-bracket"></i> Iniciar Sessão</button>
-                        <p><a href="cad.php" name="button" class="btn btn-outline-warning w-100"><i class="fa-sharp fa-solid fa-check-double"></i> Cadastre-se Gratuitamente</a></p>
-                    </div>
-                </form>
+        <div class="d-flex">
+            <div class="caixa-login">
+                <div class="caixa-login-brand">
+                    <h1>Projeto Final</h1>
+                    <img src="assets/img/logo-branco.png" alt="Logo ChurchNtlH">
+                </div>
+                <div class="caixa-login-form">
+                    <form action="autenticar.php" method="POST">
+                        <label for="senha" style="margin-top: 30px">E-mail ou CPF</label>
+                        <input type="text" name="email" id="email" placeholder="E-mail ou CPF" class="form-control">
+                        <label for="senha">Senha</label>
+                        <input type="password" name="senha" id="senha" placeholder="Sua Senha" class="form-control">
+                        <div>
+                            <button type="submit" name="button" class="btn btn-dark w-100"><i class="fa-solid fa-right-to-bracket"></i> Iniciar Sessão</button>
+                            <p><a href="cad.php" name="button" class="btn btn-outline-warning w-100"><i class="fa-sharp fa-solid fa-check-double"></i> Cadastre-se Gratuitamente</a></p>
+                        </div>
+                    </form>
+                </div>
             </div>
         </div>
     </body>

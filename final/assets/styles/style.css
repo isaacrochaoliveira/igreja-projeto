@@ -70,6 +70,18 @@ button {
     width: 90% !important;
 }
 
+.w-25porc {
+    width: 25%;
+}
+
 .f-family-sourceserif {
     font-family: 'SourceSerif' !important;
+}
+
+.rounded-100porc {
+    border-radius: 100%;
+}
+
+.ml--50 {
+    margin-left: -50px;
 }
