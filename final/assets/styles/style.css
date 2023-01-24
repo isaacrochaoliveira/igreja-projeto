@@ -24,7 +24,7 @@ body {
 .caixa-login {
     /*background: linear-gradient(to right, #1796f0 36%, #0863a3 65%);*/
     width: 50%;
-    margin: 20px auto;
+    margin: 20px 0px;
     padding: 60px 80px;
     color: white;
 }
