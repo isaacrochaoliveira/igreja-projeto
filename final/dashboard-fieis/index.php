@@ -231,5 +231,15 @@
         </script>
         <?php
     }
+    if (isset($_GET['upload-foto-grupo'])) {
+        ?>
+        <script type="text/javascript">
+            var myModal = new bootstrap.Modal(document.getElementById('ModalUploadLogoGrupo'), {
+
+            })
+            myModal.show();
+        </script>
+        <?php
+    }
 ?>
 </html>
