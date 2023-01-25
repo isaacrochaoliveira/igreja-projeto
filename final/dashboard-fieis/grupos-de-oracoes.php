@@ -421,7 +421,7 @@ $data = date("Y-m-d");
         		<h4>Deseja realmente Abrir esse Grupo?</h4>
       		</div>
       		<div class="modal-footer">
-        		<button type="button" class="btn btn-warning" id="btn-fechar-excluir-grupo" data-bs-dismiss="modal">Continuar Fechado</button>
+        		<button type="button" class="btn btn-warning" id="btn-fechar-aberto-grupo" data-bs-dismiss="modal">Continuar Fechado</button>
         		<button type="button" class="btn btn-success" name="btn-reabrirgrupo" id="btn-reabrirgrupo" onclick="ReabrirGrupo(<?=$id?>)">Reabrir Agora</button>
       		</div>
     	</div>
@@ -554,11 +554,11 @@ function carregarImg() {
 				dataType: 'text',
 				success: function(msg) {
 					if (msg.trim() == "Reaberto com Sucesso!") {
-						$('#btn-fechar-excluir-grupo').click();
+						$('#btn-fechar-aberto-grupo').click();
 						$('#reabrirgrupo').removeClass();
 						$('#fechargrupo').removeClass();
-						$('#fechargrupo').addClass('d-block');
-						$('#reabrirgrupo').addClass('d-none');
+						$('#fechargrupo').addClass('btn btn-outline-danger mr-2 d-block');
+						$('#reabrirgrupo').addClass('btn btn-outline-success mr-2 d-none');
 					}
 				}
 			})
