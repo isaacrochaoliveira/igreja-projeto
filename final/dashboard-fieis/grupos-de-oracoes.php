@@ -10,7 +10,7 @@ $data = date("Y-m-d");
 ?>
 <div class="d-flex justify-content-around my-3">
 	<div>
-		<button type="button" class="btn btn-light" data-bs-toggle="modal" data-bs-target="#modalNovoGrupo"><i class="fa-sharp fa-solid fa-plus"></i> Cadastrar Novo Grupo</button>
+		<a class="btn btn-light" href="index.php?pag=<?=$pag?>&criar-grupo-de-oracao"><i class="fa-sharp fa-solid fa-plus"></i> Cadastrar Novo Grupo</a>
 	</div>
 	<div>
 		<a href="index.php" class="btn btn-danger">Voltar <i class="fa-solid fa-person-walking-arrow-right"></i></a>
@@ -41,7 +41,7 @@ $data = date("Y-m-d");
             $grj = count($res_ujg);
     ?>
     <div class="card mx-2 mt-2" style="width: 18rem;">
-	 	<img src="<?=IMAGEM."fotos-grupos/".$logo?>" class="card-img-top" alt="Imagem do Grupo">
+	 	<img src="<?=IMAGEM."fotos-grupos/".$logo?>" class="card-img-top" alt="Imagem do Grupo" width="220" height="220">
 	 	<div class="card-body" id="divcorGrupo<?=$id?>">
 	    	<h5 class="card-title"><?=$title?></h5>
 	    	<p class="card-text"><?=$desc?></p>
@@ -283,6 +283,33 @@ $data = date("Y-m-d");
         			<h4 id="beforeSendCreateGrupo" class="text-success"></h4>
         		</div>
         		<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+				<?php
+					if (isset($_GET['editar-grupo'])) {
+						$id = addslashes($_GET['editar-grupo']);
+						$query = $pdo->query("SELECT * FROM grupos_de_oracao WHERE id_group = '$id'");
+						$res = $query->fetchAll(PDO::FETCH_ASSOC);
+						if (count($res) > 0) {
+							$id_l = $res[0]['id_licenca'];
+							$title = $res[0]['title'];
+							$descricao = $res[0]['descricao'];
+
+							$query_r = $pdo->query("SELECT * FROM regras_do_grupo WHERE id_grupo = '$id'");
+							$res_r = $query_r->fetchAll(PDO::FETCH_ASSOC);
+							if (count($res_r) > 0) {
+								$_r1 = $res_r[0]['_regras1'];
+								$_r2 = $res_r[0]['_regras2'];
+								$_r3 = $res_r[0]['_regras3'];
+								$_r4 = $res_r[0]['_regras4'];
+								$_r5 = $res_r[0]['_regras5'];
+								$_r6 = $res_r[0]['_regras6'];
+								$_r7 = $res_r[0]['_regras7'];
+								$_r8 = $res_r[0]['_regras8'];
+								$_r9 = $res_r[0]['_regras9'];
+								$_r10 = $res_r[0]['_regras10'];
+							}
+						}
+					}
+				?>
       		</div>
       		<form method="POST" action="" enctype="multipart/form-data">
 	      		<div class="modal-body">
@@ -290,11 +317,11 @@ $data = date("Y-m-d");
 	      				<div class="w-50porc">
 	      					<div class="col">
 	      						<label>Nome do Grupo</label>
-	      						<input type="text" name="titulo_grupo" id="titulo_grupo" class="form-control" placeholder="Não Obrigatório">
+	      						<input type="text" name="titulo_grupo" id="titulo_grupo" value="<?=@$title?>" class="form-control" placeholder="Não Obrigatório">
 	      					</div>
 	      					<div class="col">
       							<label>Descrição do Grupo<strong>*</strong></label>
-	      						<textarea required cols="4" rows="4" class="form-control" placeholder="Obrigatório" name="descricao_grupo" id="descricao_grupo"></textarea>
+	      						<textarea cols="4" rows="4" class="form-control" placeholder="Obrigatório" name="descricao_grupo" id="descricao_grupo" required><?=@$descricao?></textarea>
 	      					</div>
 	      					<div class="row">
       							<label class="my-2">Data de Criação e de Fechamento</label>
@@ -320,8 +347,17 @@ $data = date("Y-m-d");
 	      									$titulo_da_licenca = $res[$i]['nome_da_licenca'];
 	      									$descricao_da_licenca = $res[$i]['descricao_da_licenca'];
 
+											if ($id_licenca == $id_l) {
+												?>
+												<option value="<?=$id_licenca?>" selected><?=$titulo_da_licenca?></option>
+												<?php
+											} else {
+												?>
+												<option value="<?=$id_licenca?>"><?=$titulo_da_licenca?></option>
+												<?php
+											}
+
 	      									?>
-	      									<option value="<?=$id_licenca?>"><?=$titulo_da_licenca?></option>
 	      									<?php
 	      								}
 	      							}
@@ -331,43 +367,43 @@ $data = date("Y-m-d");
 	      					<div class="row">
 	      						<div class="col-md-4">
 	      							<label>1º Regra</label>
-	      							<input type="text" name="_regras1" id="_regras1" class="form-control" placeholder="Não Obrigatório">
+	      							<input type="text" name="_regras1" id="_regras1" value="<?=@$_r1?>"  class="form-control" placeholder="Não Obrigatório">
 	      						</div>
 	      						<div class="col-md-4">
 	      							<label>2º Regra</label>
-	      							<input type="text" name="_regras2" id="_regras2" class="form-control" placeholder="Não Obrigatório">
+	      							<input type="text" name="_regras2" id="_regras2" value="<?=@$_r2?>"  class="form-control" placeholder="Não Obrigatório">
 	      						</div>
 	      						<div class="col-md-4">
 	      							<label>3º Regra</label>
-	      							<input type="text" name="_regras3" id="_regras3" class="form-control" placeholder="Não Obrigatório">
+	      							<input type="text" name="_regras3" id="_regras3" value="<?=@$_r3?>"  class="form-control" placeholder="Não Obrigatório">
 	      						</div>
 	      						<div class="col-md-4">
 	      							<label>4º Regra</label>
-	      							<input type="text" name="_regras4" id="_regras4" class="form-control" placeholder="Não Obrigatório">
+	      							<input type="text" name="_regras4" id="_regras4" value="<?=@$_r4?>"  class="form-control" placeholder="Não Obrigatório">
 	      						</div>
 	      						<div class="col-md-4">
 	      							<label>5º Regra</label>
-	      							<input type="text" name="_regras5" id="_regras5" class="form-control" placeholder="Não Obrigatório">
+	      							<input type="text" name="_regras5" id="_regras5" value="<?=@$_r5?>"  class="form-control" placeholder="Não Obrigatório">
 	      						</div>
 	      						<div class="col-md-4">
 	      							<label>6º Regra</label>
-	      							<input type="text" name="_regras6" id="_regras6" class="form-control" placeholder="Não Obrigatório">
+	      							<input type="text" name="_regras6" id="_regras6" value="<?=@$_r6?>"  class="form-control" placeholder="Não Obrigatório">
 	      						</div>
 	      						<div class="col-md-4">
 	      							<label>7º Regra</label>
-	      							<input type="text" name="_regras7" id="_regras7" class="form-control" placeholder="Não Obrigatório">
+	      							<input type="text" name="_regras7" id="_regras7" value="<?=@$_r7?>"  class="form-control" placeholder="Não Obrigatório">
 	      						</div>
 	      						<div class="col-md-4">
 	      							<label>8º Regra</label>
-	      							<input type="text" name="_regras8" id="_regras8" class="form-control" placeholder="Não Obrigatório">
+	      							<input type="text" name="_regras8" id="_regras8" value="<?=@$_r8?>"  class="form-control" placeholder="Não Obrigatório">
 	      						</div>
 	      						<div class="col-md-4">
 	      							<label>9º Regra</label>
-	      							<input type="text" name="_regras9" id="_regras9" class="form-control" placeholder="Não Obrigatório">
+	      							<input type="text" name="_regras9" id="_regras9" value="<?=@$_r9?>"  class="form-control" placeholder="Não Obrigatório">
 	      						</div>
 	      						<div class="col-md-4">
 	      							<label>10º Regra</label>
-	      							<input type="text" name="_regras10" id="_regras10" class="form-control" placeholder="Não Obrigatório">
+	      							<input type="text" name="_regras10" id="_regras10"  value="<?=@$_r10?>" class="form-control" placeholder="Não Obrigatório">
 	      						</div>
 
 	      					</div>
@@ -445,6 +481,9 @@ $data = date("Y-m-d");
       		</div>
 			<form action="<?=URL_BASE."/dashboard-fieis/$pag/editar-logo.php"?>" method="POST" enctype="multipart/form-data">
 	      		<div class="modal-body">
+					<div class="alert alert-warning" role="alert">
+						Resolução Recomendada: 220x220
+					</div>
 	      			<img src="<?=IMAGEM."/fotos-grupos/".$imagem?>" alt="Faça Upload da sua logo" width="200" height="200" name="target" id="target">
       				<input type="hidden" name="id" value="<?=$id?>">
 					<input type="file" name="logo" onchange="carregarImg()" class="form-control mt-2">
