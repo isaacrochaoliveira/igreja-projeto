@@ -3,9 +3,9 @@
 require_once('../../conexao.php');
 @session_start();
 date_default_timezone_set("America/Sao_Paulo");
+$id_gruop = addslashes($_POST['id_group'])
 $titulo_grupo = addslashes($_POST['titulo_grupo']);
 $descrica_do_grupo = addslashes($_POST['descricao_grupo']).
-$id_licenca = addslashes($_POST['id_licenca']);
 $_r1 = addslashes($_POST['_regras1']);
 $_r2 = addslashes($_POST['_regras2']);
 $_r3 = addslashes($_POST['_regras3']);
@@ -16,22 +16,12 @@ $_r7 = addslashes($_POST['_regras7']);
 $_r8 = addslashes($_POST['_regras8']);
 $_r9 = addslashes($_POST['_regras9']);
 $_r10 = addslashes($_POST['_regras10']);
-$agora = Date('H:i:m');
-$hoje = Date('Y-m-d');
 
-$res = $pdo->prepare("INSERT INTO grupos_de_oracao SET id_criador = :id_criador, id_licenca = :id_licenca, logo = :logo, title = :title, descricao = :descricao, criado_em = :criado_em, hora_criado_em = :hora_criado_em");
-$res->bindValue(':id_criador', $_SESSION['id']);
-$res->bindValue(':logo', "sem-foto.jpg");
-$res->bindValue(':id_licenca', $id_licenca);
+$res = $pdo->prepare("UPDATE grupos_de_oracao SETtitle = :title, descricao = :descricao WHERE id_group = :id_group");
+$res->bindValue(':id_group', $id_gruop);
 $res->bindValue(':title', $titulo_grupo);
 $res->bindValue(':descricao', $descrica_do_grupo);
-$res->bindValue(':criado_em' , $hoje);
-$res->bindValue(':hora_criado_em', $agora);
 $res->execute();
-
-$query_group = $pdo->query("SELECT * FROM grupos_de_oracao ORDER BY id_group DESC");
-$res_group = $query_group->fetchAll(PDO::FETCH_ASSOC);
-$id_gruop = $res_group[0]['id_group'];
 
 if (!$_r1 == "") {
 

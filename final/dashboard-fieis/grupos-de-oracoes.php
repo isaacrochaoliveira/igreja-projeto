@@ -283,6 +283,115 @@ $data = date("Y-m-d");
         			<h4 id="beforeSendCreateGrupo" class="text-success"></h4>
         		</div>
         		<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      		</div>
+      		<form method="POST" action="" enctype="multipart/form-data">
+	      		<div class="modal-body">
+	      			<div class="row">
+	      				<div class="w-50porc">
+	      					<div class="col">
+	      						<label>Nome do Grupo</label>
+	      						<input type="text" name="titulo_grupo" id="titulo_grupo" class="form-control" placeholder="Não Obrigatório">
+	      					</div>
+	      					<div class="col">
+      							<label>Descrição do Grupo<strong>*</strong></label>
+	      						<textarea cols="4" rows="4" class="form-control" placeholder="Obrigatório" name="descricao_grupo" id="descricao_grupo" required></textarea>
+	      					</div>
+	      					<div class="row">
+      							<label class="my-2">Data de Criação e de Fechamento</label>
+	      						<div class="col-md-6">
+	      							<input type="date" name="criado_em" id="criado_em" class="form-control" value="<?=$data?>">
+	      						</div>
+	      						<div class="col-md-6">
+	      							<input type="date" name="fechadoEm" id="fechadoEm" value="" class="form-control">
+	      						</div>
+	      					</div>
+	      				</div>
+	      				<div class="w-50porc">
+	      					<h4>Licença</h4>
+	      					<select class="form-select mb-2" name="id_licenca">
+	      						<?php
+	      							$query = $pdo->query("SELECT * FROM licenca;");
+	      							$res = $query->fetchAll(PDO::FETCH_ASSOC);
+	      							if (count($res) > 0) {
+	      								for ($i = 0; $i < count($res); $i++) {
+	      									foreach ($res[$i] as $key => $row) {
+	      									}
+	      									$id_licenca = $res[$i]['id'];
+	      									$titulo_da_licenca = $res[$i]['nome_da_licenca'];
+	      									$descricao_da_licenca = $res[$i]['descricao_da_licenca'];
+											?>
+												<option value="<?=$id_licenca?>"><?=$titulo_da_licenca?></option>
+											<?php
+	      								}
+	      							}
+	      						?>
+	      					</select>
+	      					<h4>Regras</h4>
+	      					<div class="row">
+	      						<div class="col-md-4">
+	      							<label>1º Regra</label>
+	      							<input type="text" name="_regras1" id="_regras1" class="form-control" placeholder="Não Obrigatório">
+	      						</div>
+	      						<div class="col-md-4">
+	      							<label>2º Regra</label>
+	      							<input type="text" name="_regras2" id="_regras2" class="form-control" placeholder="Não Obrigatório">
+	      						</div>
+	      						<div class="col-md-4">
+	      							<label>3º Regra</label>
+	      							<input type="text" name="_regras3" id="_regras3" class="form-control" placeholder="Não Obrigatório">
+	      						</div>
+	      						<div class="col-md-4">
+	      							<label>4º Regra</label>
+	      							<input type="text" name="_regras4" id="_regras4" class="form-control" placeholder="Não Obrigatório">
+	      						</div>
+	      						<div class="col-md-4">
+	      							<label>5º Regra</label>
+	      							<input type="text" name="_regras5" id="_regras5" class="form-control" placeholder="Não Obrigatório">
+	      						</div>
+	      						<div class="col-md-4">
+	      							<label>6º Regra</label>
+	      							<input type="text" name="_regras6" id="_regras6" class="form-control" placeholder="Não Obrigatório">
+	      						</div>
+	      						<div class="col-md-4">
+	      							<label>7º Regra</label>
+	      							<input type="text" name="_regras7" id="_regras7" class="form-control" placeholder="Não Obrigatório">
+	      						</div>
+	      						<div class="col-md-4">
+	      							<label>8º Regra</label>
+	      							<input type="text" name="_regras8" id="_regras8" class="form-control" placeholder="Não Obrigatório">
+	      						</div>
+	      						<div class="col-md-4">
+	      							<label>9º Regra</label>
+	      							<input type="text" name="_regras9" id="_regras9" class="form-control" placeholder="Não Obrigatório">
+	      						</div>
+	      						<div class="col-md-4">
+	      							<label>10º Regra</label>
+	      							<input type="text" name="_regras10" id="_regras10"  class="form-control" placeholder="Não Obrigatório">
+	      						</div>
+
+	      					</div>
+	      				</div>
+	      			</div>
+			    </div>
+	      		<div class="modal-footer">
+	        		<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar <i class="fa-solid fa-right-from-bracket"></i></button>
+	        		<button type="button" class="btn btn-success" name="button-criargrupo-create" id="button-criargrupo-create">Criar Grupo <i class="fa-solid fa-check-double"></i></button>
+	      		</div>
+	      	</form>
+    	</div>
+  	</div>
+</div>
+
+
+<div class="modal fade" id="EditarGrupoModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+ 	<div class="modal-dialog modal-xl">
+    	<div class="modal-content">
+      		<div class="modal-header">
+        		<h1 class="modal-title fs-5" id="staticBackdropLabel">Novo Grupo</h1>
+        		<div>
+        			<h4 id="beforeSendCreateGrupo" class="text-success"></h4>
+        		</div>
+        		<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
 				<?php
 					if (isset($_GET['editar-grupo'])) {
 						$id = addslashes($_GET['editar-grupo']);
@@ -411,8 +520,9 @@ $data = date("Y-m-d");
 	      			</div>
 			    </div>
 	      		<div class="modal-footer">
+					<input type="hidden" name="id_group" value="<?=$id?>">
 	        		<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar <i class="fa-solid fa-right-from-bracket"></i></button>
-	        		<button type="button" class="btn btn-success" name="button-criargrupo-create" id="button-criargrupo-create">Criar Grupo <i class="fa-solid fa-check-double"></i></button>
+	        		<button type="button" class="btn btn-success" name="button-criargrupo-create" id="button-editargrupo-create">Criar Grupo <i class="fa-solid fa-check-double"></i></button>
 	      		</div>
 	      	</form>
     	</div>
@@ -513,11 +623,37 @@ $data = date("Y-m-d");
 				beforeSend: function() {
 					$('#beforeSendCreateGrupo').html("Processando...");
 				},
-				complete: function() {
-					window.location = 'index.php?pag='+pag;
+				success: function(msg) {
+					if (msg.trim() == "Criado com Sucesso!") {
+						window.location = 'index.php?pag='+pag;
+					} else {
+						alert(msg);
+					}
+				}
+			})
+		})
+	})
+</script>
+
+
+<script type="text/javascript">
+	$(document).ready(function() {
+		$('#button-editargrupo-create').click(function() {
+			var pag = "<?=$pag?>";
+			$.ajax({
+				url: pag + '/editar-grupo.php',
+				method: "POST",
+				data: $('form').serialize(),
+				dataType: 'text',
+				beforeSend: function() {
+					$('#beforeSendCreateGrupo').html("Processando...");
 				},
-				error: function(msg) {
-					alert(msg);
+				success: function(msg) {
+					if (msg.trim() == "Criado com Sucesso!") {
+						window.location = 'index.php?pag='+pag;
+					} else {
+						alert(msg);
+					}
 				}
 			})
 		})

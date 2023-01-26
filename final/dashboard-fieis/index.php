@@ -244,7 +244,7 @@
     if (isset($_GET['editar-grupo'])) {
         ?>
         <script type="text/javascript">
-            var myModal = new bootstrap.Modal(document.getElementById('modalNovoGrupo'), {
+            var myModal = new bootstrap.Modal(document.getElementById('EditarGrupoModal'), {
 
             })
             myModal.show();
