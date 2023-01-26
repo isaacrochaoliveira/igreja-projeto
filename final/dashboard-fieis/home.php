@@ -12,7 +12,7 @@ require_once('../conexao.php');
     <?php
         $query = $pdo->query("SELECT * FROM oracao as o JOIN usuarios as u ON o.id_criador = u.id");
         $res = $query->fetchAll(PDO::FETCH_ASSOC);
-        if (count($res) > 0) { 
+        if (count($res) > 0) {
             for ($i = 0; $i < count($res); $i++) {
                 foreach ($res[$i] as $key => $value) {
                 }
@@ -38,7 +38,7 @@ require_once('../conexao.php');
                         <div class="ml-2" style="width: 100%;">
                             <div class="d-flex justify-content-between">
                                 <span class="span-style-oracao"><?=$titulo?> - </span>
-                                <?php 
+                                <?php
                                     if ($propo == 0) {
                                         ?>
                                           <button style="color: red; border: none; background-color: white;" onclick="emProposito(<?=$id_oracao?>)" name="btn_emproposito" id="btn_emproposito_<?=$id_oracao?>">
@@ -60,11 +60,11 @@ require_once('../conexao.php');
                                     }
 
                                 ?>
-                               
+
                             </div>
                             <p class="p-style-oracao"><?=$descricao?></p>
                             <p style="margin-bottom: 0px"><i class="fa-solid fa-person-praying"></i><?=" Joelhos Dobrados: "?><span id="joelhor_dobrados_<?=$id_oracao?>"><?=$joelhos_dobrados?></span></p>
-                            <p style="margin-bottom: 0px;">Categoria: 
+                            <p style="margin-bottom: 0px;">Categoria:
                                 <?php
                                     $query_cat = $pdo->query("SELECT * FROM oracao_relacionada_com_a_categoria as oc JOIN categorias ON oc.id_categoria = categorias.id_cat JOIN oracao ON oracao.id_pray = oc.id_oracao");
                                     $res_cat = $query_cat->fetchAll(PDO::FETCH_ASSOC);
@@ -83,7 +83,7 @@ require_once('../conexao.php');
                                         <?php
                                     }
 
-                                ?> 
+                                ?>
                             </p>
                             <p class="nome-style-oracao"><?=$nome_usuario." - ". $idade. " Anos(s) "?></p>
                         </div>
@@ -120,9 +120,13 @@ require_once('../conexao.php');
                 ?>
                 <div class="border-gold">
                     <div style="margin-left: 10px">
-                        <img src="<?=IMAGEM."fotos-grupos/$logo"?>" width="200" height='80' class="my-auto">
-                        <h1 class="title-card-grupo"><?=$title?></h1>
-                        <p class="description-card-grupo"><?=$desc?></p>
+                        <div class="d-flex">
+                            <img src="<?=IMAGEM."fotos-grupos/$logo"?>" width="220" height='220' class="my-auto">
+                            <div class="d-block ml-2">
+                                <h1 class="title-card-grupo"><?=$title?></h1>
+                                <p class="description-card-grupo"><?=$desc?></p>
+                            </div>
+                        </div>
                         <div class="d-block">
                             <div class="d-flex mb-3">
                                 <?php
@@ -138,10 +142,10 @@ require_once('../conexao.php');
                                     <?php
                                 }
                                 ?>
-                            </div>
-                            <div>
-                                <a href="index.php?pag=grupos-de-oracoes">Ver todos os grupos</a><br>
-                                <a style="cursor: pointer;" data-bs-toggle="modal" data-bs-target="#modalJoinIntoGruop">Mais Detalhes</a>
+                                <div class="ml-3">
+                                    <a href="index.php?pag=grupos-de-oracoes">Ver todos os grupos</a><br>
+                                    <a style="cursor: pointer;" data-bs-toggle="modal" data-bs-target="#modalJoinIntoGruop">Mais Detalhes</a>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -254,7 +258,7 @@ require_once('../conexao.php');
                                             <?php
                                         }
                                     }
-                                ?>                               
+                                ?>
                             </select>
                         </div>
                     </div>
@@ -302,7 +306,7 @@ require_once('../conexao.php');
                                             <?php
                                         }
                                     }
-                                ?>                               
+                                ?>
                             </select>
                         </div>
                     </div>
@@ -343,7 +347,7 @@ require_once('../conexao.php');
                             $idade = Date("Y") - $nasc;
                             $estado_civil = $res[0]['estado_civil'];
                             $email = $res[0]['email'];
-                            
+
                             // Pegando dados da tabela cargos
                             $cargo = $res[0]['cargo'];
 
