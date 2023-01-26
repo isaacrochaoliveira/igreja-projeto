@@ -443,16 +443,17 @@ $data = date("Y-m-d");
         			}
         		?>
       		</div>
-      		<div class="modal-body">
-      			<img src="<?=IMAGEM."/fotos-grupos/".$imagem?>">
-      			<form action="" method="POST" enctype="multipart/form-data">
-      				<input type="text" name="id" value="<?=$id?>">
-      			</form>
-      		</div>
-      		<div class="modal-footer">
-        		<button type="button" class="btn btn-warning" id="btn-fechar-aberto-grupo" data-bs-dismiss="modal">Continuar Fechado</button>
-        		<button type="button" class="btn btn-success" name="btn-reabrirgrupo" id="btn-reabrirgrupo" onclick="ReabrirGrupo(<?=$id?>)">Reabrir Agora</button>
-      		</div>
+			<form action="<?=URL_BASE."/dashboard-fieis/$pag/editar-logo.php"?>" method="POST" enctype="multipart/form-data">
+	      		<div class="modal-body">
+	      			<img src="<?=IMAGEM."/fotos-grupos/".$imagem?>" alt="Faça Upload da sua logo" width="200" height="200" name="target" id="target">
+      				<input type="hidden" name="id" value="<?=$id?>">
+					<input type="file" name="logo" onchange="carregarImg()" class="form-control mt-2">
+	      		</div>
+	      		<div class="modal-footer">
+	        		<button type="button" class="btn btn-secondary" id="btn-fechar-aberto-grupo" data-bs-dismiss="modal">Cancelar</button>
+	        		<button type="submit" class="btn btn-light">OK</button>
+	      		</div>
+			</form>
     	</div>
   	</div>
 </div>
