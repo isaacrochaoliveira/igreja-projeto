@@ -522,7 +522,7 @@ $data = date("Y-m-d");
 	      		<div class="modal-footer">
 					<input type="hidden" name="id_group" value="<?=$id?>">
 	        		<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar <i class="fa-solid fa-right-from-bracket"></i></button>
-	        		<button type="button" class="btn btn-success" name="button-criargrupo-create" id="button-editargrupo-create">Criar Grupo <i class="fa-solid fa-check-double"></i></button>
+	        		<button type="button" class="btn btn-success" name="button-criargrupo-create" id="button-editargrupo-create">Editar Grupo <i class="fa-solid fa-check-double"></i></button>
 	      		</div>
 	      	</form>
     	</div>

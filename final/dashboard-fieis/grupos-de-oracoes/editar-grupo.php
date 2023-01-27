@@ -3,9 +3,9 @@
 require_once('../../conexao.php');
 @session_start();
 date_default_timezone_set("America/Sao_Paulo");
-$id_gruop = addslashes($_POST['id_group'])
+$id_gruop = addslashes($_POST['id_group']);
 $titulo_grupo = addslashes($_POST['titulo_grupo']);
-$descrica_do_grupo = addslashes($_POST['descricao_grupo']).
+$descrica_do_grupo = addslashes($_POST['descricao_grupo']);
 $_r1 = addslashes($_POST['_regras1']);
 $_r2 = addslashes($_POST['_regras2']);
 $_r3 = addslashes($_POST['_regras3']);
@@ -17,7 +17,7 @@ $_r8 = addslashes($_POST['_regras8']);
 $_r9 = addslashes($_POST['_regras9']);
 $_r10 = addslashes($_POST['_regras10']);
 
-$res = $pdo->prepare("UPDATE grupos_de_oracao SETtitle = :title, descricao = :descricao WHERE id_group = :id_group");
+$res = $pdo->prepare("UPDATE grupos_de_oracao SET title = :title, descricao = :descricao WHERE id_group = :id_group");
 $res->bindValue(':id_group', $id_gruop);
 $res->bindValue(':title', $titulo_grupo);
 $res->bindValue(':descricao', $descrica_do_grupo);
