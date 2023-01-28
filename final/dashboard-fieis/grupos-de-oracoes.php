@@ -576,6 +576,7 @@ $data = date("Y-m-d");
 					</div>
 				</div>
 				<div class="modal-footer">
+					<input type="hidden" name="id_group" value="<?=$id?>">
 					<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
 					<button type="button" name="cadastrar_anotacao" id="cadastrar_anotacao" class="btn btn-light">Criar Anotação</button>
 				</div>
@@ -800,4 +801,25 @@ function carregarImg() {
 			})
 		})
 	}
+</script>
+
+<script type="text/javascript">
+	$(document).ready(function() {
+		$('#cadastrar_anotacao').click(function() {
+			var pag = "<?=$pag?>";
+			$.ajax({
+				url: pag + '/criar-anotacao.php',
+				method: 'post',
+				data: $('form').serialize(),
+				dataType: 'text',
+				success: function(msg) {
+					if (msg.trim() == 'Anotação Inserida com Sucesso!') {
+						window.location = 'index.php?pag='+pag;
+					} else {
+						alert(msg);
+					}
+				}
+			})
+		})
+	})
 </script>
