@@ -290,25 +290,25 @@ $data = date("Y-m-d");
 	      				<div class="w-50porc">
 	      					<div class="col">
 	      						<label>Nome do Grupo</label>
-	      						<input type="text" name="titulo_grupo" id="titulo_grupo" class="form-control" placeholder="Não Obrigatório">
+	      						<input type="text" name="titulo_grupo_criar" id="titulo_grupo_criar" class="form-control" placeholder="Não Obrigatório">
 	      					</div>
 	      					<div class="col">
       							<label>Descrição do Grupo<strong>*</strong></label>
-	      						<textarea cols="4" rows="4" class="form-control" placeholder="Obrigatório" name="descricao_grupo" id="descricao_grupo" required></textarea>
+	      						<textarea cols="4" rows="4" class="form-control" placeholder="Obrigatório" name="descricao_grupo_criar" id="descricao_grupo_criar" required></textarea>
 	      					</div>
 	      					<div class="row">
       							<label class="my-2">Data de Criação e de Fechamento</label>
 	      						<div class="col-md-6">
-	      							<input type="date" name="criado_em" id="criado_em" class="form-control" value="<?=$data?>">
+	      							<input type="date" name="criado_em_criado" id="criado_em_criado" class="form-control" value="<?=$data?>">
 	      						</div>
 	      						<div class="col-md-6">
-	      							<input type="date" name="fechadoEm" id="fechadoEm" value="" class="form-control">
+	      							<input type="date" name="fechadoEm_criado" id="fechadoEm_criado" value="" class="form-control">
 	      						</div>
 	      					</div>
 	      				</div>
 	      				<div class="w-50porc">
 	      					<h4>Licença</h4>
-	      					<select class="form-select mb-2" name="id_licenca">
+	      					<select class="form-select mb-2" name="id_licenca_criar">
 	      						<?php
 	      							$query = $pdo->query("SELECT * FROM licenca;");
 	      							$res = $query->fetchAll(PDO::FETCH_ASSOC);
@@ -330,43 +330,43 @@ $data = date("Y-m-d");
 	      					<div class="row">
 	      						<div class="col-md-4">
 	      							<label>1º Regra</label>
-	      							<input type="text" name="_regras1" id="_regras1" class="form-control" placeholder="Não Obrigatório">
+	      							<input type="text" name="_regras1_criar" id="_regras1_criar" class="form-control" placeholder="Não Obrigatório">
 	      						</div>
 	      						<div class="col-md-4">
 	      							<label>2º Regra</label>
-	      							<input type="text" name="_regras2" id="_regras2" class="form-control" placeholder="Não Obrigatório">
+	      							<input type="text" name="_regras2_criar" id="_regras2_criar" class="form-control" placeholder="Não Obrigatório">
 	      						</div>
 	      						<div class="col-md-4">
 	      							<label>3º Regra</label>
-	      							<input type="text" name="_regras3" id="_regras3" class="form-control" placeholder="Não Obrigatório">
+	      							<input type="text" name="_regras3_criar" id="_regras3_criar" class="form-control" placeholder="Não Obrigatório">
 	      						</div>
 	      						<div class="col-md-4">
 	      							<label>4º Regra</label>
-	      							<input type="text" name="_regras4" id="_regras4" class="form-control" placeholder="Não Obrigatório">
+	      							<input type="text" name="_regras4_criar" id="_regras4_criar" class="form-control" placeholder="Não Obrigatório">
 	      						</div>
 	      						<div class="col-md-4">
 	      							<label>5º Regra</label>
-	      							<input type="text" name="_regras5" id="_regras5" class="form-control" placeholder="Não Obrigatório">
+	      							<input type="text" name="_regras5_criar" id="_regras5_criar" class="form-control" placeholder="Não Obrigatório">
 	      						</div>
 	      						<div class="col-md-4">
 	      							<label>6º Regra</label>
-	      							<input type="text" name="_regras6" id="_regras6" class="form-control" placeholder="Não Obrigatório">
+	      							<input type="text" name="_regras6_criar" id="_regras6_criar" class="form-control" placeholder="Não Obrigatório">
 	      						</div>
 	      						<div class="col-md-4">
 	      							<label>7º Regra</label>
-	      							<input type="text" name="_regras7" id="_regras7" class="form-control" placeholder="Não Obrigatório">
+	      							<input type="text" name="_regras7_criar" id="_regras7_criar" class="form-control" placeholder="Não Obrigatório">
 	      						</div>
 	      						<div class="col-md-4">
 	      							<label>8º Regra</label>
-	      							<input type="text" name="_regras8" id="_regras8" class="form-control" placeholder="Não Obrigatório">
+	      							<input type="text" name="_regras8_criar" id="_regras8_criar" class="form-control" placeholder="Não Obrigatório">
 	      						</div>
 	      						<div class="col-md-4">
 	      							<label>9º Regra</label>
-	      							<input type="text" name="_regras9" id="_regras9" class="form-control" placeholder="Não Obrigatório">
+	      							<input type="text" name="_regras9_criar" id="_regras9_criar" class="form-control" placeholder="Não Obrigatório">
 	      						</div>
 	      						<div class="col-md-4">
 	      							<label>10º Regra</label>
-	      							<input type="text" name="_regras10" id="_regras10"  class="form-control" placeholder="Não Obrigatório">
+	      							<input type="text" name="_regras10_criar" id="_regras10_criar"  class="form-control" placeholder="Não Obrigatório">
 	      						</div>
 
 	      					</div>
@@ -552,6 +552,37 @@ $data = date("Y-m-d");
   	</div>
 </div>
 
+
+<div class="modal fade" id="ModalCriarAnotacao" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+ 	<div class="modal-dialog modal-xl">
+    	<div class="modal-content">
+      		<div class="modal-header">
+				<?php
+					$id = addslashes($_GET['anotacoes-grupo']);
+					$query = $pdo->query("SELECT * FROM grupos_de_oracao WHERE id_group = '$id'");
+					$res = $query->fetchAll(PDO::FETCH_ASSOC);
+					if (count($res) > 0) {
+						$nome = $res[0]['title'];
+					}
+				?>
+        		<h1 class="modal-title fs-5" id="staticBackdropLabel"><?=$nome?></h1>
+        		<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      		</div>
+			<form action="" method="POST">
+				<div class="modal-body">
+					<div class="col">
+						<label for="">Coloque todas as suas anotações nesse campo</label>
+						<textarea name="anotacao" rows="8" cols="80" class="form-control" placeholder="Anotações"></textarea>
+					</div>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
+					<button type="button" name="cadastrar_anotacao" id="cadastrar_anotacao" class="btn btn-light">Criar Anotação</button>
+				</div>
+			</form>
+    	</div>
+  	</div>
+</div>
 
 <div class="modal fade" id="ModalReabrirGrupo" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
  	<div class="modal-dialog modal-dialog-centered">

@@ -261,5 +261,15 @@
         </script>
         <?php
     }
+    if (isset($_GET['anotacoes-grupo'])) {
+        ?>
+        <script type="text/javascript">
+            var myModal = new bootstrap.Modal(document.getElementById('ModalCriarAnotacao'), {
+
+            })
+            myModal.show();
+        </script>
+        <?php
+    }
 ?>
 </html>

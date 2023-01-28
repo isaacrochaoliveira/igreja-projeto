@@ -3,19 +3,19 @@
 require_once('../../conexao.php');
 @session_start();
 date_default_timezone_set("America/Sao_Paulo");
-$titulo_grupo = addslashes($_POST['titulo_grupo']);
-$descrica_do_grupo = addslashes($_POST['descricao_grupo']).
-$id_licenca = addslashes($_POST['id_licenca']);
-$_r1 = addslashes($_POST['_regras1']);
-$_r2 = addslashes($_POST['_regras2']);
-$_r3 = addslashes($_POST['_regras3']);
-$_r4 = addslashes($_POST['_regras4']);
-$_r5 = addslashes($_POST['_regras5']);
-$_r6 = addslashes($_POST['_regras6']);
-$_r7 = addslashes($_POST['_regras7']);
-$_r8 = addslashes($_POST['_regras8']);
-$_r9 = addslashes($_POST['_regras9']);
-$_r10 = addslashes($_POST['_regras10']);
+$titulo_grupo = addslashes($_POST['titulo_grupo_criar']);
+$descrica_do_grupo = addslashes($_POST['descricao_grupo_criar']).
+$id_licenca = addslashes($_POST['id_licenca_criar']);
+$_r1 = addslashes($_POST['_regras1_criar']);
+$_r2 = addslashes($_POST['_regras2_criar']);
+$_r3 = addslashes($_POST['_regras3_criar']);
+$_r4 = addslashes($_POST['_regras4_criar']);
+$_r5 = addslashes($_POST['_regras5_criar']);
+$_r6 = addslashes($_POST['_regras6_criar']);
+$_r7 = addslashes($_POST['_regras7_criar']);
+$_r8 = addslashes($_POST['_regras8_criar']);
+$_r9 = addslashes($_POST['_regras9_criar']);
+$_r10 = addslashes($_POST['_regras10_criar']);
 $agora = Date('H:i:m');
 $hoje = Date('Y-m-d');
 
