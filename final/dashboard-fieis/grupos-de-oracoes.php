@@ -293,10 +293,27 @@ $data = date("Y-m-d");
 							}
 							$id_anotacao = $res[$i]['id'];
 							$anotacao = $res[$i]['anotacao'];
+
+							if () {
+
+							}
 							?>
-								<div class="d-flex mb-2">
-									<button onclick="ExcluirAnotacaoGrupo(<?=$id?>, <?=$id_anotacao?>)" class="btn btn-danger"><i class="fa-solid fa-trash"></i></button>
-									<p class="ml-2"><?=$anotacao?></p>
+								<div id="div-anotacoes-<?=$id_anotacao?>">
+									<div class="d-flex mb-2">
+										<button onclick="ExcluirAnotacaoGrupo(<?=$id?>, <?=$id_anotacao?>)" class="btn btn-danger"><i class="fa-solid fa-trash"></i></button>
+										<button onclick="EditarOracaoClick(<?=$id?>, <?=$id_anotacao?>)" class="btn btn-primary ml-1"><i class="fa-solid fa-pen"></i></button>
+										<form class="d-block" action="" method="post" id="editando_anotacao_<?=$id_anotacao?>">
+											<button type="button" onclick="SalvarAlteracoesAnotacao(<?$id_anotacao?>)" name="SalvarAlteracoesAnotacao<?=$id_anotacao?>" id="SalvarAlteracoesAnotacao<?=$id_anotacao?>" class="btn btn-success"><i class="fa-solid fa-check"></i></button>
+											<div class="row">
+												<div class="col">
+													<textarea cols="5" rows="80" name="nova_anotacao" class="form-control ml-2 w-100"><?=$anotacao?></textarea>
+												</div>
+											</div>
+										</form>
+										<div class="d-block" id="mostrando_anotacao_<?=$id_anotacao?>">
+											<p class="ml-2"><?=$anotacao?></p>
+										</div>
+									</div>
 								</div>
 							<?php
 						}
@@ -872,12 +889,25 @@ function carregarImg() {
 				dataType: 'text',
 				success: function(msg) {
 					if (msg.trim() == 'Excluído com Sucesso!') {
-						window.location = 'index.php?pag='+pag+'&ver-anotacoes-grupo='+id_group;
+						//window.location = 'index.php?pag='+pag+'&ver-anotacoes-grupo='+id_group;
+						$('#div-anotacoes-'+id_anotacao).addClass('d-none');
 					} else {
 						alert(msg);
 					}
 				}
 			})
+		})
+	}
+</script>
+
+<script type="text/javascript">
+	function EditarOracaoClick(id, id_anotacao) {
+		$(document).ready(function() {
+			$('#editando_anotacao_'+id_anotacao).removeClass();
+			$('#mostrando_anotacao_'+id_anotacao).removeClass();
+
+			$('#editando_anotacao_'+id_anotacao).addClass('d-block');
+			$('#mostrando_anotacao_'+id_anotacao).addClass('d-none');
 		})
 	}
 </script>
