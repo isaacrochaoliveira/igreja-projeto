@@ -268,11 +268,48 @@ $data = date("Y-m-d");
       			</div>
 		    </div>
       		<div class="modal-footer">
+				<a href="index.php?pag=<?=$pag?>&ver-anotacoes-grupo=<?=$_oracao?>" class="btn btn-light">Ver Anotações</a>
         		<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
       		</div>
     	</div>
   	</div>
 </div>
+
+<div class="modal fade" id="ModalAnotcoesGrupo" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+ 	<div class="modal-dialog modal-xl">
+    	<div class="modal-content">
+      		<div class="modal-header">
+        		<h1 class="modal-title fs-5" id="staticBackdropLabel">Anotações</h1>
+        		<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      		</div>
+      		<div class="modal-body">
+				<?php
+					$id = addslashes($_GET['ver-anotacoes-grupo']);
+					$query = $pdo->query("SELECT * FROM anotacoes WHERE id_group = '$id'");
+					$res = $query->fetchAll(PDO::FETCH_ASSOC);
+					if (count($res) > 0) {
+						for ($i = 0; $i < count($res); $i++) {
+							foreach ($res[$i] as $key => $value) {
+							}
+							$id_anotacao = $res[$i]['id'];
+							$anotacao = $res[$i]['anotacao'];
+							?>
+								<div class="d-flex mb-2">
+									<button onclick="ExcluirAnotacaoGrupo(<?=$id?>, <?=$id_anotacao?>)" class="btn btn-danger"><i class="fa-solid fa-trash"></i></button>
+									<p class="ml-2"><?=$anotacao?></p>
+								</div>
+							<?php
+						}
+					}
+				?>
+		    </div>
+      		<div class="modal-footer">
+        		<a href="index.php?pag=<?=$pag?>&comoparticipar=<?=$id?>" class="btn btn-secondary">Voltar</a>
+      		</div>
+    	</div>
+  	</div>
+</div>
+
 
 <div class="modal fade" id="modalNovoGrupo" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
  	<div class="modal-dialog modal-xl">
@@ -822,4 +859,25 @@ function carregarImg() {
 			})
 		})
 	})
+</script>
+
+<script type="text/javascript">
+	function ExcluirAnotacaoGrupo(id_group, id_anotacao) {
+		$(document).ready(function() {
+			var pag = "<?=$pag?>";
+			$.ajax({
+				url: pag + '/excluir-anotacao.php',
+				method: 'post',
+				data: {id_group, id_anotacao},
+				dataType: 'text',
+				success: function(msg) {
+					if (msg.trim() == 'Excluído com Sucesso!') {
+						window.location = 'index.php?pag='+pag+'&ver-anotacoes-grupo='+id_group;
+					} else {
+						alert(msg);
+					}
+				}
+			})
+		})
+	}
 </script>
