@@ -294,27 +294,24 @@ $data = date("Y-m-d");
 							$id_anotacao = $res[$i]['id'];
 							$anotacao = $res[$i]['anotacao'];
 
-							if () {
-
-							}
 							?>
 								<div id="div-anotacoes-<?=$id_anotacao?>">
 									<div class="d-flex mb-2">
 										<button onclick="ExcluirAnotacaoGrupo(<?=$id?>, <?=$id_anotacao?>)" class="btn btn-danger"><i class="fa-solid fa-trash"></i></button>
 										<button onclick="EditarOracaoClick(<?=$id?>, <?=$id_anotacao?>)" class="btn btn-primary ml-1"><i class="fa-solid fa-pen"></i></button>
-										<form class="d-block" action="" method="post" id="editando_anotacao_<?=$id_anotacao?>">
-											<button type="button" onclick="SalvarAlteracoesAnotacao(<?$id_anotacao?>)" name="SalvarAlteracoesAnotacao<?=$id_anotacao?>" id="SalvarAlteracoesAnotacao<?=$id_anotacao?>" class="btn btn-success"><i class="fa-solid fa-check"></i></button>
-											<div class="row">
-												<div class="col">
-													<textarea cols="5" rows="80" name="nova_anotacao" class="form-control ml-2 w-100"><?=$anotacao?></textarea>
-												</div>
-											</div>
-										</form>
+										<button type="button" onclick="SalvarAlteracoesAnotacao(<?$id_anotacao?>)" name="SalvarAlteracoesAnotacao<?=$id_anotacao?>" id="SalvarAlteracoesAnotacao<?=$id_anotacao?>" class="btn btn-success d-none"><i class="fa-solid fa-check"></i></button>
 										<div class="d-block" id="mostrando_anotacao_<?=$id_anotacao?>">
 											<p class="ml-2"><?=$anotacao?></p>
 										</div>
 									</div>
 								</div>
+								<form class="d-none" action="" method="POST" id="editando_anotacao_<?=$id_anotacao?>">
+									<div class="row">
+										<div class="col">
+											<textarea cols="5" rows="5" name="nova_anotacao" class="form-control ml-2 w-100"><?=$anotacao?></textarea>
+										</div>
+									</div>
+								</form>
 							<?php
 						}
 					}
@@ -904,9 +901,11 @@ function carregarImg() {
 	function EditarOracaoClick(id, id_anotacao) {
 		$(document).ready(function() {
 			$('#editando_anotacao_'+id_anotacao).removeClass();
+			$('#SalvarAlteracoesAnotacao'+id_anotacao).removeClass();
 			$('#mostrando_anotacao_'+id_anotacao).removeClass();
 
-			$('#editando_anotacao_'+id_anotacao).addClass('d-block');
+			$('#editando_anotacao_'+id_anotacao).addClass('d-block w-100porc');
+			$('#SalvarAlteracoesAnotacao'+id_anotacao).addClass('btn btn-success d-block ml-1');
 			$('#mostrando_anotacao_'+id_anotacao).addClass('d-none');
 		})
 	}
