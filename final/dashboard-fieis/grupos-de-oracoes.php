@@ -299,7 +299,7 @@ $data = date("Y-m-d");
 									<div class="d-flex mb-2">
 										<button onclick="ExcluirAnotacaoGrupo(<?=$id?>, <?=$id_anotacao?>)" class="btn btn-danger"><i class="fa-solid fa-trash"></i></button>
 										<button onclick="EditarOracaoClick(<?=$id?>, <?=$id_anotacao?>)" class="btn btn-primary ml-1"><i class="fa-solid fa-pen"></i></button>
-										<button onclick="SalvarAlteracoesAnotacao(<?=$id_anotacao?>)" name="SalvarAlteracoesAnotacao<?=$id_anotacao?>" id="SalvarAlteracoesAnotacao<?=$id_anotacao?>" class="btn btn-success d-none"><i class="fa-solid fa-check"></i></button>
+										<button onclick="SalvarAlteracoesAnotacao(<?=$id_anotacao?>)" name="SalvarAlteracoesAnotacao<?=$id_anotacao?>" id="SalvarAlteracoesAnotacao<?=$id_anotacao?>" class="btn btn-success mb-1"><i class="fa-solid fa-check"></i></button>
 										<div class="d-block" id="mostrando_anotacao_<?=$id_anotacao?>">
 											<p class="ml-2" id="mostra_anotacao_<?=$id_anotacao?>"><?=$anotacao?></p>
 										</div>
@@ -308,7 +308,7 @@ $data = date("Y-m-d");
 								<form class="d-none" action="" method="POST" id="editando_anotacao_<?=$id_anotacao?>">
 									<div class="row">
 										<div class="col">
-											<input type="text" name="id_anotacao" value="<?=$id_anotacao?>">
+											<input type="hidden" name="id_anotacao" value="<?=$id_anotacao?>">
 											<textarea cols="5" rows="5" name="nova_anotacao" class="form-control ml-2 w-100"><?=$anotacao?></textarea>
 										</div>
 									</div>
@@ -902,11 +902,9 @@ function carregarImg() {
 	function EditarOracaoClick(id, id_anotacao) {
 		$(document).ready(function() {
 			$('#editando_anotacao_'+id_anotacao).removeClass();
-			$('#SalvarAlteracoesAnotacao'+id_anotacao).removeClass();
 			$('#mostrando_anotacao_'+id_anotacao).removeClass();
 
 			$('#editando_anotacao_'+id_anotacao).addClass('d-block w-100porc');
-			$('#SalvarAlteracoesAnotacao'+id_anotacao).addClass('btn btn-success d-block ml-1');
 			$('#mostrando_anotacao_'+id_anotacao).addClass('d-none');
 		})
 	}
@@ -924,11 +922,9 @@ function carregarImg() {
 					$('#mostra_anotacao_'+id_anotacao).html(msg);
 
 					$('#editando_anotacao_'+id_anotacao).removeClass();
-					$('#SalvarAlteracoesAnotacao'+id_anotacao).removeClass();
 					$('#mostrando_anotacao_'+id_anotacao).removeClass();
 
 					$('#editando_anotacao_'+id_anotacao).addClass('d-none');
-					$('#SalvarAlteracoesAnotacao'+id_anotacao).addClass('d-none');
 					$('#mostrando_anotacao_'+id_anotacao).addClass('d-block');
 				}
 			})
