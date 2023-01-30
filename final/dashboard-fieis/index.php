@@ -281,5 +281,15 @@
         </script>
         <?php
     }
+    if (isset($_GET['comments-grupo'])) {
+        ?>
+        <script type="text/javascript">
+            var myModal = new bootstrap.Modal(document.getElementById('ModalComentarios'), {
+
+            })
+            myModal.show();
+        </script>
+        <?php
+    }
 ?>
 </html>

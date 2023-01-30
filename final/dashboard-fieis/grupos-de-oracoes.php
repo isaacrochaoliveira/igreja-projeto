@@ -692,7 +692,53 @@ $data = date("Y-m-d");
   	</div>
 </div>
 
+<div class="modal fade" id="ModalComentarios" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+ 	<div class="modal-dialog  modal-xl">
+    	<div class="modal-content">
+      		<div class="modal-header">
+				<?php
+        			$id = addslashes($_GET['comments-grupo']);
+        			$query = $pdo->query("SELECT * FROM grupos_de_oracao WHERE id_group = '$id'");
+        			$res = $query->fetchAll(PDO::FETCH_ASSOC);
+        			if (count($res) > 0) {
+        				$title = $res[0]['title'];
+        			}
+        		?>
+        		<h1 class="modal-title fs-5" id="staticBackdropLabel"><?=$title?></h1>
+        		<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      		</div>
+			<div class="modal-body">
+				<form class="" action="index.html" method="post">
+					<div class="row">
+						<div class="col">
+							<textarea name="name" rows="3" cols="3" class="form-control" placeholder="Comentário"></textarea>
+						</div>
+					</div>
+				</form>
+				<div class="">
+					<?php
+						$query = $pdo->query("SELECT * FROM comentarios_grupos JOIN usuarios as u WHERE id_grupo = '$id'");
+						$res = $query->fetchAll(PDO::FETCH_ASSOC);
+						if (count($res) > 0) {
+							for ($i = 0; $i < count($res); $i++) {
+								foreach ($res[$i] as $key => $value) {
+								}
+								$perfil = $res[$i]['imagem'];
+								$nome_comentador = $res[$i]['nome'];
+								$comentario = $res[$i]['comentario'];
+								$curtidas = $res[$i]['pessoas_curtiram']
+								$
+							}
+						}
+					?>
+				</div>
+			</div>
+			<div class="modal-footer">
 
+			</div>
+    	</div>
+  	</div>
+</div>
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 
