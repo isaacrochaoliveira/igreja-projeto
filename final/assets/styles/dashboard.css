@@ -25,6 +25,10 @@
     src: url("../font/Lobster-Two/LobsterTwo-BoldItalic.ttf");
 }
 
+.f-family-LobsterTwoBoldItalic {
+    font-family: 'Lobster-Two-BoldItalic';
+}
+
 .f-family-Lobster {
     font-family: 'Lobster-Two';
     letter-spacing: 1px;
