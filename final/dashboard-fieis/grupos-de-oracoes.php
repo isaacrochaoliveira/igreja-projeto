@@ -299,6 +299,7 @@ $data = date("Y-m-d");
 									<div class="d-flex mb-2">
 										<button onclick="ExcluirAnotacaoGrupo(<?=$id?>, <?=$id_anotacao?>)" class="btn btn-danger"><i class="fa-solid fa-trash"></i></button>
 										<button onclick="EditarOracaoClick(<?=$id?>, <?=$id_anotacao?>)" class="btn btn-primary ml-1"><i class="fa-solid fa-pen"></i></button>
+										<a href="index.php?pag=<?=$pag?>&anotacoes-grupo=<?=$id?>" class="btn btn-outline-dark ml-1"><i class="fa-solid fa-plus"></i></a>
 										<button onclick="SalvarAlteracoesAnotacao(<?=$id_anotacao?>)" name="SalvarAlteracoesAnotacao<?=$id_anotacao?>" id="SalvarAlteracoesAnotacao<?=$id_anotacao?>" class="d-none btn btn-success ml-1"><i class="fa-solid fa-check"></i></button>
 										<div class="d-block" id="mostrando_anotacao_<?=$id_anotacao?>">
 											<p class="ml-2" id="mostra_anotacao_<?=$id_anotacao?>"><?=$anotacao?></p>
