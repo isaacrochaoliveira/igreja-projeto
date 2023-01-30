@@ -10,7 +10,7 @@ require_once('../conexao.php');
 </div>
 <section class="d-flex mx-2 flex-wrap" style="margin: 0px;">
     <?php
-        $query = $pdo->query("SELECT * FROM oracao as o JOIN usuarios as u ON o.id_criador = u.id");
+        $query = $pdo->query("SELECT * FROM oracao as o JOIN usuarios as u ON o.id_criador = u.id LIMIT 3;");
         $res = $query->fetchAll(PDO::FETCH_ASSOC);
         if (count($res) > 0) {
             for ($i = 0; $i < count($res); $i++) {
@@ -159,42 +159,44 @@ require_once('../conexao.php');
 </section>
 
 <section>
-    <div>
-        <h2 class="text-center">O Que a Biblía Diz?</h2>
+    <div id="carouselExampleCaptions" class="carousel slide" data-bs-ride="carousel">
+        <div class="carousel-indicators">
+            <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+            <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="1" aria-label="Slide 2"></button>
+            <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="2" aria-label="Slide 3"></button>
+        </div>
+        <div class="carousel-inner">
+            <div class="carousel-item active">
+                <img src="<?=IMAGEM."images-web/culto-da-familia-1280-800.webp"?>" class="d-block w-100" alt="Culto da Família - Domingo às 18:00h" width="100%" height="450">
+                <div class="carousel-caption d-none d-md-block bg-dark-tranparent py-2 px-2">
+                    <h5>Culto da Família - Todo Domingo às 18:00</h5>
+                    <p>Temos esse culto para presevarmos o que Deus nos entregou, a ainda por cima! Ajudar aqueles que estão Desamparados e angústiados de alma.</p>
+                </div>
+            </div>
+            <div class="carousel-item">
+                <img src="<?=IMAGEM."images-web/culto-da-vitoria.webp"?>" class="d-block w-100" alt="Culto da Vitória - Terça Feira às 19:30h" width="100%" height="450">
+                <div class="carousel-caption d-none d-md-block bg-dark-tranparent py-2 px-2">
+                    <h5>Culto da Vitória - Toda Terça às 19:30h</h5>
+                    <p>Sl 125:1</p>
+                </div>
+            </div>
+            <div class="carousel-item">
+                <img src="<?=IMAGEM."images-web/culto-dos-jovens.webp"?>" class="d-block w-100" alt="Culto dos Jovens - Todo Sábado às 19:00h" width="100%" height="450">
+                <div class="carousel-caption d-none d-md-block bg-dark-tranparent py-2 px-2">
+                    <h5>Culto dos Jovens</h5>
+                    <p>Culto dos Jovens.</p>
+                </div>
+            </div>
+        </div>
+        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Previous</span>
+        </button>
+        <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Next</span>
+        </button>
     </div>
-    <nav id="navbar-example2" class="navbar bg-body-tertiary px-3 mb-3">
-  <a class="navbar-brand" href="#">Navbar</a>
-  <ul class="nav nav-pills">
-    <li class="nav-item">
-      <a class="nav-link" href="#scrollspyHeading1">First</a>
-    </li>
-    <li class="nav-item">
-      <a class="nav-link" href="#scrollspyHeading2">Second</a>
-    </li>
-    <li class="nav-item dropdown">
-      <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-expanded="false">Dropdown</a>
-      <ul class="dropdown-menu">
-        <li><a class="dropdown-item" href="#scrollspyHeading3">Third</a></li>
-        <li><a class="dropdown-item" href="#scrollspyHeading4">Fourth</a></li>
-        <li><hr class="dropdown-divider"></li>
-        <li><a class="dropdown-item" href="#scrollspyHeading5">Fifth</a></li>
-      </ul>
-    </li>
-  </ul>
-</nav>
-<div data-bs-spy="scroll" data-bs-target="#navbar-example2" data-bs-root-margin="0px 0px -40%" data-bs-smooth-scroll="true" class="scrollspy-example bg-body-tertiary p-3 rounded-2" tabindex="0">
-  <h4 id="scrollspyHeading1">First heading</h4>
-  <p>...</p>
-  <h4 id="scrollspyHeading2">Second heading</h4>
-  <p>...</p>
-  <h4 id="scrollspyHeading3">Third heading</h4>
-  <p>...</p>
-  <h4 id="scrollspyHeading4">Fourth heading</h4>
-  <p>...</p>
-  <h4 id="scrollspyHeading5">Fifth heading</h4>
-  <p>...</p>
-</div>
-
 </section>
 
 <div class="modal fade" id="modalNovaOracao" data-bs-backdrop="static" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
