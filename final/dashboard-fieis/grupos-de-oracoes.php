@@ -73,9 +73,11 @@ $data = date("Y-m-d");
 				            ?>
 				        </div>
 				    </div>
-			        <div class="d-flex justify-content-around mt-2">
-			            <a style="cursor: pointer;" href="index.php?pag=<?=$pag?>&jointogroup=<?=$id?>">Mais Detalhes</a>
-			            <a href="index.php?pag=<?=$pag?>&comoparticipar=<?=$id?>">Como Participar</a>
+			        <div class="d-flex mt-2">
+			            <a style="cursor: pointer;" href="index.php?pag=<?=$pag?>&jointogroup=<?=$id?>" class="btn btn-info mr-1"><i class="fa-solid fa-file"></i></a>
+			            <a href="index.php?pag=<?=$pag?>&comoparticipar=<?=$id?>" class="btn btn-info mr-1"><i class="fa-solid fa-question"></i></a>
+						<a href="index.php?pag=<?=$pag?>&comments-grupo=<?=$id?>" class="btn btn-dark mr-1" title="Comentários"><i class="fa-regular fa-comment"></i></a>
+
 			        </div>
 				    <?php
 	    		}
@@ -99,8 +101,8 @@ $data = date("Y-m-d");
 	        				}
 	        				?>
 	        				<a href="index.php?pag=<?=$pag?>&anotacoes-grupo=<?=$id?>" class="btn btn-success mr-2" title="Fazer Anotações para os participantes"><i class="fa-solid fa-book-open"></i></a>
-	        				<a href="index.php?pag=<?=$pag?>&comments-grupo=<?=$id?>" class="btn btn-dark mr-2" title="Comentários"><i class="fa-regular fa-comment"></i></a>
-	        				<a href="index.php?pag=<?=$pag?>&upload-foto-grupo=<?=$id?>" class="btn btn-info mr-2" title="Upload de Foto do Grupo"><i class="fa-solid fa-cloud-arrow-up"></i></a>
+							<a href="index.php?pag=<?=$pag?>&comments-grupo=<?=$id?>" class="btn btn-dark mr-2" title="Comentários"><i class="fa-regular fa-comment"></i></a>
+							<a href="index.php?pag=<?=$pag?>&upload-foto-grupo=<?=$id?>" class="btn btn-info mr-2" title="Upload de Foto do Grupo"><i class="fa-solid fa-cloud-arrow-up"></i></a>
         				</div>
         				<div class="d-flex justify-content-around mt-2">
 				            <a style="cursor: pointer;" href="index.php?pag=<?=$pag?>&jointogroup=<?=$id?>">Mais Detalhes</a>
@@ -721,25 +723,29 @@ $data = date("Y-m-d");
 				</form>
 				<div class="">
 					<?php
-						$query = $pdo->query("SELECT * FROM comentarios_grupos JOIN usuarios as u WHERE id_grupo = '$id'");
+						$query = $pdo->query("SELECT * FROM comentarios_grupos JOIN usuarios as u ON comentarios_grupos.id_comentador = u.id WHERE id_grupo = '$id'");
 						$res = $query->fetchAll(PDO::FETCH_ASSOC);
 						if (count($res) > 0) {
 							for ($i = 0; $i < count($res); $i++) {
 								foreach ($res[$i] as $key => $value) {
 								}
-								$perfil = $res[$i]['imagem'];
+								$perfil = $res[$i]['perfil'];
 								$nome_comentador = $res[$i]['nome'];
 								$comentario = $res[$i]['comentario'];
-								$curtidas = $res[$i]['pessoas_curtiram']
+								$curtidas = $res[$i]['pessoas_curtiram'];
 								?>
-									<div class="d-flex">
-										<img src="<?=IMAGEM."fotos/$perfil"?>" alt="">
+									<div class="d-flex my-2">
+										<img src="<?=UPLOADS."$perfil"?>" alt="Foto do Usuario" width="50" height="50" style="border-radius: 100%; margin-right: 10px">
+										<div class="d-block">
+											<span style="font-size: 14px"><?=$nome_comentador?></span>
+											<p class="f-family-SourceSerifMediumItalic"><?=$comentario?></p>
+										</div>
 									</div>
 								<?php
 							}
 						} else {
 							?>
-							<div class="alert alert-light my-5" role="alert">
+							<div class="alert alert-light my-2" role="alert">
   								Ainda não há comentários!
 							</div>
 							<?php
