@@ -708,10 +708,14 @@ $data = date("Y-m-d");
         		<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       		</div>
 			<div class="modal-body">
-				<form class="" action="index.html" method="post">
+				<form id="FormComentario" action="index.html" method="post">
 					<div class="row">
-						<div class="col">
-							<textarea name="name" rows="3" cols="3" class="form-control" placeholder="Comentário"></textarea>
+						<div class="col-md-11">
+							<input type="hidden" name="id_grupo" value="<?=$id?>">
+							<textarea name="comentario_text" rows="3" cols="3" class="form-control" placeholder="Comentário"></textarea>
+						</div>
+						<div class="col-md-1">
+							<button type="button" name="salvarcomentario" id="salvarcomentario" class="btn btn-success">OK</button>
 						</div>
 					</div>
 				</form>
@@ -727,8 +731,18 @@ $data = date("Y-m-d");
 								$nome_comentador = $res[$i]['nome'];
 								$comentario = $res[$i]['comentario'];
 								$curtidas = $res[$i]['pessoas_curtiram']
-								$
+								?>
+									<div class="d-flex">
+										<img src="<?=IMAGEM."fotos/$perfil"?>" alt="">
+									</div>
+								<?php
 							}
+						} else {
+							?>
+							<div class="alert alert-light my-5" role="alert">
+  								Ainda não há comentários!
+							</div>
+							<?php
 						}
 					?>
 				</div>
@@ -981,4 +995,26 @@ function carregarImg() {
 			})
 		})
 	}
+</script>
+
+<script type="text/javascript">
+	$(document).ready(function() {
+		$('#salvarcomentario').click(function(event) {
+			event.preventDefault();
+			var pag = "<?=$pag?>";
+			$.ajax({
+				url: pag + '/inserir-comentario.php',
+				method: 'post',
+				data: $('#FormComentario').serialize(),
+				dataType: 'text',
+				success: function(msg) {
+					if (!(msg.trim() == "Não Inserido!")) {
+						window.location = 'index.php?pag='+pag+'&comments-grupo='+msg;
+					} else {
+						alert(msg);
+					}
+				}
+			})
+		})
+	})
 </script>
