@@ -104,9 +104,9 @@ $data = date("Y-m-d");
 							<a href="index.php?pag=<?=$pag?>&comments-grupo=<?=$id?>" class="btn btn-dark mr-2" title="Comentários"><i class="fa-regular fa-comment"></i></a>
 							<a href="index.php?pag=<?=$pag?>&upload-foto-grupo=<?=$id?>" class="btn btn-info mr-2" title="Upload de Foto do Grupo"><i class="fa-solid fa-cloud-arrow-up"></i></a>
         				</div>
-        				<div class="d-flex justify-content-around mt-2">
-				            <a style="cursor: pointer;" href="index.php?pag=<?=$pag?>&jointogroup=<?=$id?>">Mais Detalhes</a>
-				            <a href="index.php?pag=<?=$pag?>&comoparticipar=<?=$id?>">Como Participar</a>
+        				<div class="d-flex mt-2">
+							<a style="cursor: pointer;" href="index.php?pag=<?=$pag?>&jointogroup=<?=$id?>" class="btn btn-info mr-1"><i class="fa-solid fa-file"></i></a>
+    			            <a href="index.php?pag=<?=$pag?>&comoparticipar=<?=$id?>" class="btn btn-info mr-1"><i class="fa-solid fa-question"></i></a>
 			        	</div>
 		        		<?php
 		        	}
