@@ -22,7 +22,12 @@ $pag = "account";
                 <div class="col-lg-3 col-6">
                     <div class="small-box bg-dark">
                         <div class="inner">
-                            <h3>4</h3>
+                            <?php
+                                $query = $pdo->query("SELECT * FROM oracao WHERE id_criador = '$_SESSION[id]'");
+                                $res = $query->fetchAll(PDO::FETCH_ASSOC);
+                                $myPrays = count($res);
+                            ?>
+                            <h3><?=$myPrays?></h3>
                             <p>Minhas Orações</p>
                         </div>
                         <div class="icon">
@@ -36,7 +41,12 @@ $pag = "account";
                 <div class="col-lg-3 col-6">
                     <div class="small-box bg-primary">
                         <div class="inner">
-                            <h3>132</h3>
+                            <?php
+                                $query = $pdo->query("SELECT * FROM oracao");
+                                $res = $query->fetchAll(PDO::FETCH_ASSOC);
+                                $AllPrays = count($res);
+                            ?>
+                            <h3><?=$AllPrays?></h3>
                             <p>Orações Totais</p>
                         </div>
                         <div class="icon">
@@ -50,7 +60,12 @@ $pag = "account";
                 <div class="col-lg-6 col-6">
                     <div class="small-box bg-danger">
                         <div class="inner">
-                            <h3>54</h3>
+                            <?php
+                                $query = $pdo->query("SELECT * FROM emproposito_na_oracao WHERE id_usuario = '$_SESSION[id]'");
+                                $res = $query->fetchAll(PDO::FETCH_ASSOC);
+                                $Proposito = count($res);
+                            ?>
+                            <h3><?=$Proposito?></h3>
                             <p>Orações - Em Próposito</p>
                         </div>
                         <div class="icon">
@@ -64,7 +79,12 @@ $pag = "account";
                 <div class="col-lg-6 col-6">
                     <div class="small-box bg-info">
                         <div class="inner">
-                            <h3>3</h3>
+                            <?php
+                                $query = $pdo->query("SELECT * FROM participando_do_grupo WHERE id_usuario = '$_SESSION[id]'");
+                                $res = $query->fetchAll(PDO::FETCH_ASSOC);
+                                $participando = count($res);
+                            ?>
+                            <h3><?=$participando?></h3>
                             <p>Grupos - Participando</p>
                         </div>
                         <div class="icon">
@@ -78,7 +98,12 @@ $pag = "account";
                 <div class="col-lg-3 col-6">
                     <div class="small-box bg-warning">
                         <div class="inner">
-                            <h3>15</h3>
+                            <?php
+                                $query = $pdo->query("SELECT * FROM grupos_de_oracao;");
+                                $res = $query->fetchAll(PDO::FETCH_ASSOC);
+                                $TotaisGrupo = count($res);
+                            ?>
+                            <h3><?=$TotaisGrupo?></h3>
                             <p>Grupos - Totais</p>
                         </div>
                         <div class="icon">
@@ -92,7 +117,12 @@ $pag = "account";
                 <div class="col-lg-3 col-6">
                     <div class="small-box bg-danger">
                         <div class="inner">
-                            <h3>1</h3>
+                            <?php
+                                $query = $pdo->query("SELECT * FROM grupos_de_oracao WHERE ativo = 'N' AND id_criador = '$_SESSION[id]';");
+                                $res = $query->fetchAll(PDO::FETCH_ASSOC);
+                                $excluir = count($res);
+                            ?>
+                            <h3><?=$excluir?></h3>
                             <p>Grupos - Exclui</p>
                         </div>
                         <div class="icon">
