@@ -3,6 +3,9 @@
 require_once('../protect.php');
 require_once('../config.php');
 require_once('../conexao.php');
+
+$pag = "home";
+
 ?>
 <div class="mt-1 mx-2">
     <button type="button" class="btn btn-default" data-bs-toggle="modal" data-bs-target="#modalNovaOracao"><i class="fa-solid fa-plus"></i> Nova Oração</button>
@@ -202,46 +205,98 @@ require_once('../conexao.php');
     <div class="text-center">
         <h2 class="f-family-Lobster" style="font-size: 45px">Pastores Cadastrados!</h2>
     </div>
-    <div class="d-flex mx-2">
-        <div class="w-50porc">
-            <table class="table">
+    <div class="d-flex mx-2 my-5">
+        <div class="w-65porc">
+            <?php
+                if ($_SESSION['cargo'] == "Pastor") {
+                    ?>
+                    <a href="index.php?pag=<?=$pag?>&cadastrar-pastor" class="btn btn-primary mb-2"><i class="fa-solid fa-check"></i> Cadastrar</a>
+                    <?php
+                }
+                $query = $pdo->query("SELECT * FROM pastores;");
+                $res = $query->fetchAll(PDO::FETCH_ASSOC);
+                if (!(count($res) > 0)) {
+                    ?>
+                        <div class="alert alert-warning" role="alert">
+                            <p style="font-size: 25px"><i class="fa-solid fa-exclamation" style="font-size: 43px !important"></i> Alerta</p>
+                            <p>Não há pastores Cadastrados!</p>
+                        </div>
+                    <?php
+                } else {
+                    ?>
+                        <table class="table">
                 <thead>
                     <tr>
-                        <th scope="col">#</th>
-                        <th scope="col">First</th>
-                        <th scope="col">Last</th>
-                        <th scope="col">Handle</th>
+                        <th scope="col">Nome<?="\u{1F170}"?></th>
+                        <th scope="col">Tempo de Past. <?="\u{1F4C6}"?></th>
+                        <th scope="col">Tele-fone <?="\u{1F4F1}"?></th>
                     </tr>
                 </thead>
                 <tbody>
-                    <tr>
-                        <th scope="row">1</th>
-                        <td>Mark</td>
-                        <td>Otto</td>
-                        <td>@mdo</td>
-                    </tr>
-                    <tr>
-                        <th scope="row">2</th>
-                        <td>Jacob</td>
-                        <td>Thornton</td>
-                        <td>@fat</td>
-                    </tr>
-                    <tr>
-                        <th scope="row">3</th>
-                        <td colspan="2">Larry the Bird</td>
-                        <td>@twitter</td>
-                    </tr>
+                    <?php
+                        $query = $pdo->query("SELECT * FROM pastores;");
+                        $res = $query->fetchAll(PDO::FETCH_ASSOC);
+                        if (count($res) > 0) {
+                            for ($i = 0; $i < count($res); $i++) {
+                                foreach ($res[$i] as $key => $row) {
+                                }
+                                $nome_pas = $res[$i]['nome_pas'];
+                                $tempo_pas = $res[$i]['tempo_pas'];
+                                $telefone_pas = $res[$i]['telefone_pas'];
+                                ?>
+                                    <tr>
+                                        <td><?=$nome_pas?></td>
+                                        <td><?=$tempo_pas?></td>
+                                        <td><=$telefone_pas?></td>
+                                    </tr>
+                                <?php
+                            }
+                        }
+                    ?>
+                   
                 </tbody>
             </table>
+                    <?php
+                }
+            ?>
+            
         </div>
-        <div class="w-50porc">
-            Olá,
+        <div class="w-25porc ml-2">
+            <?php
+                $query = $pdo->query("SELECT * FROM pastores;");
+                $res = $query->fetchAll(PDO::FETCH_ASSOC);
+                if ((count($res) > 0)) {
+                    ?>
+                        <img src="<?=IMAGEM."fotos-pastores/sem-foto.jpg"?>" width="100" height="100">
+                    <?php
+                }
+            ?>
         </div>
     </div>
 </section>
 
 
 <!-- Modals -->
+
+<div class="modal" id="ModalCadPastores" data-bs-backdrop="static" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-xl">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Modal title</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <p>Modal body text goes here.</p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary">Save changes</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
 <div class="modal fade" id="modalNovaOracao" data-bs-backdrop="static" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">

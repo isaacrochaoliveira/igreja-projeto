@@ -162,6 +162,9 @@
     width: 100%;
 }
 
+.w-65porc {
+    width: 65%;
+}
 .bg-dark-tranparent {
     background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.6));
 }
