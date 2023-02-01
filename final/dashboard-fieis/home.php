@@ -198,11 +198,49 @@ require_once('../conexao.php');
         </button>
     </div>
 </section>
-<section>
-    <div class="">
-        <h2>Palavra do !</h2>
+<section class="py-3">
+    <div class="text-center">
+        <h2 class="f-family-Lobster" style="font-size: 45px">Pastores Cadastrados!</h2>
+    </div>
+    <div class="d-flex mx-2">
+        <div class="w-50porc">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th scope="col">#</th>
+                        <th scope="col">First</th>
+                        <th scope="col">Last</th>
+                        <th scope="col">Handle</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <th scope="row">1</th>
+                        <td>Mark</td>
+                        <td>Otto</td>
+                        <td>@mdo</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">2</th>
+                        <td>Jacob</td>
+                        <td>Thornton</td>
+                        <td>@fat</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">3</th>
+                        <td colspan="2">Larry the Bird</td>
+                        <td>@twitter</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="w-50porc">
+            Olá,
+        </div>
     </div>
 </section>
+
+
 <!-- Modals -->
 <div class="modal fade" id="modalNovaOracao" data-bs-backdrop="static" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog">
