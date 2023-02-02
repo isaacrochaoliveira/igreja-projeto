@@ -255,6 +255,11 @@ $pag = "home";
                                                 if ($_SESSION['cargo'] == "Pastor") {
                                                     ?>
                                                         <a href="index.php?pag=<?=$pag?>&edit-pastor=<?=$id_pas?>" title="Editar Cadasrto"><i class="fa-solid fa-pen"></i></a>
+                                                        <a href="index.php?pag=<?=$pag?>&moreinfopas=<?=$id_pas?>" title="Maiores Informações"><i class="fa-sharp fa-solid fa-puzzle-piece"></i></a>
+                                                    <?php
+                                                } else {
+                                                    ?>
+                                                        <a href="index.php?pag=<?=$pag?>&moreinfopas=<?=$id_pas?>" title="Maiores Informações"><i class="fa-regular fa-puzzle"></i></a>
                                                     <?php
                                                 }
                                             ?>
