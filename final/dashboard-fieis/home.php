@@ -285,7 +285,7 @@ $pag = "home";
                 <h5 class="modal-title">Modal title</h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
-            <form action="" method="POST">
+            <form action="" method="POST" id="FormCadastrarPastor">
                 <div class="modal-body">
                     <div class="row">
                         <div class="col-md-6">
@@ -338,7 +338,7 @@ $pag = "home";
                         </div>
                         <div class="col-md-3">
                             <label for="casado_pas">Estado Civil</label>
-                            <input type="text" name="miniterio_pas" id="miniterio_pas" class="form-control" placeholder="Estado Civil">
+                            <input type="text" name="casado_pas" id="casado_pas" class="form-control" placeholder="Estado Civil">
                         </div>
                         <div class="col-md-2">
                             <label for="qunt_casado_pas">Quanto Temp</label>
@@ -351,8 +351,9 @@ $pag = "home";
                     </div>
                 </div>
                 <div class="modal-footer">
-                    <a href="index.php#pastoresTables" class="btn btn-secondary">Close</a>
-                    <button type="button" class="btn btn-primary">Save changes</button>
+                    <input type="hidden" name="id_pas" id="id_pas" value="<?=$_GET['id_pas']?>">
+                    <a href="index.php#pastoresTables" class="btn btn-secondary">Fechar</a>
+                    <button type="button" class="btn btn-primary" name="btn_btnCadastrarPastor" id="btn_btnCadastrarPastor">Salvar</button>
                 </div>
             </form>
         </div>
@@ -669,4 +670,21 @@ $pag = "home";
             })
         })
     }
+</script>
+
+<script>
+    $(document).ready(function() {
+        $('#btn_btnCadastrarPastor').click(function() {
+            var pag = "<?=$pag?>";
+            $.ajax({
+                url: pag + '/inserir_pastor.php',
+                method: 'post',
+                data: $('#FormCadastrarPastor').serialize(),
+                dataType: 'text',
+                success: function(msg) {
+
+                }
+            })
+        })
+    })
 </script>
