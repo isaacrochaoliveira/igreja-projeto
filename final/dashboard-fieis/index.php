@@ -302,5 +302,15 @@
         </script>
         <?php
     }
-?>
+    if (isset($_GET['edit-pastor'])) {
+        ?>
+         <script type="text/javascript">
+            var myModal = new bootstrap.Modal(document.getElementById('ModalCadPastores'), {
+
+            })
+            myModal.show();
+        </script>
+        <?php
+    }
+    ?>
 </html>

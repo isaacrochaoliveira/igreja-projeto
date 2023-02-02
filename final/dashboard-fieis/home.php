@@ -254,7 +254,7 @@ $pag = "home";
                                             <?php
                                                 if ($_SESSION['cargo'] == "Pastor") {
                                                     ?>
-                                                        <a href="index.php?pag=<?=$pag?>&edit-pastor-<?=$id_pas?>" title="Editar Cadasrto"><i class="fa-solid fa-pen"></i></a>
+                                                        <a href="index.php?pag=<?=$pag?>&edit-pastor=<?=$id_pas?>" title="Editar Cadasrto"><i class="fa-solid fa-pen"></i></a>
                                                     <?php
                                                 }
                                             ?>
@@ -295,17 +295,36 @@ $pag = "home";
             <div class="modal-header">
                 <h5 class="modal-title">Modal title</h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                <?php
+                    if (isset($_GET['edit-pastor'])) {
+                        $id_pas = addslashes($_GET['edit-pastor']);
+                        $query_pas = $pdo->query("SELECT * FROM pastores WHERE id_pas = '$id_pas'");
+                        $res_pas = $query_pas->fetchAll(PDO::FETCH_ASSOC);
+                        if (count($res_pas) > 0) {
+                            $nome = $res_pas[0]['nome_pas'];
+                            $email = $res_pas[0]['email_pas'];
+                            $nascionalidade = $res_pas[0]['nasionalidade_pas'];
+                            $tempo_pas = $res_pas[0]['tempo_pas'];
+                            $telefone_pas = $res_pas[0]['telefone_pas'];
+                            $profissao = $res_pas[0]['profissao_pas'];
+                            $ministerio = $res_pas[0]['ministerio_pas'];
+                            $casado_pas = $res_pas[0]['casado_pas'];
+                            $qunt_tempo_casado = $res_pas[0]['qunt_casado_pas'];
+                            $qunt_menbros = $res_pas[0]['qunt_menbros_pas'];
+                        }
+                    }
+                ?>
             </div>
             <form action="" method="POST" id="FormCadastrarPastor">
                 <div class="modal-body">
                     <div class="row">
                         <div class="col-md-6">
                             <label for="nome_pas">Nome</label>
-                            <input type="text" name="nome_pas" id="nome_pas" class="form-control" placeholder="Nome do Pastor">
+                            <input type="text" name="nome_pas" id="nome_pas" class="form-control" placeholder="Nome do Pastor" value="<?=@$nome?>">
                         </div>
                         <div class="col-md-6">
                             <label for="email_pas">E-mail</label>
-                            <input type="email" name="email_pas" id="email_pas" class="form-control" placeholder="Email do Pastor">
+                            <input type="email" name="email_pas" id="email_pas" class="form-control" placeholder="Email do Pastor" value="<?=@$email?>">
                         </div>
                     </div>
                     <div class="row mt-3">
@@ -321,9 +340,15 @@ $pag = "home";
                                             }
                                             $nicename = $res_pas[$i]['nicename'];
                                             $iso = $res_pas[$i]['iso'];
-                                            ?>
-                                                <option value="<?=$nicename?>"><?=$iso?> - <?=$nicename?></option>
-                                            <?php
+                                            if ($nascionalidade == $nicename) {
+                                                ?>
+                                                    <option value="<?=$nicename?>" selected><?=$iso?> - <?=$nicename?></option>
+                                                <?php
+                                            } else {
+                                                ?>
+                                                    <option value="<?=$nicename?>"><?=$iso?> - <?=$nicename?></option>
+                                                <?php
+                                            }
                                         }
                                     }
                                 ?>
@@ -331,38 +356,38 @@ $pag = "home";
                         </div>
                         <div class="col-md-3">
                             <label for="tempo_pas">Tempo de Pastoreio</label>
-                            <input type="number" name="tempo_pas" id="tempo_pas" class="form-control" placeholder="Tempo">
+                            <input type="number" name="tempo_pas" id="tempo_pas" class="form-control" placeholder="Tempo" value="<?=@$tempo_pas?>">
                         </div>
                         <div class="col-md-2">
                             <label for="telefone_pas">Telefone</label>
-                            <input type="number" name="telefone_pas" id="telefone_pas" class="form-control" placeholder="Telefone do Pastor">
+                            <input type="number" name="telefone_pas" id="telefone_pas" class="form-control" placeholder="Telefone do Pastor" value="<?=@$telefone_pas?>">
                         </div>
                         <div class="col-md-3">
                             <label for="profissao_pas">Profeissão</label>
-                            <input type="text" name="profissao_pas" id="profissao_pas" class="form-control" placeholder="Profissão">
+                            <input type="text" name="profissao_pas" id="profissao_pas" class="form-control" placeholder="Profissão" value="<?=@$profissao?>">
                         </div>
                     </div>
                     <div class="row mt-3">
                         <div class="col-md-4">
                             <label for="miniterio_pas">Seu Ministério</label>
-                            <input type="text" name="miniterio_pas" id="miniterio_pas" class="form-control" placeholder="Seu Ministério">
+                            <input type="text" name="miniterio_pas" id="miniterio_pas" class="form-control" placeholder="Seu Ministério" value="<?=@$ministerio?>">
                         </div>
                         <div class="col-md-3">
                             <label for="casado_pas">Estado Civil</label>
-                            <input type="text" name="casado_pas" id="casado_pas" class="form-control" placeholder="Estado Civil">
+                            <input type="text" name="casado_pas" id="casado_pas" class="form-control" placeholder="Estado Civil" value="<?=@$casado_pas?>">
                         </div>
                         <div class="col-md-2">
                             <label for="qunt_casado_pas">Quanto Temp</label>
-                            <input type="number" name="qunt_casado_pas" id="qunt_casado_pas" class="form-control">
+                            <input type="number" name="qunt_casado_pas" id="qunt_casado_pas" class="form-control" value="<?=@$qunt_tempo_casado?>">
                         </div>
                         <div class="col-md-3">
                             <label for="qunt_menbros_pas">Qtda de Membros</label>
-                            <input type="number" name="qunt_menbros_pas" id="qunt_menbros_pas" class="form-control">
+                            <input type="number" name="qunt_menbros_pas" id="qunt_menbros_pas" class="form-control" value="<?=@$qunt_menbros?>">
                         </div>
                     </div>
                 </div>
                 <div class="modal-footer">
-                    <input type="hidden" name="id_pas" id="id_pas" value="<?=$_GET['id_pas']?>">
+                    <input type="hidden" name="id_pas" id="id_pas" value="<?=@$id_pas?>">
                     <a href="index.php#pastoresTables" class="btn btn-secondary">Fechar</a>
                     <button type="button" class="btn btn-primary" name="btn_btnCadastrarPastor" id="btn_btnCadastrarPastor">Salvar</button>
                 </div>
