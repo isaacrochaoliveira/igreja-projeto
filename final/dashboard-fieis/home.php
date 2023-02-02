@@ -230,6 +230,7 @@ $pag = "home";
                         <th scope="col">Nome<?="\u{1F170}"?></th>
                         <th scope="col">Tempo de Past. <?="\u{1F4C6}"?></th>
                         <th scope="col">Tele-fone <?="\u{1F4F1}"?></th>
+                        <th scope="col">Actions</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -240,14 +241,24 @@ $pag = "home";
                             for ($i = 0; $i < count($res); $i++) {
                                 foreach ($res[$i] as $key => $row) {
                                 }
+                                $id_pas = $res[$i]['id_pas'];
                                 $nome_pas = $res[$i]['nome_pas'];
                                 $tempo_pas = $res[$i]['tempo_pas'];
                                 $telefone_pas = $res[$i]['telefone_pas'];
                                 ?>
                                     <tr>
                                         <td><?=$nome_pas?></td>
-                                        <td><?=$tempo_pas?></td>
-                                        <td><=$telefone_pas?></td>
+                                        <td><?=$tempo_pas." Ano(s)"?></td>
+                                        <td><?=$telefone_pas?></td>
+                                        <td>
+                                            <?php
+                                                if ($_SESSION['cargo'] == "Pastor") {
+                                                    ?>
+                                                        <a href="index.php?pag=<?=$pag?>&edit-pastor-<?=$id_pas?>" title="Editar Cadasrto"><i class="fa-solid fa-pen"></i></a>
+                                                    <?php
+                                                }
+                                            ?>
+                                        </td>
                                     </tr>
                                 <?php
                             }
@@ -682,7 +693,11 @@ $pag = "home";
                 data: $('#FormCadastrarPastor').serialize(),
                 dataType: 'text',
                 success: function(msg) {
-
+                    if (msg.trim() == "Pastor Cadastro com Sucesso!") {
+                        window.location = 'index.php?pag='+pag+'#pastoresTables';
+                    } else {
+                        alert(msg);
+                    }
                 }
             })
         })

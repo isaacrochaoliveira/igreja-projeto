@@ -9,7 +9,7 @@ $nascionalidade = addslashes($_POST['nascionalidade_pas']);
 $tempo = addslashes($_POST['tempo_pas']);
 $telefone = addslashes($_POST['telefone_pas']);
 $profissao = addslashes($_POST['profissao_pas']);
-$ministerio = addslashes($_POST['ministerio_pas']);
+$ministerio = addslashes($_POST['miniterio_pas']);
 $casado = addslashes($_POST['casado_pas']);
 $qunt_casado = addslashes($_POST['qunt_casado_pas']);
 $qunt_membros = addslashes($_POST['qunt_menbros_pas']);
@@ -24,8 +24,11 @@ if ($nascionalidade == "") {
     exit();
 }
 
+date_default_timezone_set('America/Sao_Paulo');
+$hoje = date('Y-M-d');
+$agora = date('H:i:s');
 if ($id_pas == "") {
-    $res = $pdo->prepare("INSERT INTO pastores SET nome_pas = :nome_pas, email_pas = :email_pas, tempo_pas = :tempo_pas, telefone_pas = :telefone_pas, nascionalidade_pas = :nascionalidade_pas, profissao_pas = :profissao_pas, ministerio_pas = :ministerio_pas, casado_pas = :casado_pas, qunt_casado_pas = :qunt_casado_pas, qunt_membros_pas = :qunt_membros_pas, data_cadastro_pas = :data_cadastro_pas, hora_cadastro_pas");
+    $res = $pdo->prepare("INSERT INTO pastores SET nome_pas = :nome_pas, email_pas = :email_pas, tempo_pas = :tempo_pas, telefone_pas = :telefone_pas, nasionalidade_pas = :nascionalidade_pas, profissao_pas = :profissao_pas, ministerio_pas = :ministerio_pas, casado_pas = :casado_pas, qunt_casado_pas = :qunt_casado_pas, qunt_menbros_pas = :qunt_membros_pas, data_cadastro_pas = :data_cadastro_pas, hora_cadastro_pas = :hora_cadastro_pas");
     $res->bindValue(':nome_pas', $nome);
     $res->bindValue(':email_pas', $email);
     $res->bindValue(':tempo_pas', $tempo);
@@ -35,9 +38,11 @@ if ($id_pas == "") {
     $res->bindValue(':ministerio_pas', $ministerio);
     $res->bindValue(':casado_pas', $casado);
     $res->bindValue(':qunt_casado_pas', $qunt_casado);
-    $res->bindValue(':qunt_membros', $qunt_membros);
+    $res->bindValue(':qunt_membros_pas', $qunt_membros);
+    $res->bindValue(':data_cadastro_pas', $hoje);
+    $res->bindValue(':hora_cadastro_pas', $agora);
 } else {
-    $res = $pdo->prepare("UPDATE pastores SET nome_pas = :nome_pas, email_pas = :email_pas, tempo_pas = :tempo_pas, telefone_pas = :telefone_pas, nascionalidade_pas = :nascionalidade_pas, profissao_pas = :profissao_pas, ministerio_pas = :ministerio_pas, casado_pas = :casado_pas, qunt_casado_pas = :qunt_casado_pas, qunt_membros_pas = :qunt_membros_pas, data_cadastro_pas = :data_cadastro_pas, hora_cadastro_pas WHERE id_pas = :id_pas");
+    $res = $pdo->prepare("UPDATE pastores SET nome_pas = :nome_pas, email_pas = :email_pas, tempo_pas = :tempo_pas, telefone_pas = :telefone_pas, nasionalidade_pas = :nascionalidade_pas, profissao_pas = :profissao_pas, ministerio_pas = :ministerio_pas, casado_pas = :casado_pas, qunt_casado_pas = :qunt_casado_pas, qunt_menbros_pas = :qunt_membros_pas, data_cadastro_pas = :data_cadastro_pas, hora_cadastro_pas = :hora_cadastro_pas WHERE id_pas = :id_pas");
     $res->bindValue(':id_pas', $id_pas);
     $res->bindValue(':nome_pas', $nome);
     $res->bindValue(':email_pas', $email);
@@ -48,7 +53,9 @@ if ($id_pas == "") {
     $res->bindValue(':ministerio_pas', $ministerio);
     $res->bindValue(':casado_pas', $casado);
     $res->bindValue(':qunt_casado_pas', $qunt_casado);
-    $res->bindValue(':qunt_membros', $qunt_membros);
+    $res->bindValue(':qunt_membros_pas', $qunt_membros);
+    $res->bindValue(':data_cadastro_pas', $hoje);
+    $res->bindValue(':hora_cadastro_pas', $agora);
 }
 
 if ($res->execute()) {
