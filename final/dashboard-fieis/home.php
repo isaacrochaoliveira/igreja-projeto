@@ -235,7 +235,7 @@ $pag = "home";
                 </thead>
                 <tbody>
                     <?php
-                        $query = $pdo->query("SELECT * FROM pastores;");
+                        $query = $pdo->query("SELECT * FROM pastores LIMIT 5;");
                         $res = $query->fetchAll(PDO::FETCH_ASSOC);
                         if (count($res) > 0) {
                             for ($i = 0; $i < count($res); $i++) {
@@ -254,8 +254,7 @@ $pag = "home";
                                             <?php
                                                 if ($_SESSION['cargo'] == "Pastor") {
                                                     ?>
-                                                        <a href="index.php?pag=<?=$pag?>&edit-pastor=<?=$id_pas?>" title="Editar Cadasrto"><i class="fa-solid fa-pen"></i></a>
-                                                        <a href="index.php?pag=<?=$pag?>&moreinfopas=<?=$id_pas?>" title="Maiores Informações"><i class="fa-sharp fa-solid fa-puzzle-piece"></i></a>
+                                                        <a href="index.php?pag=pastores" title="Mais Ações Disponíveis na Página de Pastores" class="btn btn-outline-dark"><i class="fa-solid fa-microphone"></i></a>
                                                     <?php
                                                 } else {
                                                     ?>
@@ -275,20 +274,7 @@ $pag = "home";
                     <?php
                 }
             ?>
-            
         </div>
-        <div class="w-25porc ml-2">
-            <?php
-                $query = $pdo->query("SELECT * FROM pastores;");
-                $res = $query->fetchAll(PDO::FETCH_ASSOC);
-                if ((count($res) > 0)) {
-                    ?>
-                        <img src="<?=IMAGEM."fotos-pastores/sem-foto.jpg"?>" width="100" height="100">
-                    <?php
-                }
-            ?>
-        </div>
-    </div>
 </section>
 
 
@@ -301,7 +287,7 @@ $pag = "home";
                 <h5 class="modal-title">Modal title</h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 <?php
-                    if (isset($_GET['edit-pastor'])) {
+                    if (!(isset($_GET['cadastrar-pastor']))) {
                         $id_pas = addslashes($_GET['edit-pastor']);
                         $query_pas = $pdo->query("SELECT * FROM pastores WHERE id_pas = '$id_pas'");
                         $res_pas = $query_pas->fetchAll(PDO::FETCH_ASSOC);
@@ -392,7 +378,7 @@ $pag = "home";
                     </div>
                 </div>
                 <div class="modal-footer">
-                    <input type="hidden" name="id_pas" id="id_pas" value="<?=@$id_pas?>">
+                    <input type="text" name="id_pas" id="id_pas" value="<?=@$_GET['edit-pastor']?>">
                     <a href="index.php#pastoresTables" class="btn btn-secondary">Fechar</a>
                     <button type="button" class="btn btn-primary" name="btn_btnCadastrarPastor" id="btn_btnCadastrarPastor">Salvar</button>
                 </div>
