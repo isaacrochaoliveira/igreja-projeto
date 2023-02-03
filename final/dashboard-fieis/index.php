@@ -312,5 +312,15 @@
         </script>
         <?php
     }
+    if (isset($_GET['upload-foto-pastor'])) {
+        ?>
+         <script type="text/javascript">
+            var myModal = new bootstrap.Modal(document.getElementById('ModalUploadFotoPerfilPastor'), {
+
+            })
+            myModal.show();
+        </script>
+        <?php
+    }
     ?>
 </html>
