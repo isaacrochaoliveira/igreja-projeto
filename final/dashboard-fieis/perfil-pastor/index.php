@@ -3,7 +3,7 @@
 require_once('../../conexao.php');
 @session_start();
 $id = addslashes($_GET['view']);
-$pag = "perfil-pastor";
+$pag = "index";
 
 $query = $pdo->query("SELECT * FROM pastores WHERE id_pas = '$id'");
 $res = $query->fetchAll(PDO::FETCH_ASSOC);
@@ -100,7 +100,7 @@ if (count($res) > 0) {
 				<?php
 			}
 		?>
-		
+
 	</section>
 </body>
 </html>
@@ -114,7 +114,7 @@ if (count($res) > 0) {
         		<h1 class="modal-title fs-5" id="staticBackdropLabel">Anotações do Pastor</h1>
         		<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         		<div id="Mensagem" class="ml-2">
-        			
+
         		</div>
       		</div>
       		<form action="" method="POST" id="FormAnotacaoPastor">
@@ -144,9 +144,12 @@ if (count($res) > 0) {
 					$('#Mensagem').html("Processando...");
 				},
 				success: function() {
-					window.locatio
+					window.location = 'index.php';
+				},
+				error: function(msg) {
+					alert(msg);
 				}
 			})
 		})
 	})
-</script>o
+</script>
