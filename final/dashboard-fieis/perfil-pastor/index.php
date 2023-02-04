@@ -113,6 +113,9 @@ if (count($res) > 0) {
       		<div class="modal-header">
         		<h1 class="modal-title fs-5" id="staticBackdropLabel">Anotações do Pastor</h1>
         		<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        		<div id="Mensagem" class="ml-2">
+        			
+        		</div>
       		</div>
       		<form action="" method="POST" id="FormAnotacaoPastor">
 	      		<div class="modal-body">
@@ -138,12 +141,12 @@ if (count($res) > 0) {
 				data: $('#FormAnotacaoPastor').serialize(),
 				dataType: 'text',
 				beforeSend: function() {
-					
+					$('#Mensagem').html("Processando...");
 				},
 				success: function() {
-
+					window.locatio
 				}
 			})
 		})
 	})
-</script>
+</script>o
