@@ -79,8 +79,46 @@ if (count($res) > 0) {
 			</div>
 		</div>
 	</section>
-	<section class="mt-3">
+	<section class="mt-3 mx-3">
+		<div>
+			<button type="button" class="btn btn-primary mb-2" data-bs-toggle="modal" data-bs-target="#staticBackdrop"><i class="fa-solid fa-plus"></i></button>
+		</div>
+		<?php
+			$query = $pdo->query("SELECT * FROM anotacoes_pastor WHERE id_pastor = '$id'");
+			$res = $query->fetchAll(PDO::FETCH_ASSOC);
+			if (count($res) > 0) {
+
+			} else {
+				?>
+					<div>
+						<div class="alert alert-warning" role="alert">
+							<span style="font-size: 20px;"><i class="fa-solid fa-exclamation" style="font-size: 36px !important"></i> ATENÇÃO</span>
+  							<p style="margin-bottom: 0px; font-size: 17px;">Sem Anotações para lhe mostrar!</p>
+						</div>
+					</div>
+				<?php
+			}
+		?>
 		
 	</section>
 </body>
 </html>
+
+<!--MODAL-->
+<div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+ 	<div class="modal-dialog">
+    	<div class="modal-content">
+      		<div class="modal-header">
+        		<h1 class="modal-title fs-5" id="staticBackdropLabel">Modal title</h1>
+        		<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      		</div>
+      		<div class="modal-body">
+    			...
+      		</div>
+      		<div class="modal-footer">
+        		<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        		<button type="button" class="btn btn-primary">Understood</button>
+      		</div>
+    	</div>
+  	</div>
+</div>
