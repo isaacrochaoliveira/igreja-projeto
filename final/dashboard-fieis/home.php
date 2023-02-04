@@ -251,17 +251,7 @@ $pag = "home";
                                         <td><?=$tempo_pas." Ano(s)"?></td>
                                         <td><?=$telefone_pas?></td>
                                         <td>
-                                            <?php
-                                                if ($_SESSION['cargo'] == "Pastor") {
-                                                    ?>
-                                                        <a href="index.php?pag=pastores" title="Mais Ações Disponíveis na Página de Pastores" class="btn btn-outline-dark"><i class="fa-solid fa-microphone"></i></a>
-                                                    <?php
-                                                } else {
-                                                    ?>
-                                                        <a href="index.php?pag=<?=$pag?>&moreinfopas=<?=$id_pas?>" title="Maiores Informações"><i class="fa-regular fa-puzzle"></i></a>
-                                                    <?php
-                                                }
-                                            ?>
+                                            <a href="index.php?pag=pastores" title="Mais Ações Disponíveis na Página de Pastores" class="btn btn-outline-dark"><i class="fa-solid fa-microphone"></i></a>
                                         </td>
                                     </tr>
                                 <?php

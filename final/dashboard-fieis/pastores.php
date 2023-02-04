@@ -3,7 +3,12 @@ require_once('../conexao.php');
 @session_start();
 $pag = "pastores";
 ?>
-<section class="d-flex flex-wrap mx-1">
+
+<div class="m-2">
+	<a href="index.php?pag=<?=$pastores?>&cadastrar-pastor" class="btn btn-primary">Novo</a>
+</div>
+
+<section class="d-flex flex-wrap mx-1 mt-4">
 	<?php
 		$query = $pdo->query("SELECT * FROM pastores;");
 		$res = $query->fetchAll(PDO::FETCH_ASSOC);
@@ -14,13 +19,14 @@ $pag = "pastores";
 				$id_pas = $res[$i]['id_pas'];
 				$id_insersor = $res[$i]['id_insersor'];
 				$perfil_pas = $res[$i]['perfil_pas'];
+				$bio_pas = $res[$i]['bio_pas'];
 				$nome_pas = $res[$i]['nome_pas'];
 				?>
 					<div class="card mx-1" style="width: 18rem;">
-					 	<img src="<?=IMAGEM."/fotos-pastores/$perfil_pas"?>" class="card-img-top" alt="Foto de Perfil do Pastor">
+					 	<img src="<?=IMAGEM."/fotos-pastores/$perfil_pas"?>" class="card-img-top" width="200" height="250" alt="Foto de Perfil do Pastor">
 					 	<div class="card-body">
-					    	<h5 class="card-title"><?=$nome_pas?></h5>
-					    	<p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+					    	<h5 class="card-title" style="font-size: 20px; font-weight: 700; margin-bottom: 2px" font-weight: 700;"><?=$nome_pas?></h5>
+					    	<p class="card-text"><?=$bio_pas?></p>
 					    	<a href="#" class="btn btn-primary">Go somewhere</a>
 					    	<div class="mt-3">
 						    	<?php
@@ -47,7 +53,7 @@ $pag = "pastores";
         		<h1 class="modal-title fs-5" id="staticBackdropLabel">Foto de Perfil</h1>
     			<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       		</div>
-      		<form action="<?=URL_BASE."dashboard-fieis/pastores/foto-perfil.phpp"?>" method="POST" enctype="multipart/form-data">
+      		<form action="<?=URL_BASE."dashboard-fieis/pastores/foto-perfil.php"?>" method="POST" enctype="multipart/form-data">
 	      		<div class="modal-body">
 	      			<div class="row">
 	      				<div class="col text-center">
@@ -57,8 +63,9 @@ $pag = "pastores";
 	      			</div>
 	      		</div>
 	      		<div class="modal-footer">
-	        		<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-	        		<button type="button" class="btn btn-primary">Understood</button>
+	      			<input type="hidden" name="id_pas" value="<?=$_GET['upload-foto-pastor']?>">
+	        		<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
+	        		<button type="submit" class="btn btn-primary">Salvar</button>
 	      		</div>
       		</form>
 		</div>
