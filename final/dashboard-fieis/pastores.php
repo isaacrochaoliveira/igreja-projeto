@@ -47,11 +47,12 @@ $pag = "pastores";
         		<h1 class="modal-title fs-5" id="staticBackdropLabel">Foto de Perfil</h1>
     			<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       		</div>
-      		<form>
+      		<form action="<?=URL_BASE."dashboard-fieis/pastores/foto-perfil.phpp"?>" method="POST" enctype="multipart/form-data">
 	      		<div class="modal-body">
 	      			<div class="row">
-	      				<div class="col">
-	      					<img src="<?=$">
+	      				<div class="col text-center">
+	      					<img src="<?=IMAGEM."fotos-pastores/sem-foto.jpg"?>" alt="Foto de Perfil do Pastor" width="200" id="target" name="target">
+      						<input type="file" name="perfil_pas" class="form-control mt-2" onchange="carregarImg()">
 	      				</div>
 	      			</div>
 	      		</div>
@@ -63,3 +64,23 @@ $pag = "pastores";
 		</div>
   	</div>
 </div>
+
+<script type="text/javascript">
+function carregarImg() {
+
+    var target = document.getElementById('target');
+    var file = document.querySelector("input[type=file]").files[0];
+    var reader = new FileReader();
+
+    reader.onloadend = function () {
+        target.src = reader.result;
+    };
+
+    if (file) {
+        reader.readAsDataURL(file);
+
+    } else {
+        target.src = "";
+    }
+}
+</script>
