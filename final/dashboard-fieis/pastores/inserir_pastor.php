@@ -1,6 +1,7 @@
 <?php
 
 require_once("../../conexao.php");
+@session_start();
 
 $id_pas = addslashes($_POST['id_pas']);
 $bio_pas = addslashes($_POST['bio_pas']);
@@ -26,10 +27,11 @@ if ($nascionalidade == "") {
 }
 
 date_default_timezone_set('America/Sao_Paulo');
-$hoje = date('Y-M-d');
+$hoje = date('Y-m-d');
 $agora = date('H:i:s');
 if ($id_pas == "") {
-    $res = $pdo->prepare("INSERT INTO pastores SET perfil_pas = :perfil_pas, nome_pas = :nome_pas, bio_pas = :bio_pas, email_pas = :email_pas, tempo_pas = :tempo_pas, telefone_pas = :telefone_pas, nasionalidade_pas = :nascionalidade_pas, profissao_pas = :profissao_pas, ministerio_pas = :ministerio_pas, casado_pas = :casado_pas, qunt_casado_pas = :qunt_casado_pas, qunt_menbros_pas = :qunt_membros_pas, data_cadastro_pas = :data_cadastro_pas, hora_cadastro_pas = :hora_cadastro_pas");
+    $res = $pdo->prepare("INSERT INTO pastores SET id_insersor = :id_insersor, perfil_pas = :perfil_pas, nome_pas = :nome_pas, bio_pas = :bio_pas, email_pas = :email_pas, tempo_pas = :tempo_pas, telefone_pas = :telefone_pas, nasionalidade_pas = :nascionalidade_pas, profissao_pas = :profissao_pas, ministerio_pas = :ministerio_pas, casado_pas = :casado_pas, qunt_casado_pas = :qunt_casado_pas, qunt_menbros_pas = :qunt_membros_pas, data_cadastro_pas = :data_cadastro_pas, hora_cadastro_pas = :hora_cadastro_pas");
+    $res->bindValue(':id_insersor', $id_insersor);
     $res->bindValue(':nome_pas', $nome);
     $res->bindValue(':perfil_pas', "sem-foto.jpg");
     $res->bindValue(':bio_pas', $bio_pas);
