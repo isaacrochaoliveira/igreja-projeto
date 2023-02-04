@@ -3,6 +3,7 @@
 require_once('../../conexao.php');
 @session_start();
 $id = addslashes($_GET['view']);
+$pag = "perfil-pastor";
 
 $query = $pdo->query("SELECT * FROM pastores WHERE id_pas = '$id'");
 $res = $query->fetchAll(PDO::FETCH_ASSOC);
@@ -103,22 +104,46 @@ if (count($res) > 0) {
 	</section>
 </body>
 </html>
-
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 <!--MODAL-->
 <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
- 	<div class="modal-dialog">
+ 	<div class="modal-dialog modal-xl">
     	<div class="modal-content">
       		<div class="modal-header">
-        		<h1 class="modal-title fs-5" id="staticBackdropLabel">Modal title</h1>
+        		<h1 class="modal-title fs-5" id="staticBackdropLabel">Anotações do Pastor</h1>
         		<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       		</div>
-      		<div class="modal-body">
-    			...
-      		</div>
-      		<div class="modal-footer">
-        		<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-        		<button type="button" class="btn btn-primary">Understood</button>
-      		</div>
+      		<form action="" method="POST" id="FormAnotacaoPastor">
+	      		<div class="modal-body">
+	    			<h2>Criar Anotação</h2>
+	    			<textarea cols="05" rows="05" placeholder="Digite Aqui..." class="form-control"></textarea>
+	       		</div>
+	      		<div class="modal-footer">
+	        		<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
+	        		<button type="button" class="btn btn-primary" name="CadastrarAnotacaoPastor" id="CadastrarAnotacaoPastor">Criar Anotação</button>
+	      		</div>
+      		</form>
     	</div>
   	</div>
 </div>
+
+<script type="text/javascript">
+	$(document).ready(function() {
+		$('#CadastrarAnotacaoPastor').click(function() {
+			var pag = "<?=$pag?>";
+			$.ajax({
+				url: pag + '/inserir_anotacao.php',
+				method: "POST",
+				data: $('#FormAnotacaoPastor').serialize(),
+				dataType: 'text',
+				beforeSend: function() {
+					
+				},
+				success: function() {
+
+				}
+			})
+		})
+	})
+</script>
