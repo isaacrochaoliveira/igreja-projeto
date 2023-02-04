@@ -13,6 +13,12 @@ if (count($res) > 0) {
 	$nascionalidade_pas = $res[0]['nasionalidade_pas'];
 	$tempo = $res[0]['tempo_pas'];
 	$telefone = $res[0]['telefone_pas'];
+	$email = $res[0]['email_pas'];
+	$profissao = $res[0]['profissao_pas'];
+	$ministerio = $res[0]['ministerio_pas'];
+	$casado = $res[0]['casado_pas'];
+	$qunt_tempo_casado = $res[0]['qunt_casado_pas'];
+	$qunt_menbros = $res[0]['qunt_menbros_pas'];
 }
 
 ?>
@@ -39,18 +45,42 @@ if (count($res) > 0) {
 			<h1 class="f-family-LobsterTwoBoldItalic"><?=$nome_pas?></h1>
 			<p class="f-family-ComfortaaRegular"><?=$bio_pas?></p>
 			<hr>
-			<div class="d-block">
-				<div>
-					<p><?="\u{1F5FA}".$nascionalidade_pas?></p>
+			<div class="d-flex flex-wrap">
+				<div class="d-block">
+					<div class="ml-2">
+						<p><?="\u{1F5FA} ".$nascionalidade_pas?></p>
+					</div>
+					<div class="ml-2">
+						<p><?="\u{1F3A4} ".$tempo?> Ano(s)</p>
+					</div>
+					<div class="ml-2">
+						<p><?="\u{260E} "?> (62) <?=$telefone?></p>
+					</div>
 				</div>
-				<div>
-					<p><?="\u{1F3A4}".$tempo?> Ano(s)</p>
+				<div class="d-block">
+					<div class="ml-2">
+						<p><?="\u{1F582} ".$email?></p>
+					</div>
+					<div class="ml-2">
+						<p><?="\u{1F6E0} ".$profissao?></p>
+					</div>
+					<div class="ml-2">
+						<p><?="\u{271D} ".$ministerio?></p>
+					</div>
 				</div>
-				<div>
-					<p>(62) <?=$telefone?></p>
+				<div class="d-block">
+					<div class="ml-2">
+						<p><?="\u{2642} ".$casado ?> há <?=$qunt_tempo_casado?> Ano(s)</p>
+					</div>
+					<div class="ml-2">
+						<p><?="\u{1F9E1} ".$qunt_menbros?> Membros</p>
+					</div>
 				</div>
 			</div>
 		</div>
+	</section>
+	<section class="mt-3">
+		
 	</section>
 </body>
 </html>
