@@ -11,6 +11,8 @@ if (count($res) > 0) {
 	$nome_pas = $res[0]['nome_pas'];
 	$bio_pas = $res[0]['bio_pas'];
 	$nascionalidade_pas = $res[0]['nasionalidade_pas'];
+	$tempo = $res[0]['tempo_pas'];
+	$telefone = $res[0]['telefone_pas'];
 }
 
 ?>
@@ -37,14 +39,16 @@ if (count($res) > 0) {
 			<h1 class="f-family-LobsterTwoBoldItalic"><?=$nome_pas?></h1>
 			<p class="f-family-ComfortaaRegular"><?=$bio_pas?></p>
 			<hr>
-			<p><?=$nascionalidade_pas?></p>
-			<div class="input-group mb-3 w-50porc">
-				<span class="input-group-text" id="basic-addon1">@</span>
-			 	<input type="text" class="form-control" placeholder="Username" aria-label="Username" aria-describedby="basic-addon1">
-			</div>
-			<div class="input-group mb-3 w-50porc">
-				<span class="input-group-text" id="basic-addon1">@</span>
-			 	<input type="text" class="form-control" placeholder="Username" aria-label="Username" aria-describedby="basic-addon1">
+			<div class="d-block">
+				<div>
+					<p><?="\u{1F5FA}".$nascionalidade_pas?></p>
+				</div>
+				<div>
+					<p><?="\u{1F3A4}".$tempo?> Ano(s)</p>
+				</div>
+				<div>
+					<p>(62) <?=$telefone?></p>
+				</div>
 			</div>
 		</div>
 	</section>
