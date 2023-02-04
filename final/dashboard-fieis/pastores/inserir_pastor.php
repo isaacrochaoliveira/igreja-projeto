@@ -3,6 +3,7 @@
 require_once("../../conexao.php");
 
 $id_pas = addslashes($_POST['id_pas']);
+$bio_pas = addslashes($_POST['bio_pas']);
 $nome = addslashes($_POST['nome_pas']);
 $email = addslashes($_POST['email_pas']);
 $nascionalidade = addslashes($_POST['nascionalidade_pas']);
@@ -28,8 +29,10 @@ date_default_timezone_set('America/Sao_Paulo');
 $hoje = date('Y-M-d');
 $agora = date('H:i:s');
 if ($id_pas == "") {
-    $res = $pdo->prepare("INSERT INTO pastores SET nome_pas = :nome_pas, email_pas = :email_pas, tempo_pas = :tempo_pas, telefone_pas = :telefone_pas, nasionalidade_pas = :nascionalidade_pas, profissao_pas = :profissao_pas, ministerio_pas = :ministerio_pas, casado_pas = :casado_pas, qunt_casado_pas = :qunt_casado_pas, qunt_menbros_pas = :qunt_membros_pas, data_cadastro_pas = :data_cadastro_pas, hora_cadastro_pas = :hora_cadastro_pas");
+    $res = $pdo->prepare("INSERT INTO pastores SET perfil_pas = :perfil_pas, nome_pas = :nome_pas, bio_pas = :bio_pas, email_pas = :email_pas, tempo_pas = :tempo_pas, telefone_pas = :telefone_pas, nasionalidade_pas = :nascionalidade_pas, profissao_pas = :profissao_pas, ministerio_pas = :ministerio_pas, casado_pas = :casado_pas, qunt_casado_pas = :qunt_casado_pas, qunt_menbros_pas = :qunt_membros_pas, data_cadastro_pas = :data_cadastro_pas, hora_cadastro_pas = :hora_cadastro_pas");
     $res->bindValue(':nome_pas', $nome);
+    $res->bindValue(':perfil_pas', "sem-foto.jpg");
+    $res->bindValue(':bio_pas', $bio_pas);
     $res->bindValue(':email_pas', $email);
     $res->bindValue(':tempo_pas', $tempo);
     $res->bindValue(':telefone_pas', $telefone);
@@ -42,9 +45,10 @@ if ($id_pas == "") {
     $res->bindValue(':data_cadastro_pas', $hoje);
     $res->bindValue(':hora_cadastro_pas', $agora);
 } else {
-    $res = $pdo->prepare("UPDATE pastores SET nome_pas = :nome_pas, email_pas = :email_pas, tempo_pas = :tempo_pas, telefone_pas = :telefone_pas, nasionalidade_pas = :nascionalidade_pas, profissao_pas = :profissao_pas, ministerio_pas = :ministerio_pas, casado_pas = :casado_pas, qunt_casado_pas = :qunt_casado_pas, qunt_menbros_pas = :qunt_membros_pas, data_cadastro_pas = :data_cadastro_pas, hora_cadastro_pas = :hora_cadastro_pas WHERE id_pas = :id_pas");
+    $res = $pdo->prepare("UPDATE pastores SET nome_pas = :nome_pas, bio_pas = :bio_pas, email_pas = :email_pas, tempo_pas = :tempo_pas, telefone_pas = :telefone_pas, nasionalidade_pas = :nascionalidade_pas, profissao_pas = :profissao_pas, ministerio_pas = :ministerio_pas, casado_pas = :casado_pas, qunt_casado_pas = :qunt_casado_pas, qunt_menbros_pas = :qunt_membros_pas, data_cadastro_pas = :data_cadastro_pas, hora_cadastro_pas = :hora_cadastro_pas WHERE id_pas = :id_pas");
     $res->bindValue(':id_pas', $id_pas);
     $res->bindValue(':nome_pas', $nome);
+    $res->bindValu(':bio_pas', $bio_pas);
     $res->bindValue(':email_pas', $email);
     $res->bindValue(':tempo_pas', $tempo);
     $res->bindValue(':telefone_pas', $telefone);
