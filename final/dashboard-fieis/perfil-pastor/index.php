@@ -82,7 +82,7 @@ if (count($res) > 0) {
 	</section>
 	<section class="mt-3 mx-3">
 		<div>
-			<button type="button" class="btn btn-primary mb-2" data-bs-toggle="modal" data-bs-target="#staticBackdrop"><i class="fa-solid fa-plus"></i></button>
+			<button type="button" class="btn btn-primary mb-2" data-bs-toggle="modal" data-bs-target="#ModalCriarAnotacao"><i class="fa-solid fa-plus"></i></button>
 		</div>
 		<?php
 			$query = $pdo->query("SELECT * FROM anotacoes_pastor WHERE id_pastor = '$id'");
@@ -107,7 +107,7 @@ if (count($res) > 0) {
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 <!--MODAL-->
-<div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+<div class="modal fade" id="ModalCriarAnotacao" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
  	<div class="modal-dialog modal-xl">
     	<div class="modal-content">
       		<div class="modal-header">
@@ -119,8 +119,8 @@ if (count($res) > 0) {
       		</div>
       		<form action="" method="POST" id="FormAnotacaoPastor">
 	      		<div class="modal-body">
-	    			<h2>Criar Anotação</h2>
-	    			<textarea cols="05" rows="05" placeholder="Digite Aqui..." class="form-control"></textarea>
+	    			<h5>Criar Anotação</h5>
+	    			<textarea cols="05" rows="05" placeholder="Digite Aqui..." class="form-control" name="anotacao" id="anotacao"></textarea>
 	       		</div>
 	      		<div class="modal-footer">
 	        		<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
