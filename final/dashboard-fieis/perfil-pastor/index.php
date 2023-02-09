@@ -90,7 +90,8 @@ if (count($res) > 0) {
 				if (count($res_ver) > 0) {
 					?>
 						<button type="button" class="btn btn-primary mb-2" data-bs-toggle="modal" data-bs-target="#ModalCriarAnotacao"><i class="fa-solid fa-plus"></i></button>
-						<button  type="button" class="btn btn-primary mb-2" data-bs-toggle="modal" data-bs-target="#ModalUploadFotoPerfilPastor" class="btn btn-outline-secondary mb-2"><i class="fa-solid fa-upload"></i></button>
+						<button type="button" data-bs-toggle="modal" data-bs-target="#ModalUploadFotoPerfilPastor" class="btn btn-outline-secondary mb-2"><i class="fa-solid fa-upload"></i></button>
+						<button type="button" data-bs-toggle="modal" data-bs-target="#ModalCadPastores" class="btn btn-danger mb-2"><i class="fa-solid fa-pen"></i></button>
 					<?php
 				}
 			?>
@@ -175,12 +176,19 @@ if (count($res) > 0) {
       		<div class="modal-header">
         		<h1 class="modal-title fs-5" id="staticBackdropLabel">Foto de Perfil</h1>
     			<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+				<?php
+					$query = $pdo->query("SELECT * FROM pastores WHERE id_pas =  '$id'");
+					$res = $query->fetchAll(PDO::FETCH_ASSOC);
+					if (count($res) > 0) {
+						$imagem = $res[0]['perfil_pas'];
+					}
+				?>
       		</div>
       		<form action="<?=URL_BASE."dashboard-fieis/perfil-pastor/index/foto-perfil.php"?>" method="POST" enctype="multipart/form-data">
 	      		<div class="modal-body">
 	      			<div class="row">
 	      				<div class="col text-center">
-	      					<img src="<?=IMAGEM."fotos-pastores/sem-foto.jpg"?>" alt="Foto de Perfil do Pastor" width="200" id="target" name="target">
+	      					<img src="<?=IMAGEM."fotos-pastores/".$imagem?>" alt="Foto de Perfil do Pastor" width="200" id="target" name="target">
       						<input type="file" name="perfil_pas" class="form-control mt-2" onchange="carregarImg()">
 	      				</div>
 	      			</div>
@@ -193,6 +201,115 @@ if (count($res) > 0) {
       		</form>
 		</div>
   	</div>
+</div>
+
+<div class="modal" id="ModalCadPastores" data-bs-backdrop="static" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-xl">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Modal title</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                <?php
+					$query_pas = $pdo->query("SELECT * FROM pastores WHERE id_pas = '$id'");
+					$res_pas = $query_pas->fetchAll(PDO::FETCH_ASSOC);
+					if (count($res_pas) > 0) {
+						$nome = $res_pas[0]['nome_pas'];
+						$email = $res_pas[0]['email_pas'];
+						$nascionalidade = $res_pas[0]['nasionalidade_pas'];
+						$tempo_pas = $res_pas[0]['tempo_pas'];
+						$telefone_pas = $res_pas[0]['telefone_pas'];
+						$profissao = $res_pas[0]['profissao_pas'];
+						$ministerio = $res_pas[0]['ministerio_pas'];
+						$casado_pas = $res_pas[0]['casado_pas'];
+						$qunt_tempo_casado = $res_pas[0]['qunt_casado_pas'];
+						$qunt_menbros = $res_pas[0]['qunt_menbros_pas'];
+					}
+                ?>
+            </div>
+            <form action="" method="POST" id="FormCadastrarPastor">
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <label for="nome_pas">Nome</label>
+                            <input type="text" name="nome_pas" id="nome_pas" class="form-control" placeholder="Nome do Pastor" value="<?=@$nome?>">
+                        </div>
+                        <div class="col-md-6">
+                            <label for="email_pas">E-mail</label>
+                            <input type="email" name="email_pas" id="email_pas" class="form-control" placeholder="Email do Pastor" value="<?=@$email?>">
+                        </div>
+                    </div>
+                    <div class="row mt-3">
+                        <div class="col-md-4">
+                            <label for="nascionalidade_pas">País de Origem</label>
+                            <select class="form-select" name="nascionalidade_pas">
+                                <?php
+                                    $query_pas = $pdo->query("SELECT * FROM country order by nicename desc;");
+                                    $res_pas = $query_pas->fetchAll(PDO::FETCH_ASSOC);
+                                    if (count($res_pas) > 0) {
+                                        for ($i = 0; $i < count($res_pas); $i++) {
+                                            foreach ($res_as[$i] as $key => $value) {
+                                            }
+                                            $nicename = $res_pas[$i]['nicename'];
+                                            $iso = $res_pas[$i]['iso'];
+                                            if ($nascionalidade == $nicename) {
+                                                ?>
+                                                    <option value="<?=$nicename?>" selected><?=$iso?> - <?=$nicename?></option>
+                                                <?php
+                                            } else {
+                                                ?>
+                                                    <option value="<?=$nicename?>"><?=$iso?> - <?=$nicename?></option>
+                                                <?php
+                                            }
+                                        }
+                                    }
+                                ?>
+                            </select>
+                        </div>
+                        <div class="col-md-3">
+                            <label for="tempo_pas">Tempo de Pastoreio</label>
+                            <input type="number" name="tempo_pas" id="tempo_pas" class="form-control" placeholder="Tempo" value="<?=@$tempo_pas?>">
+                        </div>
+                        <div class="col-md-2">
+                            <label for="telefone_pas">Telefone</label>
+                            <input type="number" name="telefone_pas" id="telefone_pas" class="form-control" placeholder="Telefone do Pastor" value="<?=@$telefone_pas?>">
+                        </div>
+                        <div class="col-md-3">
+                            <label for="profissao_pas">Profeissão</label>
+                            <input type="text" name="profissao_pas" id="profissao_pas" class="form-control" placeholder="Profissão" value="<?=@$profissao?>">
+                        </div>
+                    </div>
+                    <div class="row mt-3">
+                        <div class="col-md-4">
+                            <label for="miniterio_pas">Seu Ministério</label>
+                            <input type="text" name="miniterio_pas" id="miniterio_pas" class="form-control" placeholder="Seu Ministério" value="<?=@$ministerio?>">
+                        </div>
+                        <div class="col-md-3">
+                            <label for="casado_pas">Estado Civil</label>
+                            <input type="text" name="casado_pas" id="casado_pas" class="form-control" placeholder="Estado Civil" value="<?=@$casado_pas?>">
+                        </div>
+                        <div class="col-md-2">
+                            <label for="qunt_casado_pas">Quanto Temp</label>
+                            <input type="number" name="qunt_casado_pas" id="qunt_casado_pas" class="form-control" value="<?=@$qunt_tempo_casado?>">
+                        </div>
+                        <div class="col-md-3">
+                            <label for="qunt_menbros_pas">Qtda de Membros</label>
+                            <input type="number" name="qunt_menbros_pas" id="qunt_menbros_pas" class="form-control" value="<?=@$qunt_menbros?>">
+                        </div>
+                    </div>
+                    <div class="row">
+                    	<div class="col mt-2">
+                    		<textarea cols="5" rows="5" class="form-control" placeholder="SUA BIO (BIOGRAFIA)" name="bio_pas"></textarea>
+                    	</div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <input type="hidden" name="id_pas" id="id_pas" value="<?=@$id?>">
+                    <a href="index.php#pastoresTables" class="btn btn-secondary">Fechar</a>
+                    <button type="button" class="btn btn-primary" name="btn_btnCadastrarPastor" id="btn_btnCadastrarPastor">Salvar</button>
+                </div>
+            </form>
+        </div>
+    </div>
 </div>
 
 <script type="text/javascript">
@@ -237,4 +354,26 @@ function carregarImg() {
 			})
 		})
 	})
+</script>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script>
+    $(document).ready(function() {
+        $('#btn_btnCadastrarPastor').click(function() {
+            var pag = "<?=$pag?>";
+            $.ajax({
+                url: pag + '/inserir_pastor.php',
+                method: 'post',
+                data: $('#FormCadastrarPastor').serialize(),
+                dataType: 'text',
+                success: function(msg) {
+                    if ($.isNumeric(msg)) {
+                        window.location = 'index.php?view='+msg;
+                    } else {
+                        alert(msg);
+                    }
+                }
+            })
+        })
+    })
 </script>
