@@ -205,8 +205,8 @@ $pag = "home";
     <div class="text-center">
         <h2 class="f-family-Lobster" style="font-size: 45px">Pastores Cadastrados!</h2>
     </div>
-    <div class="d-flex mx-2 my-5">
-        <div class="w-65porc">
+    <div class="mx-2 my-5">
+        <div class="">
             <?php
                 if ($_SESSION['cargo'] == "Pastor") {
                     ?>
@@ -230,12 +230,13 @@ $pag = "home";
                         <th scope="col">Nome<?="\u{1F170}"?></th>
                         <th scope="col">Tempo de Past. <?="\u{1F4C6}"?></th>
                         <th scope="col">Tele-fone <?="\u{1F4F1}"?></th>
-                        <th scope="col">Actions</th>
+                        <th scope="col">E-mail</th>
+                        <th scope="col">Go</th>
                     </tr>
                 </thead>
                 <tbody>
                     <?php
-                        $query = $pdo->query("SELECT * FROM pastores LIMIT 5;");
+                        $query = $pdo->query("SELECT * FROM pastores LIMIT 10;");
                         $res = $query->fetchAll(PDO::FETCH_ASSOC);
                         if (count($res) > 0) {
                             for ($i = 0; $i < count($res); $i++) {
@@ -245,14 +246,14 @@ $pag = "home";
                                 $nome_pas = $res[$i]['nome_pas'];
                                 $tempo_pas = $res[$i]['tempo_pas'];
                                 $telefone_pas = $res[$i]['telefone_pas'];
+                                $email = $res[$i]['email_pas'];
                                 ?>
                                     <tr>
                                         <td><?=$nome_pas?></td>
                                         <td><?=$tempo_pas." Ano(s)"?></td>
                                         <td><?=$telefone_pas?></td>
-                                        <td>
-                                            <a href="index.php?pag=pastores" title="Mais Ações Disponíveis na Página de Pastores" class="btn btn-outline-dark"><i class="fa-solid fa-microphone"></i></a>
-                                        </td>
+                                        <td><?=$email?></td>
+                                        <td><a class="text-dark" href="index.php?pag=pastores">Todos os Pastores <?="\u{261B}"?></a></td>
                                     </tr>
                                 <?php
                             }

@@ -5,6 +5,7 @@ $pag = "pastores";
 ?>
 
 <div class="m-2">
+    <a href="index.php" class="btn btn-outline-light">Voltar</a>
 	<a href="index.php?pag=<?=$pag?>&cadastrar-pastor" class="btn btn-primary">Novo</a>
 </div>
 
