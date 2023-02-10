@@ -1,6 +1,6 @@
 <?php
 
-require_once('../../conexao.php');
+require_once('../../../conexao.php');
 @session_start();
 
 $perfil_pas = $_FILES['perfil_pas'];
@@ -14,7 +14,7 @@ if (!$perfil_pas['tmp_name'] == null) {
         die("Falha no envio de arquivo!");
     }
 
-    $path = "../../assets/img/fotos-pastores/";
+    $path = "../../../assets/img/fotos-pastores/";
     $arq = uniqid();
 
     $ext = strtolower(pathinfo($perfil_pas['name'], PATHINFO_EXTENSION));
