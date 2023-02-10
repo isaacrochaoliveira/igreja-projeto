@@ -25,56 +25,58 @@ if (count($res) > 0) {
 ?>
 <!DOCTYPE html>
 <html>
+
 <head>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<title><?=$nome_pas?></title>
+	<title><?= $nome_pas ?></title>
 	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css">
 	<link rel="stylesheet" href="../../assets/styles/dashboard.css">
-    <link rel="stylesheet" href="../../assets/styles/adminlte.min.css">
+	<link rel="stylesheet" href="../../assets/styles/adminlte.min.css">
 </head>
+
 <body>
 	<div class="bg-dark p-4">
-		<a href="<?=URL_BASE."dashboard-fieis/index.php?pag=pastores"?>" class="btn btn-outline-light"><i class="fa-solid fa-arrow-left-long"></i> Voltar</a>
+		<a href="<?= URL_BASE . "dashboard-fieis/index.php?pag=pastores" ?>" class="btn btn-outline-light"><i class="fa-solid fa-arrow-left-long"></i> Voltar</a>
 	</div>
 	<section class="d-flex mt-2">
 		<div class="w-30porc">
-			<img src="<?=IMAGEM."/fotos-pastores/$perfil"?>" width="350" height="350" style="border-radius: 100%;" alt="Foto de Perfil do Pastor">
+			<img src="<?= IMAGEM . "/fotos-pastores/$perfil" ?>" width="350" height="350" style="border-radius: 100%;" alt="Foto de Perfil do Pastor">
 		</div>
 		<div class="m-2 w-75porc" style="word-break: break-all;">
-			<h1 class="f-family-LobsterTwoBoldItalic"><?=$nome_pas?></h1>
-			<p class="f-family-ComfortaaRegular"><?=$bio_pas?></p>
+			<h1 class="f-family-LobsterTwoBoldItalic"><?= $nome_pas ?></h1>
+			<p class="f-family-ComfortaaRegular"><?= $bio_pas ?></p>
 			<hr>
 			<div class="d-flex flex-wrap">
 				<div class="d-block">
 					<div class="ml-2">
-						<p><?="\u{1F5FA} ".$nascionalidade_pas?></p>
+						<p><?= "\u{1F5FA} " . $nascionalidade_pas ?></p>
 					</div>
 					<div class="ml-2">
-						<p><?="\u{1F3A4} ".$tempo?> Ano(s)</p>
+						<p><?= "\u{1F3A4} " . $tempo ?> Ano(s)</p>
 					</div>
 					<div class="ml-2">
-						<p><?="\u{260E} "?> (62) <?=$telefone?></p>
-					</div>
-				</div>
-				<div class="d-block">
-					<div class="ml-2">
-						<p><?="\u{1F582} ".$email?></p>
-					</div>
-					<div class="ml-2">
-						<p><?="\u{1F6E0} ".$profissao?></p>
-					</div>
-					<div class="ml-2">
-						<p><?="\u{271D} ".$ministerio?></p>
+						<p><?= "\u{260E} " ?> (62) <?= $telefone ?></p>
 					</div>
 				</div>
 				<div class="d-block">
 					<div class="ml-2">
-						<p><?="\u{2642} ".$casado ?> há <?=$qunt_tempo_casado?> Ano(s)</p>
+						<p><?= "\u{1F582} " . $email ?></p>
 					</div>
 					<div class="ml-2">
-						<p><?="\u{1F9E1} ".$qunt_menbros?> Membros</p>
+						<p><?= "\u{1F6E0} " . $profissao ?></p>
+					</div>
+					<div class="ml-2">
+						<p><?= "\u{271D} " . $ministerio ?></p>
+					</div>
+				</div>
+				<div class="d-block">
+					<div class="ml-2">
+						<p><?= "\u{2642} " . $casado ?> há <?= $qunt_tempo_casado ?> Ano(s)</p>
+					</div>
+					<div class="ml-2">
+						<p><?= "\u{1F9E1} " . $qunt_menbros ?> Membros</p>
 					</div>
 				</div>
 			</div>
@@ -85,60 +87,77 @@ if (count($res) > 0) {
 			<button type="button" class="btn btn-primary mb-2" data-bs-toggle="modal" data-bs-target="#ModalCriarAnotacao"><i class="fa-solid fa-plus"></i></button>
 		</div>
 		<?php
-			$query = $pdo->query("SELECT * FROM anotacoes_pastor WHERE id_pastor = '$id'");
-			$res = $query->fetchAll(PDO::FETCH_ASSOC);
-			if (count($res) > 0) {
+		$query = $pdo->query("SELECT * FROM anotacoes_pastor WHERE id_pastor = '$id'");
+		$res = $query->fetchAll(PDO::FETCH_ASSOC);
+		if (count($res) > 0) {
+			for ($i = 0; $i < count($res); $i++) {
+				foreach ($res[$i] as $key => $value) {
+				}
+				$anotacao = $res[$i]['texto_anotacao'];
+				$data = $res[$i]['data_anotacao'];
+				$hora = $res[$i]['hora_anotacao'];
+				$data = implode('/', array_reverse(explode('-', $data))); 
 
-			} else {
 				?>
-					<div>
-						<div class="alert alert-warning" role="alert">
-							<span style="font-size: 20px;"><i class="fa-solid fa-exclamation" style="font-size: 36px !important"></i> ATENÇÃO</span>
-  							<p style="margin-bottom: 0px; font-size: 17px;">Sem Anotações para lhe mostrar!</p>
+					<div class="card" style="width: 24rem;">
+						<div class="card-body">
+							<h6><?=$data?> às <?=$hora?></h6>
+							<p class="card-text"><?=$anotacao?></p>
 						</div>
 					</div>
 				<?php
 			}
+		} else {
+			?>
+			<div>
+				<div class="alert alert-warning" role="alert">
+					<span style="font-size: 20px;"><i class="fa-solid fa-exclamation" style="font-size: 36px !important"></i> ATENÇÃO</span>
+					<p style="margin-bottom: 0px; font-size: 17px;">Sem Anotações para lhe mostrar!</p>
+				</div>
+			</div>
+		<?php
+		}
 		?>
 
 	</section>
 </body>
+
 </html>
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 <!--MODAL-->
 <div class="modal fade" id="ModalCriarAnotacao" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
- 	<div class="modal-dialog modal-xl">
-    	<div class="modal-content">
-      		<div class="modal-header">
-        		<h1 class="modal-title fs-5" id="staticBackdropLabel">Anotações do Pastor</h1>
-        		<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-        		<div id="Mensagem" class="ml-2">
+	<div class="modal-dialog modal-xl">
+		<div class="modal-content">
+			<div class="modal-header">
+				<h1 class="modal-title fs-5" id="staticBackdropLabel">Anotações do Pastor</h1>
+				<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+				<div id="Mensagem" class="ml-2">
 
-        		</div>
+				</div>
 				<?php
-					$view = addslashes($_GET['view']);
+				$view = addslashes($_GET['view']);
 				?>
-      		</div>
-      		<form action="" method="POST" id="FormAnotacaoPastor">
-	      		<div class="modal-body">
-	    			<h5>Criar Anotação</h5>
-	    			<textarea cols="05" rows="05" placeholder="Digite Aqui..." class="form-control" name="anotacao" id="anotacao"></textarea>
-	       		</div>
-	      		<div class="modal-footer">
-					<input type="text" name="view" value="<?=$view?>">
-	        		<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
-	        		<button type="button" class="btn btn-primary" name="CadastrarAnotacaoPastor" id="CadastrarAnotacaoPastor">Criar Anotação</button>
-	      		</div>
-      		</form>
-    	</div>
-  	</div>
+			</div>
+			<form action="" method="POST" id="FormAnotacaoPastor">
+				<div class="modal-body">
+					<h5>Criar Anotação</h5>
+					<textarea cols="05" rows="05" placeholder="Digite Aqui..." class="form-control" name="anotacao" id="anotacao"></textarea>
+				</div>
+				<div class="modal-footer">
+					<input type="text" name="view" value="<?= $view ?>">
+					<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
+					<button type="button" class="btn btn-primary" name="CadastrarAnotacaoPastor" id="CadastrarAnotacaoPastor">Criar Anotação</button>
+				</div>
+			</form>
+		</div>
+	</div>
 </div>
 
 <script type="text/javascript">
 	$(document).ready(function() {
 		$('#CadastrarAnotacaoPastor').click(function() {
-			var pag = "<?=$pag?>";
+			var pag = "<?= $pag ?>";
 			$.ajax({
 				url: pag + '/inserir_anotacao.php',
 				method: "POST",
@@ -149,7 +168,7 @@ if (count($res) > 0) {
 				},
 				success: function(msg) {
 					if ($.isNumeric(msg)) {
-						window.location = 'index.php?view='+msg;
+						window.location = 'index.php?view=' + msg;
 					} else {
 						alert(msg);
 					}
