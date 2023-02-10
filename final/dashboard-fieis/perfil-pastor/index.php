@@ -116,6 +116,9 @@ if (count($res) > 0) {
         		<div id="Mensagem" class="ml-2">
 
         		</div>
+				<?php
+					$view = addslashes($_GET['view']);
+				?>
       		</div>
       		<form action="" method="POST" id="FormAnotacaoPastor">
 	      		<div class="modal-body">
@@ -123,6 +126,7 @@ if (count($res) > 0) {
 	    			<textarea cols="05" rows="05" placeholder="Digite Aqui..." class="form-control" name="anotacao" id="anotacao"></textarea>
 	       		</div>
 	      		<div class="modal-footer">
+					<input type="text" name="view" value="<?=$view?>">
 	        		<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
 	        		<button type="button" class="btn btn-primary" name="CadastrarAnotacaoPastor" id="CadastrarAnotacaoPastor">Criar Anotação</button>
 	      		</div>
@@ -143,11 +147,12 @@ if (count($res) > 0) {
 				beforeSend: function() {
 					$('#Mensagem').html("Processando...");
 				},
-				success: function() {
-					window.location = 'index.php';
-				},
-				error: function(msg) {
-					alert(msg);
+				success: function(msg) {
+					if ($.isNumeric(msg)) {
+						window.location = 'index.php?view='+msg;
+					} else {
+						alert(msg);
+					}
 				}
 			})
 		})
