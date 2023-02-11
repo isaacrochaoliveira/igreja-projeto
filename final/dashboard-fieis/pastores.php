@@ -68,7 +68,7 @@ $pag = "pastores";
 					 	<div class="card-body">
 					    	<h5 class="card-title" style="font-size: 20px; font-weight: 700; margin-bottom: 2px" font-weight: 700;"><?=$nome_pas?></h5>
 					    	<p class="card-text"><?=$bio_pas?></p>
-	    					<a href="<?=URL_BASE."/dashboard-fieis/perfil-pastor/index.php?view=".$id_pas?>"><img src="<?=IMAGEM."/fotos-pastores/$perfil_pas"?>" width="30" height="30" alt="Foto de Perfil do Pastor" style="border-radius: 100%";/></a>
+	    					<a href="<?=URL_BASE."/dashboard-fieis/perfil-pastor/index.php?view_pas=".$id_pas?>"><img src="<?=IMAGEM."/fotos-pastores/$perfil_pas"?>" width="30" height="30" alt="Foto de Perfil do Pastor" style="border-radius: 100%";/></a>
 					  	</div>
 					</div>
 				<?php

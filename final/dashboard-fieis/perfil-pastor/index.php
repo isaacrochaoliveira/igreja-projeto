@@ -2,24 +2,44 @@
 
 require_once('../../conexao.php');
 @session_start();
-$id = addslashes($_GET['view']);
 $pag = "index";
 
-$query = $pdo->query("SELECT * FROM pastores WHERE id_pas = '$id'");
-$res = $query->fetchAll(PDO::FETCH_ASSOC);
-if (count($res) > 0) {
-	$perfil = $res[0]['perfil_pas'];
-	$nome_pas = $res[0]['nome_pas'];
-	$bio_pas = $res[0]['bio_pas'];
-	$nascionalidade_pas = $res[0]['nasionalidade_pas'];
-	$tempo = $res[0]['tempo_pas'];
-	$telefone = $res[0]['telefone_pas'];
-	$email = $res[0]['email_pas'];
-	$profissao = $res[0]['profissao_pas'];
-	$ministerio = $res[0]['ministerio_pas'];
-	$casado = $res[0]['casado_pas'];
-	$qunt_tempo_casado = $res[0]['qunt_casado_pas'];
-	$qunt_menbros = $res[0]['qunt_menbros_pas'];
+if (isset($_GET['view'])) {
+	$id = addslashes($_GET['view']);
+	$query = $pdo->query("SELECT * FROM pastores WHERE id_pas = '$id'");
+	$res = $query->fetchAll(PDO::FETCH_ASSOC);
+	if (count($res) > 0) {
+		$perfil = $res[0]['perfil_pas'];
+		$nome_pas = $res[0]['nome_pas'];
+		$bio_pas = $res[0]['bio_pas'];
+		$nascionalidade_pas = $res[0]['nasionalidade_pas'];
+		$tempo = $res[0]['tempo_pas'];
+		$telefone = $res[0]['telefone_pas'];
+		$email = $res[0]['email_pas'];
+		$profissao = $res[0]['profissao_pas'];
+		$ministerio = $res[0]['ministerio_pas'];
+		$casado = $res[0]['casado_pas'];
+		$qunt_tempo_casado = $res[0]['qunt_casado_pas'];
+		$qunt_menbros = $res[0]['qunt_menbros_pas'];
+	}
+} else if (isset($_GET['view_pas'])) {
+	$id = addslashes($_GET['view_pas']);
+	$query = $pdo->query("SELECT * FROM pastoras WHERE id_pas_ras = '$id'");
+	$res = $query->fetchAll(PDO::FETCH_ASSOC);
+	if (count($res) > 0) {
+		$perfil = $res[0]['perfil_pas_ras'];
+		$nome_pas = $res[0]['nome_pas_ras'];
+		$bio_pas = $res[0]['bio_pas_ras'];
+		$nascionalidade_pas = $res[0]['nascionalidade_pas_ras'];
+		$tempo = $res[0]['tempo_pas_ras'];
+		$telefone = $res[0]['telefone_pas_ras'];
+		$email = $res[0]['email_pas_ras'];
+		$profissao = $res[0]['profissao_pas_ras'];
+		$ministerio = $res[0]['ministerio_pas_ras'];
+		$casado = $res[0]['casado_pas_ras'];
+		$qunt_tempo_casado = $res[0]['qunt_casado_pas_ras'];
+		$qunt_menbros = $res[0]['qunt_menbros_pas_ras'];
+	}
 }
 
 ?>
@@ -85,7 +105,11 @@ if (count($res) > 0) {
 	<section class="mt-3 mx-3">
 		<div>
 			<?php
-				$query_ver = $pdo->query("SELECT * FROM pastores WHERE id_pas = '$id' AND id_insersor = '$_SESSION[id]'");
+				if (isset($_GET['view'])) {
+					$query_ver = $pdo->query("SELECT * FROM pastores WHERE id_pas = '$id' AND id_insersor = '$_SESSION[id]'");
+				} else if (isset($_GET['view_pas'])) {
+					$query_ver = $pdo->query("SELECT * FROM pastoras WHERE id_pas_ras = '$id' AND id_insersor_pas = '$_SESSION[id]'");
+				}
 				$res_ver = $query_ver->fetchAll(PDO::FETCH_ASSOC);
 				if (count($res_ver) > 0) {
 					?>
