@@ -207,13 +207,17 @@ if (isset($_GET['view'])) {
 	<div class="modal-dialog modal-xl">
 		<div class="modal-content">
 			<div class="modal-header">
-				<h1 class="modal-title fs-5" id="staticBackdropLabel">Anotações do Pastor</h1>
+				<h1 class="modal-title fs-5" id="staticBackdropLabel">Anotações do Pastor/Pastoras</h1>
 				<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
 				<div id="Mensagem" class="ml-2">
 
 				</div>
 				<?php
-				$view = addslashes($_GET['view']);
+				if (isset($_GET['view'])) {
+					$view = addslashes($_GET['view']);
+				} else if (isset($_GET['view_pas'])) {
+					$view_pas = addslashes($_GET['view_pas']);
+				}
 				?>
 			</div>
 			<form action="" method="POST" id="FormAnotacaoPastor">
@@ -222,7 +226,18 @@ if (isset($_GET['view'])) {
 					<textarea cols="05" rows="05" placeholder="Digite Aqui..." class="form-control" name="anotacao" id="anotacao"></textarea>
 				</div>
 				<div class="modal-footer">
-					<input type="hidden" name="view" value="<?= $view ?>">
+					<?php
+						if (isset($_get['view'])) {
+							?>
+								<input type="hidden" name="escolha" value="view"> 
+							<?php
+						} else if (isset($_GET['view_pas'])) {
+							?>
+								<input type="hidden" name="escolha" value="view_">
+							<?php
+						}
+					?>        
+					<input type="hidden" name="view" value="<?=isset($view) ? $view : $view_pas ?>">
 					<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
 					<button type="button" class="btn btn-primary" name="CadastrarAnotacaoPastor" id="CadastrarAnotacaoPastor">Criar Anotação</button>
 				</div>
