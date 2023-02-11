@@ -134,7 +134,7 @@ if (isset($_GET['view'])) {
 						$anotacao = $res[$i]['texto_anotacao'];
 						$data = $res[$i]['data_anotacao'];
 						$hora = $res[$i]['hora_anotacao'];
-						$data = implode('/', array_reverse(explode('-', $data))); 
+						$data = implode('/', array_reverse(explode('-', $data)));
 
 						?>
 							<div class="card" style="width: 24rem;">
@@ -171,7 +171,7 @@ if (isset($_GET['view'])) {
 						$anotacao = $res[$i]['texto_anotacao'];
 						$data = $res[$i]['data_anotacao'];
 						$hora = $res[$i]['hora_anotacao'];
-						$data = implode('/', array_reverse(explode('-', $data))); 
+						$data = implode('/', array_reverse(explode('-', $data)));
 						?>
 							<div class="card" style="width: 24rem;">
 								<div class="card-body">
@@ -227,16 +227,16 @@ if (isset($_GET['view'])) {
 				</div>
 				<div class="modal-footer">
 					<?php
-						if (isset($_get['view'])) {
+						if (!(isset($_get['view']))) {
 							?>
-								<input type="hidden" name="escolha" value="view"> 
+								<input type="hidden" name="escolha" value="view_pas">
 							<?php
-						} else if (isset($_GET['view_pas'])) {
+						} else {
 							?>
-								<input type="hidden" name="escolha" value="view_">
+								<input type="hidden" name="escolha" value="view">
 							<?php
 						}
-					?>        
+					?>
 					<input type="hidden" name="view" value="<?=isset($view) ? $view : $view_pas ?>">
 					<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
 					<button type="button" class="btn btn-primary" name="CadastrarAnotacaoPastor" id="CadastrarAnotacaoPastor">Criar Anotação</button>
