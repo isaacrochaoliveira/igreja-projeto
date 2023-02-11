@@ -3,6 +3,7 @@
 require_once("../../conexao.php");
 @session_start();
 
+$id_insersor = $_SESSION['id'];
 $escolha = addslashes($_POST['escolha']);
 $id_pas = addslashes($_POST['id_pas']);
 $bio_pas = addslashes($_POST['bio_pas']);
@@ -73,8 +74,8 @@ if ($escolha == 'pastor') {
     }
 } else {
     if ($id_pas == "") {
-        $res = $pdo->prepare("INSERT INTO pastoras SET id_insersor_ras = :id_insersor_ras, perfil_pas_ras = :perfil_pas_ras, nome_pas_ras = :nome_pas_ras, bio_pas_ras = :bio_pas_ras, email_pas_ras = :email_pas_ras, tempo_pas_ras = :tempo_pas_ras, telefone_pas_ras = :telefone_pas_ras, nascionalidade_pas_ras = :nascionalidade_pas_ras, profissao_pas_ras = :profissao_pas_ras, ministerio_pas_ras = :ministerio_pas_ras, casado_pas_ras = :casado_pas_ras, qunt_casado_pas_ras = :qunt_casado_pas_ras, qunt_menbros_pas_ras = :qunt_membros_pas_ras, data_cadastro_pas_ras = :data_cadastro_pas_ras, hora_cadastro_pas_ras = :hora_cadastro_pas_ras");
-        $res->bindValue(':id_insersor_ras', $id_insersor);
+        $res = $pdo->prepare("INSERT INTO pastoras SET id_insersor_pas = :id_insersor_pas, perfil_pas_ras = :perfil_pas_ras, nome_pas_ras = :nome_pas_ras, bio_pas_ras = :bio_pas_ras, email_pas_ras = :email_pas_ras, tempo_pas_ras = :tempo_pas_ras, telefone_pas_ras = :telefone_pas_ras, nascionalidade_pas_ras = :nascionalidade_pas_ras, profissao_pas_ras = :profissao_pas_ras, ministerio_pas_ras = :ministerio_pas_ras, casado_pas_ras = :casado_pas_ras, qunt_casado_pas_ras = :qunt_casado_pas_ras, qunt_menbros_pas_ras = :qunt_membros_pas_ras, data_cadastro_pas_ras = :data_cadastro_pas_ras, hora_cadastro_pas_ras = :hora_cadastro_pas_ras");
+        $res->bindValue(':id_insersor_pas', $id_insersor);
         $res->bindValue(':nome_pas_ras', $nome);
         $res->bindValue(':perfil_pas_ras', "sem-foto.jpg");
         $res->bindValue(':bio_pas_ras', $bio_pas);
