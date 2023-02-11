@@ -121,44 +121,81 @@ if (isset($_GET['view'])) {
 			?>
 		</div>
 		<?php
-		$query = $pdo->query("SELECT * FROM anotacoes_pastor WHERE id_pastor = '$id'");
-		$res = $query->fetchAll(PDO::FETCH_ASSOC);
-		if (count($res) > 0) {
-			?>
-			<diV class="d-flex flex-wrap mx-1">
-				<?php
-				for ($i = 0; $i < count($res); $i++) {
-					foreach ($res[$i] as $key => $value) {
-					}
-					$anotacao = $res[$i]['texto_anotacao'];
-					$data = $res[$i]['data_anotacao'];
-					$hora = $res[$i]['hora_anotacao'];
-					$data = implode('/', array_reverse(explode('-', $data))); 
-
-					?>
-						<div class="card" style="width: 24rem;">
-							<div class="card-body">
-								<h6><?=$data?> às <?=$hora?></h6>
-								<p class="card-text"><?=$anotacao?></p>
-							</div>
-						</div>
-					<?php
-				}
+		if (isset($_GET['view'])) {
+			$query = $pdo->query("SELECT * FROM anotacoes_pastor WHERE id_pastor = '$id'");
+			$res = $query->fetchAll(PDO::FETCH_ASSOC);
+			if (count($res) > 0) {
 				?>
-			</div>
-			<?php
-		} else {
-			?>
-			<div>
-				<div class="alert alert-warning" role="alert">
-					<span style="font-size: 20px;"><i class="fa-solid fa-exclamation" style="font-size: 36px !important"></i> ATENÇÃO</span>
-					<p style="margin-bottom: 0px; font-size: 17px;">Sem Anotações para lhe mostrar!</p>
+				<diV class="d-flex flex-wrap mx-1">
+					<?php
+					for ($i = 0; $i < count($res); $i++) {
+						foreach ($res[$i] as $key => $value) {
+						}
+						$anotacao = $res[$i]['texto_anotacao'];
+						$data = $res[$i]['data_anotacao'];
+						$hora = $res[$i]['hora_anotacao'];
+						$data = implode('/', array_reverse(explode('-', $data))); 
+
+						?>
+							<div class="card" style="width: 24rem;">
+								<div class="card-body">
+									<h6><?=$data?> às <?=$hora?></h6>
+									<p class="card-text"><?=$anotacao?></p>
+								</div>
+							</div>
+						<?php
+					}
+					?>
 				</div>
-			</div>
-		<?php
+				<?php
+			} else {
+				?>
+				<div>
+					<div class="alert alert-warning" role="alert">
+						<span style="font-size: 20px;"><i class="fa-solid fa-exclamation" style="font-size: 36px !important"></i> ATENÇÃO</span>
+						<p style="margin-bottom: 0px; font-size: 17px;">Sem Anotações para lhe mostrar!</p>
+					</div>
+				</div>
+			<?php
+			}
+		} else if (isset($_GET['view_pas'])) {
+			$query = $pdo->query("SELECT * FROM anotacoes_pastora WHERE id_pastora = '$id'");
+			$res = $query->fetchAll(PDO::FETCH_ASSOC);
+			if (count($res) > 0) {
+				?>
+				<diV class="d-flex flex-wrap mx-1">
+					<?php
+					for ($i = 0; $i < count($res); $i++) {
+						foreach ($res[$i] as $key => $value) {
+						}
+						$anotacao = $res[$i]['texto_anotacao'];
+						$data = $res[$i]['data_anotacao'];
+						$hora = $res[$i]['hora_anotacao'];
+						$data = implode('/', array_reverse(explode('-', $data))); 
+						?>
+							<div class="card" style="width: 24rem;">
+								<div class="card-body">
+									<h6><?=$data?> às <?=$hora?></h6>
+									<p class="card-text"><?=$anotacao?></p>
+								</div>
+							</div>
+						<?php
+					}
+					?>
+				</div>
+				<?php
+			} else {
+				?>
+				<div>
+					<div class="alert alert-warning" role="alert">
+						<span style="font-size: 20px;"><i class="fa-solid fa-exclamation" style="font-size: 36px !important"></i> ATENÇÃO</span>
+						<p style="margin-bottom: 0px; font-size: 17px;">Sem Anotações para lhe mostrar!</p>
+					</div>
+				</div>
+				<?php
+			}
 		}
 		?>
-
 	</section>
 </body>
 
