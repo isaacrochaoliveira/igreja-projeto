@@ -214,7 +214,7 @@ $pag = "home";
                     ?>
                         <div class="alert alert-warning" role="alert">
                             <p style="font-size: 25px"><i class="fa-solid fa-exclamation" style="font-size: 43px !important"></i> Alerta</p>
-                            <p>Não há pastores Cadastrados!</p>
+                            <p>Não há pastores Cadastrados! <a class="text-dark" href="index.php?pag=pastores">Pastores <?="\u{261B}"?></a></p>
                         </div>
                     <?php
                 } else {
@@ -269,7 +269,7 @@ $pag = "home";
                     ?>
                         <div class="alert alert-warning" role="alert">
                             <p style="font-size: 25px"><i class="fa-solid fa-exclamation" style="font-size: 43px !important"></i> Alerta</p>
-                            <p>Não há pastoras Cadastrados!</p>
+                            <p>Não há pastoras Cadastrados! <a class="text-dark" href="index.php?pag=pastores#pastoras">Pastoras <?="\u{261B}"?></a></p>
                         </div>
                     <?php
                 } else {
