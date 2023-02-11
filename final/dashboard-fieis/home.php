@@ -201,18 +201,13 @@ $pag = "home";
         </button>
     </div>
 </section>
-<section class="py-3" id="pastoresTables">
+<section class="d-flex flex-column py-3" id="pastoresTables">
     <div class="text-center">
         <h2 class="f-family-Lobster" style="font-size: 45px">Pastores Cadastrados!</h2>
     </div>
-    <div class="mx-2 my-5">
+    <div class="my-5 w-100porc">
         <div class="">
             <?php
-                if ($_SESSION['cargo'] == "Pastor") {
-                    ?>
-                    <a href="index.php?pag=<?=$pag?>&cadastrar-pastor" class="btn btn-primary mb-2"><i class="fa-solid fa-check"></i> Cadastrar</a>
-                    <?php
-                }
                 $query = $pdo->query("SELECT * FROM pastores;");
                 $res = $query->fetchAll(PDO::FETCH_ASSOC);
                 if (!(count($res) > 0)) {
@@ -247,6 +242,61 @@ $pag = "home";
                                 $tempo_pas = $res[$i]['tempo_pas'];
                                 $telefone_pas = $res[$i]['telefone_pas'];
                                 $email = $res[$i]['email_pas'];
+                                ?>
+                                    <tr>
+                                        <td><?=$nome_pas?></td>
+                                        <td><?=$tempo_pas." Ano(s)"?></td>
+                                        <td><?=$telefone_pas?></td>
+                                        <td><?=$email?></td>
+                                        <td><a class="text-dark" href="index.php?pag=pastores">Todos os Pastores <?="\u{261B}"?></a></td>
+                                    </tr>
+                                <?php
+                            }
+                        }
+                    ?>
+                   
+                </tbody>
+            </table>
+                    <?php
+                }
+            ?>
+        </div>
+        <div class="my-5 w-100porc">
+            <?php
+                $query = $pdo->query("SELECT * FROM pastoras;");
+                $res = $query->fetchAll(PDO::FETCH_ASSOC);
+                if (!(count($res) > 0)) {
+                    ?>
+                        <div class="alert alert-warning" role="alert">
+                            <p style="font-size: 25px"><i class="fa-solid fa-exclamation" style="font-size: 43px !important"></i> Alerta</p>
+                            <p>Não há pastoras Cadastrados!</p>
+                        </div>
+                    <?php
+                } else {
+                    ?>
+                        <table class="table">
+                <thead>
+                    <tr>
+                        <th scope="col">Nome<?="\u{1F170}"?></th>
+                        <th scope="col">Tempo de Past. <?="\u{1F4C6}"?></th>
+                        <th scope="col">Tele-fone <?="\u{1F4F1}"?></th>
+                        <th scope="col">E-mail</th>
+                        <th scope="col">Go</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <?php
+                        $query = $pdo->query("SELECT * FROM pastores LIMIT 10;");
+                        $res = $query->fetchAll(PDO::FETCH_ASSOC);
+                        if (count($res) > 0) {
+                            for ($i = 0; $i < count($res); $i++) {
+                                foreach ($res[$i] as $key => $row) {
+                                }
+                                $id_pas = $res[$i]['id_pas_ras'];
+                                $nome_pas = $res[$i]['nome_pas_ras'];
+                                $tempo_pas = $res[$i]['tempo_pas_ras'];
+                                $telefone_pas = $res[$i]['telefone_pas_ras'];
+                                $email = $res[$i]['email_pas_ras'];
                                 ?>
                                     <tr>
                                         <td><?=$nome_pas?></td>
