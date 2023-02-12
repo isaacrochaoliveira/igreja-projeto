@@ -173,7 +173,7 @@ if (isset($_GET['view'])) {
 						$hora = $res[$i]['hora_anotacao_pastora'];
 						$data = implode('/', array_reverse(explode('-', $data)));
 						?>
-							<div class="card" style="width: 24rem;">
+							<div class="card mt-3" style="width: 24rem;">
 								<div class="card-body">
 									<h6><?=$data?> às <?=$hora?></h6>
 									<p class="card-text"><?=$anotacao?></p>
@@ -411,7 +411,15 @@ function carregarImg() {
 <script type="text/javascript">
 	$(document).ready(function() {
 		$('#CadastrarAnotacaoPastor').click(function() {
-			var pag = "<?= $pag ?>";
+			var pag = "<?=$pag?>";
+			<?php
+			if (isset($_GET['view'])) {
+				$view = "view";
+			} else if (isset($_GET['view_pas'])) {
+				$view = "view_pas";
+			}
+			?>
+			var view = "<?=$view?>";
 			$.ajax({
 				url: pag + '/inserir_anotacao.php',
 				method: "POST",
@@ -422,7 +430,7 @@ function carregarImg() {
 				},
 				success: function(msg) {
 					if ($.isNumeric(msg)) {
-						window.location = 'index.php?view=' + msg;
+						window.location = 'index.php?'+view+'='+msg;
 					} else {
 						alert(msg);
 					}
@@ -437,6 +445,14 @@ function carregarImg() {
     $(document).ready(function() {
         $('#btn_btnCadastrarPastor').click(function() {
             var pag = "<?=$pag?>";
+			<?php
+			if (isset($_GET['view'])) {
+				$view = "view";
+			} else if (isset($_GET['view_pas'])) {
+				$view = "view_pas";
+			}
+			?>
+			var view = "<?=$view?>";
             $.ajax({
                 url: pag + '/inserir_pastor.php',
                 method: 'post',
@@ -444,7 +460,7 @@ function carregarImg() {
                 dataType: 'text',
                 success: function(msg) {
                     if ($.isNumeric(msg)) {
-                        window.location = 'index.php?view='+msg;
+                        window.location = 'index.php?'+view+'='+msg;
                     } else {
                         alert(msg);
                     }
