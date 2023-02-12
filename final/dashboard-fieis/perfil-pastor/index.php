@@ -168,9 +168,9 @@ if (isset($_GET['view'])) {
 					for ($i = 0; $i < count($res); $i++) {
 						foreach ($res[$i] as $key => $value) {
 						}
-						$anotacao = $res[$i]['texto_anotacao'];
-						$data = $res[$i]['data_anotacao'];
-						$hora = $res[$i]['hora_anotacao'];
+						$anotacao = $res[$i]['texto_anotacao_pastora'];
+						$data = $res[$i]['data_anotacao_pastora'];
+						$hora = $res[$i]['hora_anotacao_pastora'];
 						$data = implode('/', array_reverse(explode('-', $data)));
 						?>
 							<div class="card" style="width: 24rem;">
