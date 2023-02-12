@@ -253,7 +253,15 @@ if (isset($_GET['view'])) {
         		<h1 class="modal-title fs-5" id="staticBackdropLabel">Foto de Perfil</h1>
     			<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
 				<?php
-					$query = $pdo->query("SELECT * FROM pastores WHERE id_pas =  '$id'");
+					if (isset($_GET['view'])) {
+						$id_pa = addslashes($_GET['view']);
+						$query = $pdo->query("SELECT * FROM pastores WHERE id_pas =  '$id_pa'");
+					} else {
+						if (isset($_GET['view_pas'])) {
+							$id_pa = addslashes($_GET['view_pas']);
+							$query = $pdo->query("SELECT * FROM pastoras WHERE id_pas_ras =  '$id_pa'");
+						}
+					}
 					$res = $query->fetchAll(PDO::FETCH_ASSOC);
 					if (count($res) > 0) {
 						$imagem = $res[0]['perfil_pas'];
@@ -270,7 +278,18 @@ if (isset($_GET['view'])) {
 	      			</div>
 	      		</div>
 	      		<div class="modal-footer">
-	      			<input type="hidden" name="id_pas" value="<?=$id?>">
+					<?php
+						if (isset($_GET['view'])) {
+							?>
+								<input type="hidden" name="escolha" value="view">
+							<?php
+						} else if (isset($_GET['view_pas'])) {
+							?>
+								<input type="hidden" name="escolha" value="view_pas">
+							<?php
+						}
+					?>
+	      			<input type="hidden" name="id_pas" value="<?=isset($id_pa) ? $id_pa : $id_pa ?>">
 	        		<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
 	        		<button type="submit" class="btn btn-primary">Salvar</button>
 	      		</div>

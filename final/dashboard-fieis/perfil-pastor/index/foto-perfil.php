@@ -5,6 +5,7 @@ require_once('../../../conexao.php');
 
 $perfil_pas = $_FILES['perfil_pas'];
 $id_pas = addslashes($_POST['id_pas']);
+$escolha = addslashes($_POST['escolha']);
 if (!$perfil_pas['tmp_name'] == null) {
     if ($perfil_pas['size'] > 2097152) {
         die("Tamanho Máxino do arquivo: 2MB");
@@ -23,7 +24,13 @@ if (!$perfil_pas['tmp_name'] == null) {
     } else {
         $bool = move_uploaded_file($perfil_pas['tmp_name'], $path.$arq.'.'.$ext);
         $name = $arq.'.'.$ext;
-        $pdo->query("UPDATE pastores SET perfil_pas = '$name' WHERE id_pas = '$id_pas'");
+        if ($escolha == 'view') {
+            $pdo->query("UPDATE pastores SET perfil_pas = '$name' WHERE id_pas = '$id_pas'");
+        } else {
+            if ($escolha = 'view_pas') {
+                $pdo->query("UPDATE pastores SET perfil_pas_ras = '$name' WHERE id_pas_ras = '$id_pas'");
+            }
+        }
         echo "<script>location.href = '../index.php?pag=pastores'</script>";
     }
 }
