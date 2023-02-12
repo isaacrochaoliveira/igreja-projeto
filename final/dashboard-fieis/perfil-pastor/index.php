@@ -256,16 +256,21 @@ if (isset($_GET['view'])) {
 					if (isset($_GET['view'])) {
 						$id_pa = addslashes($_GET['view']);
 						$query = $pdo->query("SELECT * FROM pastores WHERE id_pas =  '$id_pa'");
+						$res = $query->fetchAll(PDO::FETCH_ASSOC);
+						if (count($res) > 0) {
+							$imagem = $res[0]['perfil_pas'];
+						}
 					} else {
 						if (isset($_GET['view_pas'])) {
 							$id_pa = addslashes($_GET['view_pas']);
 							$query = $pdo->query("SELECT * FROM pastoras WHERE id_pas_ras =  '$id_pa'");
+							$res = $query->fetchAll(PDO::FETCH_ASSOC);
+							if (count($res) > 0) {
+								$imagem = $res[0]['perfil_pas_ras'];
+							}
 						}
 					}
-					$res = $query->fetchAll(PDO::FETCH_ASSOC);
-					if (count($res) > 0) {
-						$imagem = $res[0]['perfil_pas'];
-					}
+
 				?>
       		</div>
       		<form action="<?=URL_BASE."dashboard-fieis/perfil-pastor/index/foto-perfil.php"?>" method="POST" enctype="multipart/form-data">
@@ -289,7 +294,7 @@ if (isset($_GET['view'])) {
 							<?php
 						}
 					?>
-	      			<input type="hidden" name="id_pas" value="<?=isset($id_pa) ? $id_pa : $id_pa ?>">
+	      			<input type="hidden" name="id_pas" value="<?=$id_pa?>">
 	        		<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
 	        		<button type="submit" class="btn btn-primary">Salvar</button>
 	      		</div>
