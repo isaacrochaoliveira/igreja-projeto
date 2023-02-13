@@ -320,6 +320,19 @@ $pag = "home";
             ?>
         </div>
 </section>
+<section>
+    <h2 class="text-center f-family-Lobster">
+        JEJUNS
+    </h2>
+    <div class="d-flex flex-wrap">
+        <div class="w-50porc bg-primary">
+
+        </div>
+        <div class="w-50porc bg-danger">
+            
+        </div>
+    </div>
+</section>
 
 
 <!-- Modals -->
