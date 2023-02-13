@@ -18,15 +18,17 @@ if ($escolha == "view") {
         echo "Erro ao  Inserir Anotação!";
     }
 } else {
-    $res = $pdo->prepare("INSERT INTO anotacoes_pastora SET id_pastora = :id_pastora, texto_anotacao_pastora = :texto_anotacao_pastora, data_anotacao_pastora = :data_anotacao_pastora, hora_anotacao_pastora = :hora_anotacao_pastora");
-    $res->bindValue(':id_pastora', $view);
-    $res->bindValue(':texto_anotacao_pastora', $anotacao);
-    $res->bindValue(':data_anotacao_pastora', Date('Y-m-d'));
-    $res->bindValue(':hora_anotacao_pastora', Date('G:i:s'));
-    if ($res->execute()) {
-        echo "$view";
-    } else {
-        echo "Erro ao  Inserir Anotação!";
+    if ($escolha == "view_pas") {
+        $res = $pdo->prepare("INSERT INTO anotacoes_pastora SET id_pastora = :id_pastora, texto_anotacao_pastora = :texto_anotacao_pastora, data_anotacao_pastora = :data_anotacao_pastora, hora_anotacao_pastora = :hora_anotacao_pastora");
+        $res->bindValue(':id_pastora', $view);
+        $res->bindValue(':texto_anotacao_pastora', $anotacao);
+        $res->bindValue(':data_anotacao_pastora', Date('Y-m-d'));
+        $res->bindValue(':hora_anotacao_pastora', Date('G:i:s'));
+        if ($res->execute()) {
+            echo "$view";
+        } else {
+            echo "Erro ao  Inserir Anotação!";
+        }
     }
 }
 ?>

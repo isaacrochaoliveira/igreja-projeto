@@ -19,7 +19,7 @@ if (!$perfil_pas['tmp_name'] == null) {
     $arq = uniqid();
 
     $ext = strtolower(pathinfo($perfil_pas['name'], PATHINFO_EXTENSION));
-    if ($ext != 'jpg' && $ext != 'png' && $ext != 'svg' && $ext != 'tiff') {
+    if ($ext != 'jpeg' && $ext != 'jpg' && $ext != 'png' && $ext != 'svg' && $ext != 'webp') {
         die("Tente as extensões: jpg, png, svg, tiff. <br>Extensão atual: $ext");
     } else {
         $bool = move_uploaded_file($perfil_pas['tmp_name'], $path.$arq.'.'.$ext);

@@ -227,7 +227,7 @@ if (isset($_GET['view'])) {
 				</div>
 				<div class="modal-footer">
 					<?php
-						if (!(isset($_get['view']))) {
+						if (!(isset($_GET['view']))) {
 							?>
 								<input type="hidden" name="escolha" value="view_pas">
 							<?php

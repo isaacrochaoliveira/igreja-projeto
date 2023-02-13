@@ -254,12 +254,15 @@ $pag = "home";
                             }
                         }
                     ?>
-                   
+
                 </tbody>
             </table>
                     <?php
                 }
             ?>
+        </div>
+        <div class="text-center">
+            <h2 class="f-family-Lobster" style="font-size: 45px">Pastoras Cadastrados!</h2>
         </div>
         <div class="my-5 w-100porc">
             <?php
@@ -286,7 +289,7 @@ $pag = "home";
                 </thead>
                 <tbody>
                     <?php
-                        $query = $pdo->query("SELECT * FROM pastores LIMIT 10;");
+                        $query = $pdo->query("SELECT * FROM pastoras LIMIT 10;");
                         $res = $query->fetchAll(PDO::FETCH_ASSOC);
                         if (count($res) > 0) {
                             for ($i = 0; $i < count($res); $i++) {
@@ -309,7 +312,7 @@ $pag = "home";
                             }
                         }
                     ?>
-                   
+
                 </tbody>
             </table>
                     <?php
