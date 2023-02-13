@@ -328,19 +328,25 @@ $pag = "home";
         <div class="w-50porc">
             <div class="card">
                 <?php
-                    $query = $pdo->query("SELECT * FROM jejuns LIMIT 1");
+                    $query = $pdo->query("SELECT * FROM jejuns JOIN pastores ON jejuns.pastor_comando = pastores.id_pas LIMIT 1");
                     $res = $query->fetchAll(PDO::FETCH_ASSOC);
                     if (count($res) > 0) {
+                        $pastor = $res[0]['nome_pas'];
                         $jejum = $res[0]['jejum'];
                         $descricao = $res[0]['descricao_jejum'];
                         $versiculo_chave = $res[0]['versiculo_baseado'];
+                        $colaboradores = $res[0]['colaboracao'];
+                        $pessoas = $res[0]['quantidade_pessoas'];
                     }
                 ?>
                 <img src="..." class="card-img-top" alt="...">
                 <div class="card-body">
                     <h5 class="card-title mb-2"><?=$jejum?></h5>
-                    <h6 class="card-text"><?=$descricao?></h6>
-                    <p class="card-text"><?=$versiculo_chave?></p>
+                    <h6 class="card-text mb-4"><?=$descricao?></h6>
+                    <p class="card-text mb-0">Versículo Chave: <?=$versiculo_chave?></p>
+                    <p class="card-text mb-0">Líder do Grupo: Pastor(a) <?=$pastor?></p>
+                    <p class="card-text mb-0">Colaboração: <?=$colaboradores?> Pessoa(s)</p>
+                    <p class=""></p>
                     <a href="#" class="btn btn-primary">Go somewhere</a>
                 </div>
             </div>
