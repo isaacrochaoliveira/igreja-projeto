@@ -428,7 +428,20 @@ if (isset($_GET['view'])) {
                     </div>
                 </div>
                 <div class="modal-footer">
-                    <input type="hidden" name="id_pas" id="id_pas" value="<?=@$id?>">
+					<?php
+						if (isset($_GET['view'])) {
+							?>
+								<input type="hidden" name="escolha" value="view">
+							<?php
+						} else {
+							if (isset($_GET['view_pas'])) {
+								?>
+									<input type="hidden" name="escolha" value="view_pas">
+								<?php
+							}
+						}
+					?>
+                    <input type="hidden" name="id_pas" id="id_pas" value="<?=isset($_GET['view']) ? $_GET['view'] : $_GET['view_pas'] ?>">
                     <a href="index.php#pastoresTables" class="btn btn-secondary">Fechar</a>
                     <button type="button" class="btn btn-primary" name="btn_btnCadastrarPastor" id="btn_btnCadastrarPastor">Salvar</button>
                 </div>
