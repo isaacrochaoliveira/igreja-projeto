@@ -277,6 +277,10 @@ if (isset($_GET['view'])) {
 	      		<div class="modal-body">
 	      			<div class="row">
 	      				<div class="col text-center">
+							<div class="alert alert-warning" role="alert">
+								<span style="font-size: 20px;"><i class="fa-solid fa-exclamation" style="font-size: 36px !important"></i> ATENÇÃO</span>
+								<p style="margin-bottom: 0px; font-size: 17px;">Tamanho recomendado: 500x500</p>
+							</div>
 	      					<img src="<?=IMAGEM."fotos-pastores/".$imagem?>" alt="Foto de Perfil do Pastor" width="200" id="target" name="target">
       						<input type="file" name="perfil_pas" class="form-control mt-2" onchange="carregarImg()">
 	      				</div>
@@ -310,19 +314,40 @@ if (isset($_GET['view'])) {
                 <h5 class="modal-title">Modal title</h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 <?php
-					$query_pas = $pdo->query("SELECT * FROM pastores WHERE id_pas = '$id'");
-					$res_pas = $query_pas->fetchAll(PDO::FETCH_ASSOC);
-					if (count($res_pas) > 0) {
-						$nome = $res_pas[0]['nome_pas'];
-						$email = $res_pas[0]['email_pas'];
-						$nascionalidade = $res_pas[0]['nasionalidade_pas'];
-						$tempo_pas = $res_pas[0]['tempo_pas'];
-						$telefone_pas = $res_pas[0]['telefone_pas'];
-						$profissao = $res_pas[0]['profissao_pas'];
-						$ministerio = $res_pas[0]['ministerio_pas'];
-						$casado_pas = $res_pas[0]['casado_pas'];
-						$qunt_tempo_casado = $res_pas[0]['qunt_casado_pas'];
-						$qunt_menbros = $res_pas[0]['qunt_menbros_pas'];
+					if (isset($_GET['view'])) {
+						$query_pas = $pdo->query("SELECT * FROM pastores WHERE id_pas = '$id'");
+						$res_pas = $query_pas->fetchAll(PDO::FETCH_ASSOC);
+						if (count($res_pas) > 0) {
+							$nome = $res_pas[0]['nome_pas'];
+							$bio = $res[0]['bio_pas'];
+							$email = $res_pas[0]['email_pas'];
+							$nascionalidade = $res_pas[0]['nasionalidade_pas'];
+							$tempo_pas = $res_pas[0]['tempo_pas'];
+							$telefone_pas = $res_pas[0]['telefone_pas'];
+							$profissao = $res_pas[0]['profissao_pas'];
+							$ministerio = $res_pas[0]['ministerio_pas'];
+							$casado_pas = $res_pas[0]['casado_pas'];
+							$qunt_tempo_casado = $res_pas[0]['qunt_casado_pas'];
+							$qunt_menbros = $res_pas[0]['qunt_menbros_pas'];
+						}
+					} else {
+						if (isset($_GET['view_pas'])) {
+							$query_pas = $pdo->query("SELECT * FROM pastoras WHERE id_pas_ras = '$id'");
+							$res_pas = $query_pas->fetchAll(PDO::FETCH_ASSOC);
+							if (count($res_pas) > 0) {
+								$nome = $res_pas[0]['nome_pas_ras'];
+								$bio = $res_pas[0]['bio_pas_ras'];
+								$email = $res_pas[0]['email_pas_ras'];
+								$nascionalidade = $res_pas[0]['nascionalidade_pas_ras'];
+								$tempo_pas = $res_pas[0]['tempo_pas_ras'];
+								$telefone_pas = $res_pas[0]['telefone_pas_ras'];
+								$profissao = $res_pas[0]['profissao_pas_ras'];
+								$ministerio = $res_pas[0]['ministerio_pas_ras'];
+								$casado_pas = $res_pas[0]['casado_pas_ras'];
+								$qunt_tempo_casado = $res_pas[0]['qunt_casado_pas_ras'];
+								$qunt_menbros = $res_pas[0]['qunt_menbros_pas_ras'];
+							}
+						}
 					}
                 ?>
             </div>
@@ -398,7 +423,7 @@ if (isset($_GET['view'])) {
                     </div>
                     <div class="row">
                     	<div class="col mt-2">
-                    		<textarea cols="5" rows="5" class="form-control" placeholder="SUA BIO (BIOGRAFIA)" name="bio_pas"></textarea>
+                    		<textarea cols="5" rows="5" class="form-control" placeholder="SUA BIO (BIOGRAFIA)" name="bio_pas"><?=$bio?></textarea>
                     	</div>
                     </div>
                 </div>

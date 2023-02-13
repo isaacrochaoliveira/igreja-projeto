@@ -28,7 +28,7 @@ if (!$perfil_pas['tmp_name'] == null) {
             $pdo->query("UPDATE pastores SET perfil_pas = '$name' WHERE id_pas = '$id_pas'");
         } else {
             if ($escolha = 'view_pas') {
-                $pdo->query("UPDATE pastores SET perfil_pas_ras = '$name' WHERE id_pas_ras = '$id_pas'");
+                $pdo->query("UPDATE pastoras SET perfil_pas_ras = '$name' WHERE id_pas_ras = '$id_pas'");
             }
         }
         echo "<script>location.href = '../index.php?$escolha=$id_pas'</script>";
