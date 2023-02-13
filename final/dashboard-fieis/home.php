@@ -325,11 +325,28 @@ $pag = "home";
         JEJUNS
     </h2>
     <div class="d-flex flex-wrap">
-        <div class="w-50porc bg-primary">
-
+        <div class="w-50porc">
+            <div class="card">
+                <?php
+                    $query = $pdo->query("SELECT * FROM jejuns LIMIT 1");
+                    $res = $query->fetchAll(PDO::FETCH_ASSOC);
+                    if (count($res) > 0) {
+                        $jejum = $res[0]['jejum'];
+                        $descricao = $res[0]['descricao_jejum'];
+                        $versiculo_chave = $res[0]['versiculo_baseado'];
+                    }
+                ?>
+                <img src="..." class="card-img-top" alt="...">
+                <div class="card-body">
+                    <h5 class="card-title mb-2"><?=$jejum?></h5>
+                    <h6 class="card-text"><?=$descricao?></h6>
+                    <p class="card-text"><?=$versiculo_chave?></p>
+                    <a href="#" class="btn btn-primary">Go somewhere</a>
+                </div>
+            </div>
         </div>
         <div class="w-50porc bg-danger">
-            
+
         </div>
     </div>
 </section>
