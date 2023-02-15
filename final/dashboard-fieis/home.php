@@ -694,6 +694,35 @@ $pag = "home";
                         $('#btnbtn-sair-do-jejum'+id_jejum).removeClass();
                         $('#btnbtn-entrar-do-jejum'+id_jejum).addClass('d-none');
                         $('#btnbtn-sair-do-jejum'+id_jejum).addClass('btn btn-warning w-50');
+                    } else {
+                        alert(msg);
+                    }
+                }
+            })
+        })
+    }
+</script>
+
+
+<script type="text/javascript">
+    function sairdojejum(id_jejum) {
+        $(document).ready(function() {
+            var pag = "<?=$pag?>";
+            $.ajax({
+                url: pag + '/cancelar-jejum.php',
+                method: 'post',
+                data: {id_jejum},
+                success: function(msg) {
+                    if ($.isNumeric(msg)) {
+                        var Json = JSON.parse(msg);
+                        $('#spanpessoasparticipandojejum'+id_jejum).html(Json);
+
+                        $('#btnbtn-entrar-do-jejum'+id_jejum).removeClass();
+                        $('#btnbtn-sair-do-jejum'+id_jejum).removeClass();
+                        $('#btnbtn-entrar-do-jejum'+id_jejum).addClass('btn btn-light w-50');
+                        $('#btnbtn-sair-do-jejum'+id_jejum).addClass('d-none');
+                    } else {
+                        alert(msg);
                     }
                 }
             })
