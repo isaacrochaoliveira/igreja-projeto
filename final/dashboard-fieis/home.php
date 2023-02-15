@@ -331,6 +331,7 @@ $pag = "home";
                     $query = $pdo->query("SELECT * FROM jejuns JOIN pastores ON jejuns.pastor_comando = pastores.id_pas LIMIT 1");
                     $res = $query->fetchAll(PDO::FETCH_ASSOC);
                     if (count($res) > 0) {
+                        $id_jejum = $res[0]['id_jejum'];
                         $imagem = $res[0]['imagem'];
                         $pastor = $res[0]['nome_pas'];
                         $jejum = $res[0]['jejum'];
@@ -340,16 +341,16 @@ $pag = "home";
                         $pessoas = $res[0]['quantidade_pessoas'];
                     }
                 ?>
-                <img src="<?=IMAGEM."images-jejuns/$imagem"?>" class="card-img-top" alt="..." height="300">
+                <img src="<?=IMAGEM."images-jejuns/$imagem"?>" class="card-img-top" alt="Foto" height="300">
                 <div class="card-body">
                     <h5 class="card-title mb-2"><?=$jejum?></h5>
                     <h6 class="card-text mb-4"><?=$descricao?></h6>
                     <p class="card-text mb-0">Versículo Chave: <?=$versiculo_chave?></p>
                     <p class="card-text mb-0">Líder do Grupo: Pastor(a) <?=$pastor?></p>
                     <p class="card-text mb-0">Colaboração: <?=$colaboradores?> Pessoa(s)</p>
-                    <p class="card-text">Pessoa(s) Jejuando: <span class="card-text"><?=$pessoas?></span></p>
+                    <p class="card-text">Pessoa(s) Jejuando: <span class="card-text" id="spanpessoasparticipandojejum<?=$id_jejum?>"><?=$pessoas?></span></p>
                     <div class="d-flex flex-wrap">
-                        <a href="#" class="btn btn-light w-50">Participar desse Jejum</a>
+                        <button onclick="entrarnojejum(<?=$id_jejum?>)" name="btnbtn-entrar-no-jejum<?=$id_jejum?>" id="btnbtn-entrar-no-jejum<?=$id_jejum?>"  class="btn btn-light w-50">Participar desse Jejum</a>
                         <a href="#" class="btn btn-outline-light w-50">Ver Colaboradores</a>
                     </div>
                 </div>
@@ -671,6 +672,23 @@ $pag = "home";
                     document.getElementById('fechar-jointogroup').style.display = 'block';
                 }
             })
+        })
+    }
+</script>
+
+<script type="text/javascript">
+    function entrarnojejum(id_jejum) {
+        $(document).ready(function() {
+            var pag = "<?=$pag?>";
+            $.ajax({
+                url: pag + '/entrar-no-jejum.php',
+                method: 'post',
+                data: {id_jejum},
+                success: function(msg) {
+                    var Json = JSON.parse(msg);
+                    $('#spanpessoasparticipandojejum'+id_jejum).html(Json);
+                }
+            });
         })
     }
 </script>
