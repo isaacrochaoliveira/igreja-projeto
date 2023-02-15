@@ -688,7 +688,7 @@ $pag = "home";
                     var Json = JSON.parse(msg);
                     $('#spanpessoasparticipandojejum'+id_jejum).html(Json);
                 }
-            });
+            })
         })
     }
 </script>
