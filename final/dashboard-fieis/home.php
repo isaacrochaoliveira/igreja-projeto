@@ -340,14 +340,6 @@ $pag = "home";
                         $colaboradores = $res[0]['colaboracao'];
                         $pessoas = $res[0]['quantidade_pessoas'];
 
-                        $query_p = $pdo->query("SELECT * FROM participando_do_jejum WHERE id_participante = '$_SESSION[id]' AND id_jejum_part = '$id_jejum'");
-                        $res_p = $query_p->fetchAll(PDO::FETCH_ASSOC);
-                        if (count($res_p) > 0) {
-                            $mostra = 'S';
-                        } else {
-                            $mostra = 'N';
-                        }
-
                     }
                 ?>
                 <img src="<?=IMAGEM."images-jejuns/$imagem"?>" class="card-img-top" alt="Foto" height="300">
@@ -360,16 +352,18 @@ $pag = "home";
                     <p class="card-text">Pessoa(s) Jejuando: <span class="card-text" id="spanpessoasparticipandojejum<?=$id_jejum?>"><?=$pessoas?></span></p>
                     <div class="d-flex flex-wrap">
                         <?php
-                            if ($mostra = 'S') {
+                            $query_p = $pdo->query("SELECT * FROM participando_do_jejum WHERE id_participante = '$_SESSION[id]' AND id_jejum_part = '$id_jejum'");
+                            $res_p = $query_p->fetchAll(PDO::FETCH_ASSOC);
+                            if (count($res_p) > 0) {
                                 ?>
-                                <button onclick="entrarnojejum(<?=$id_jejum?>)" name="btnbtn-entrar-do-jejum<?=$id_jejum?>" id="btnbtn-entrar-do-jejum<?=$id_jejum?>"  class="btn btn-light w-50">Participar desse Jejum</button>
+                                    <button onclick="entrarnojejum(<?=$id_jejum?>)" name="btnbtn-entrar-do-jejum<?=$id_jejum?>" id="btnbtn-entrar-do-jejum<?=$id_jejum?>"  class="btn btn-light w-50">Participar desse Jejum</button>
+                                    <button onclick="sairdojejum(<?=$id_jejum?>)" name="btnbtn-sair-do-jejum<?=$id_jejum?>" id="btnbtn-sair-do-jejum<?=$id_jejum?>" class="d-none">Cancelar Participação</button>
                                 <?php
                             } else {
-                                if ($mostra = 'N') {
-                                    ?>
-                                    <button onclick="sairdojejum(<?=$id_jejum?>)" name="btnbtn-sair-do-jejum<?=$id_jejum?>" id="btnbtn-sair-do-jejum<?=$id_jejum?>" class="d-none">Cancelar Participação</button>
-                                    <?php
-                                }
+                                ?>
+                                    <button onclick="entrarnojejum(<?=$id_jejum?>)" name="btnbtn-entrar-do-jejum<?=$id_jejum?>" id="btnbtn-entrar-do-jejum<?=$id_jejum?>"  class="d-none">Participar desse Jejum</button>
+                                    <button onclick="sairdojejum(<?=$id_jejum?>)" name="btnbtn-sair-do-jejum<?=$id_jejum?>" id="btnbtn-sair-do-jejum<?=$id_jejum?>" class="btn btn-warning">Cancelar Participação</button>
+                                <?php
                             }
                         ?>
                         <a href="#" class="btn btn-outline-light w-50">Ver Colaboradores</a>
