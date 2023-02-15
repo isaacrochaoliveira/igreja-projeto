@@ -350,7 +350,7 @@ $pag = "home";
                     <p class="card-text mb-0">Colaboração: <?=$colaboradores?> Pessoa(s)</p>
                     <p class="card-text">Pessoa(s) Jejuando: <span class="card-text" id="spanpessoasparticipandojejum<?=$id_jejum?>"><?=$pessoas?></span></p>
                     <div class="d-flex flex-wrap">
-                        <button onclick="entrarnojejum(<?=$id_jejum?>)" name="btnbtn-entrar-no-jejum<?=$id_jejum?>" id="btnbtn-entrar-no-jejum<?=$id_jejum?>"  class="btn btn-light w-50">Participar desse Jejum</a>
+                        <button onclick="entrarnojejum(<?=$id_jejum?>)" name="btnbtn-entrar-no-jejum<?=$id_jejum?>" id="btnbtn-entrar-no-jejum<?=$id_jejum?>"  class="btn btn-light w-50">Participar desse Jejum</button>
                         <a href="#" class="btn btn-outline-light w-50">Ver Colaboradores</a>
                     </div>
                 </div>
