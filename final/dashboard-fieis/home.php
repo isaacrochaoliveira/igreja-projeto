@@ -346,7 +346,7 @@ $pag = "home";
                     <p class="card-text mb-0">Versículo Chave: <?=$versiculo_chave?></p>
                     <p class="card-text mb-0">Líder do Grupo: Pastor(a) <?=$pastor?></p>
                     <p class="card-text mb-0">Colaboração: <?=$colaboradores?> Pessoa(s)</p>
-                    <p class="card-text"><?=$pessoas?> Pessoa(s) Jejuando</p>
+                    <p class="card-text">Pessoa(s) Jejuando: <span class="card-text"><?=$pessoas?></span></p>
                     <div class="d-flex flex-wrap">
                         <a href="#" class="btn btn-light w-50">Participar desse Jejum</a>
                         <a href="#" class="btn btn-outline-light w-50">Ver Colaboradores</a>
