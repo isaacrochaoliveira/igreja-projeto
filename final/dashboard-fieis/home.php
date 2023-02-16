@@ -326,18 +326,35 @@ $pag = "home";
     </h2>
     <div class="d-flex flex-wrap">
         <?php
-            $query = $pdo->query("SELECT * FROM jejuns JOIN pastores ON jejuns.pastor_comando = pastores.id_pas LIMIT 10");
+            $query = $pdo->query("SELECT * FROM jejuns LIMIT 10");
             $res = $query->fetchAll(PDO::FETCH_ASSOC);
             if (count($res) > 0) {
                 for ($i = 0; $i < count($res); $i++) {
                     foreach ($res[$i] as $key => $value) {
                     }
-                    $id_pastor = $res[$i]['id_pas'];
-                    $pastor = $res[$i]['nome_pas'];
-                    $perfil_pas = $res[$i]['perfil_pas'];
-                    $email = $res[$i]['email_pas'];
-                    $telefone = $res[$i]['telefone_pas'];
-                    $ministerio = $res[$i]['ministerio_pas'];
+                    if (isset($res[$i]['pastor_comando'])) {
+                        $id_pas = $res[$i]['pastor_comando'];
+                        $query_pastor = $pdo->query("SELECT * FROM pastores WHERE id_pas = '$id_pas'");
+                        $res_pastor = $query_pastor->fetchAll(PDO::FETCH_ASSOC);
+
+                        $id_pastor = $res_pastor[0]['id_pas'];
+                        $pastor = $res_pastor[0]['nome_pas'];
+                        $perfil_pas = $res_pastor[0]['perfil_pas'];
+                        $email = $res_pastor[0]['email_pas'];
+                        $telefone = $res_pastor[0]['telefone_pas'];
+                        $ministerio = $res_pastor[0]['ministerio_pas'];
+                    } else if (isset($res[$i]['pastora_comando'])) {
+                        $id_pas_ras = $res[$i]['pastora_comando'];
+                        $query_pastora = $pdo->query("SELECT * FROM pastoras WHERE id_pas_ras = '$id_pas_ras'");
+                        $res_pastora = $query_pastora->fetchAll(PDO::FETCH_ASSOC);
+
+                        $id_pastor = $res_pastora[0]['id_pas_ras'];
+                        $pastor = $res_pastora[0]['nome_pas_ras'];
+                        $perfil_pas = $res_pastora[0]['perfil_pas_ras'];
+                        $email = $res_pastora[0]['email_pas_ras'];
+                        $telefone = $res_pastora[0]['telefone_pas_ras'];
+                        $ministerio = $res_pastora[0]['ministerio_pas_ras'];
+                    }
 
                     $id_jejum = $res[$i]['id_jejum'];
                     $imagem = $res[$i]['imagem'];
@@ -381,8 +398,8 @@ $pag = "home";
                         <div class="card">
                             <img src="<?=URL_BASE."assets/img/fotos-pastores/$perfil_pas"?>" class="card-img-top" alt="Perfil do Pastor" height="300">
                             <div class="card-body">
-                                <h5 class="card-title mb-2"><?="Pastor: ".$pastor?></h5>
-                                <p class="card-text mb-3">O Pastor <?=$pastor?> está liderando esse grupo (<?=$jejum?>)</p>
+                                <h5 class="card-title mb-2"><?="Pastor(a): ".$pastor?></h5>
+                                <p class="card-text mb-3">O Pastor(a) <?=$pastor?> está liderando esse grupo (<?=$jejum?>)</p>
                                 <p class="card-text mb-0"><?=$email?></p>
                                 <p class="card-text mb-0"><?=$telefone?></p>
                                 <p class="card-text mb-4">Ministério de <?=$ministerio?></p>
