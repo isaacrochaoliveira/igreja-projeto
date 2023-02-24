@@ -337,6 +337,7 @@ $pag = "home";
                         $query_pastor = $pdo->query("SELECT * FROM pastores WHERE id_pas = '$id_pas'");
                         $res_pastor = $query_pastor->fetchAll(PDO::FETCH_ASSOC);
 
+                        $view = "view";
                         $id_pastor = $res_pastor[0]['id_pas'];
                         $pastor = $res_pastor[0]['nome_pas'];
                         $perfil_pas = $res_pastor[0]['perfil_pas'];
@@ -348,6 +349,7 @@ $pag = "home";
                         $query_pastora = $pdo->query("SELECT * FROM pastoras WHERE id_pas_ras = '$id_pas_ras'");
                         $res_pastora = $query_pastora->fetchAll(PDO::FETCH_ASSOC);
 
+                        $view = "view_pas";
                         $id_pastor = $res_pastora[0]['id_pas_ras'];
                         $pastor = $res_pastora[0]['nome_pas_ras'];
                         $perfil_pas = $res_pastora[0]['perfil_pas_ras'];
@@ -356,6 +358,7 @@ $pag = "home";
                         $ministerio = $res_pastora[0]['ministerio_pas_ras'];
                     }
 
+                    $id_criador = $res[$i]['id_criador_jejum'];
                     $id_jejum = $res[$i]['id_jejum'];
                     $imagem = $res[$i]['imagem'];
                     $jejum = $res[$i]['jejum'];
@@ -379,15 +382,20 @@ $pag = "home";
                                         $res_p = $query_p->fetchAll(PDO::FETCH_ASSOC);
                                         if (count($res_p) == 0) {
                                             ?>
-                                            <button onclick="entrarnojejum(<?=$id_jejum?>)" name="btnbtn-entrar-do-jejum<?=$id_jejum?>" id="btnbtn-entrar-do-jejum<?=$id_jejum?>" class="btn btn-light w-50">Participar desse Jejum</button>
+                                            <button onclick="entrarnojejum(<?=$id_jejum?>)" name="btnbtn-entrar-do-jejum<?=$id_jejum?>" id="btnbtn-entrar-do-jejum<?=$id_jejum?>" class="btn btn-light w-25">Participar desse Jejum</button>
                                             <button onclick="sairdojejum(<?=$id_jejum?>)" name="btnbtn-sair-do-jejum<?=$id_jejum?>" id="btnbtn-sair-do-jejum<?=$id_jejum?>" class="d-none">Cancelar Participação</button>
                                             <?php
                                         } else {
                                             ?>
                                             <button onclick="entrarnojejum(<?=$id_jejum?>)" name="btnbtn-entrar-do-jejum<?=$id_jejum?>" id="btnbtn-entrar-do-jejum<?=$id_jejum?>"  class="d-none">Participar desse Jejum</button>
-                                            <button onclick="sairdojejum(<?=$id_jejum?>)" name="btnbtn-sair-do-jejum<?=$id_jejum?>" id="btnbtn-sair-do-jejum<?=$id_jejum?>" class="btn btn-warning w-50">Cancelar Participação</button>
+                                            <button onclick="sairdojejum(<?=$id_jejum?>)" name="btnbtn-sair-do-jejum<?=$id_jejum?>" id="btnbtn-sair-do-jejum<?=$id_jejum?>" class="btn btn-warning w-25">Cancelar Participação</button>
                                             <?php
                                         }
+                                            if ($id_criador == $_SESSION['id']) {
+                                                ?>
+                                                    <button class="btn btn-primary w-25">Colaboração</button>
+                                                <?php
+                                            }
                                         ?>
                                     <a href="#" class="btn btn-outline-light w-50">Ver Colaboradores</a>
                                 </div>
@@ -395,7 +403,7 @@ $pag = "home";
                         </div>
                     </div>
                     <div class="w-50porc">
-                        <div class="card">
+                        <div class="card" style="width: 25rem; margin: 0 auto">
                             <img src="<?=URL_BASE."assets/img/fotos-pastores/$perfil_pas"?>" class="card-img-top" alt="Perfil do Pastor" height="300">
                             <div class="card-body">
                                 <h5 class="card-title mb-2"><?="Pastor(a): ".$pastor?></h5>
@@ -404,7 +412,7 @@ $pag = "home";
                                 <p class="card-text mb-0"><?=$telefone?></p>
                                 <p class="card-text mb-4">Ministério de <?=$ministerio?></p>
                                 <div class="d-flex flex-wrap">
-                                    <a href="<?=URL_BASE?>dashboard-fieis/perfil-pastor/index.php?view=<?=$id_pastor?>" class="btn btn-light mx-2"><img src="<?=URL_BASE."assets/img/fotos-pastores/$perfil_pas"?>" alt="foto de Perfil" style="border-radius: 100%;" width="25" height="25"/> Ver Perfil</a>
+                                    <a href="<?=URL_BASE?>dashboard-fieis/perfil-pastor/index.php?<?=$view?>=<?=$id_pastor?>" class="btn btn-light mx-2"><img src="<?=URL_BASE."assets/img/fotos-pastores/$perfil_pas"?>" alt="foto de Perfil" style="border-radius: 100%;" width="25" height="25"/> Ver Perfil</a>
                                     <a href="mailto:<?=$email?>?subject=subject text" class="btn btn-outline-light mx-2">Enviar E-mail</a>
                                     <a href="https://wa.me/<?=$telefone?>?text=Oii+Pastor" target="_blank" class="btn btn-success mx-2 ">WhatsApp</a>
                                 </div>
