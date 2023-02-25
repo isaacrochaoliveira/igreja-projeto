@@ -642,6 +642,25 @@ $pag = "home";
     </div>
 </div>
 
+<div class="modal fade" id="modalColaboracao" data-bs-backdrop="static" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5" id="exampleModalLabel">Sua Oração - <a href="index.php?pag=meus-pedidos-de-oracoes" target="_blank">Ver todas as minhas orações</a></h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <div>
+
+                </div>
+            </div>
+            <div class="modal-footer">
+                <input type="text" value="" name="id_jejum-col" id="id_jejum-col">
+            </div>
+        </div>
+    </div>
+</div>
+
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 <script type="text/javascript">
     $(document).ready(function() {
@@ -795,6 +814,9 @@ $pag = "home";
 
 <script type="text/javascript">
     function colaborarNoJejum(id_jejum) {
-
+        $(document).ready(function() {
+            $('#id_jejum-col').val(id_jejum);
+            $('#modalColaboracao').modal('show');
+        })
     }
 </script>
