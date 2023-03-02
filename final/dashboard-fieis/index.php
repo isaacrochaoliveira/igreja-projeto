@@ -312,5 +312,15 @@
         </script>
         <?php
     }
+    if (isset($_GET['confirmarcolaboracao'])) {
+        ?>
+        <script type="text/javascript">
+            var myModal = new bootstrap.Modal(document.getElementById('modalColaboracao'), {
+
+            })
+            myModal.show();
+        </script>
+        <?php
+    }
     ?>
 </html>

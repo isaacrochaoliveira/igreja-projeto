@@ -367,7 +367,7 @@ $pag = "home";
                     $colaboradores = $res[$i]['colaboracao'];
                     $pessoas = $res[$i]['quantidade_pessoas'];
                     ?>
-                    <div class="w-50porc">
+                    <div class="w-50porc" id="jejum<?=$id_jejum?>">
                         <div class="card">
                             <img src="<?=IMAGEM."images-jejuns/$imagem"?>" class="card-img-top" alt="Foto" height="300">
                             <div class="card-body">
@@ -393,7 +393,7 @@ $pag = "home";
                                         }
                                             if ($id_criador == $_SESSION['id']) {
                                                 ?>
-                                                    <button onclick="colaborarNoJejum(<?=$id_jejum?>)" class="btn btn-primary">Colaboração</button>
+                                                    <a href="index.php?pag=<?=$pag?>&confirmarcolaboracao=<?=$id_jejum?>" target="_self" class="btn btn-primary">Colaboração</a>
                                                 <?php
                                             }
                                         ?>
@@ -648,6 +648,9 @@ $pag = "home";
             <div class="modal-header">
                 <h1 class="modal-title fs-5" id="exampleModalLabel">Confirmar Colaboração com esse jejum</h1>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                <?php
+                    $id_jejum = addslashes($_GET['confirmarcolaboracao']);
+                ?>
             </div>
             <div class="modal-body">
                 <div>
@@ -659,10 +662,10 @@ $pag = "home";
 
                 </div>
                 <form id="form-confirmar-colaboracao" method="post">
-                    <input type="hidden" value="" name="id_jejum-col" id="id_jejum-col">
+                    <input type="hidden" value="<?=$id_jejum?>" name="id_jejum-col" id="id_jejum-col">
                 </form>
-                <button name="bt-bt-naocolaborar" id="bt-bt-naocolaborar" class="btn btn-danger"><i class="fa-solid fa-trash"></i></button>
-                <button name="bt-bt-confirmarcolaboracao" id="bt-bt-confirmarcolaboracao" class="btn btn-outline-success"><i class="fa-solid fa-check"></i></button>
+                <a href="index.php?pag=<?=$pag?>#jejum<?=$id_jejum?>" name="bt-bt-naocolaborar" id="bt-bt-naocolaborar" class="btn btn-danger"><i class="fa-solid fa-trash"></i></a>
+                <button name="bt-bt-confirmarcolaboracao" id="bt-bt-confirmarcolaboracao" onclick="confirmarColaboracao(<?=$id_jejum?>)" class="btn btn-outline-success"><i class="fa-solid fa-check"></i></button>
             </div>
         </div>
     </div>
@@ -819,19 +822,10 @@ $pag = "home";
     }
 </script>
 
-<script type="text/javascript">
-    function colaborarNoJejum(id_jejum) {
-        $(document).ready(function() {
-            $('#id_jejum-col').val(id_jejum);
-            $('#modalColaboracao').modal('show');
-        })
-    }
-</script>
 
 <script>
-    $(document).ready(function() {
-        $('#confirmarcolaboracao').click(function(event) {
-            event.preventDefault();
+    function confirmarColaboracao(id_jejum) {
+        $(document).ready(function() {
             var pag = "<?=$pag?>";
             $.ajax({
                 url: pag + '/confirmar-colaboracao-jejum.php',
@@ -853,5 +847,5 @@ $pag = "home";
                 }
             })
         })
-    })
+    }
 </script>
