@@ -643,7 +643,7 @@ $pag = "home";
 </div>
 
 <div class="modal fade" id="modalColaboracao" data-bs-backdrop="static" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-lg">
+    <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
                 <h1 class="modal-title fs-5" id="exampleModalLabel">Confirmar Colaboração com esse jejum</h1>
@@ -651,11 +651,17 @@ $pag = "home";
             </div>
             <div class="modal-body">
                 <div>
-                    
+                    <p>Tem certeza que deseja colaborar com jejum?</p>
                 </div>
             </div>
             <div class="modal-footer">
-                <input type="hidden" value="" name="id_jejum-col" id="id_jejum-col">
+                <div id="mensagem_confirmar_colaboracao">
+
+                </div>
+                <form id="form-confirmar-colaboracao" method="post">
+                    <input type="hidden" value="" name="id_jejum-col" id="id_jejum-col">
+                </form>
+                <button name="bt-bt-naocolaborar" id="bt-bt-naocolaborar" class="btn btn-danger"><i class="fa-solid fa-trash"></i></button>
                 <button name="bt-bt-confirmarcolaboracao" id="bt-bt-confirmarcolaboracao" class="btn btn-outline-success"><i class="fa-solid fa-check"></i></button>
             </div>
         </div>
@@ -820,4 +826,29 @@ $pag = "home";
             $('#modalColaboracao').modal('show');
         })
     }
+</script>
+
+<script>
+    $(document).ready(function() {
+        $('#confirmarcolaboracao').click(function(event) {
+            event.preventDefault();
+            var pag = "<?=$pag?>";
+            $.ajax({
+                url: pag + '/confirmar-colaboracao-jejum.php',
+                method: 'post',
+                data: $('#form-confirmar-colaboracao').serialize(),
+                dataType: 'text',
+                success: function(msg) {
+                    $('#mensagem_confirmar_colaboracao').removeClass();
+                    if (msg == 'Sim') {
+                        $('#mensagem_confirmar_colaboracao').addClass('text-success');
+                        $('#mensagem_confirmar_colaboracao').text('Colaboração Aprovada com Sucesso! Aperto o botão "Cancelar"');
+                    } else {
+                        $('#mensagem_confirmar_colaboracao').addClass('text-danger');
+                        $('#mensagem_confirmar_colaboracao').text('Colaboração Reprovada! Aperto o botão "Cancelar"');
+                    }
+                }
+            })
+        })
+    })
 </script>
