@@ -374,7 +374,7 @@ $pag = "home";
                                 <h5 class="card-title mb-2"><?=$jejum?></h5>
                                 <h6 class="card-text mb-4"><?=$descricao?></h6>
                                 <p class="card-text mb-0">Versículo Chave: <?=$versiculo_chave?></p>
-                                <p class="card-text mb-0">Pessoa(s) Colaborando: <span class="card-text" id="spanpessoascolaborandojejum"><?=$colaboradores?></span></p>
+                                <p class="card-text mb-0">Pessoa(s) Colaborando: <span class="card-text" id="spanpessoascolaborandojejum<?=$id_jejum?>"><?=$colaboradores?></span></p>
                                 <p class="card-text">Pessoa(s) Jejuando: <span class="card-text" id="spanpessoasparticipandojejum<?=$id_jejum?>"><?=$pessoas?></span></p>
                                 <div class="d-flex flex-wrap">
                                     <?php
@@ -840,7 +840,10 @@ $pag = "home";
                 dataType: 'text',
                 success: function(msg) {
                     $('#mensagem_confirmar_colaboracao').removeClass();
-                    if (msg == 'Sim') {
+                    if ($.isNumeric(msg)) {
+                        var Json = JSON.parse(msg);
+                        $('#spanpessoascolaborandojejum'+id_jejum).html(Json);
+
                         $('#mensagem_confirmar_colaboracao').addClass('text-success');
                         $('#mensagem_confirmar_colaboracao').text('Colaboração Aprovada com Sucesso! Aperto o botão "Cancelar"');
                     } else {
