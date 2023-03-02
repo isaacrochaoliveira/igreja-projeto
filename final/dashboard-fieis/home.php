@@ -646,16 +646,17 @@ $pag = "home";
     <div class="modal-dialog modal-lg">
         <div class="modal-content">
             <div class="modal-header">
-                <h1 class="modal-title fs-5" id="exampleModalLabel">Sua Oração - <a href="index.php?pag=meus-pedidos-de-oracoes" target="_blank">Ver todas as minhas orações</a></h1>
+                <h1 class="modal-title fs-5" id="exampleModalLabel">Confirmar Colaboração com esse jejum</h1>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
                 <div>
-
+                    
                 </div>
             </div>
             <div class="modal-footer">
-                <input type="text" value="" name="id_jejum-col" id="id_jejum-col">
+                <input type="hidden" value="" name="id_jejum-col" id="id_jejum-col">
+                <button name="bt-bt-confirmarcolaboracao" id="bt-bt-confirmarcolaboracao" class="btn btn-outline-success"><i class="fa-solid fa-check"></i></button>
             </div>
         </div>
     </div>
