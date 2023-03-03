@@ -738,6 +738,10 @@ $pag = "home";
                                         <img src="<?=IMAGEM?>/fotos/<?=$foto_perfil?>" alt="Foto de Perfil do Colaborador" width="100" height="100" class="rounded-100 mr-2">
                                         <div class="mt-3">
                                             <h6><?=$nome?></h6>
+                                            <div>
+                                                <a href="index.php?pag=<?=$pag?>&ver-oracoes-de=<?=$id_usuario?>" class="btn btn-primary" title="Ver Oração de <?=$nome?>"><i class="fa-solid fa-person-praying"></i></a>
+                                                <a href="index.php?pag=<?=$pag?>&"></a>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
