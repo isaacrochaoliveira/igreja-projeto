@@ -374,8 +374,8 @@ $pag = "home";
                                 <h5 class="card-title mb-2"><?=$jejum?></h5>
                                 <h6 class="card-text mb-4"><?=$descricao?></h6>
                                 <p class="card-text mb-0">Versículo Chave: <?=$versiculo_chave?></p>
-                                <p class="card-text mb-0">Pessoa(s) Colaborando: <span class="card-text" id="spanpessoascolaborandojejum<?=$id_jejum?>"><?=$colaboradores?></span></p>
-                                <p class="card-text">Pessoa(s) Jejuando: <span class="card-text" id="spanpessoasparticipandojejum<?=$id_jejum?>"><?=$pessoas?></span></p>
+                                <p class="card-text mb-0">Pessoa(s) Colaborando: <span class="card-text" id="spanpessoascolaborandojejum<?=$id_jejum?>"><?=$colaboradores?></span> Membro(s)</p>
+                                <p class="card-text">Pessoa(s) Jejuando: <span class="card-text" id="spanpessoasparticipandojejum<?=$id_jejum?>"><?=$pessoas?></span> Membros(s)</p>
                                 <div class="d-flex flex-wrap">
                                     <?php
                                         $query_p = $pdo->query("SELECT * FROM participando_do_jejum WHERE id_participante = '$_SESSION[id]' AND id_jejum_part = '$id_jejum'");
@@ -391,13 +391,23 @@ $pag = "home";
                                             <button onclick="sairdojejum(<?=$id_jejum?>)" name="btnbtn-sair-do-jejum<?=$id_jejum?>" id="btnbtn-sair-do-jejum<?=$id_jejum?>" class="btn btn-warning mx-2">Cancelar Participação</button>
                                             <?php
                                         }
-                                            if ($id_criador == $_SESSION['id']) {
+                                        if ($id_criador == $_SESSION['id']) {
+                                            $query_colab = $pdo->query("SELECT * FROM colaborando_jejum WHERE id_colaborando_jejum = '$id_jejum' AND id_colaborando = '$_SESSION[id]'");
+                                            $res_colab = $query_colab->fetchAll(PDO::FETCH_ASSOC);
+                                            if (count($res_colab) > 0) {
+                                                ?>
+                                                    <a href="index.php?pag=<?=$pag?>&apagarcolaboracao=<?=$id_jejum?>" target="_self" class="btn btn-outline-danger">Apagar Colaboração</a> 
+                                                <?php
+                                            } else {
                                                 ?>
                                                     <a href="index.php?pag=<?=$pag?>&confirmarcolaboracao=<?=$id_jejum?>" target="_self" class="btn btn-primary">Colaboração</a>
                                                 <?php
                                             }
+                                        }
                                         ?>
-                                    <a href="#" class="btn btn-outline-light mx-2">Ver Colaboradores</a>
+                                            <a href="" class="btn btn-outline-light mx-2">Ver Colaboradores</a>
+                                        <?php    
+                                    ?>
                                 </div>
                             </div>
                         </div>
