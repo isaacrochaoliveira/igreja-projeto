@@ -332,5 +332,15 @@
         </script>
         <?php
     }
+    if (isset($_GET['ver-colaboradores-jejum'])) {
+        ?>
+        <script type="text/javascript">
+            var myModal = new bootstrap.Modal(document.getElementById('modalVerColaboradores'), {
+
+            })
+            myModal.show();
+        </script>
+        <?php
+    }
     ?>
 </html>
