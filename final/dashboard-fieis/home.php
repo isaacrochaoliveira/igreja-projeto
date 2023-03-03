@@ -656,11 +656,11 @@ $pag = "home";
                 <div>
                     <p>Tem certeza que deseja colaborar com jejum?</p>
                 </div>
+                <div id="mensagem_confirmar_colaboracao">
+    
+                </div>
             </div>
             <div class="modal-footer">
-                <div id="mensagem_confirmar_colaboracao">
-
-                </div>
                 <form id="form-confirmar-colaboracao" method="post">
                     <input type="hidden" value="<?=$id_jejum?>" name="id_jejum-col" id="id_jejum-col">
                 </form>
@@ -831,7 +831,6 @@ $pag = "home";
                 url: pag + '/confirmar-colaboracao-jejum.php',
                 method: 'post',
                 data: $('#form-confirmar-colaboracao').serialize(),
-                dataType: 'text',
                 success: function(msg) {
                     $('#mensagem_confirmar_colaboracao').removeClass();
                     if ($.isNumeric(msg)) {
@@ -839,10 +838,10 @@ $pag = "home";
                         $('#spanpessoascolaborandojejum'+id_jejum).html(Json);
 
                         $('#mensagem_confirmar_colaboracao').addClass('text-success');
-                        $('#mensagem_confirmar_colaboracao').text('Colaboração Aprovada com Sucesso! Aperto o botão "Cancelar"');
+                        $('#mensagem_confirmar_colaboracao').text('Colaboração Aprovada com Sucesso! Aperte na Lixeira');
                     } else {
                         $('#mensagem_confirmar_colaboracao').addClass('text-danger');
-                        $('#mensagem_confirmar_colaboracao').text('Colaboração Reprovada! Aperto o botão "Cancelar"');
+                        $('#mensagem_confirmar_colaboracao').text('Colaboração Reprovada! Aperto na Lixeira');
                     }
                 }
             })
