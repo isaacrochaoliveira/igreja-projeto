@@ -695,12 +695,12 @@ $pag = "home";
                 <div>
                     <p>Tem certeza que deseja não colaborar com jejum?</p>
                 </div>
-                <div id="mensagem_confirmar_colaboracao">
+                <div id="mensagem_desconfirmar_colaboracao">
     
                 </div>
             </div>
             <div class="modal-footer">
-                <form id="form-confirmar-colaboracao" method="post">
+                <form id="form-desconfirmar-colaboracao" method="post">
                     <input type="hidden" value="<?=$id_jejum?>" name="id_jejum-col" id="id_jejum-col">
                 </form>
                 <a href="index.php?pag=<?=$pag?>#jejum<?=$id_jejum?>" name="bt-bt-naocolaborar" id="bt-bt-naocolaborar" class="btn btn-danger"><i class="fa-solid fa-trash"></i></a>
@@ -889,23 +889,24 @@ $pag = "home";
 </script>
 
 <script>
-    function descontinuarColaboracao(id_ejum) {
+    function descontinuarColaboracao(id_jejum) {
         $(document).ready(function() {
             var pag = "<?=$pag?>";
             $.ajax({
                 url: pag + '/descontinuar-colaboracao.php',
                 method: 'post',
-                data: $('#form-confirmar-colaboracao').serialize(),
+                data: $('#form-desconfirmar-colaboracao').serialize(),
                 success: function(msg) {
                     if ($.isNumeric(msg)) {
                         var Json = JSON.parse(msg);
                         $('#spanpessoascolaborandojejum'+id_jejum).html(Json);
 
-                        $('#mensagem_confirmar_colaboracao').addClass('text-success');
-                        $('#mensagem_confirmar_colaboracao').text('Colaboração Removida com Sucesso! Aperte na Lixeira');
+                        $('#mensagem_desconfirmar_colaboracao').addClass('text-success');
+                        $('#mensagem_desconfirmar_colaboracao').text('Colaboração Removida com Sucesso! Aperte na Lixeira');
                     } else {
-                        $('#mensagem_confirmar_colaboracao').addClass('text-danger');
-                        $('#mensagem_confirmar_colaboracao').text('Colaboração Não Aceita para ser Removida! Tente mais Tarde! Aperto na Lixeira');
+                        alert(msg);
+                        $('#mensagem_desconfirmar_colaboracao').addClass('text-danger');
+                        $('#mensagem_desconfirmar_colaboracao').text('Colaboração Não Aceita para ser Removida! Tente mais Tarde! Aperto na Lixeira');
                     }
                 }
             })

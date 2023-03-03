@@ -11,11 +11,7 @@ if (count($res) > 0) {
     $cola = $res[0]['colaboracao'];
     $cola -= 1;
 
-    $res_colab = $pdo->prepare("DELETE FROM colaborando_jejum WHERE id_colaborando = :id_colaborando AND id_colaborando_jejum = :id_colaborando_jejum");
-    $res_colab->bindValue(':id_colaborando', $_SESSION['id']);
-    $res_colab->bindValue(':id_colaborando_jejum', $id_jejum);
-    $res_colab->execute();
-
+    $pdo->query("DELETE FROM colaborando_jejum WHERE id_colaborando = '$_SESSION[id]' AND id_colaborando_jejum = '$id_jejum'");
     $pdo->query("UPDATE jejuns SET colaboracao = '$cola' WHERE id_jejum = '$id_jejum'");
 
     echo $cola;
