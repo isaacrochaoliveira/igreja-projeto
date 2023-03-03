@@ -681,6 +681,35 @@ $pag = "home";
     </div>
 </div>
 
+<div class="modal fade" id="modalDescontinuarColaboracao" data-bs-backdrop="static" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5" id="exampleModalLabel">Descontinuar Colaboração com esse jejum</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                <?php
+                    $id_jejum = addslashes($_GET['apagarcolaboracao']);
+                ?>
+            </div>
+            <div class="modal-body">
+                <div>
+                    <p>Tem certeza que deseja não colaborar com jejum?</p>
+                </div>
+                <div id="mensagem_confirmar_colaboracao">
+    
+                </div>
+            </div>
+            <div class="modal-footer">
+                <form id="form-confirmar-colaboracao" method="post">
+                    <input type="hidden" value="<?=$id_jejum?>" name="id_jejum-col" id="id_jejum-col">
+                </form>
+                <a href="index.php?pag=<?=$pag?>#jejum<?=$id_jejum?>" name="bt-bt-naocolaborar" id="bt-bt-naocolaborar" class="btn btn-danger"><i class="fa-solid fa-trash"></i></a>
+                <button name="bt-bt-confirmarcolaboracao" id="bt-bt-confirmarcolaboracao" onclick="descontinuarColaboracao(<?=$id_jejum?>)" class="btn btn-outline-success"><i class="fa-solid fa-check"></i></button>
+            </div>
+        </div>
+    </div>
+</div>
+
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 <script type="text/javascript">
     $(document).ready(function() {
@@ -852,6 +881,31 @@ $pag = "home";
                     } else {
                         $('#mensagem_confirmar_colaboracao').addClass('text-danger');
                         $('#mensagem_confirmar_colaboracao').text('Colaboração Reprovada! Aperto na Lixeira');
+                    }
+                }
+            })
+        })
+    }
+</script>
+
+<script>
+    function descontinuarColaboracao(id_ejum) {
+        $(document).ready(function() {
+            var pag = "<?=$pag?>";
+            $.ajax({
+                url: pag + '/descontinuar-colaboracao.php',
+                method: 'post',
+                data: $('#form-confirmar-colaboracao').serialize(),
+                success: function(msg) {
+                    if ($.isNumeric(msg)) {
+                        var Json = JSON.parse(msg);
+                        $('#spanpessoascolaborandojejum'+id_jejum).html(Json);
+
+                        $('#mensagem_confirmar_colaboracao').addClass('text-success');
+                        $('#mensagem_confirmar_colaboracao').text('Colaboração Removida com Sucesso! Aperte na Lixeira');
+                    } else {
+                        $('#mensagem_confirmar_colaboracao').addClass('text-danger');
+                        $('#mensagem_confirmar_colaboracao').text('Colaboração Não Aceita para ser Removida! Tente mais Tarde! Aperto na Lixeira');
                     }
                 }
             })

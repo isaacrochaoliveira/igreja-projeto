@@ -325,7 +325,7 @@
     if (isset($_GET['apagarcolaboracao'])) {
         ?>
         <script type="text/javascript">
-            var myModal = new bootstrap.Modal(document.getElementById('modalColaboracao'), {
+            var myModal = new bootstrap.Modal(document.getElementById('modalDescontinuarColaboracao'), {
 
             })
             myModal.show();
