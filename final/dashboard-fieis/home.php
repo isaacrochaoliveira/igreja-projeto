@@ -735,12 +735,11 @@ $pag = "home";
 
                                 <div class="w-50porc">
                                     <div class="text-center py-5">
-                                        <img src="<?=IMAGEM?>/fotos/<?=$foto_perfil?>" alt="Foto de Perfil do Colaborador" width="100" height="100" class="rounded-100 mr-2">
+                                        <img src="<?=IMAGEM?>/fotos/<?=$foto_perfil?>" alt="Foto de Perfil do Colaborador" width="120" height="120" class="rounded-100 mr-2">
                                         <div class="mt-3">
                                             <h6><?=$nome?></h6>
                                             <div>
                                                 <a href="index.php?pag=<?=$pag?>&ver-oracoes-de=<?=$id_usuario?>" class="btn btn-primary" title="Ver Oração de <?=$nome?>"><i class="fa-solid fa-person-praying"></i></a>
-                                                <a href="index.php?pag=<?=$pag?>&"></a>
                                             </div>
                                         </div>
                                     </div>
@@ -748,13 +747,14 @@ $pag = "home";
 
                                 <?php
                             }
+                        } else {
+                            echo "Ninguém por aqui";
                         }
                     ?>
                 </div>
             </div>
             <div class="modal-footer">
-                <a href="index.php?pag=<?=$pag?>#jejum<?=$id_jejum?>" name="bt-bt-naocolaborar" id="bt-bt-naocolaborar" class="btn btn-danger"><i class="fa-solid fa-trash"></i></a>
-                <button name="bt-bt-confirmarcolaboracao" id="bt-bt-confirmarcolaboracao" onclick="descontinuarColaboracao(<?=$id_jejum?>)" class="btn btn-outline-success"><i class="fa-solid fa-check"></i></button>
+                <a href="index.php?pag=<?=$pag?>#jejum<?=$id_jejum?>" name="bt-bt-naocolaborar" id="bt-bt-naocolaborar" class="btn btn-danger">Fechar</a>
             </div>
         </div>
     </div>
