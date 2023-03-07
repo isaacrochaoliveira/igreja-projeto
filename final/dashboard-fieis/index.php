@@ -342,5 +342,15 @@
         </script>
         <?php
     }
+    if (isset($_GET['ver-oracoes-de'])) {
+        ?>
+        <script type="text/javascript">
+            var myModal = new bootstrap.Modal(document.getElementById('ModalOracoesDe'), {
+
+            })
+            myModal.show();
+        </script>
+        <?php
+    }
     ?>
 </html>

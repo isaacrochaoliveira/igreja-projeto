@@ -728,6 +728,7 @@ $pag = "home";
                                 foreach ($res[$i] as $key => $value) {
                                 }
                                 //Dados do Usuário
+                                $id_usuario = $res[$i]['id'];
                                 $nome = $res[$i]['nome'];
                                 $foto_perfil = $res[$i]['perfil'];
 
@@ -754,7 +755,52 @@ $pag = "home";
                 </div>
             </div>
             <div class="modal-footer">
-                <a href="index.php?pag=<?=$pag?>#jejum<?=$id_jejum?>" name="bt-bt-naocolaborar" id="bt-bt-naocolaborar" class="btn btn-danger">Fechar</a>
+                <a href="index.php?pag=<?=$pag?>#jejum<?=$id_jejum?>" name="bt-bt-naocolaborar" id="bt-bt-naocolaborar" class="btn btn-outline-secondary">Fechar</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="ModalOracoesDe" data-bs-backdrop="static" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-xl">
+        <div class="modal-content">
+            <div class="modal-header">
+                <?php
+                    $id = addslashes($_GET['ver-oracoes-de']);
+                    $query = $pdo->query("SELECT * FROM oracao as o JOIN usuarios as u ON o.id_criador = u.id WHERE id_criador = '$id'");
+                    $res = $query->fetchAll(PDO::FETCH_ASSOC);
+                    if (count($res) > 0) {
+                        $perfil = $res[0]['perfil'];
+                        $nome = $res[0]['nome'];
+                    }
+                ?>
+                <h1 class="modal-title fs-5" id="exampleModalLabel"><?=$nome?></h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <div class="card" style="width: 22rem;">
+                    <?php
+                        if (count($res) > 0) {
+                            for ($i = 0; $i < count($res); $i++) {
+                                foreach ($res[$i] as $key => $value) {
+                                }
+                                $titulo = $res[$i]['titulo'];
+                                $descricao = $res[$i]['descricao'];
+                                $orando = $res[$i]['orando'];
+                                ?>
+                                    <img src="<?=IMAGEM."/fotos/$perfil"?>" class="card-img-top" alt="Foto de Perfil do Usuário" height="300">
+                                    <div class="card-body">
+                                        <h5 class="card-title"><?=$titulo?></h5>
+                                        <p class="card-text"><?=$descricao?></p>
+                                    </div> 
+                                <?php
+                            }
+                        }
+                    ?>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <a href="index.php?pag=<?=$pag?>#jejum<?=$id_jejum?>" name="bt-bt-naocolaborar" id="bt-bt-naocolaborar" class="btn btn-outline-secondary">Fechar</a>
             </div>
         </div>
     </div>
