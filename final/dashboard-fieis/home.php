@@ -778,25 +778,26 @@ $pag = "home";
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-                <div class="card" style="width: 22rem;">
+                <div class="d-flex flex-wrap">
                     <?php
-                        if (count($res) > 0) {
-                            for ($i = 0; $i < count($res); $i++) {
-                                foreach ($res[$i] as $key => $value) {
+                            if (count($res) > 0) {
+                                for ($i = 0; $i < count($res); $i++) {
+                                    foreach ($res[$i] as $key => $value) {
+                                    }
+                                    $titulo = $res[$i]['titulo'];
+                                    $descricao = $res[$i]['descricao'];
+                                    $orando = $res[$i]['orando'];
+                                    ?>
+                                        <div class="card mx-2" style="width: 22rem;">
+                                            <div class="card-body">
+                                                <h5 class="card-title mb-3" style="font-weight: 500"><?=$titulo?></h5>
+                                                <p class="card-text"><?=$descricao?></p>
+                                            </div> 
+                                        </div>
+                                    <?php
                                 }
-                                $titulo = $res[$i]['titulo'];
-                                $descricao = $res[$i]['descricao'];
-                                $orando = $res[$i]['orando'];
-                                ?>
-                                    <img src="<?=IMAGEM."/fotos/$perfil"?>" class="card-img-top" alt="Foto de Perfil do Usuário" height="300">
-                                    <div class="card-body">
-                                        <h5 class="card-title"><?=$titulo?></h5>
-                                        <p class="card-text"><?=$descricao?></p>
-                                    </div> 
-                                <?php
                             }
-                        }
-                    ?>
+                        ?>
                 </div>
             </div>
             <div class="modal-footer">
