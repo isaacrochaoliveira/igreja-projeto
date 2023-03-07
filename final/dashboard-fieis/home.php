@@ -767,6 +767,11 @@ $pag = "home";
             <div class="modal-header">
                 <?php
                     $id = addslashes($_GET['ver-oracoes-de']);
+
+                    $_query_ = $pdo->query("SELECT * FROM jejuns WHERE id_criador_jejum = '$id'");
+                    $_res_ = $_query_->fetchAll(PDO::FETCH_ASSOC);
+                    $id_jejum = $_res_[0]['id_jejum'];
+
                     $query = $pdo->query("SELECT * FROM oracao as o JOIN usuarios as u ON o.id_criador = u.id WHERE id_criador = '$id'");
                     $res = $query->fetchAll(PDO::FETCH_ASSOC);
                     if (count($res) > 0) {
@@ -801,7 +806,7 @@ $pag = "home";
                 </div>
             </div>
             <div class="modal-footer">
-                <a href="index.php?pag=<?=$pag?>#jejum<?=$id_jejum?>" name="bt-bt-naocolaborar" id="bt-bt-naocolaborar" class="btn btn-outline-secondary">Fechar</a>
+                <a href="index.php?pag=<?=$pag?>&ver-colaboradores-jejum=<?=$id_jejum?>" class="btn btn-primary">Voltar</a>
             </div>
         </div>
     </div>
