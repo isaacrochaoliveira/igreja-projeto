@@ -352,5 +352,15 @@
         </script>
         <?php
     }
+    if (isset($_GET['ver-oracoes-curtidas'])) {
+        ?>
+        <script type="text/javascript">
+            var myModal = new bootstrap.Modal(document.getElementById('ModalOracoesCurtidasDeUsuario'), {
+
+            })
+            myModal.show();
+        </script>
+        <?php
+    }
     ?>
 </html>
