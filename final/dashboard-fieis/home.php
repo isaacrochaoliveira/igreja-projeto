@@ -742,6 +742,7 @@ $pag = "home";
                                             <div>
                                                 <a href="index.php?pag=<?=$pag?>&ver-oracoes-de=<?=$id_usuario?>" class="btn btn-primary" title="Ver Oração de <?=$nome?>"><i class="fa-solid fa-person-praying"></i></a>
                                                 <a href="index.php?pag=<?=$pag?>&ver-oracoes-curtidas=<?=$id_usuario?>" class="btn btn-dark" title="Ver Orações que <?=$nome?> curtiu"><i class="fa-solid fa-heart"></i></a>
+                                                <a href="index.php?pag=<?=$pag?>&ver-grupos-usuario-criou=<?=$id_usuario?>" class="btn btn-outline-info" title="Grupos que <?=$nome?> criou"><i class="fa-solid fa-people-group"></i></a>
                                             </div>
                                         </div>
                                     </div>
@@ -807,7 +808,7 @@ $pag = "home";
                 </div>
             </div>
             <div class="modal-footer">
-                <a href="index.php?pag=<?=$pag?>&ver-colaboradores-jejum=<?=$id_jejum?>" class="btn btn-primary">Voltar</a>
+                <!--<a href="index.php?pag=<?=$pag?>&ver-colaboradores-jejum=<?=$id_jejum?>" class="btn btn-primary">Voltar</a>-->
             </div>
         </div>
     </div>
@@ -859,7 +860,7 @@ $pag = "home";
                 </div>
             </div>
             <div class="modal-footer">
-                <a href="index.php?pag=<?=$pag?>&ver-colaboradores-jejum=<?=$id_jejum?>" class="btn btn-primary">Voltar</a>
+                <!--<a href="index.php?pag=<?=$pag?>&ver-colaboradores-jejum=<?=$id_jejum?>" class="btn btn-primary">Voltar</a>-->
             </div>
         </div>
     </div>
