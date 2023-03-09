@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1:3306
--- Tempo de geração: 15-Fev-2023 às 03:23
+-- Tempo de geração: 09-Mar-2023 às 13:49
 -- Versão do servidor: 8.0.31
--- versão do PHP: 8.0.26
+-- versão do PHP: 8.2.0
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -91,7 +91,7 @@ CREATE TABLE IF NOT EXISTS `anotacoes_pastora` (
   `hora_anotacao_pastora` time DEFAULT NULL,
   PRIMARY KEY (`id_anotacao_pastora`),
   KEY `id_pastora` (`id_pastora`)
-) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Extraindo dados da tabela `anotacoes_pastora`
@@ -105,7 +105,8 @@ INSERT INTO `anotacoes_pastora` (`id_anotacao_pastora`, `id_pastora`, `texto_ano
 (5, 1, '5 Anotações', '2023-02-12', '12:53:37'),
 (6, 1, '6 Anotação - 12:55', '2023-02-12', '12:55:37'),
 (7, 1, 'Tava mexendo no Ajax errado', '2023-02-12', '12:57:36'),
-(9, 2, 'Eis que vos envio como ovelhas ao meio de lobos; portanto, sede prudentes como as serpentes e inofensivos como as pombas.', '2023-02-12', '22:05:54');
+(9, 2, 'Eis que vos envio como ovelhas ao meio de lobos; portanto, sede prudentes como as serpentes e inofensivos como as pombas.', '2023-02-12', '22:05:54'),
+(10, 1, 'Eu sou a Pastora Ana! Oiiiii!', '2023-03-02', '22:02:32');
 
 -- --------------------------------------------------------
 
@@ -118,7 +119,7 @@ CREATE TABLE IF NOT EXISTS `cargos` (
   `id_cargo` tinyint NOT NULL AUTO_INCREMENT,
   `cargo` varchar(100) NOT NULL,
   PRIMARY KEY (`id_cargo`)
-) ENGINE=InnoDB AUTO_INCREMENT=15 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=15 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
 -- Extraindo dados da tabela `cargos`
@@ -151,7 +152,7 @@ CREATE TABLE IF NOT EXISTS `categorias` (
   `id_cat` tinyint NOT NULL AUTO_INCREMENT,
   `categorias` varchar(50) NOT NULL,
   PRIMARY KEY (`id_cat`)
-) ENGINE=InnoDB AUTO_INCREMENT=23 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=23 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
 -- Extraindo dados da tabela `categorias`
@@ -193,7 +194,7 @@ CREATE TABLE IF NOT EXISTS `citacoes` (
   `author` varchar(50) NOT NULL,
   `citacao` text,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
 -- Extraindo dados da tabela `citacoes`
@@ -202,6 +203,31 @@ CREATE TABLE IF NOT EXISTS `citacoes` (
 INSERT INTO `citacoes` (`id`, `author`, `citacao`) VALUES
 (1, 'Paul Washer', 'A beleza da mulher não está no seu aspecto físico, mas no temor e na obediência a Deus'),
 (2, 'Billy Graham', 'Deus nos deu duas mãos: uma para receber e outra para dar. Não somos cisternas feitas para acumular, somos canais feitos para compartilhar');
+
+-- --------------------------------------------------------
+
+--
+-- Estrutura da tabela `colaborando_jejum`
+--
+
+DROP TABLE IF EXISTS `colaborando_jejum`;
+CREATE TABLE IF NOT EXISTS `colaborando_jejum` (
+  `id_colab` tinyint NOT NULL AUTO_INCREMENT,
+  `id_colaborando` tinyint DEFAULT NULL,
+  `id_colaborando_jejum` tinyint DEFAULT NULL,
+  `data_colaboracao` date DEFAULT NULL,
+  `hora_colaboracao` time DEFAULT NULL,
+  PRIMARY KEY (`id_colab`),
+  KEY `id_colaborando` (`id_colaborando`),
+  KEY `id_colaborando_jejum` (`id_colaborando_jejum`)
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Extraindo dados da tabela `colaborando_jejum`
+--
+
+INSERT INTO `colaborando_jejum` (`id_colab`, `id_colaborando`, `id_colaborando_jejum`, `data_colaboracao`, `hora_colaboracao`) VALUES
+(2, 10, 1, '2023-03-08', '21:03:21');
 
 -- --------------------------------------------------------
 
@@ -512,7 +538,7 @@ CREATE TABLE IF NOT EXISTS `emproposito_na_oracao` (
   PRIMARY KEY (`id`),
   KEY `id_usuario` (`id_usuario`),
   KEY `id_oracao` (`id_oracao`)
-) ENGINE=InnoDB AUTO_INCREMENT=46 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=50 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Extraindo dados da tabela `emproposito_na_oracao`
@@ -534,7 +560,10 @@ INSERT INTO `emproposito_na_oracao` (`id`, `id_usuario`, `id_oracao`) VALUES
 (42, 2, 4),
 (43, 8, 4),
 (44, 8, 21),
-(45, 10, 9);
+(45, 10, 9),
+(47, 1, 4),
+(48, 1, 9),
+(49, 10, 21);
 
 -- --------------------------------------------------------
 
@@ -559,14 +588,14 @@ CREATE TABLE IF NOT EXISTS `grupos_de_oracao` (
   PRIMARY KEY (`id_group`),
   KEY `id_criador` (`id_criador`),
   KEY `id_licenca` (`id_licenca`)
-) ENGINE=InnoDB AUTO_INCREMENT=38 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=38 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
 -- Extraindo dados da tabela `grupos_de_oracao`
 --
 
 INSERT INTO `grupos_de_oracao` (`id_group`, `id_criador`, `id_licenca`, `logo`, `title`, `descricao`, `pessoas_part`, `criado_em`, `hora_criado_em`, `ativo`, `fechadoEm`, `hora_fechadoEm`) VALUES
-(1, 8, NULL, '63d1cb40584b4.jpg', 'Grupo de Intercessão', 'Buscamos a face de Deus dia após dia, a bíblia nos fala orai sem cesar. Por que nós oramos? Simples! Você não pediria um ajuda para a única pessoa que consegue fazer aquilo que você tanto deseja?', 18, '2023-01-16', '00:53:32', 'S', NULL, NULL),
+(1, 8, NULL, '63d1cb40584b4.jpg', 'Grupo de Intercessão', 'Buscamos a face de Deus dia após dia, a bíblia nos fala orai sem cesar. Por que nós oramos? Simples! Você não pediria um ajuda para a única pessoa que consegue fazer aquilo que você tanto deseja?', 19, '2023-01-16', '00:53:32', 'S', NULL, NULL),
 (2, 10, 1, '63ac6ec8ee488.png', 'Oração para as Solteiras', 'Eu vim para orar pelo meu futuro marido, porque eu vim com sapatinho de fogo (nós viemos)', 15, '2023-01-18', '23:52:15', 'S', NULL, NULL),
 (36, 10, 2, '63d54329a96ec.jpg', 'Sabedoria e Prudência', 'Pv - Eu amo os que me amam, e os que de madrugada me buscam me acharão', 0, '2023-01-28', '13:37:01', 'S', NULL, NULL),
 (37, 3, 1, 'sem-foto.jpg', 'Grupos de Pastores', 'Grupo de Pastores para estudarmos a palavra de Deus, e assim, ajudarmos nossos membros1', 0, '2023-02-09', '01:37:02', 'S', NULL, NULL);
@@ -580,7 +609,9 @@ INSERT INTO `grupos_de_oracao` (`id_group`, `id_criador`, `id_licenca`, `logo`, 
 DROP TABLE IF EXISTS `jejuns`;
 CREATE TABLE IF NOT EXISTS `jejuns` (
   `id_jejum` tinyint NOT NULL AUTO_INCREMENT,
+  `id_criador_jejum` tinyint DEFAULT NULL,
   `pastor_comando` tinyint DEFAULT NULL,
+  `pastora_comando` tinyint DEFAULT NULL,
   `imagem` varchar(70) COLLATE utf8mb4_general_ci DEFAULT 'sem-foto.jpg',
   `jejum` varchar(70) COLLATE utf8mb4_general_ci NOT NULL,
   `descricao_jejum` text COLLATE utf8mb4_general_ci,
@@ -590,15 +621,17 @@ CREATE TABLE IF NOT EXISTS `jejuns` (
   `data_jejum` date DEFAULT NULL,
   `hora_jejum` time DEFAULT NULL,
   PRIMARY KEY (`id_jejum`),
-  KEY `pastor_comando` (`pastor_comando`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+  KEY `pastor_comando` (`pastor_comando`),
+  KEY `pastora_comando` (`pastora_comando`)
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Extraindo dados da tabela `jejuns`
 --
 
-INSERT INTO `jejuns` (`id_jejum`, `pastor_comando`, `imagem`, `jejum`, `descricao_jejum`, `versiculo_baseado`, `colaboracao`, `quantidade_pessoas`, `data_jejum`, `hora_jejum`) VALUES
-(1, 10, '1102016074_univ_cnt_2_xl.jpg', 'Jejum de Daniel', 'O Jejum de Daniel é para gente se aproximar de Deus e nos abundarmos na Tua presença', 'Daniel 3:3', 0, 1, '2023-02-13', '20:34:35');
+INSERT INTO `jejuns` (`id_jejum`, `id_criador_jejum`, `pastor_comando`, `pastora_comando`, `imagem`, `jejum`, `descricao_jejum`, `versiculo_baseado`, `colaboracao`, `quantidade_pessoas`, `data_jejum`, `hora_jejum`) VALUES
+(1, 10, 10, NULL, '1102016074_univ_cnt_2_xl.jpg', 'Jejum de Daniel', 'O Jejum de Daniel é para gente se aproximar de Deus e nos abundarmos na Tua presença', 'Daniel 3:3', 1, 0, '2023-02-13', '20:34:35'),
+(2, 8, NULL, 1, 'sem-foto.jpg', 'Jejum de Ester', 'O Jejum ', 'Ester 1:1', 0, 0, '2023-01-15', '22:15:03');
 
 -- --------------------------------------------------------
 
@@ -637,19 +670,20 @@ CREATE TABLE IF NOT EXISTS `oracao` (
   `orando` int DEFAULT '0',
   PRIMARY KEY (`id_pray`),
   KEY `id_criador` (`id_criador`)
-) ENGINE=InnoDB AUTO_INCREMENT=25 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=26 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
 -- Extraindo dados da tabela `oracao`
 --
 
 INSERT INTO `oracao` (`id_pray`, `id_criador`, `titulo`, `descricao`, `orando`) VALUES
-(4, 8, 'Varoa', 'A Mulher Prudente vem do Senhor. Me ajudem em oração', 126),
-(9, 10, 'Varão', 'Esposa, obedeça ao seu marido, como você obedece ao Senhor. Pois o marido tem autoridade sobre a esposa, assim como Cristo tem autoridade sobre a Igreja', 0),
-(21, 4, 'Obrigado!', 'Me ajudem a agradecer meu Deus por tudo. Obrigado', 2),
+(4, 8, 'Varoa', 'A Mulher Prudente vem do Senhor. Me ajudem em oração', 127),
+(9, 10, 'Varão', 'Esposa, obedeça ao seu marido, como você obedece ao Senhor. Pois o marido tem autoridade sobre a esposa, assim como Cristo tem autoridade sobre a Igreja', 1),
+(21, 4, 'Obrigado!', 'Me ajudem a agradecer meu Deus por tudo. Obrigado', 3),
 (22, 9, 'Aqui é a Paula', 'Estou atualmente querendo entrar em um emprego, mas preciso saber se é da vontade do meu Pai. Me ajudem em oração, Obrigado!', 6),
 (23, 11, 'Oração', 'Estou em processo de um relacionamento pessoal\r\n', 4),
-(24, 11, 'Salmos 125:1', 'Me ajude a orar a ficar mais parecido com o Monte Sião. Além disso, quando vocês orarem ao meu favor, automaticamente Deus vai pelejar ao seu favor', 0);
+(24, 11, 'Salmos 125:1', 'Me ajude a orar a ficar mais parecido com o Monte Sião. Além disso, quando vocês orarem ao meu favor, automaticamente Deus vai pelejar ao seu favor', 0),
+(25, 10, 'Prosperidade', 'Prosperidade é ter tudo aquilo para fazer o nosso propósito na terra', 0);
 
 -- --------------------------------------------------------
 
@@ -665,7 +699,7 @@ CREATE TABLE IF NOT EXISTS `oracao_relacionada_com_a_categoria` (
   PRIMARY KEY (`id`),
   KEY `id_oracao` (`id_oracao`),
   KEY `id_categoria` (`id_categoria`)
-) ENGINE=InnoDB AUTO_INCREMENT=44 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=48 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
 -- Extraindo dados da tabela `oracao_relacionada_com_a_categoria`
@@ -694,7 +728,11 @@ INSERT INTO `oracao_relacionada_com_a_categoria` (`id`, `id_oracao`, `id_categor
 (40, 24, 6),
 (41, 24, 4),
 (42, 24, 3),
-(43, 24, 15);
+(43, 24, 15),
+(44, 25, 1),
+(45, 25, 4),
+(46, 25, 14),
+(47, 25, 6);
 
 -- --------------------------------------------------------
 
@@ -708,7 +746,14 @@ CREATE TABLE IF NOT EXISTS `participando_do_grupo` (
   `id_usuario` tinyint DEFAULT NULL,
   `id_grupo` tinyint DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=25 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=26 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+--
+-- Extraindo dados da tabela `participando_do_grupo`
+--
+
+INSERT INTO `participando_do_grupo` (`id`, `id_usuario`, `id_grupo`) VALUES
+(25, 10, 1);
 
 -- --------------------------------------------------------
 
@@ -726,14 +771,7 @@ CREATE TABLE IF NOT EXISTS `participando_do_jejum` (
   PRIMARY KEY (`id_part_jejum`),
   KEY `id_participante` (`id_participante`),
   KEY `id_jejum_part` (`id_jejum_part`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
---
--- Extraindo dados da tabela `participando_do_jejum`
---
-
-INSERT INTO `participando_do_jejum` (`id_part_jejum`, `id_participante`, `id_jejum_part`, `data_participa`, `hora_participa`) VALUES
-(4, 10, 1, '2023-02-15', '00:18:51');
+) ENGINE=InnoDB AUTO_INCREMENT=18 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
 
@@ -875,7 +913,7 @@ CREATE TABLE IF NOT EXISTS `usuarios` (
   UNIQUE KEY `cpf` (`cpf`),
   UNIQUE KEY `email` (`email`),
   KEY `id_cargo` (`id_cargo`)
-) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
 -- Extraindo dados da tabela `usuarios`
@@ -885,8 +923,8 @@ INSERT INTO `usuarios` (`id`, `id_cargo`, `nome`, `nasc`, `sexo`, `cpf`, `email`
 (1, 12, 'Paulão22', '2010-02-18', 'M', '12345678910', 'paulo@gmail.com', '123XyZ22419hJlM', 'sem-foto', 'Namorando', 'N', '00:00:00', '00:00:00'),
 (2, 9, 'Ana', '1994-07-23', 'F', '7063192441', 'ana@gmail.com', 'e7f810', 'sem-foto', 'Solteiro', 'S', '13:00:00', '18:00:00'),
 (3, 1, 'JOSE', '2023-01-03', 'M', '91028427324', 'josedo.egito@gmail.com', 'josezinho', 'sem-foto', 'Casado', 'N', '00:00:00', '00:00:00'),
-(4, 12, 'Isaac Rocha', '2004-07-23', 'M', '70631871128', 'isaak.rocha137@gmail.com', 'XyZ22419hJlM', 'sem-foto.jpg', 'Solteiro', 'S', '08:00:00', '18:00:00'),
-(5, 9, 'Maria', '1993-07-07', 'F', '12139839334', 'maria@123gmail.com', 'XyZ22419hJlM', 'http://localhost/sistemas/final/assets/i', 'Noivo', 'S', '07:30:00', '15:00:00'),
+(4, 12, 'Isaac Rocha', '2004-07-23', 'M', '70631871128', 'isaak.rocha137@gmail.com', 'XyZ22419hJlM', 'sem-foto', 'Solteiro', 'S', '08:00:00', '18:00:00'),
+(5, 9, 'Maria', '1993-07-07', 'F', '12139839334', 'maria@123gmail.com', 'XyZ22419hJlM', 'sem-foto', 'Noivo', 'S', '07:30:00', '15:00:00'),
 (6, 11, 'Marcos', '1986-01-23', 'M', '321456987', 'marcos_marcos@gmail.com', 'XyZ22419hJlM', '63bb1fe1e6e05.jpg', 'Casado', 'N', '00:00:00', '00:00:00'),
 (7, 1, 'Val dos ossos secos', '2000-01-01', 'M', '122134435665', 'pai.amado@gmail.com', 'XyZ22419hJlM', '63bb209eee5a7.jpg', 'Casado', 'S', '00:00:00', '00:00:00'),
 (8, 2, 'Marcos', '2004-07-23', 'M', '142154541010', 'negao_rocha@gmail.com', 'negao', '63bb214604be3.jpg', 'Casado', 'S', '08:00:00', '18:00:00'),
@@ -919,6 +957,13 @@ ALTER TABLE `anotacoes_pastora`
   ADD CONSTRAINT `anotacoes_pastora_ibfk_1` FOREIGN KEY (`id_pastora`) REFERENCES `pastoras` (`id_pas_ras`);
 
 --
+-- Limitadores para a tabela `colaborando_jejum`
+--
+ALTER TABLE `colaborando_jejum`
+  ADD CONSTRAINT `colaborando_jejum_ibfk_1` FOREIGN KEY (`id_colaborando`) REFERENCES `usuarios` (`id`),
+  ADD CONSTRAINT `colaborando_jejum_ibfk_2` FOREIGN KEY (`id_colaborando_jejum`) REFERENCES `jejuns` (`id_jejum`);
+
+--
 -- Limitadores para a tabela `comentarios_grupos`
 --
 ALTER TABLE `comentarios_grupos`
@@ -943,7 +988,8 @@ ALTER TABLE `grupos_de_oracao`
 -- Limitadores para a tabela `jejuns`
 --
 ALTER TABLE `jejuns`
-  ADD CONSTRAINT `jejuns_ibfk_1` FOREIGN KEY (`pastor_comando`) REFERENCES `pastores` (`id_pas`);
+  ADD CONSTRAINT `jejuns_ibfk_1` FOREIGN KEY (`pastor_comando`) REFERENCES `pastores` (`id_pas`),
+  ADD CONSTRAINT `jejuns_ibfk_2` FOREIGN KEY (`pastora_comando`) REFERENCES `pastoras` (`id_pas_ras`);
 
 --
 -- Limitadores para a tabela `oracao`
