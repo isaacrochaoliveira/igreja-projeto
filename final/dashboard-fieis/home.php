@@ -735,12 +735,13 @@ $pag = "home";
                                 ?>
 
                                 <div class="w-50porc">
-                                    <div class="text-center py-5">
+                                    <div class="text-center py-3">
                                         <img src="<?=IMAGEM?>/fotos/<?=$foto_perfil?>" alt="Foto de Perfil do Colaborador" width="120" height="120" class="rounded-100 mr-2">
                                         <div class="mt-3">
                                             <h6><?=$nome?></h6>
                                             <div>
                                                 <a href="index.php?pag=<?=$pag?>&ver-oracoes-de=<?=$id_usuario?>" class="btn btn-primary" title="Ver Oração de <?=$nome?>"><i class="fa-solid fa-person-praying"></i></a>
+                                                <a href="index.php?pag=<?=$pag?>&ver-oracoes-curtidas=<?=$id_usuario?>" class="btn btn-dark" title="Ver Orações que <?=$nome?> curtiu"><i class="fa-solid fa-heart"></i></a>
                                             </div>
                                         </div>
                                     </div>
