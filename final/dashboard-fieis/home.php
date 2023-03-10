@@ -878,7 +878,7 @@ $pag = "home";
                     $_res_ = $_query_->fetchAll(PDO::FETCH_ASSOC);
                     $id_jejum = $_res_[0]['id_jejum'];
 
-                    $query = $pdo->query("SELECT * FROM grupos_de_oracao as o JOIN usuarios as u ON o.id_usuario = u.id JOIN licenca ON o.id_licenca = licenca.id WHERE id_usuario = '$id'");
+                    $query = $pdo->query("SELECT * FROM grupos_de_oracao as o JOIN usuarios as u ON o.id_criador = u.id JOIN licenca ON o.id_licenca = licenca.id WHERE id_criador = '$id'");
                     $res = $query->fetchAll(PDO::FETCH_ASSOC);
                     if (count($res) > 0) {
                         // Dados do Usuário
@@ -900,14 +900,25 @@ $pag = "home";
                                 for ($i = 0; $i < count($res); $i++) {
                                     foreach ($res[$i] as $key => $value) {
                                     }
+                                    $logo = $res[$i]['logo'];
                                     $titulo = $res[$i]['title'];
                                     $descricao = $res[$i]['descricao'];
-                                    $orando = $res[$i]['orando'];
+                                    $p_participando = $res[$i]['pessoas_part'];
+                                    $criado = $res[$i]['criado_em'];
+                                    $criado_hora = $res[$i]['hora_criado_em'];
+                                    $ativo = $res[$i]['ativo'];
+                                    
+                                    $criado = implode('/', array_reverse(explode('-', $criado)));
                                     ?>
                                         <div class="card mx-2" style="width: 22rem;">
+                                            <img src="<?=IMAGEM."fotos-grupos/$logo"?>" alt="Foto do Grupo" height="250">
                                             <div class="card-body">
                                                 <h5 class="card-title mb-3" style="font-weight: 500"><?=$titulo?></h5>
                                                 <p class="card-text"><?=$descricao?></p>
+                                                <p class="card-text"><?=$p_participando?> Participando - <?=$criado?> às <?=$criado_hora?> - <?=($ativo=='S') ? "Ativo" : "Desativado"?></p>
+                                                <hr>
+                                                <h5 class="card-title mb-3">LICENÇA - <?=$nome_licenca?></h5><br>
+                                                <p><?=$descricao_licenca?></p>
                                             </div> 
                                         </div>
                                     <?php
