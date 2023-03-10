@@ -866,6 +866,63 @@ $pag = "home";
     </div>
 </div>
     
+
+<div class="modal fade" id="ModalGruposCriadosUser" data-bs-backdrop="static" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-xl">
+        <div class="modal-content">
+            <div class="modal-header">
+                <?php
+                    $id = addslashes($_GET['ver-grupos-usuario-criou']);
+
+                    $_query_ = $pdo->query("SELECT * FROM jejuns WHERE id_criador_jejum = '$id'");
+                    $_res_ = $_query_->fetchAll(PDO::FETCH_ASSOC);
+                    $id_jejum = $_res_[0]['id_jejum'];
+
+                    $query = $pdo->query("SELECT * FROM grupos_de_oracao as o JOIN usuarios as u ON o.id_usuario = u.id JOIN licenca ON o.id_licenca = licenca.id WHERE id_usuario = '$id'");
+                    $res = $query->fetchAll(PDO::FETCH_ASSOC);
+                    if (count($res) > 0) {
+                        // Dados do Usuário
+                        $perfil = $res[0]['perfil'];
+                        $nome = $res[0]['nome'];
+                        
+                        // Dados da Licença
+                        $nome_licenca = $res[0]['nome_da_licenca'];
+                        $descricao_licenca = $res[0]['descricao_da_licenca'];
+                    }
+                ?>
+                <h1 class="modal-title fs-5" id="exampleModalLabel"><?=$nome?></h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <div class="d-flex flex-wrap">
+                    <?php
+                            if (count($res) > 0) {
+                                for ($i = 0; $i < count($res); $i++) {
+                                    foreach ($res[$i] as $key => $value) {
+                                    }
+                                    $titulo = $res[$i]['title'];
+                                    $descricao = $res[$i]['descricao'];
+                                    $orando = $res[$i]['orando'];
+                                    ?>
+                                        <div class="card mx-2" style="width: 22rem;">
+                                            <div class="card-body">
+                                                <h5 class="card-title mb-3" style="font-weight: 500"><?=$titulo?></h5>
+                                                <p class="card-text"><?=$descricao?></p>
+                                            </div> 
+                                        </div>
+                                    <?php
+                                }
+                            }
+                        ?>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <!--<a href="index.php?pag=<?=$pag?>&ver-colaboradores-jejum=<?=$id_jejum?>" class="btn btn-primary">Voltar</a>-->
+            </div>
+        </div>
+    </div>
+</div>    
+    
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 <script type="text/javascript">
     $(document).ready(function() {

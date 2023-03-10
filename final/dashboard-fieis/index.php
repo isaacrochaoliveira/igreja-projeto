@@ -362,5 +362,15 @@
         </script>
         <?php
     }
+    if (isset($_GET['ver-grupos-usuario-criou'])) {
+        ?>
+        <script type="text/javascript">
+            var myModal = new bootstrap.Modal(document.getElementById('ModalGruposCriadosUser'), {
+
+            })
+            myModal.show();
+        </script>
+        <?php
+    }
     ?>
 </html>
