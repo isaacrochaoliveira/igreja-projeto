@@ -803,6 +803,8 @@ $pag = "home";
                                         </div>
                                     <?php
                                 }
+                            } else {
+                                echo "Sem movimentação por aqui!"
                             }
                         ?>
                 </div>
@@ -855,6 +857,8 @@ $pag = "home";
                                         </div>
                                     <?php
                                 }
+                            } else {
+                                echo "Sem movimentação por aqui!";
                             }
                         ?>
                 </div>
@@ -923,6 +927,8 @@ $pag = "home";
                                         </div>
                                     <?php
                                 }
+                            } else {
+                                echo "Sem movimentação por aqui!";
                             }
                         ?>
                 </div>
