@@ -129,7 +129,372 @@ $pag = "jejum-21-dias";
         ?>
     </div>
 
+<!--MODALS-->
 
+<div class="modal fade" id="modalColaboracao" data-bs-backdrop="static" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5" id="exampleModalLabel">Confirmar Colaboração com esse jejum</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                <?php
+                    $id_jejum = addslashes($_GET['confirmarcolaboracao']);
+                ?>
+            </div>
+            <div class="modal-body">
+                <div>
+                    <p>Tem certeza que deseja colaborar com jejum?</p>
+                </div>
+                <div id="mensagem_confirmar_colaboracao">
+    
+                </div>
+            </div>
+            <div class="modal-footer">
+                <form id="form-confirmar-colaboracao" method="post">
+                    <input type="hidden" value="<?=$id_jejum?>" name="id_jejum-col" id="id_jejum-col">
+                </form>
+                <a href="index.php?pag=<?=$pag?>#jejum<?=$id_jejum?>" name="bt-bt-naocolaborar" id="bt-bt-naocolaborar" class="btn btn-danger"><i class="fa-solid fa-trash"></i></a>
+                <button name="bt-bt-confirmarcolaboracao" id="bt-bt-confirmarcolaboracao" onclick="confirmarColaboracao(<?=$id_jejum?>)" class="btn btn-outline-success"><i class="fa-solid fa-check"></i></button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="modalDescontinuarColaboracao" data-bs-backdrop="static" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5" id="exampleModalLabel">Descontinuar Colaboração com esse jejum</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                <?php
+                    $id_jejum = addslashes($_GET['apagarcolaboracao']);
+                ?>
+            </div>
+            <div class="modal-body">
+                <div>
+                    <p>Tem certeza que deseja não colaborar com jejum?</p>
+                </div>
+                <div id="mensagem_desconfirmar_colaboracao">
+    
+                </div>
+            </div>
+            <div class="modal-footer">
+                <form id="form-desconfirmar-colaboracao" method="post">
+                    <input type="hidden" value="<?=$id_jejum?>" name="id_jejum-col" id="id_jejum-col">
+                </form>
+                <a href="index.php?pag=<?=$pag?>#jejum<?=$id_jejum?>" name="bt-bt-naocolaborar" id="bt-bt-naocolaborar" class="btn btn-danger"><i class="fa-solid fa-trash"></i></a>
+                <button name="bt-bt-confirmarcolaboracao" id="bt-bt-confirmarcolaboracao" onclick="descontinuarColaboracao(<?=$id_jejum?>)" class="btn btn-outline-success"><i class="fa-solid fa-check"></i></button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="modalVerColaboradores" data-bs-backdrop="static" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-xl">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5" id="exampleModalLabel">Os Colaboradores Desse Jejum são:</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                <?php
+                    $id_jejum = addslashes($_GET['ver-colaboradores-jejum']);
+                ?>
+            </div>
+            <div class="modal-body">
+                <div class="d-flex flex-wrap">
+                    <?php
+                        $query = $pdo->query("SELECT * FROM colaborando_jejum as cj JOIN usuarios as u ON cj.id_colaborando = u.id WHERE id_colaborando_jejum = '$id_jejum'");
+                        $res = $query->fetchAll(PDO::FETCH_ASSOC);
+                        if (count($res) > 0) {
+                            for ($i = 0; $i < count($res); $i++) {
+                                foreach ($res[$i] as $key => $value) {
+                                }
+                                //Dados do Usuário
+                                $id_usuario = $res[$i]['id'];
+                                $nome = $res[$i]['nome'];
+                                $foto_perfil = $res[$i]['perfil'];
+
+                                ?>
+
+                                <div class="w-50porc">
+                                    <div class="text-center py-3">
+                                        <img src="<?=IMAGEM?>/fotos/<?=$foto_perfil?>" alt="Foto de Perfil do Colaborador" width="120" height="120" class="rounded-100 mr-2">
+                                        <div class="mt-3">
+                                            <h6><?=$nome?></h6>
+                                            <div>
+                                                <a href="index.php?pag=<?=$pag?>&ver-oracoes-de=<?=$id_usuario?>" class="btn btn-primary" title="Ver Oração de <?=$nome?>"><i class="fa-solid fa-person-praying"></i></a>
+                                                <a href="index.php?pag=<?=$pag?>&ver-oracoes-curtidas=<?=$id_usuario?>" class="btn btn-dark" title="Ver Orações que <?=$nome?> curtiu"><i class="fa-solid fa-heart"></i></a>
+                                                <a href="index.php?pag=<?=$pag?>&ver-grupos-usuario-criou=<?=$id_usuario?>" class="btn btn-outline-info" title="Grupos que <?=$nome?> criou"><i class="fa-solid fa-people-group"></i></a>
+                                                <a href="index.php?pag=<?=$pag?>&ver-grupos-participando=<?=$id_usuario?>" class="btn btn-outline-warning" title="Grupos que <?=$nome?> está participando"><i class="fa-solid fa-user-plus"></i></a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <?php
+                            }
+                        } else {
+                            echo "Ninguém por aqui";
+                        }
+                    ?>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <a href="index.php?pag=<?=$pag?>#jejum<?=$id_jejum?>" name="bt-bt-naocolaborar" id="bt-bt-naocolaborar" class="btn btn-outline-secondary">Fechar</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="ModalOracoesDe" data-bs-backdrop="static" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-xl">
+        <div class="modal-content">
+            <div class="modal-header">
+                <?php
+                    $id = addslashes($_GET['ver-oracoes-de']);
+
+                    $_query_ = $pdo->query("SELECT * FROM jejuns WHERE id_criador_jejum = '$id'");
+                    $_res_ = $_query_->fetchAll(PDO::FETCH_ASSOC);
+                    $id_jejum = $_res_[0]['id_jejum'];
+
+                    $query = $pdo->query("SELECT * FROM oracao as o JOIN usuarios as u ON o.id_criador = u.id WHERE id_criador = '$id'");
+                    $res = $query->fetchAll(PDO::FETCH_ASSOC);
+                    if (count($res) > 0) {
+                        $perfil = $res[0]['perfil'];
+                        $nome = $res[0]['nome'];
+                    }
+                ?>
+                <h1 class="modal-title fs-5" id="exampleModalLabel"><?=$nome?></h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <div class="d-flex flex-wrap">
+                    <?php
+                            if (count($res) > 0) {
+                                for ($i = 0; $i < count($res); $i++) {
+                                    foreach ($res[$i] as $key => $value) {
+                                    }
+                                    $titulo = $res[$i]['titulo'];
+                                    $descricao = $res[$i]['descricao'];
+                                    $orando = $res[$i]['orando'];
+                                    ?>
+                                        <div class="card mx-2" style="width: 22rem;">
+                                            <div class="card-body">
+                                                <h5 class="card-title mb-3" style="font-weight: 500"><?=$titulo?></h5>
+                                                <p class="card-text"><?=$descricao?></p>
+                                            </div> 
+                                        </div>
+                                    <?php
+                                }
+                            } else {
+                                echo "Sem movimentação por aqui!";
+                            }
+                        ?>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <!--<a href="index.php?pag=<?=$pag?>&ver-colaboradores-jejum=<?=$id_jejum?>" class="btn btn-primary">Voltar</a>-->
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="ModalOracoesCurtidasDeUsuario" data-bs-backdrop="static" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-xl">
+        <div class="modal-content">
+            <div class="modal-header">
+                <?php
+                    $id = addslashes($_GET['ver-oracoes-curtidas']);
+
+                    $_query_ = $pdo->query("SELECT * FROM jejuns WHERE id_criador_jejum = '$id'");
+                    $_res_ = $_query_->fetchAll(PDO::FETCH_ASSOC);
+                    $id_jejum = $_res_[0]['id_jejum'];
+
+                    $query = $pdo->query("SELECT * FROM emproposito_na_oracao as o JOIN usuarios as u ON o.id_usuario = u.id JOIN oracao ON o.id_oracao = oracao.id_pray WHERE id_usuario = '$id'");
+                    $res = $query->fetchAll(PDO::FETCH_ASSOC);
+                    if (count($res) > 0) {
+                        // Dados do Usuário
+                        $perfil = $res[0]['perfil'];
+                        $nome = $res[0]['nome'];
+                    }
+                ?>
+                <h1 class="modal-title fs-5" id="exampleModalLabel"><?=$nome?></h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <div class="d-flex flex-wrap">
+                    <?php
+                            if (count($res) > 0) {
+                                for ($i = 0; $i < count($res); $i++) {
+                                    foreach ($res[$i] as $key => $value) {
+                                    }
+                                    $id_criador = $res[$i]['id_criador'];
+                                    $titulo = $res[$i]['titulo'];
+                                    $descricao = $res[$i]['descricao'];
+                                    $orando = $res[$i]['orando'];
+                                    
+                                    $query_cr = $pdo->query("SELECT * FROM usuarios WHERE id = '$id_criador'");
+                                    $res_cr = $query_cr->fetchAll(PDO::FETCH_ASSOC);
+                                    $f_perfil = $res_cr[0]['perfil'];
+                                    
+                                    ?>
+                                        <div class="card mx-2" style="width: 22rem;">
+                                            <img src="<?=IMAGEM."fotos/$f_perfil"?>" alt="Foto do Usuario que criou esta oração" height="250">
+                                            <div class="card-body">
+                                                <h5 class="card-title mb-3" style="font-weight: 500"><?=$titulo?></h5>
+                                                <p class="card-text"><?=$descricao?></p>
+                                            </div> 
+                                        </div>
+                                    <?php
+                                }
+                            } else {
+                                echo "Sem movimentação por aqui!";
+                            }
+                        ?>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <!--<a href="index.php?pag=<?=$pag?>&ver-colaboradores-jejum=<?=$id_jejum?>" class="btn btn-primary">Voltar</a>-->
+            </div>
+        </div>
+    </div>
+</div>
+    
+
+<div class="modal fade" id="ModalGruposCriadosUser" data-bs-backdrop="static" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-xl">
+        <div class="modal-content">
+            <div class="modal-header">
+                <?php
+                    $id = addslashes($_GET['ver-grupos-usuario-criou']);
+
+                    $_query_ = $pdo->query("SELECT * FROM jejuns WHERE id_criador_jejum = '$id'");
+                    $_res_ = $_query_->fetchAll(PDO::FETCH_ASSOC);
+                    $id_jejum = $_res_[0]['id_jejum'];
+
+                    $query = $pdo->query("SELECT * FROM grupos_de_oracao as o JOIN usuarios as u ON o.id_criador = u.id JOIN licenca ON o.id_licenca = licenca.id WHERE id_criador = '$id'");
+                    $res = $query->fetchAll(PDO::FETCH_ASSOC);
+                    if (count($res) > 0) {
+                        // Dados do Usuário
+                        $perfil = $res[0]['perfil'];
+                        $nome = $res[0]['nome'];
+                        
+                        // Dados da Licença
+                        $nome_licenca = $res[0]['nome_da_licenca'];
+                        $descricao_licenca = $res[0]['descricao_da_licenca'];
+                    }
+                ?>
+                <h1 class="modal-title fs-5" id="exampleModalLabel"><?=$nome?></h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <div class="d-flex flex-wrap">
+                    <?php
+                            if (count($res) > 0) {
+                                for ($i = 0; $i < count($res); $i++) {
+                                    foreach ($res[$i] as $key => $value) {
+                                    }
+                                    $logo = $res[$i]['logo'];
+                                    $titulo = $res[$i]['title'];
+                                    $descricao = $res[$i]['descricao'];
+                                    $p_participando = $res[$i]['pessoas_part'];
+                                    $criado = $res[$i]['criado_em'];
+                                    $criado_hora = $res[$i]['hora_criado_em'];
+                                    $ativo = $res[$i]['ativo'];
+                                    
+                                    $criado = implode('/', array_reverse(explode('-', $criado)));
+                                    ?>
+                                        <div class="card mx-2" style="width: 22rem;">
+                                            <img src="<?=IMAGEM."fotos-grupos/$logo"?>" alt="Foto do Grupo" height="250">
+                                            <div class="card-body">
+                                                <h5 class="card-title mb-3" style="font-weight: 500"><?=$titulo?></h5>
+                                                <p class="card-text"><?=$descricao?></p>
+                                                <p class="card-text"><?=$p_participando?> Participando - <?=$criado?> às <?=$criado_hora?> - <?=($ativo=='S') ? "Ativo" : "Desativado"?></p>
+                                                <hr>
+                                                <h5 class="card-title mb-3">LICENÇA - <?=$nome_licenca?></h5><br>
+                                                <p><?=$descricao_licenca?></p>
+                                            </div> 
+                                        </div>
+                                    <?php
+                                }
+                            } else {
+                                echo "Sem movimentação por aqui!";
+                            }
+                        ?>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <!--<a href="index.php?pag=<?=$pag?>&ver-colaboradores-jejum=<?=$id_jejum?>" class="btn btn-primary">Voltar</a>-->
+            </div>
+        </div>
+    </div>
+</div>
+    
+<div class="modal fade" id="modalUsuarioParticipandodoGrupo" data-bs-backdrop="static" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-xl">
+        <div class="modal-content">
+            <div class="modal-header">
+                <?php
+                    $id = addslashes($_GET['ver-grupos-participando']);
+
+                    $_query_ = $pdo->query("SELECT * FROM jejuns WHERE id_criador_jejum = '$id'");
+                    $_res_ = $_query_->fetchAll(PDO::FETCH_ASSOC);
+                    $id_jejum = $_res_[0]['id_jejum'];
+
+                    $query = $pdo->query("SELECT * FROM participando_do_grupo as o JOIN usuarios as u ON o.id_usuario = u.id JOIN grupos_de_oracao as gp ON o.id_grupo = gp.id_group WHERE id_usuario = '$id'");
+                    $res = $query->fetchAll(PDO::FETCH_ASSOC);
+                    if (count($res) > 0) {
+                        // Dados do Usuário
+                        $perfil = $res[0]['perfil'];
+                        $nome = $res[0]['nome'];
+                    }
+                ?>
+                <h1 class="modal-title fs-5" id="exampleModalLabel"><?=$nome?></h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <div class="d-flex flex-wrap">
+                    <?php
+                            if (count($res) > 0) {
+                                for ($i = 0; $i < count($res); $i++) {
+                                    foreach ($res[$i] as $key => $value) {
+                                    }
+                                    $logo = $res[$i]['logo'];
+                                    $titulo = $res[$i]['title'];
+                                    $descricao = $res[$i]['descricao'];
+                                    $p_participando = $res[$i]['pessoas_part'];
+                                    $criado = $res[$i]['criado_em'];
+                                    $criado_hora = $res[$i]['hora_criado_em'];
+                                    $ativo = $res[$i]['ativo'];
+                                    
+                                    $criado = implode('/', array_reverse(explode('-', $criado)));
+                                    ?>
+                                        <div class="card mx-2" style="width: 22rem;">
+                                            <img src="<?=IMAGEM."fotos-grupos/$logo"?>" alt="Foto do Grupo" height="250">
+                                            <div class="card-body">
+                                                <h5 class="card-title mb-3" style="font-weight: 500"><?=$titulo?></h5>
+                                                <p class="card-text"><?=$descricao?></p>
+                                                <p class="card-text"><?=$p_participando?> Participando - <?=$criado?> às <?=$criado_hora?> - <?=($ativo=='S') ? "Ativo" : "Desativado"?></p>
+                                                <hr>
+                                                <h5 class="card-title mb-3">LICENÇA - <?=$nome_licenca?></h5><br>
+                                                <p><?=$descricao_licenca?></p>
+                                            </div> 
+                                        </div>
+                                    <?php
+                                }
+                            } else {
+                                echo "Sem movimentação por aqui!";
+                            }
+                        ?>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <!--<a href="index.php?pag=<?=$pag?>&ver-colaboradores-jejum=<?=$id_jejum?>" class="btn btn-primary">Voltar</a>-->
+            </div>
+        </div>
+    </div>
+</div>
+
+<!--SCRIPTS-->
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 <script type="text/javascript">
     function entrarnojejum(id_jejum) {
