@@ -779,6 +779,36 @@ $pag = "home";
                     if (count($res) > 0) {
                         $perfil = $res[0]['perfil'];
                         $nome = $res[0]['nome'];
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
                     }
                 ?>
                 <h1 class="modal-title fs-5" id="exampleModalLabel"><?=$nome?></h1>
@@ -804,7 +834,7 @@ $pag = "home";
                                     <?php
                                 }
                             } else {
-                                echo "Sem movimentação por aqui!"
+                                echo "Sem movimentação por aqui!";
                             }
                         ?>
                 </div>
