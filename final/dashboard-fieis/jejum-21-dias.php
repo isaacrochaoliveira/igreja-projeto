@@ -20,6 +20,38 @@ $pag = "jejum-21-dias";
     </div>
 </div>
 
+<div class="d-flex flex-wrap py-5">
+    <div class="w-50porc bg-dark py-4">
+        <h4 class="ml-4">Dicas para fazer o Jejum de Daniel</h4>
+        <hr>
+        <ul>
+            <li>
+                Fale mais com Deus
+            </li>
+            <li>
+                Leia mais a Biblía
+            </li>
+            <li>
+                Vá mais vezes a igreja
+            </li>
+            <li>
+                Assista a série e filmes critãos
+            </li>
+            <li>
+                Assista ás novelas apocalipse a José do Egito
+            </li>
+            <li>
+                Ajude o próximo
+            </li>
+        </ul>
+    </div>
+    <div class="w-50porc bg-danger">
+    d
+    d
+    </div>
+</div>
+
+
 <div class="d-flex flex-wrap">
         <?php
             $query = $pdo->query("SELECT * FROM jejuns WHERE id_jejum = 1");
