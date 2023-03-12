@@ -399,7 +399,7 @@ $pag = "home";
                                             <?php
                                         } else {
                                             ?>
-                                                <a href="index.php?pag=<?=$pag?>&confirmarcolaboracao=<?=$id_jejum?>" target="_self" class="btn btn-primary">Colaboração</a>
+                                                <a href="index.php?pag=<?=$pag?>&confirmarcolaboracao=<?=$id_jejum?>" target="_self" class="btn btn-primary">Colaborar com este Jejum</a>
                                             <?php
                                         }
                                         ?>
@@ -941,18 +941,18 @@ $pag = "home";
     </div>
 </div>
     
-    <div class="modal fade" id="ModalGruposCriadosUser" data-bs-backdrop="static" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="modal fade" id="modalUsuarioParticipandodoGrupo" data-bs-backdrop="static" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-xl">
         <div class="modal-content">
             <div class="modal-header">
                 <?php
-                    $id = addslashes($_GET['ver-grupos-usuario-criou']);
+                    $id = addslashes($_GET['ver-grupos-participando']);
 
                     $_query_ = $pdo->query("SELECT * FROM jejuns WHERE id_criador_jejum = '$id'");
                     $_res_ = $_query_->fetchAll(PDO::FETCH_ASSOC);
                     $id_jejum = $_res_[0]['id_jejum'];
 
-                    $query = $pdo->query("SELECT * FROM participando_do_grupo as o JOIN usuarios as u ON o.id_usuario = u.id JOIN grupos_de_oracao as gp ON o.id_grupo = gp.id_group WHERE id_criador = '$id'");
+                    $query = $pdo->query("SELECT * FROM participando_do_grupo as o JOIN usuarios as u ON o.id_usuario = u.id JOIN grupos_de_oracao as gp ON o.id_grupo = gp.id_group WHERE id_usuario = '$id'");
                     $res = $query->fetchAll(PDO::FETCH_ASSOC);
                     if (count($res) > 0) {
                         // Dados do Usuário
@@ -1120,7 +1120,7 @@ $pag = "home";
                         $('#btnbtn-entrar-do-jejum'+id_jejum).removeClass();
                         $('#btnbtn-sair-do-jejum'+id_jejum).removeClass();
                         $('#btnbtn-entrar-do-jejum'+id_jejum).addClass('d-none');
-                        $('#btnbtn-sair-do-jejum'+id_jejum).addClass('btn btn-warning');
+                        $('#btnbtn-sair-do-jejum'+id_jejum).addClass('btn btn-warning mr-2');
                     } else {
                         alert(msg);
                     }
@@ -1146,7 +1146,7 @@ $pag = "home";
 
                         $('#btnbtn-entrar-do-jejum'+id_jejum).removeClass();
                         $('#btnbtn-sair-do-jejum'+id_jejum).removeClass();
-                        $('#btnbtn-entrar-do-jejum'+id_jejum).addClass('btn btn-light');
+                        $('#btnbtn-entrar-do-jejum'+id_jejum).addClass('btn btn-light mr-2');
                         $('#btnbtn-sair-do-jejum'+id_jejum).addClass('d-none');
                     } else {
                         alert(msg);

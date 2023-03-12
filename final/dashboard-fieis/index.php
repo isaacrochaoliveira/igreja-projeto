@@ -375,7 +375,7 @@
     if (isset($_GET['ver-grupos-participando'])) {
         ?>
         <script type="text/javascript">
-            var myModal = new bootstrap.Modal(document.getElementById('ModalGruposCriadosUser'), {
+            var myModal = new bootstrap.Modal(document.getElementById('modalUsuarioParticipandodoGrupo'), {
 
             })
             myModal.show();
