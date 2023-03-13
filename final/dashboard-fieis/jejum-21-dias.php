@@ -28,18 +28,23 @@ $pag = "jejum-21-dias";
             <li>
                 Fale mais com Deus
             </li>
+            <br>
             <li>
                 Leia mais a Biblía
             </li>
+            <br>
             <li>
                 Vá mais vezes a igreja
             </li>
+            <br>
             <li>
                 Assista a série e filmes critãos
             </li>
+            <br>
             <li>
                 Assista ás novelas apocalipse a José do Egito
             </li>
+            <br>
             <li>
                 Ajude o próximo
             </li>
