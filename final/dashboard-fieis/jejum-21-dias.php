@@ -24,7 +24,7 @@ $pag = "jejum-21-dias";
     <div class="w-50porc bg-dark py-4">
         <h4 class="ml-4">Dicas para fazer o Jejum de Daniel</h4>
         <hr>
-        <ul>
+        <ul type="square">
             <li>
                 Fale mais com Deus
             </li>
@@ -45,9 +45,37 @@ $pag = "jejum-21-dias";
             </li>
         </ul>
     </div>
-    <div class="w-50porc bg-danger">
-    d
-    d
+    <div class="w-50porc bg-dark py-4">
+        <h4 class="ml-4">Como fazer o jejum de Daniel?</h4>
+        <hr>
+        <p class="ml-4 mr-4">A bíblia diz que Daniel e seus amigos fizeram um jejum no qual somente comeram legumes e água por 21 dias, para não se contaminar com a comida do rei, que era um idólatra. As pessoas que fazem o jejum de Daniel geralmente fazem desta forma durante 21 dias.</p>
+        <h5 class="ml-4"><strong>Somente comer:</strong></h5>
+        <ol>
+            <li>
+                Frutas
+            </li>
+            <li>
+                Legumes
+            </li>
+            <li>
+                Água
+            </li>
+            <li>
+                Suco
+            </li>
+        </ol>
+        <h5 class="ml-4">Não comer:</h5>
+        <ol start="5">
+            <li>
+                Carnes
+            </li>
+            <li>
+                Doces
+            </li>
+            <li>
+                Pão
+            </li>
+        </ol>
     </div>
 </div>
 
