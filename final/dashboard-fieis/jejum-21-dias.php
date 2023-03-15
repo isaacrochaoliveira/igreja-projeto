@@ -70,17 +70,7 @@ $pag = "jejum-21-dias";
             </li>
         </ol>
         <h5 class="ml-4">Não comer:</h5>
-        <ol start="5">
-            <li>
-                Carnes
-            </li>
-            <li>
-                Doces
-            </li>
-            <li>
-                Pão
-            </li>
-        </ol>
+        
     </div>
 </div>
 
