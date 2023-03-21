@@ -172,12 +172,34 @@ $pag = "jejum-3-dias";
                 ?>
             </div>
             <div class="modal-body">
-                <div>
-                    <p>Tem certeza que deseja colaborar com jejum?</p>
-                </div>
-                <div id="mensagem_confirmar_colaboracao">
-    
-                </div>
+                <?php
+                    $query = $pdo->query("SELECT * FROM participando_do_jejum as pj JOIN usuarios as u ON pj.id_participante = u.id JOIN jejuns ON pj.id_jejum_part = jejuns.id_jejum;");
+                    $res = $query->fetchAll(PDO::FETCH_ASSOC);
+                    if (count($res) > 0) {
+                        for ($i = 0; $i < count($res); $i++) {
+                            foreach ($res[$i] as $key => $value) {
+                            }
+                            $nome = $res[$i]['nome'];
+                            $foto_perfil = $res[$i]['perfil'];
+                            ?>
+                                 <div class="w-50porc">
+                                    <div class="text-center py-3">
+                                        <img src="<?=IMAGEM?>/fotos/<?=$foto_perfil?>" alt="Foto de Perfil do Colaborador" width="120" height="120" class="rounded-100 mr-2">
+                                        <div class="mt-3">
+                                            <h6><?=$nome?></h6>
+                                            <div>
+                                                <a href="index.php?pag=<?=$pag?>&ver-oracoes-de=<?=$id_usuario?>" class="btn btn-primary" title="Ver Oração de <?=$nome?>"><i class="fa-solid fa-person-praying"></i></a>
+                                                <a href="index.php?pag=<?=$pag?>&ver-oracoes-curtidas=<?=$id_usuario?>" class="btn btn-dark" title="Ver Orações que <?=$nome?> curtiu"><i class="fa-solid fa-heart"></i></a>
+                                                <a href="index.php?pag=<?=$pag?>&ver-grupos-usuario-criou=<?=$id_usuario?>" class="btn btn-outline-info" title="Grupos que <?=$nome?> criou"><i class="fa-solid fa-people-group"></i></a>
+                                                <a href="index.php?pag=<?=$pag?>&ver-grupos-participando=<?=$id_usuario?>" class="btn btn-outline-warning" title="Grupos que <?=$nome?> está participando"><i class="fa-solid fa-user-plus"></i></a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            <?php
+                        }
+                    }
+                ?>
             </div>
             <div class="modal-footer">
                 <form id="form-confirmar-colaboracao" method="post">

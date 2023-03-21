@@ -382,5 +382,15 @@
         </script>
         <?php
     }
+    if (isset($_GET['ver-participantes-jejum'])) {
+        ?>
+        <script type="text/javascript">
+            var myModal = new bootstrap.Modal(document.getElementById('modalParticipando'), {
+
+            })
+            myModal.show();
+        </script>
+        <?php
+    }
     ?>
 </html>
