@@ -100,6 +100,7 @@ $pag = "jejum-3-dias";
                                         }
                                         ?>
                                             <a href="index.php?pag=<?=$pag?>&ver-colaboradores-jejum=<?=$id_jejum?>" class="btn btn-outline-light mx-2">Ver Colaboradores</a>
+                                            <a href="index.php?pag=<?=$pag?>&ver-participantes-jejum=<?=$id_jejum?>" class="btn btn-outline-dark mx-2">Ver Participantes</a>
                                         <?php    
                                     ?>
                                 </div>
@@ -139,6 +140,35 @@ $pag = "jejum-3-dias";
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 <?php
                     $id_jejum = addslashes($_GET['confirmarcolaboracao']);
+                ?>
+            </div>
+            <div class="modal-body">
+                <div>
+                    <p>Tem certeza que deseja colaborar com jejum?</p>
+                </div>
+                <div id="mensagem_confirmar_colaboracao">
+    
+                </div>
+            </div>
+            <div class="modal-footer">
+                <form id="form-confirmar-colaboracao" method="post">
+                    <input type="hidden" value="<?=$id_jejum?>" name="id_jejum-col" id="id_jejum-col">
+                </form>
+                <a href="index.php?pag=<?=$pag?>#jejum<?=$id_jejum?>" name="bt-bt-naocolaborar" id="bt-bt-naocolaborar" class="btn btn-danger"><i class="fa-solid fa-trash"></i></a>
+                <button name="bt-bt-confirmarcolaboracao" id="bt-bt-confirmarcolaboracao" onclick="confirmarColaboracao(<?=$id_jejum?>)" class="btn btn-outline-success"><i class="fa-solid fa-check"></i></button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="modalParticipando" data-bs-backdrop="static" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5" id="exampleModalLabel">Participantes</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                <?php
+                    $id_jejum = addslashes($_GET['ver-participantes-jejum']);
                 ?>
             </div>
             <div class="modal-body">
