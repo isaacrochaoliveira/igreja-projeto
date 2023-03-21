@@ -4,12 +4,12 @@ require_once("../protect.php");
 require_once("../conexao.php");
 require_once("../config.php");
 
-$pag = "jejum-21-dias";
+$pag = "jejum-14-dias";
 
 ?>
 
 <div class="ml-3 mt-3">
-    <h1 class="f-family-Lobster" style="font-size: 32px">JEJUM DE DANIEL - 21 DIAS </h1>
+    <h1 class="f-family-Lobster" style="font-size: 32px">JEJUM INTERMITENTE DE PAULO - 3 DIAS </h1>
 </div>
 
 <div class="py-5">
@@ -20,74 +20,9 @@ $pag = "jejum-21-dias";
     </div>
 </div>
 
-<div class="d-flex flex-wrap py-5">
-    <div class="w-50porc bg-dark py-4">
-        <h4 class="ml-4">Dicas para fazer o Jejum de Daniel</h4>
-        <hr>
-        <ul type="square">
-            <li>
-                Fale mais com Deus
-            </li>
-            <br>
-            <li>
-                Leia mais a Biblía
-            </li>
-            <br>
-            <li>
-                Vá mais vezes a igreja
-            </li>
-            <br>
-            <li>
-                Assista a série e filmes critãos
-            </li>
-            <br>
-            <li>
-                Assista ás novelas apocalipse a José do Egito
-            </li>
-            <br>
-            <li>
-                Ajude o próximo
-            </li>
-        </ul>
-    </div>
-    <div class="w-50porc bg-dark py-4">
-        <h4 class="ml-4">Como fazer o jejum de Daniel?</h4>
-        <hr>
-        <p class="ml-4 mr-4">A bíblia diz que Daniel e seus amigos fizeram um jejum no qual somente comeram legumes e água por 21 dias, para não se contaminar com a comida do rei, que era um idólatra. As pessoas que fazem o jejum de Daniel geralmente fazem desta forma durante 21 dias.</p>
-        <h5 class="ml-4"><strong>Somente comer:</strong></h5>
-        <ol>
-            <li>
-                Frutas
-            </li>
-            <li>
-                Legumes
-            </li>
-            <li>
-                Água
-            </li>
-            <li>
-                Suco
-            </li>
-        </ol>
-        <h5 class="ml-4">Não comer:</h5>
-        <ol start="5">
-            <li>
-                Carnes
-            </li>
-            <li>
-                Doces
-            </li>
-            <li>
-                Pão
-            </li>
-        </ol>
-    </div>
-</div>
-
-
 <div class="d-flex flex-wrap">
         <?php
-            $query = $pdo->query("SELECT * FROM jejuns WHERE id_jejum = 1");
+            $query = $pdo->query("SELECT * FROM jejuns WHERE id_jejum = '3'");
             $res = $query->fetchAll(PDO::FETCH_ASSOC);
             if (count($res) > 0) {
                 for ($i = 0; $i < count($res); $i++) {
@@ -165,7 +100,7 @@ $pag = "jejum-21-dias";
                                         }
                                         ?>
                                             <a href="index.php?pag=<?=$pag?>&ver-colaboradores-jejum=<?=$id_jejum?>" class="btn btn-outline-light mx-2">Ver Colaboradores</a>
-                                            <a href="index.php?pag=<?=$pag?>&ver-participantes-jejum=<?=$id_jejum?>" class="btn btn-outline-dark m-2 ">Ver Participantes</a>    
+                                            <a href="index.php?pag=<?=$pag?>&ver-participantes-jejum=<?=$id_jejum?>" class="btn btn-outline-dark m-2 ">Ver Participantes</a>
                                         <?php    
                                     ?>
                                 </div>
@@ -197,6 +132,34 @@ $pag = "jejum-21-dias";
 
 <!--MODALS-->
 
+<div class="modal fade" id="modalColaboracao" data-bs-backdrop="static" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5" id="exampleModalLabel">Confirmar Colaboração com esse jejum</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                <?php
+                    $id_jejum = addslashes($_GET['confirmarcolaboracao']);
+                ?>
+            </div>
+            <div class="modal-body">
+                <div>
+                    <p>Tem certeza que deseja colaborar com jejum?</p>
+                </div>
+                <div id="mensagem_confirmar_colaboracao">
+    
+                </div>
+            </div>
+            <div class="modal-footer">
+                <form id="form-confirmar-colaboracao" method="post">
+                    <input type="hidden" value="<?=$id_jejum?>" name="id_jejum-col" id="id_jejum-col">
+                </form>
+                <a href="index.php?pag=<?=$pag?>#jejum<?=$id_jejum?>" name="bt-bt-naocolaborar" id="bt-bt-naocolaborar" class="btn btn-danger"><i class="fa-solid fa-trash"></i></a>
+                <button name="bt-bt-confirmarcolaboracao" id="bt-bt-confirmarcolaboracao" onclick="confirmarColaboracao(<?=$id_jejum?>)" class="btn btn-outline-success"><i class="fa-solid fa-check"></i></button>
+            </div>
+        </div>
+    </div>
+</div>
 
 <div class="modal fade" id="modalParticipando" data-bs-backdrop="static" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog  modal-xl">
@@ -243,36 +206,6 @@ $pag = "jejum-21-dias";
             </div>
             <div class="modal-footer">
                 <button data-bs-dismiss="modal" class="btn btn-light">Fechar</button>
-            </div>
-        </div>
-    </div>
-</div>
-
-
-<div class="modal fade" id="modalColaboracao" data-bs-backdrop="static" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h1 class="modal-title fs-5" id="exampleModalLabel">Confirmar Colaboração com esse jejum</h1>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                <?php
-                    $id_jejum = addslashes($_GET['confirmarcolaboracao']);
-                ?>
-            </div>
-            <div class="modal-body">
-                <div>
-                    <p>Tem certeza que deseja colaborar com jejum?</p>
-                </div>
-                <div id="mensagem_confirmar_colaboracao">
-    
-                </div>
-            </div>
-            <div class="modal-footer">
-                <form id="form-confirmar-colaboracao" method="post">
-                    <input type="hidden" value="<?=$id_jejum?>" name="id_jejum-col" id="id_jejum-col">
-                </form>
-                <a href="index.php?pag=<?=$pag?>#jejum<?=$id_jejum?>" name="bt-bt-naocolaborar" id="bt-bt-naocolaborar" class="btn btn-danger"><i class="fa-solid fa-trash"></i></a>
-                <button name="bt-bt-confirmarcolaboracao" id="bt-bt-confirmarcolaboracao" onclick="confirmarColaboracao(<?=$id_jejum?>)" class="btn btn-outline-success"><i class="fa-solid fa-check"></i></button>
             </div>
         </div>
     </div>
