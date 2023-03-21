@@ -165,6 +165,7 @@ $pag = "jejum-21-dias";
                                         }
                                         ?>
                                             <a href="index.php?pag=<?=$pag?>&ver-colaboradores-jejum=<?=$id_jejum?>" class="btn btn-outline-light mx-2">Ver Colaboradores</a>
+                                            <a href="index.php?pag=<?=$pag?>&ver-participantes-jejum=<?=$id_jejum?>" class="btn btn-outline-dark m-2 ">Ver Participantes</a>    
                                         <?php    
                                     ?>
                                 </div>
@@ -195,6 +196,58 @@ $pag = "jejum-21-dias";
     </div>
 
 <!--MODALS-->
+
+
+<div class="modal fade" id="modalParticipando" data-bs-backdrop="static" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog  modal-xl">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5" id="exampleModalLabel">Participantes</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                <?php
+                    $id_jejum = addslashes($_GET['ver-participantes-jejum']);
+                ?>
+            </div>
+            <div class="modal-body">
+                <div class="d-flex flex-wrap">
+                    <?php
+                        $query = $pdo->query("SELECT * FROM participando_do_jejum as pj JOIN usuarios as u ON pj.id_participante = u.id;");
+                        $res = $query->fetchAll(PDO::FETCH_ASSOC);
+                        if (count($res) > 0) {
+                            for ($i = 0; $i < count($res); $i++) {
+                                foreach ($res[$i] as $key => $value) {
+                                }
+                                $id_usuario = $res[$i]['id'];
+                                $nome = $res[$i]['nome'];
+                                $foto_perfil = $res[$i]['perfil'];
+                                ?>
+                                     <div class="w-25porc">
+                                        <div class="text-center py-3">
+                                            <img src="<?=IMAGEM?>/fotos/<?=$foto_perfil?>" alt="Foto de Perfil do Colaborador" width="120" height="120" class="rounded-100 mr-2">
+                                            <div class="mt-3">
+                                                <h6><?=$nome?></h6>
+                                                <div>
+                                                    <a href="index.php?pag=<?=$pag?>&ver-oracoes-de=<?=$id_usuario?>" class="btn btn-primary" title="Ver Oração de <?=$nome?>"><i class="fa-solid fa-person-praying"></i></a>
+                                                    <a href="index.php?pag=<?=$pag?>&ver-oracoes-curtidas=<?=$id_usuario?>" class="btn btn-dark" title="Ver Orações que <?=$nome?> curtiu"><i class="fa-solid fa-heart"></i></a>
+                                                    <a href="index.php?pag=<?=$pag?>&ver-grupos-usuario-criou=<?=$id_usuario?>" class="btn btn-outline-info" title="Grupos que <?=$nome?> criou"><i class="fa-solid fa-people-group"></i></a>
+                                                    <a href="index.php?pag=<?=$pag?>&ver-grupos-participando=<?=$id_usuario?>" class="btn btn-outline-warning" title="Grupos que <?=$nome?> está participando"><i class="fa-solid fa-user-plus"></i></a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                <?php
+                            }
+                        }
+                    ?>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button data-bs-dismiss="modal" class="btn btn-light">Fechar</button>
+            </div>
+        </div>
+    </div>
+</div>
+
 
 <div class="modal fade" id="modalColaboracao" data-bs-backdrop="static" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog">
