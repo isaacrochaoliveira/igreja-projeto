@@ -4,7 +4,7 @@ require_once("../protect.php");
 require_once("../conexao.php");
 require_once("../config.php");
 
-$pag = "jejum-14-dias";
+$pag = "jejum-40-dias";
 
 ?>
 
