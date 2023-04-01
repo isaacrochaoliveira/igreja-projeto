@@ -46,7 +46,7 @@ if (count($res) > 0) {
         </div>
     </div>
 </div>
-<div class="w-50porc mx-auto py-3">
+<div class="w-75porc mx-auto py-3">
     <form class="bg-light" action="#" method="post">
         <div class="row mb-3">
             <div class="col">
@@ -69,11 +69,50 @@ if (count($res) > 0) {
                     <label for="vers_base">Dê um versículo chave para seu jejum*</label>
                 </div>
             </div>
-            <div class="col">
+            <div class="col-md-4">
                 <div class="form-floating">
-                    <select class="" name="">
-
+                    <select class="form-select" name="pastora_comando">
+                        <option value="">SELECIONE SE HOUVER ALGUÉM</option>
+                        <?php
+                            $query = $pdo->query("SELECT * FROM pastoras");
+                            $res = $query->fetchAll(PDO::FETCH_ASSOC);
+                            if (count($res) > 0) {
+                                for ($i = 0; $i < count($res); $i++) {
+                                    foreach ($res[$i] as $key => $value) {
+                                    }
+                                    $id = $res[$i]['id_pas_ras'];
+                                    $nome = $res[$i]['nome_pas_ras'];
+                                    ?>
+                                        <option value="<?=$id?>"><?=$nome?></option>
+                                    <?php
+                                }
+                            }
+                        ?>
                     </select>
+                    <label for="pastora_comando">Pastora que estará no comando</label>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="form-floating">
+                    <select class="form-select" name="pastor_comando">
+                        <option value="">SELECIONE SE HOUVER ALGUÉM</option>
+                        <?php
+                            $query = $pdo->query("SELECT * FROM pastores");
+                            $res = $query->fetchAll(PDO::FETCH_ASSOC);
+                            if (count($res) > 0) {
+                                for ($i = 0; $i < count($res); $i++) {
+                                    foreach ($res[$i] as $key => $value) {
+                                    }
+                                    $id = $res[$i]['id_pas'];
+                                    $nome = $res[$i]['nome_pas'];
+                                    ?>
+                                        <option value="<?=$id?>"><?=$nome?></option>
+                                    <?php
+                                }
+                            }
+                        ?>
+                    </select>
+                    <label for="pastor_comando">Pastor que estará no comando</label>
                 </div>
             </div>
         </div>
