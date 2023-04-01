@@ -35,12 +35,47 @@ if (count($res) > 0) {
 </style>
 
 <div class="jejum">
-    <div class="header">
-        <div class="mx-3">
-            <h2>Crie seu jejum, do seu jeito, da sua forma!</h2>
-            <hr>
-            <h3>Preenche os Dados devidos a baixo</h3>
-            <a href="https://wa.me/<?=$telefone?>?text=Paz+Pastor!+Posso+te+ligar?" target="_blank" class="btn btn-success"><?=($telefone).'-'. $nome?></a>
+    <div class="text-center">
+        <div class="header">
+            <div class="mx-3">
+                <h2>Crie seu jejum, do seu jeito, da sua forma!</h2>
+                <hr>
+                <h3>Preenche os Dados devidos a baixo</h3>
+                <a href="https://wa.me/<?=$telefone?>?text=Paz+Pastor!+Posso+te+ligar?" target="_blank" class="btn btn-success"><?=($telefone).'-'. $nome?></a>
+            </div>
         </div>
     </div>
+</div>
+<div class="w-50porc mx-auto py-3">
+    <form class="bg-light" action="#" method="post">
+        <div class="row mb-3">
+            <div class="col">
+                <div class="form-floating">
+                    <input type="text" name="titulo_jejum" id="titulo_jejum" placeholder="Não Obrigatório" class="form-control">
+                    <label for="titulo_jejum">Dê um título para o seu Jejum</label>
+                </div>
+            </div>
+            <div class="col">
+                <div class="form-floating">
+                    <input type="text" name="desc_jejum" id="desc_jejum" placeholder="Obrigatório" class="form-control">
+                    <label for="desc_jejum">Dê uma descrição para seu jejum*</label>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col">
+                <div class="form-floating">
+                    <input type="text" name="vers_base" id="vers_base" class="form-control" placeholder="Obrigatório">
+                    <label for="vers_base">Dê um versículo chave para seu jejum*</label>
+                </div>
+            </div>
+            <div class="col">
+                <div class="form-floating">
+                    <select class="" name="">
+
+                    </select>
+                </div>
+            </div>
+        </div>
+    </form>
 </div>
