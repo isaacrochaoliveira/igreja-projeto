@@ -8,10 +8,12 @@ $pag = 'jejum-personalizado';
 $query = $pdo->query("SELECT * FROM pastores;");
 $res = $query->fetchAll(PDO::FETCH_ASSOC);
 if (count($res) > 0) {
-    for () {
-        FOREACH 9) [
-            
-        ]
+    for ($i = 0; $i < counr($res); $i++) {
+        foreach ($res[$i] as $key => $value) {
+        }
+        if ($res[$i]['dirigente'] == 'Pastor Dirigente') {
+            $telefone = $res[$i]['telefone_pastor'];
+        }
     }
 }
 
