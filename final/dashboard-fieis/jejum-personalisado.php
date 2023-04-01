@@ -8,11 +8,12 @@ $pag = 'jejum-personalizado';
 $query = $pdo->query("SELECT * FROM pastores;");
 $res = $query->fetchAll(PDO::FETCH_ASSOC);
 if (count($res) > 0) {
-    for ($i = 0; $i < counr($res); $i++) {
+    for ($i = 0; $i < count($res); $i++) {
         foreach ($res[$i] as $key => $value) {
         }
         if ($res[$i]['dirigente'] == 'Pastor Dirigente') {
-            $telefone = $res[$i]['telefone_pastor'];
+            $telefone = $res[$i]['telefone_pas'];
+            $nome = $res[$i]['nome_pas'];
         }
     }
 }
@@ -39,7 +40,7 @@ if (count($res) > 0) {
             <h2>Crie seu jejum, do seu jeito, da sua forma!</h2>
             <hr>
             <h3>Preenche os Dados devidos a baixo</h3>
-            <a href="#" class="btn btn-success">Falar com o pastor dirigente</a>
+            <a href="https://wa.me/<?=$telefone?>?text=Paz+Pastor!+Posso+te+ligar?" target="_blank" class="btn btn-success"><?=($telefone).'-'. $nome?></a>
         </div>
     </div>
 </div>
