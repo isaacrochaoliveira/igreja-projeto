@@ -1,9 +1,20 @@
-<?=
+<?php
 
 require_once('../conexao.php');
 require_once('../protect.php');
 
 $pag = 'jejum-personalizado';
+
+$query = $pdo->query("SELECT * FROM pastores;");
+$res = $query->fetchAll(PDO::FETCH_ASSOC);
+if (count($res) > 0) {
+    for () {
+        FOREACH 9) [
+            
+        ]
+    }
+}
+
 
 ?>
 
@@ -15,7 +26,7 @@ $pag = 'jejum-personalizado';
         background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), no-repeat url('../assets/img/images-jejuns/background_jejum.jpg');
         background-size: 100%;
         background-attachment: fixed;
-        padding: 130px 0;
+        padding: 180px 0;
         color: white;
     }
 </style>
