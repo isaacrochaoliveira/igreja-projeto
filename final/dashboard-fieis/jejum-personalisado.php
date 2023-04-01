@@ -116,5 +116,13 @@ if (count($res) > 0) {
                 </div>
             </div>
         </div>
+        <div class="row mt-3">
+            <div class="col">
+                <div class="form-floating">
+                    <input type="file" name="imagem_jejum" id="imagem_jejum" class="form-control" placeholder="Selecione uma imagem para ser sua capa">
+                    <label for="imagem_jejum">Selecione uma foto para ser sua capa de entrada</label>
+                </div>
+            </div>
+        </div>
     </form>
 </div>
