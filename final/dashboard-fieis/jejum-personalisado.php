@@ -46,19 +46,19 @@ if (count($res) > 0) {
         </div>
     </div>
 </div>
-<div class="w-75porc mx-auto py-3">
-    <form class="bg-light" action="#" method="post">
+<div class="bg-gradient-primary text-dark mx-auto py-5 px-5">
+    <form class="" action="#" method="post">
         <div class="row mb-3">
             <div class="col">
                 <div class="form-floating">
                     <input type="text" name="titulo_jejum" id="titulo_jejum" placeholder="Não Obrigatório" class="form-control">
-                    <label for="titulo_jejum">Dê um título para o seu Jejum</label>
+                    <label for="titulo_jejum" class="text-dark">Dê um título para o seu Jejum</label>
                 </div>
             </div>
             <div class="col">
                 <div class="form-floating">
                     <input type="text" name="desc_jejum" id="desc_jejum" placeholder="Obrigatório" class="form-control">
-                    <label for="desc_jejum">Dê uma descrição para seu jejum*</label>
+                    <label for="desc_jejum" class="text-dark">Dê uma descrição para seu jejum*</label>
                 </div>
             </div>
         </div>
@@ -66,7 +66,7 @@ if (count($res) > 0) {
             <div class="col">
                 <div class="form-floating">
                     <input type="text" name="vers_base" id="vers_base" class="form-control" placeholder="Obrigatório">
-                    <label for="vers_base">Dê um versículo chave para seu jejum*</label>
+                    <label for="vers_base" class="text-dark">Dê um versículo chave para seu jejum*</label>
                 </div>
             </div>
             <div class="col-md-4">
@@ -89,7 +89,7 @@ if (count($res) > 0) {
                             }
                         ?>
                     </select>
-                    <label for="pastora_comando">Pastora que estará no comando</label>
+                    <label for="pastora_comando" class="text-dark">Pastora que estará no comando</label>
                 </div>
             </div>
             <div class="col-md-4">
@@ -112,7 +112,7 @@ if (count($res) > 0) {
                             }
                         ?>
                     </select>
-                    <label for="pastor_comando">Pastor que estará no comando</label>
+                    <label for="pastor_comando" class="text-dark">Pastor que estará no comando</label>
                 </div>
             </div>
         </div>
@@ -120,9 +120,34 @@ if (count($res) > 0) {
             <div class="col">
                 <div class="form-floating">
                     <input type="file" name="imagem_jejum" id="imagem_jejum" class="form-control" placeholder="Selecione uma imagem para ser sua capa">
-                    <label for="imagem_jejum">Selecione uma foto para ser sua capa de entrada</label>
+                    <label for="imagem_jejum" class="text-dark">Selecione uma foto para ser sua capa de entrada</label>
                 </div>
+            </div>
+        </div>
+        <div class="row my-3">
+            <div class="col text-right">
+                <button type="button" class="btn btn-outline-light" name="btn_salvar">Cadastrar meu Jejum</button>
+                <a href="index.php" class="btn btn-secondary">Voltar a pagina inicial</a>
             </div>
         </div>
     </form>
 </div>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script type="text/javascript">
+    $(document).ready(function() {
+        $('#btn_salvar').click(function(event) {
+            var pag = "<?=$pag?>";
+            event.preventDefault();
+            $.ajax({
+                url: pag + '/inserir',
+                method: 'post',
+                data: $('form').serialize(),
+                dataType: 'html',
+                success: function(msg) {
+
+                }
+            })
+        })
+    })
+</script>
