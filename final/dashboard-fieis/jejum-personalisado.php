@@ -46,7 +46,7 @@ if (count($res) > 0) {
         </div>
     </div>
 </div>
-<div class="bg-gradient-primary text-dark mx-auto py-5 px-5">
+<div id="addJejumCollapse" class="bg-gradient-primary text-dark mx-auto py-5" style="padding: 0px 150px">
     <form class="" action="#" method="post">
         <div class="row mb-3">
             <div class="col">
@@ -132,6 +132,9 @@ if (count($res) > 0) {
         </div>
     </form>
 </div>
+<div class="d-none" id="divSalvocomExito">
+    <h3 class="f-family-Lobster">Seu Jejum foi salvado com exito! <a href="#">Clique Aqui</a> para acessá-lo</h3>
+</div>
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 <script type="text/javascript">
@@ -140,12 +143,19 @@ if (count($res) > 0) {
             var pag = "<?=$pag?>";
             event.preventDefault();
             $.ajax({
-                url: pag + '/inserir',
+                url: pag + '/inserir.php',
                 method: 'post',
                 data: $('form').serialize(),
                 dataType: 'html',
                 success: function(msg) {
-
+                    if (msg.ttrim() == "Jejum Salvo!") {
+                        $('#addJejumCollapse').removeClass();
+                        $('#addJejumCollapse').addClass('d-none');
+                        $('#divSalvocomExito').removeClass();
+                        $('#divSalvocomExito').addClass('text-center');
+                    } else {
+                        alert(msg);
+                    }
                 }
             })
         })
