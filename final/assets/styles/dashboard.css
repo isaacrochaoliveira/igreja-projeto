@@ -177,6 +177,30 @@
     border-radius: 100%;
 }
 
+.p-150px {
+    padding: 150px;
+}
+
+.py-150px {
+    paddiing: 150px 0px;
+}
+
+.px-150px {
+    padding: 0px 150px;
+}
+
+.pb-150px {
+    padding: 0px 0px 150px 0px;
+}
+
+.pt-150 {
+    padding: 150px 0px 0px 0px;
+}
+
+.pr-150px {
+    padding: 0px 0px 0px 150px;
+}
+
 .line-height-33 {
     line-height: 33px;
 }

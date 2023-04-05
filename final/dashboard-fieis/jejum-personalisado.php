@@ -1,5 +1,7 @@
 <?php
 
+require_once('../protect.php');
+require_once('../config.php');
 require_once('../conexao.php');
 require_once('../protect.php');
 
@@ -123,8 +125,8 @@ if (count($res) > 0) {
 <div class="d-none" id="divSalvocomExito">
     <h3 class="f-family-Lobster">Seu Jejum foi salvado com exito! <a href="index.php?pag=jejuns_personalizados">Clique Aqui</a> para acessá-lo</h3>
 </div>
-<div class="p-150px">
-    <p>Jejum já cadastrado? <a href="index.php?pag=jejuns_personalizados">Você pode configurá-lo a partir daqui</a></p>
+<div class="py-3 px-3">
+    <p style="font-size: 19px">Jejum já cadastrado? <a href="index.php?pag=jejuns_personalizados">Você pode configurá-lo a partir daqui</a></p>
 </div>
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
