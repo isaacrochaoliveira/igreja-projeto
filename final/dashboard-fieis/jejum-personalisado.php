@@ -47,7 +47,7 @@ if (count($res) > 0) {
     </div>
 </div>
 <div id="addJejumCollapse" class="bg-gradient-primary text-dark mx-auto py-5" style="padding: 0px 150px">
-    <form class="" action="#" method="post">
+    <form class="" action="#" method="post" enctype="multipart/form-data">
         <div class="row mb-3">
             <div class="col">
                 <div class="form-floating">

@@ -51,7 +51,6 @@ if ($res->execute()) {
                 $bool = move_uploaded_file($perfil['tmp_name'], $path.$arq.'.'.$ext);
                 $name = $arq.'.'.$ext;
                 $pdo->query("UPDATE jejuns SET imagem = '$name' WHERE id_jejum = '$id_jejum'");
-                echo "<script>location.href = '../dashboard-fieis/index.php'</script>";
             }
         }
     }
