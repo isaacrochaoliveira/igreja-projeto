@@ -49,9 +49,9 @@ require_once('../conexao.php');
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-                <img src="<?=IMAGEM.'/images-jejuns/sem-foto.jpg'?>" name="target" width="150" id="target" class="text-center" onchange="carregarImg()" alt="Coloaqui sua foto de Perfil aqui">
+                <img src="<?=IMAGEM.'/images-jejuns/sem-foto.jpg'?>" name="target" width="150" id="target" class="text-center" alt="Coloaqui sua foto de Perfil aqui">
                 <div class="">
-                    <input type="file" name="capa" id="capa">
+                    <input type="file" name="capa" id="capa" onchange="carregarImg()">
                 </div>
             </div>
             <div class="modal-footer">
@@ -73,4 +73,24 @@ require_once('../conexao.php');
             $('#modalCapa').modal('show');
         })
     }
+</script>
+
+<script type="text/javascript">
+function carregarImg() {
+
+    var target = document.getElementById('target');
+    var file = document.querySelector("input[type=file]").files[0];
+    var reader = new FileReader();
+
+    reader.onloadend = function () {
+        target.src = reader.result;
+    };
+
+    if (file) {
+        reader.readAsDataURL(file);
+
+    } else {
+        target.src = "";
+    }
+}
 </script>
