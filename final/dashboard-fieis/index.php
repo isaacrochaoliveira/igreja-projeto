@@ -19,6 +19,7 @@
     $menu13 = "jejum-40-dias";
     $menu14 = "jejum-personalisado";
     $menu15 = 'account';
+    $menu16 = 'jejuns_personalizados';
 
 ?>
 <!DOCTYPE html>
@@ -183,11 +184,13 @@
         @include_once(@$menu15 . ".php");
     } else if (@$pag == 'minhas-oracoes') {
         @include_once('minhas-oracoes.php');
-    }else {
+    } else if (@$pag == $menu16) {
+        @include_once(@$menu16.'.php');
+    } else {
         @include_once("home.php");
     }
     ?>
-    
+
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>
     <?php
     if (isset($_GET['jointogroup'])) {

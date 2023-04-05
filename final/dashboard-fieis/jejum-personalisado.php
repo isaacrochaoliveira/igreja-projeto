@@ -47,81 +47,69 @@ if (count($res) > 0) {
     </div>
 </div>
 <div id="addJejumCollapse" class="bg-gradient-primary text-dark mx-auto py-5" style="padding: 0px 150px">
-    <form class="" action="#" method="post" enctype="multipart/form-data">
-        <div class="row mb-3">
-            <div class="col">
-                <div class="form-floating">
-                    <input type="text" name="titulo_jejum" id="titulo_jejum" placeholder="Não Obrigatório" class="form-control">
-                    <label for="titulo_jejum" class="text-dark">Dê um título para o seu Jejum</label>
-                </div>
-            </div>
-            <div class="col">
-                <div class="form-floating">
-                    <input type="text" name="desc_jejum" id="desc_jejum" placeholder="Obrigatório" class="form-control">
-                    <label for="desc_jejum" class="text-dark">Dê uma descrição para seu jejum*</label>
-                </div>
+    <form action="#" method="post">
+        <div class="col my-2">
+            <div class="form-floating">
+                <input type="text" name="titulo_jejum" id="titulo_jejum" placeholder="Não Obrigatório" class="form-control">
+                <label for="titulo_jejum" class="text-dark">Dê um título para o seu Jejum</label>
             </div>
         </div>
-        <div class="row">
-            <div class="col">
-                <div class="form-floating">
-                    <input type="text" name="vers_base" id="vers_base" class="form-control" placeholder="Obrigatório">
-                    <label for="vers_base" class="text-dark">Dê um versículo chave para seu jejum*</label>
-                </div>
-            </div>
-            <div class="col-md-4">
-                <div class="form-floating">
-                    <select class="form-select" name="pastora_comando">
-                        <option value="">SELECIONE SE HOUVER ALGUÉM</option>
-                        <?php
-                            $query = $pdo->query("SELECT * FROM pastoras");
-                            $res = $query->fetchAll(PDO::FETCH_ASSOC);
-                            if (count($res) > 0) {
-                                for ($i = 0; $i < count($res); $i++) {
-                                    foreach ($res[$i] as $key => $value) {
-                                    }
-                                    $id = $res[$i]['id_pas_ras'];
-                                    $nome = $res[$i]['nome_pas_ras'];
-                                    ?>
-                                        <option value="<?=$id?>"><?=$nome?></option>
-                                    <?php
-                                }
-                            }
-                        ?>
-                    </select>
-                    <label for="pastora_comando" class="text-dark">Pastora que estará no comando</label>
-                </div>
-            </div>
-            <div class="col-md-4">
-                <div class="form-floating">
-                    <select class="form-select" name="pastor_comando">
-                        <option value="">SELECIONE SE HOUVER ALGUÉM</option>
-                        <?php
-                            $query = $pdo->query("SELECT * FROM pastores");
-                            $res = $query->fetchAll(PDO::FETCH_ASSOC);
-                            if (count($res) > 0) {
-                                for ($i = 0; $i < count($res); $i++) {
-                                    foreach ($res[$i] as $key => $value) {
-                                    }
-                                    $id = $res[$i]['id_pas'];
-                                    $nome = $res[$i]['nome_pas'];
-                                    ?>
-                                        <option value="<?=$id?>"><?=$nome?></option>
-                                    <?php
-                                }
-                            }
-                        ?>
-                    </select>
-                    <label for="pastor_comando" class="text-dark">Pastor que estará no comando</label>
-                </div>
+        <div class="col my-2">
+            <div class="form-floating">
+                <input type="text" name="desc_jejum" id="desc_jejum" placeholder="Obrigatório" class="form-control">
+                <label for="desc_jejum" class="text-dark">Dê uma descrição para seu jejum*</label>
             </div>
         </div>
-        <div class="row mt-3">
-            <div class="col">
-                <div class="form-floating">
-                    <input type="file" name="imagem_jejum" id="imagem_jejum" class="form-control" placeholder="Selecione uma imagem para ser sua capa">
-                    <label for="imagem_jejum" class="text-dark">Selecione uma foto para ser sua capa de entrada</label>
-                </div>
+        <div class="col my-2">
+            <div class="form-floating">
+                <input type="text" name="vers_base" id="vers_base" class="form-control" placeholder="Obrigatório">
+                <label for="vers_base" class="text-dark">Dê um versículo chave para seu jejum*</label>
+            </div>
+        </div>
+        <div class="col my-2">
+            <div class="form-floating">
+                <select class="form-select" name="pastora_comando">
+                    <option value="">SELECIONE SE HOUVER ALGUÉM</option>
+                    <?php
+                        $query = $pdo->query("SELECT * FROM pastoras");
+                        $res = $query->fetchAll(PDO::FETCH_ASSOC);
+                        if (count($res) > 0) {
+                            for ($i = 0; $i < count($res); $i++) {
+                                foreach ($res[$i] as $key => $value) {
+                                }
+                                $id = $res[$i]['id_pas_ras'];
+                                $nome = $res[$i]['nome_pas_ras'];
+                                ?>
+                                    <option value="<?=$id?>"><?=$nome?></option>
+                                <?php
+                            }
+                        }
+                    ?>
+                </select>
+                <label for="pastora_comando" class="text-dark">Pastora que estará no comando</label>
+            </div>
+        </div>
+        <div class="col my-2">
+            <div class="form-floating">
+                <select class="form-select" name="pastor_comando">
+                    <option value="">SELECIONE SE HOUVER ALGUÉM</option>
+                    <?php
+                        $query = $pdo->query("SELECT * FROM pastores");
+                        $res = $query->fetchAll(PDO::FETCH_ASSOC);
+                        if (count($res) > 0) {
+                            for ($i = 0; $i < count($res); $i++) {
+                                foreach ($res[$i] as $key => $value) {
+                                }
+                                $id = $res[$i]['id_pas'];
+                                $nome = $res[$i]['nome_pas'];
+                                ?>
+                                    <option value="<?=$id?>"><?=$nome?></option>
+                                <?php
+                            }
+                        }
+                    ?>
+                </select>
+                <label for="pastor_comando" class="text-dark">Pastor que estará no comando</label>
             </div>
         </div>
         <div class="row my-3">
@@ -133,7 +121,10 @@ if (count($res) > 0) {
     </form>
 </div>
 <div class="d-none" id="divSalvocomExito">
-    <h3 class="f-family-Lobster">Seu Jejum foi salvado com exito! <a href="#">Clique Aqui</a> para acessá-lo</h3>
+    <h3 class="f-family-Lobster">Seu Jejum foi salvado com exito! <a href="index.php?pag=jejuns_personalizados">Clique Aqui</a> para acessá-lo</h3>
+</div>
+<div class="p-150px">
+    <p>Jejum já cadastrado? <a href="index.php?pag=jejuns_personalizados">Você pode configurá-lo a partir daqui</a></p>
 </div>
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
@@ -151,7 +142,7 @@ if (count($res) > 0) {
                         $('#addJejumCollapse').removeClass();
                         $('#addJejumCollapse').addClass('d-none');
                         $('#divSalvocomExito').removeClass();
-                        $('#divSalvocomExito').addClass('text-center');
+                        $('#divSalvocomExito').addClass('text-center py-5 bg-gradient-primary');
                     } else {
                         alert(msg);
                     }

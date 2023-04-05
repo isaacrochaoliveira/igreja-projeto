@@ -27,33 +27,6 @@ $res->bindValue(':vers', $vers_base);
 $res->bindValue(':hoje', date('Y-m-d'));
 $res->bindValue(':agora', date('H:i:s'));
 if ($res->execute()) {
-    $query = $pdo->query("SELECT * FROM jejuns ORDER BY id_jejum DESC");
-    $res = $query->fetchAll(PDO::FETCH_ASSOC);
-    $id_jejum = $res[0]['id_jejum'];
-    if (isset($_FILES['imagem_jejum'])) {
-        $perfil = $_FILES['imagem_jejum'];
-        if (!$perfil['tmp_name'] == null) {
-            if ($perfil['size'] > 2097152) {
-                die("Tamanho Máxino do arquivo: 2MB");
-            }
-
-            if ($perfil['error']) {
-                die("Falha no envio de arquivo!");
-            }
-
-            $path = "../../assets/img/images-jejuns/";
-            $arq = uniqid();
-
-            $ext = strtolower(pathinfo($perfil['name'], PATHINFO_EXTENSION));
-            if ($ext != 'jpg' && $ext != 'png' && $ext != 'svg' && $ext != 'tiff') {
-                die("Tente as extensões: jpg, png, svg, tiff. <br>Extensão atual: $ext");
-            } else {
-                $bool = move_uploaded_file($perfil['tmp_name'], $path.$arq.'.'.$ext);
-                $name = $arq.'.'.$ext;
-                $pdo->query("UPDATE jejuns SET imagem = '$name' WHERE id_jejum = '$id_jejum'");
-            }
-        }
-    }
     echo "Jejum Salvo!";
 } else {
     echo "ERRO";
