@@ -1,6 +1,6 @@
 <?php
 
-require_once('../conexao.php');
+require_once('../../conexao.php');
 @session_start();
 
 $titulo_jejum = addslashes($_POST['titulo_jejum']);
@@ -9,7 +9,15 @@ $vers_base = addslashes($_POST['vers_base']);
 $pastora_comando = addslashes($_POST['pastora_comando']);
 $pastor_comando = addslashes($_POST['pastor_comando']);
 
-$res = $pdo->preapre("INSERT INTO jejuns SET id_criador_jejum = :id, pastor_comando = :pastor, pastora_comando = :pastora, jejum = :titulo, descricao_jejum = :descr, versiculo_baseado = :vers, data_jejum = :hoje, hora_jejum = :agora");
+if ($pastor_comando == "") {
+    $pastor_comando = null;
+}
+
+if ($pastora_comando == "") {
+    $pastora_comando = null;
+}
+
+$res = $pdo->prepare("INSERT INTO jejuns SET id_criador_jejum = :id, pastor_comando = :pastor, pastora_comando = :pastora, jejum = :titulo, descricao_jejum = :descr, versiculo_baseado = :vers, data_jejum = :hoje, hora_jejum = :agora");
 $res->bindValue(':id', $_SESSION['id']);
 $res->bindValue(':pastor', $pastor_comando);
 $res->bindValue(':pastora', $pastora_comando);
@@ -19,6 +27,9 @@ $res->bindValue(':vers', $vers_base);
 $res->bindValue(':hoje', date('Y-m-d'));
 $res->bindValue(':agora', date('H:i:s'));
 if ($res->execute()) {
+    $query = $pdo->query("SELECT * FROM jejuns ORDER BY id_jejum DESC");
+    $res = $query->fetchAll(PDO::FETCH_ASSOC);
+    $id_jejum = $res[0]['id_jejum'];
     if (isset($_FILES['imagem_jejum'])) {
         $perfil = $_FILES['imagem_jejum'];
         if (!$perfil['tmp_name'] == null) {
@@ -30,7 +41,7 @@ if ($res->execute()) {
                 die("Falha no envio de arquivo!");
             }
 
-            $path = "../../assets/img/fotos/imagens-jejuns/";
+            $path = "../../assets/img/images-jejuns/";
             $arq = uniqid();
 
             $ext = strtolower(pathinfo($perfil['name'], PATHINFO_EXTENSION));
@@ -39,7 +50,7 @@ if ($res->execute()) {
             } else {
                 $bool = move_uploaded_file($perfil['tmp_name'], $path.$arq.'.'.$ext);
                 $name = $arq.'.'.$ext;
-                $pdo->query("UPDATE jejuns SET imagem = '$name' WHERE id_jejum = '$_SESSION[id]'");
+                $pdo->query("UPDATE jejuns SET imagem = '$name' WHERE id_jejum = '$id_jejum'");
                 echo "<script>location.href = '../dashboard-fieis/index.php'</script>";
             }
         }

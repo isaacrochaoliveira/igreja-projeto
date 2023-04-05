@@ -126,7 +126,7 @@ if (count($res) > 0) {
         </div>
         <div class="row my-3">
             <div class="col text-right">
-                <button type="button" class="btn btn-outline-light" name="btn_salvar">Cadastrar meu Jejum</button>
+                <button type="button" class="btn btn-outline-light" name="btn_salvar" id="btn_salvar">Cadastrar meu Jejum</button>
                 <a href="index.php" class="btn btn-secondary">Voltar a pagina inicial</a>
             </div>
         </div>
@@ -139,16 +139,15 @@ if (count($res) > 0) {
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 <script type="text/javascript">
     $(document).ready(function() {
-        $('#btn_salvar').click(function(event) {
+        $('#btn_salvar').click(function() {
             var pag = "<?=$pag?>";
-            event.preventDefault();
             $.ajax({
                 url: pag + '/inserir.php',
                 method: 'post',
                 data: $('form').serialize(),
                 dataType: 'html',
                 success: function(msg) {
-                    if (msg.ttrim() == "Jejum Salvo!") {
+                    if (msg.trim() == "Jejum Salvo!") {
                         $('#addJejumCollapse').removeClass();
                         $('#addJejumCollapse').addClass('d-none');
                         $('#divSalvocomExito').removeClass();
