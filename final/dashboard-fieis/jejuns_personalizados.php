@@ -45,19 +45,21 @@ require_once('../conexao.php');
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
-                <h1 class="modal-title fs-5" id="staticBackdropLabel">Modal title</h1>
+                <h1 class="modal-title fs-5" id="staticBackdropLabel">Sua capa do Jejum</h1>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-                <img src="<?=IMAGEM.'/images-jejuns/sem-foto.jpg'?>" name="target" width="150" id="target" class="text-center" alt="Coloaqui sua foto de Perfil aqui">
-                <div class="">
+                <div class="text-center">
+                    <img src="<?=IMAGEM.'/images-jejuns/sem-foto.jpg'?>" name="target" width="250" id="target" class="text-center" alt="Coloaqui sua foto de Perfil aqui">
+                </div>
+                <div class="text-center mt-3">
                     <input type="file" name="capa" id="capa" onchange="carregarImg()">
                 </div>
             </div>
             <div class="modal-footer">
                 <input type="hidden" name="id_jejum" id="id_jejum">
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-primary">Understood</button>
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Voltar</button>
+                <button type="button" class="btn btn-primary">Upload</button>
             </div>
         </div>
     </div>
