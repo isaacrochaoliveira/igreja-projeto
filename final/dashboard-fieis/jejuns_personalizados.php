@@ -104,11 +104,16 @@ $pag = 'jejuns-personalizados';
     <div class="modal-dialog modal-xl">
         <div class="modal-content">
             <div class="modal-header">
-                <h1 class="modal-title fs-5" id="staticBackdropLabel"><span id="titulo_jejum"></span></h1>
+                <h1 class="modal-title fs-5" id="staticBackdropLabel"><span id="titulo_jejum_d"></span></h1>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
 			<div class="modal-body">
-				Olá
+				<div class="row">
+					<div class="col-md-4">
+						<label for="nome">CRIADOR</label>
+						<input type="text" name="criador" id="criador"/>
+					</div>
+				</div>
 			</div>
 			<div class="modal-footer">
 				<input type="text" id="id_jejum_d" name="id_jejum_d" class="form-control disabled">
@@ -156,10 +161,12 @@ function carregarImg() {
 			$.ajax({
 				url: pag + '/detalhes.php',
 				method: 'post',
-				data: id_jejum,
+				data: {id_jejum},
 				success: function(result) {
 					let array = result.split('@!#');
-					console.log(array);
+					if ($.isNumeric(array[0])) {
+						$('#titulo_jejum_d').html(array[4]);
+					}
 				}
 			})
 			document.getElementById('id_jejum_d').value = id_jejum;
