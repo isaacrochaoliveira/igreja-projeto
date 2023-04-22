@@ -48,19 +48,21 @@ require_once('../conexao.php');
                 <h1 class="modal-title fs-5" id="staticBackdropLabel">Sua capa do Jejum</h1>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
-            <div class="modal-body">
-                <div class="text-center">
-                    <img src="<?=IMAGEM.'/images-jejuns/sem-foto.jpg'?>" name="target" width="250" id="target" class="text-center" alt="Coloaqui sua foto de Perfil aqui">
+            <form id="form-edit-photo" method="POST" action="" enctype="multipart/form-data">
+                <div class="modal-body">
+                    <div class="text-center">
+                        <img src="<?=IMAGEM.'/images-jejuns/sem-foto.jpg'?>" name="target" width="250" id="target" class="text-center" alt="Coloaqui sua foto de Perfil aqui">
+                    </div>
+                    <div class="text-center mt-3">
+                        <input type="file" name="capa" id="capa" onchange="carregarImg()">
+                    </div>
                 </div>
-                <div class="text-center mt-3">
-                    <input type="file" name="capa" id="capa" onchange="carregarImg()">
+                <div class="modal-footer">
+                    <input type="hidden" name="id_jejum" id="id_jejum">
+                    <button type="button" name="btnfecharmodalphoto" class="btn btn-secondary" data-bs-dismiss="modal">Voltar</button>
+                    <button type="button" name="btnfotocapa" class="btn btn-primary">Upload</button>
                 </div>
-            </div>
-            <div class="modal-footer">
-                <input type="hidden" name="id_jejum" id="id_jejum">
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Voltar</button>
-                <button type="button" class="btn btn-primary">Upload</button>
-            </div>
+            </form>
         </div>
     </div>
 </div>
@@ -95,4 +97,25 @@ function carregarImg() {
         target.src = "";
     }
 }
+</script>
+
+<script>
+    $(document).ready(function()) {
+        $('btnfotocapa').click(function() {
+            var pag = "<?=$pag?>";
+            $.ajax({
+                url: pag + '/inserir_photo.php',
+                method: 'post',
+                data: $('#form-edit-photo').serialize(),
+                dataType: 'html',
+                success: function(msg) {
+					let array = msg.split('@#!-');
+                    if (array[1] == "Foto Inserida com Sucesso!") {
+						$('#btnfecharmodalphoto').click();
+                    }
+                }
+                
+            })
+        })
+    }
 </script>
