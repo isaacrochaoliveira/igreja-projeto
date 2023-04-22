@@ -326,7 +326,7 @@ $pag = "home";
     </h2>
     <div class="d-flex flex-wrap">
         <?php
-            $query = $pdo->query("SELECT * FROM jejuns LIMIT 10");
+            $query = $pdo->query("SELECT * FROM jejuns LIMIT 5");
             $res = $query->fetchAll(PDO::FETCH_ASSOC);
             if (count($res) > 0) {
                 for ($i = 0; $i < count($res); $i++) {
@@ -368,7 +368,7 @@ $pag = "home";
                     $pessoas = $res[$i]['quantidade_pessoas'];
                     ?>
                     <div class="w-50porc" id="jejum<?=$id_jejum?>">
-                        <div class="card">
+                        <div class="card" style="width: 25rem; margin: 0 auto">
                             <img src="<?=IMAGEM."images-jejuns/$imagem"?>" class="card-img-top" alt="Foto" height="300">
                             <div class="card-body">
                                 <h5 class="card-title mb-2"><?=$jejum?></h5>

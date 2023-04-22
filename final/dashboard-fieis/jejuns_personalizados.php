@@ -33,7 +33,8 @@ $pag = 'jejuns-personalizados';
                     <p class="card-text"><?=$desc?></p>
                     <div class="d-flex mx-1">
                         <button type="button" class="btn btn-dark" title="Upload de Imagem" onclick="modalCapa(<?=$id_jejum?>)"><i class="fa-solid fa-cloud-arrow-up" style="color: #fff;"></i></button>
-                    </div>
+                    	<button type="button" class="btn btn-light ml-2" title="Ver Informações adicionais" onclick="modalInformation(<?=$id_jejum?>)"><i class="fa-solid fa-file-zipper"></i></button>
+					</div>
                 </div>
             </div>
             <?php
@@ -99,6 +100,23 @@ $pag = 'jejuns-personalizados';
     </div>
 </div>
 
+<div class="modal fade" id="modalDetalhesHTML" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog modal-xl">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5" id="staticBackdropLabel"><span id="titulo_jejum"></span></h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+			<div class="modal-body">
+				Olá
+			</div>
+			<div class="modal-footer">
+				<input type="text" id="id_jejum_d" name="id_jejum_d" class="form-control disabled">
+			</div>
+        </div>
+    </div>
+</div>
+
 <!-- SCRIPTS -->
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 <script type="text/javascript">
@@ -129,4 +147,24 @@ function carregarImg() {
         target.src = "";
     }
 }
+</script>
+
+<script>
+	function modalInformation(id_jejum) {
+		$(document).ready(function() {
+			var pag = "<?=$pag?>";
+			$.ajax({
+				url: pag + '/detalhes.php',
+				method: 'post',
+				data: id_jejum,
+				success: function(result) {
+					let array = result.split('@!#');
+					console.log(array);
+				}
+			})
+			document.getElementById('id_jejum_d').value = id_jejum;
+			
+			$('#modalDetalhesHTML').modal('show');
+		})
+	}
 </script>

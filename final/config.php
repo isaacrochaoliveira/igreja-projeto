@@ -1,6 +1,6 @@
 <?php
 
-define('URL_BASE', "http://$_SERVER[HTTP_HOST]/projeto-igreja/igreja-projeto/final");
+define('URL_BASE', "http://$_SERVER[HTTP_HOST]/projeto-igreja/igreja-projeto/final/");
 define('IMAGEM', "http://$_SERVER[HTTP_HOST]/projeto-igreja/igreja-projeto/final/assets/img/");
 define('UPLOADS', "http://$_SERVER[HTTP_HOST]/projeto-igreja/igreja-projeto/final/assets/img/fotos/");
 define('SERVER', 'localhost');
