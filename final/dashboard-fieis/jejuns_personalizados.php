@@ -5,6 +5,8 @@ require_once('../config.php');
 require_once('../conexao.php');
 @session_start();
 
+$pag = 'jejuns-personalizados';
+
 ?>
 
 <div class="mx-3 py-3">
@@ -100,22 +102,27 @@ function carregarImg() {
 </script>
 
 <script>
-    $(document).ready(function()) {
+    $(document).ready(function() {
         $('btnfotocapa').click(function() {
             var pag = "<?=$pag?>";
+			var assets = "<?=IMAGEM?>";
             $.ajax({
                 url: pag + '/inserir_photo.php',
                 method: 'post',
                 data: $('#form-edit-photo').serialize(),
                 dataType: 'html',
                 success: function(msg) {
+					alert(msg);
 					let array = msg.split('@#!-');
-                    if (array[1] == "Foto Inserida com Sucesso!") {
+                    if (array[0] == "Foto Inserida com Sucesso!") {
 						$('#btnfecharmodalphoto').click();
-                    }
+						$('#file').attr('src', assets + '/images-jejuns/' + array[1]);
+                    } else {
+						alert(array[0]);
+					}
                 }
                 
             })
         })
-    }
+    })
 </script>
