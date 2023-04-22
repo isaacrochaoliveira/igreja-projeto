@@ -109,13 +109,17 @@ $pag = 'jejuns-personalizados';
             </div>
 			<div class="modal-body">
 				<div class="row">
-					<div class="col-md-4">
+					<div class="col-md-2">
 						<label for="criador">CRIADOR</label>
 						<input type="text" name="criador" id="criador" class="form-control"/>
 					</div>
-					<div class="col-md-4">
+					<div class="col-md-3">
 						<label for="pastor/a">Pastor(a)</label>
 						<input type="text" name="pastor_a" id="pastor_a" class="form-control">
+					</div>
+					<div class="col-md-4">
+						<label for="desc">Descrição</label>
+						<input type="text" name="desc" id="desc" class="form-control">
 					</div>
 				</div>
 			</div>
@@ -171,10 +175,11 @@ function carregarImg() {
 					$('#criador').val(array[1]);
 					$('#titulo_jejum_d').html(array[4]);
 					if (array[2] === "") {
-						$('#pastor_a').val(array[3]);
+						$('#pastor_a').val(array[2]);
 					} else {
-						$('#pastor_a').val(array[4]);
+						$('#pastor_a').val(array[3]);
 					}
+					$('#desc').val(array[[5]]);
 					document.getElementById('id_jejum_d').value = id_jejum;
 
 					$('#modalDetalhesHTML').modal('show');
