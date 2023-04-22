@@ -61,9 +61,39 @@ $pag = 'jejuns-personalizados';
                 </div>
                 <div class="modal-footer">
                     <input type="hidden" name="id_jejum" id="id_jejum">
-                    <button type="button" name="btnfecharmodalphoto" class="btn btn-secondary" data-bs-dismiss="modal">Voltar</button>
-                    <button type="button" name="btnfotocapa" class="btn btn-primary">Upload</button>
-                </div>
+                    <button type="button" name="btnfecharmodalphoto" id="btnfecharmodalphoto" class="btn btn-secondary" data-bs-dismiss="modal">Voltar</button>
+                    <button type="submit" name="btnfotocapa" id="btnfotocapa" class="btn btn-primary">Upload</button>
+                	<?php
+						if (isset($_FILES['capa'])) {
+							$perfil = $_FILES['capa'];
+							$id_jejum = addslashes($_POST['id_jejum']);
+							if (!$perfil['tmp_name'] == null) {
+								if ($perfil['size'] > 2097152) {
+									die("Tamanho Máxino do arquivo: 2MB");
+								}
+
+								if ($perfil['error']) {
+									die("Falha no envio de arquivo!");
+								}
+
+								$path = "../assets/img/images-jejuns/";
+								$arq = uniqid();
+
+								$ext = strtolower(pathinfo($perfil['name'], PATHINFO_EXTENSION));
+								if ($ext != 'jpg' && $ext != 'png' && $ext != 'svg' && $ext != 'tiff') {
+									die("Tente as extensões: jpg, png, svg, tiff. <br>Extensão atual: $ext");
+								} else {
+									$bool = move_uploaded_file($perfil['tmp_name'], $path.$arq.'.'.$ext);
+									$name = $arq.'.'.$ext;
+									$pdo->query("UPDATE jejuns SET imagem = '$name' WHERE id_jejum = '$id_jejum'");
+									echo "<script>location.href='index.php?pag=jejuns_personalizados'</script>";
+								}
+							} else {
+								"Erro!";
+							}
+						}
+					?>
+				</div>
             </form>
         </div>
     </div>
@@ -99,30 +129,4 @@ function carregarImg() {
         target.src = "";
     }
 }
-</script>
-
-<script>
-    $(document).ready(function() {
-        $('btnfotocapa').click(function() {
-            var pag = "<?=$pag?>";
-			var assets = "<?=IMAGEM?>";
-            $.ajax({
-                url: pag + '/inserir_photo.php',
-                method: 'post',
-                data: $('#form-edit-photo').serialize(),
-                dataType: 'html',
-                success: function(msg) {
-					alert(msg);
-					let array = msg.split('@#!-');
-                    if (array[0] == "Foto Inserida com Sucesso!") {
-						$('#btnfecharmodalphoto').click();
-						$('#file').attr('src', assets + '/images-jejuns/' + array[1]);
-                    } else {
-						alert(array[0]);
-					}
-                }
-                
-            })
-        })
-    })
 </script>

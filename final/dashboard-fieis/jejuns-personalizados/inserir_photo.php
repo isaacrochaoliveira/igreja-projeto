@@ -1,6 +1,6 @@
 <?php
 
-require_once('../conexao.php');
+require_once('../../conexao.php');
 
 $id_jejum = addslashes($_POST['id_jejum']);
 $perfil = $_FILES['capa'];
@@ -25,4 +25,6 @@ if (!$perfil['tmp_name'] == null) {
 		$pdo->query("UPDATE jejuns SET imagem = '$name' WHERE id_jejum = '$id_jejum'");
 		echo "Foto Inserida com Sucesso!@#!-$name";
 	}
+} else {
+	"Erro!";
 }
