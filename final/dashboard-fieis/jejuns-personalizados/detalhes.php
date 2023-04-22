@@ -19,7 +19,7 @@ if (count($res) > 0) {
 	$hora = $res[0]['hora_jejum'];
 	
 	$query_cli = $pdo->query("SELECT * FROM usuarios WHERE id = '$id_criador'");
-	$res_cli = $query_cli->fetchAl(PDO::FETCH_ASSOC);
+	$res_cli = $query_cli->fetchAll(PDO::FETCH_ASSOC);
 	$nome = $res_cli[0]['nome'];
 		
 	echo "$id_criador@!#$nome@!#$pastor@!#$pastora@!#$jejum@!#$desc@!#$vers@!#$colaboradores@!#$partic@!#$data@!#$hora";
