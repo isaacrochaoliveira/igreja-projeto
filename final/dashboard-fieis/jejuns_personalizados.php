@@ -131,10 +131,14 @@ $pag = 'jejuns-personalizados';
 						<label for="colab">Colaboradore(s) <i class="fa-regular fa-right"></i></label>
 						<input type="number" name="colab" id="colab" class="form-control"/>
 					</div>
+					<div class="col-md-2">
+						<label for="parti">Comprometidas</label>
+						<input type="number" name="parti" id="parti" class="form-control"/>
+					</div>
 				</div>
 			</div>
 			<div class="modal-footer">
-				<input type="text" id="id_jejum_d" name="id_jejum_d" class="form-control disabled">
+				<input type="hidden" id="id_jejum_d" name="id_jejum_d" class="form-control disabled">
 			</div>
         </div>
     </div>
@@ -192,6 +196,7 @@ function carregarImg() {
 					$('#desc').val(array[[5]]);
 					$('#vers_base').val(array[6]);
 					$('#colab').val(array[7]);
+					$('#parti').val(array[8]);
 					document.getElementById('id_jejum_d').value = id_jejum;
 
 					$('#modalDetalhesHTML').modal('show');
