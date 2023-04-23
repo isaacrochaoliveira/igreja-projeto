@@ -21,6 +21,24 @@ if (count($res) > 0) {
 	$query_cli = $pdo->query("SELECT * FROM usuarios WHERE id = '$id_criador'");
 	$res_cli = $query_cli->fetchAll(PDO::FETCH_ASSOC);
 	$nome = $res_cli[0]['nome'];
+	
+	if ($pastor == "") {
+		$tabela = "pastoras";
+		$column = 'id_pas_ras';
+		$id = $pastora;
+	} else {
+		$tabela = 'pastores';
+		$column = 'id_pas';
+		$id = $pastor;
+	}
+	
+	$query_pas = $pdo->query("SELECT * FROM $tabela WHERE $column = '$id'");
+	$res = $query_pas->fetchAll(PDO::FETCH_ASSOC);
+	if (!isset($res[0]['id_pas'])) {
+		$nome_p = $res[0]['nome_pas_ras'];
+	} else {
+		$nome_p = $res[0]['nome_pas'];
+	}
 		
-	echo "$id_criador@!#$nome@!#$pastor@!#$pastora@!#$jejum@!#$desc@!#$vers@!#$colaboradores@!#$partic@!#$data@!#$hora";
+	echo "$id_criador@!#$nome@!#$nome_p@!#$jejum@!#$desc@!#$vers@!#$colaboradores@!#$partic@!#$data@!#$hora";
 }

@@ -9,6 +9,15 @@ $pag = 'jejuns-personalizados';
 
 ?>
 
+<style>
+	
+	.disabled {
+		pointer-events: none;
+		cursor: none;
+		/*text-indent: -9999px;*/
+	}
+</style>
+
 <div class="mx-3 py-3">
     <?php
     $query = $pdo->query("SELECT * FROM jejuns WHERE id_criador_jejum = '$_SESSION[id]'");
@@ -101,7 +110,7 @@ $pag = 'jejuns-personalizados';
 </div>
 
 <div class="modal fade" id="modalDetalhesHTML" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
-    <div class="modal-dialog modal-xl">
+    <div class="modal-dialog modal-lg">
         <div class="modal-content">
             <div class="modal-header">
                 <h1 class="modal-title fs-5" id="staticBackdropLabel"><span id="titulo_jejum_d"></span></h1>
@@ -110,8 +119,8 @@ $pag = 'jejuns-personalizados';
 			<div class="modal-body">
 				<div class="row">
 					<div class="col-md-2">
-						<label for="criador">CRIADOR</label>
-						<input type="text" name="criador" id="criador" class="form-control"/>
+						<label for="criador">Criador</label>
+						<input type="text" name="criador" id="criador" class="form-control disabled"/>
 					</div>
 					<div class="col-md-3">
 						<label for="pastor/a">Pastor(a)</label>
@@ -126,14 +135,22 @@ $pag = 'jejuns-personalizados';
 						<input type="text" name="vers_base" id="vers_base" class="form-control">
 					</div>
 				</div>
-				<div class="row"> 
-					<div class="col-md-2">
+				<div class="row mt-3"> 
+					<div class="col-md-3">
 						<label for="colab">Colaboradore(s) <i class="fa-regular fa-right"></i></label>
 						<input type="number" name="colab" id="colab" class="form-control"/>
 					</div>
-					<div class="col-md-2">
+					<div class="col-md-3">
 						<label for="parti">Comprometidas</label>
 						<input type="number" name="parti" id="parti" class="form-control"/>
+					</div>
+					<div class="col-md-3">
+						<label for="data">Data</label>
+						<input type="date" name="data" id="data" class="form-control">
+					</div>
+					<div class="col-md-3">
+						<label for="hora">Hora</label>
+						<input type="time" name="hour" id="hour" class="form-control"/>
 					</div>
 				</div>
 			</div>
@@ -187,16 +204,15 @@ function carregarImg() {
 				success: function(result) {
 					let array = result.split('@!#');
 					$('#criador').val(array[1]);
+					$('#pastor_a').val(array[2]);
 					$('#titulo_jejum_d').html(array[4]);
-					if (array[2] === "") {
-						$('#pastor_a').val(array[2]);
-					} else {
-						$('#pastor_a').val(array[3]);
-					}
-					$('#desc').val(array[[5]]);
-					$('#vers_base').val(array[6]);
-					$('#colab').val(array[7]);
-					$('#parti').val(array[8]);
+					$('#desc').val(array[[3]]);
+					$('#vers_base').val(array[5]);
+					$('#colab').val(array[6]);
+					$('#parti').val(array[7]);
+					$('#data').val(array[8]);
+					$('#hour').val(array[9]);
+					$('#hour').val(array[9]);
 					document.getElementById('id_jejum_d').value = id_jejum;
 
 					$('#modalDetalhesHTML').modal('show');
