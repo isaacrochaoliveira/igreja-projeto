@@ -14,6 +14,7 @@ $pag = 'jejuns-personalizados';
 	.disabled {
 		pointer-events: none;
 		cursor: none;
+		background: lightgray;
 		/*text-indent: -9999px;*/
 	}
 </style>
@@ -120,42 +121,43 @@ $pag = 'jejuns-personalizados';
 				<div class="row">
 					<div class="col-md-2">
 						<label for="criador">Criador</label>
-						<input type="text" name="criador" id="criador" class="form-control disabled"/>
+						<input type="text" name="criador" id="criador"/>
 					</div>
 					<div class="col-md-3">
 						<label for="pastor/a">Pastor(a)</label>
-						<input type="text" name="pastor_a" id="pastor_a" class="form-control">
+						<input type="text" name="pastor_a" id="pastor_a">
 					</div>
 					<div class="col-md-4">
 						<label for="desc">Descrição</label>
-						<input type="text" name="desc" id="desc" class="form-control">
+						<input type="text" name="desc" id="desc">
 					</div>
 					<div class="col-md-3">
 						<label for="vers_base">Versículo Base</label>
-						<input type="text" name="vers_base" id="vers_base" class="form-control">
+						<input type="text" name="vers_base" id="vers_base">
 					</div>
 				</div>
 				<div class="row mt-3"> 
 					<div class="col-md-3">
 						<label for="colab">Colaboradore(s) <i class="fa-regular fa-right"></i></label>
-						<input type="number" name="colab" id="colab" class="form-control"/>
+						<input type="number" name="colab" id="colab"/>
 					</div>
 					<div class="col-md-3">
 						<label for="parti">Comprometidas</label>
-						<input type="number" name="parti" id="parti" class="form-control"/>
+						<input type="number" name="parti" id="parti"/>
 					</div>
 					<div class="col-md-3">
 						<label for="data">Data</label>
-						<input type="date" name="data" id="data" class="form-control">
+						<input type="date" name="data" id="data">
 					</div>
 					<div class="col-md-3">
 						<label for="hora">Hora</label>
-						<input type="time" name="hour" id="hour" class="form-control"/>
+						<input type="time" name="hour" id="hour"/>
 					</div>
 				</div>
 			</div>
 			<div class="modal-footer">
-				<input type="hidden" id="id_jejum_d" name="id_jejum_d" class="form-control disabled">
+				<input type="hidden" id="id_jejum_d" name="id_jejum_d" class="form-control">
+				<button type="button" name="btnEditar" id="btnEditar" class="btn btn-primary">Editar Informações</button>
 			</div>
         </div>
     </div>
@@ -212,7 +214,16 @@ function carregarImg() {
 					$('#parti').val(array[7]);
 					$('#data').val(array[8]);
 					$('#hour').val(array[9]);
-					$('#hour').val(array[9]);
+					
+					$('#criador').addClass('form-control disabled');
+					$('#pastor_a').addClass('form-control disabled');
+					$('#desc').addClass('form-control disabled')
+					$('#vers_base').addClass('form-control disabled');
+					$('#colab').addClass('form-control disabled');
+					$('#parti').addClass('form-control disabled');
+					$('#data').addClass('form-control disabled');
+					$('#hour').addClass('form-control disabled')
+					
 					document.getElementById('id_jejum_d').value = id_jejum;
 
 					$('#modalDetalhesHTML').modal('show');
@@ -220,4 +231,22 @@ function carregarImg() {
 			})
 		})
 	}
+</script>
+
+<script>
+	$(document).ready(function() {
+		$('#btnEditar').click(function() {
+			$('#btnEditar').removeClass();
+			$('#btnEditar').addClass('btn btn-success');
+			$('#btnEditar').html('Salvar Informações');
+			
+			$('#pastor_a').removeClass();
+			$('#desc').removeClass();
+			$('#vers_base').removeClass();
+			
+			$('#pastor_a').addClass('form-control');
+			$('#desc').addClass('form-control')
+			$('#vers_base').addClass('form-control');
+		})
+	})
 </script>
