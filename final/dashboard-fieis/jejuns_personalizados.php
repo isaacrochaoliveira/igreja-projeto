@@ -19,7 +19,7 @@ $pag = 'jejuns-personalizados';
 	}
 </style>
 
-<div class="mx-3 py-3">
+<div class="d-flex flex-wrap mx-3 py-3">
     <?php
     $query = $pdo->query("SELECT * FROM jejuns WHERE id_criador_jejum = '$_SESSION[id]'");
     $res = $query->fetchAll(PDO::FETCH_ASSOC);
@@ -36,8 +36,8 @@ $pag = 'jejuns-personalizados';
                 $capa = "sem-foto.jpg";
             }
             ?>
-            <div class="card" style="width: 18rem;">
-                <img src="<?=IMAGEM."/images-jejuns/$capa"?>" class="card-img-top" alt="...">
+            <div class="card mx-2" style="width: 18rem;">
+                <img src="<?=IMAGEM."/images-jejuns/$capa"?>" class="card-img-top" alt="Foto de Perfil do Jejum" width="250" height="250">
                 <div class="card-body">
                     <h5 class="card-title"><?=$title?></h5>
                     <p class="card-text"><?=$desc?></p>
@@ -158,6 +158,7 @@ $pag = 'jejuns-personalizados';
 			<div class="modal-footer">
 				<input type="hidden" id="id_jejum_d" name="id_jejum_d" class="form-control">
 				<button type="button" name="btnEditar" id="btnEditar" class="btn btn-primary">Editar Informações</button>
+				<button type="button" name="btnSalvar" id="btnSalvar" class="d-none">Salvar Informações</button>
 			</div>
         </div>
     </div>
@@ -207,8 +208,8 @@ function carregarImg() {
 					let array = result.split('@!#');
 					$('#criador').val(array[1]);
 					$('#pastor_a').val(array[2]);
-					$('#titulo_jejum_d').html(array[4]);
-					$('#desc').val(array[[3]]);
+					$('#titulo_jejum_d').html(array[3]);
+					$('#desc').val(array[[4]]);
 					$('#vers_base').val(array[5]);
 					$('#colab').val(array[6]);
 					$('#parti').val(array[7]);
@@ -237,9 +238,9 @@ function carregarImg() {
 	$(document).ready(function() {
 		$('#btnEditar').click(function() {
 			$('#btnEditar').removeClass();
-			$('#btnEditar').addClass('btn btn-success');
-			$('#btnEditar').html('Salvar Informações');
-			
+			$('#btnEditar').addClass('d-none');
+			$('#btnSalvar').removeClass();
+			$('#btnSalvar').addClass('btn btn-success d-block')
 			$('#pastor_a').removeClass();
 			$('#desc').removeClass();
 			$('#vers_base').removeClass();
