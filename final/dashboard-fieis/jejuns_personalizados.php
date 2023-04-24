@@ -326,9 +326,9 @@ function carregarImg() {
 						
 						// Colocando Elementos na tela 
 						$('#nomepas').addClass('d-block');
-						$('#pastor_a').addClass('form-control');
-						$('#desc').addClass('form-control')
-						$('#vers_base').addClass('form-control');
+						$('#pastor_a').addClass('form-control disabled');
+						$('#desc').addClass('form-control disabled')
+						$('#vers_base').addClass('form-control disabled');
 					} else {
 						alert(array);
 					}
