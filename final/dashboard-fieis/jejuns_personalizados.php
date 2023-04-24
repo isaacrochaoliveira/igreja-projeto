@@ -111,19 +111,15 @@ $pag = 'jejuns-personalizados';
 </div>
 
 <div class="modal fade" id="modalDetalhesHTML" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
-    <div class="modal-dialog modal-lg">
+    <div class="modal-dialog modal-xl">
         <div class="modal-content">
             <div class="modal-header">
-                <h1 class="modal-title fs-5" id="staticBackdropLabel"><span id="titulo_jejum_d"></span></h1>
+                <h1 class="modal-title fs-5" id="staticBackdropLabel"><span id="titulo_jejum_d"></span> - <span id="criador"></span></h1>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
 			<form action="" method="post" id="formdescricao">
 				<div class="modal-body">
 					<div class="row">
-						<div class="col-md-2">
-							<label for="criador">Criador</label>
-							<input type="text" name="criador" id="criador"/>
-						</div>
 						<div class="col-md-3" id="nomepas">
 							<label for="pastor/a">Pastor(a)</label>
 							<input type="text" name="pastor_a" id="pastor_a">
@@ -151,7 +147,7 @@ $pag = 'jejuns-personalizados';
 						</div>
 						<div class="d-none" id="choras">
 							<label for="pastor">Pastora</label>
-							<select class="form-select" name="pastor" id="pastor">
+							<select class="form-select" name="pastora" id="pastora">
 							<option value="">SELECIONE O PASTORA</option>
 								<?php
 									$query = $pdo->query("SELECT * FROM pastoras;");
@@ -170,7 +166,7 @@ $pag = 'jejuns-personalizados';
 								?>
 							</select>
 						</div>
-						<div class="col-md-4">
+						<div class="col-md-3">
 							<label for="desc">Descrição</label>
 							<input type="text" name="desc" id="desc">
 						</div>
@@ -250,7 +246,7 @@ function carregarImg() {
 				data: {id_jejum},
 				success: function(result) {
 					let array = result.split('@!#');
-					$('#criador').val(array[1]);
+					$('#criador').html(array[1]);
 					$('#pastor_a').val(array[2]);
 					$('#titulo_jejum_d').html(array[3]);
 					$('#desc').val(array[[4]]);
@@ -260,7 +256,6 @@ function carregarImg() {
 					$('#data').val(array[8]);
 					$('#hour').val(array[9]);
 					
-					$('#criador').addClass('form-control disabled');
 					$('#pastor_a').addClass('form-control disabled');
 					$('#desc').addClass('form-control disabled')
 					$('#vers_base').addClass('form-control disabled');
@@ -316,6 +311,13 @@ function carregarImg() {
 						$('#desc').removeClass();
 						$('#vers_base').removeClass();
 
+						$('#nomepas').addClass('d-block');
+			
+						$('#chopas').removeClass();
+						$('#chopas').addClass('d-none');
+						$('#choras').removeClass();
+						$('#choras').addClass('d-none');
+						
 						$('#pastor_a').addClass('form-control');
 						$('#desc').addClass('form-control')
 						$('#vers_base').addClass('form-control');
