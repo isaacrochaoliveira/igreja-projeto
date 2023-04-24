@@ -305,24 +305,32 @@ function carregarImg() {
 				method: 'post',
 				data: $('#formdescricao').serialize(),
 				dataType: 'text',
-				success: function(msg) {
-					if (msg.trim() == "Editado com Sucesso!") {
+				success: function(result) {
+					let array = result.split('$@#');
+					if (array[0] == "Editado com Sucesso!") {
+						// Removendo a Classe dos componentes que quero retornar a tela
 						$('#pastor_a').removeClass();
 						$('#desc').removeClass();
 						$('#vers_base').removeClass();
-
-						$('#nomepas').addClass('d-block');
-			
 						$('#chopas').removeClass();
-						$('#chopas').addClass('d-none');
 						$('#choras').removeClass();
+			
+						// Removendo elementos da tela
+						$('#chopas').addClass('d-none');
 						$('#choras').addClass('d-none');
 						
+						// Mudando o valor dos inputs a serem mostrados
+						$('#pastor_a').val(array[1]);
+						$('#desc').val(array[2]);
+						$('#vers_base').val(array[3]);
+						
+						// Colocando Elementos na tela 
+						$('#nomepas').addClass('d-block');
 						$('#pastor_a').addClass('form-control');
 						$('#desc').addClass('form-control')
 						$('#vers_base').addClass('form-control');
 					} else {
-						alert(msg);
+						alert(array);
 					}
 				}
 			})
