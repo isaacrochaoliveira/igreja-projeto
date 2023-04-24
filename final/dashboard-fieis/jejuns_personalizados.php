@@ -117,50 +117,52 @@ $pag = 'jejuns-personalizados';
                 <h1 class="modal-title fs-5" id="staticBackdropLabel"><span id="titulo_jejum_d"></span></h1>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
-			<div class="modal-body">
-				<div class="row">
-					<div class="col-md-2">
-						<label for="criador">Criador</label>
-						<input type="text" name="criador" id="criador"/>
+			<form action="" method="post" id="formdescricao">
+				<div class="modal-body">
+					<div class="row">
+						<div class="col-md-2">
+							<label for="criador">Criador</label>
+							<input type="text" name="criador" id="criador"/>
+						</div>
+						<div class="col-md-3">
+							<label for="pastor/a">Pastor(a)</label>
+							<input type="text" name="pastor_a" id="pastor_a">
+						</div>
+						<div class="col-md-4">
+							<label for="desc">Descrição</label>
+							<input type="text" name="desc" id="desc">
+						</div>
+						<div class="col-md-3">
+							<label for="vers_base">Versículo Base</label>
+							<input type="text" name="vers_base" id="vers_base">
+						</div>
 					</div>
-					<div class="col-md-3">
-						<label for="pastor/a">Pastor(a)</label>
-						<input type="text" name="pastor_a" id="pastor_a">
-					</div>
-					<div class="col-md-4">
-						<label for="desc">Descrição</label>
-						<input type="text" name="desc" id="desc">
-					</div>
-					<div class="col-md-3">
-						<label for="vers_base">Versículo Base</label>
-						<input type="text" name="vers_base" id="vers_base">
+					<div class="row mt-3"> 
+						<div class="col-md-3">
+							<label for="colab">Colaboradore(s) <i class="fa-regular fa-right"></i></label>
+							<input type="number" name="colab" id="colab"/>
+						</div>
+						<div class="col-md-3">
+							<label for="parti">Comprometidas</label>
+							<input type="number" name="parti" id="parti"/>
+						</div>
+						<div class="col-md-3">
+							<label for="data">Data</label>
+							<input type="date" name="data" id="data">
+						</div>
+						<div class="col-md-3">
+							<label for="hora">Hora</label>
+							<input type="time" name="hour" id="hour"/>
+						</div>
 					</div>
 				</div>
-				<div class="row mt-3"> 
-					<div class="col-md-3">
-						<label for="colab">Colaboradore(s) <i class="fa-regular fa-right"></i></label>
-						<input type="number" name="colab" id="colab"/>
-					</div>
-					<div class="col-md-3">
-						<label for="parti">Comprometidas</label>
-						<input type="number" name="parti" id="parti"/>
-					</div>
-					<div class="col-md-3">
-						<label for="data">Data</label>
-						<input type="date" name="data" id="data">
-					</div>
-					<div class="col-md-3">
-						<label for="hora">Hora</label>
-						<input type="time" name="hour" id="hour"/>
-					</div>
+				<div class="modal-footer">
+					<input type="hidden" id="id_jejum_d" name="id_jejum_d" class="form-control">
+					<button type="button" name="btnEditar" id="btnEditar" class="btn btn-primary">Editar Informações</button>
+					<button type="button" name="btnSalvar" id="btnSalvar" class="d-none">Salvar Informações</button>
 				</div>
-			</div>
-			<div class="modal-footer">
-				<input type="hidden" id="id_jejum_d" name="id_jejum_d" class="form-control">
-				<button type="button" name="btnEditar" id="btnEditar" class="btn btn-primary">Editar Informações</button>
-				<button type="button" name="btnSalvar" id="btnSalvar" class="d-none">Salvar Informações</button>
-			</div>
-        </div>
+			</form>
+		</div>
     </div>
 </div>
 
@@ -250,4 +252,31 @@ function carregarImg() {
 			$('#vers_base').addClass('form-control');
 		})
 	})
+</script>
+<script>
+	$(document).ready(function() {
+		$('#btnSalvar').click(function() {
+			var pag = "<?=$pag?>";
+			$.ajax({
+				url: pag + '/edit.php',
+				method: 'post',
+				data: $('#formdescricao').serialize(),
+				dataType: 'text',
+				success: function(msg) {
+					if (msg.trim() == "Editado com Sucesso!") {
+						$('#pastor_a').removeClass();
+						$('#desc').removeClass();
+						$('#vers_base').removeClass();
+
+						$('#pastor_a').addClass('form-control');
+						$('#desc').addClass('form-control')
+						$('#vers_base').addClass('form-control');
+					} else {
+						alert(msg);
+					}
+				}
+			})
+		})
+	})
+
 </script>
