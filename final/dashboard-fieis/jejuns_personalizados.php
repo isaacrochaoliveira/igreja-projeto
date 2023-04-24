@@ -124,9 +124,51 @@ $pag = 'jejuns-personalizados';
 							<label for="criador">Criador</label>
 							<input type="text" name="criador" id="criador"/>
 						</div>
-						<div class="col-md-3">
+						<div class="col-md-3" id="nomepas">
 							<label for="pastor/a">Pastor(a)</label>
 							<input type="text" name="pastor_a" id="pastor_a">
+						</div>
+						<div class="d-none" id="chopas">
+							<label for="pastor">Pastor</label>
+							<select class="form-select" name="pastor" id="pastor">
+								<option value="">SELECIONE O PASTOR</option>
+								<?php
+									$query = $pdo->query("SELECT * FROM pastores;");
+									$res = $query->fetchAll(PDO::FETCH_ASSOC);
+									if (count($res) > 0) {
+										for ($i = 0; $i < count($res); $i++) {
+											foreach ($res[$i] as $key => $value) {
+											}
+											$id = $res[$i]['id_pas'];
+											$nome = $res[$i]['nome_pas'];
+											?>
+												<option value="<?=$id?>"><?=$nome?></option>
+											<?php
+										}
+									}
+								?>
+							</select>
+						</div>
+						<div class="d-none" id="choras">
+							<label for="pastor">Pastora</label>
+							<select class="form-select" name="pastor" id="pastor">
+							<option value="">SELECIONE O PASTORA</option>
+								<?php
+									$query = $pdo->query("SELECT * FROM pastoras;");
+									$res = $query->fetchAll(PDO::FETCH_ASSOC);
+									if (count($res) > 0) {
+										for ($i = 0; $i < count($res); $i++) {
+											foreach ($res[$i] as $key => $value) {
+											}
+											$id = $res[$i]['id_pas_ras'];
+											$nome = $res[$i]['nome_pas_ras'];
+											?>
+												<option value="<?=$id?>"><?=$nome?></option>
+											<?php
+										}
+									}
+								?>
+							</select>
 						</div>
 						<div class="col-md-4">
 							<label for="desc">Descrição</label>
@@ -247,7 +289,13 @@ function carregarImg() {
 			$('#desc').removeClass();
 			$('#vers_base').removeClass();
 			
-			$('#pastor_a').addClass('form-control');
+			$('#nomepas').addClass('d-none');
+			
+			$('#chopas').removeClass();
+			$('#chopas').addClass('col-md-3');
+			$('#choras').removeClass();
+			$('#choras').addClass('col-md-3');
+			
 			$('#desc').addClass('form-control')
 			$('#vers_base').addClass('form-control');
 		})
