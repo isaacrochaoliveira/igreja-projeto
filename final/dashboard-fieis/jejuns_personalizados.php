@@ -44,6 +44,7 @@ $pag = 'jejuns-personalizados';
                     <div class="d-flex mx-1">
                         <button type="button" class="btn btn-dark" title="Upload de Imagem" onclick="modalCapa(<?=$id_jejum?>)"><i class="fa-solid fa-cloud-arrow-up" style="color: #fff;"></i></button>
                     	<button type="button" class="btn btn-light ml-2" title="Ver Informações adicionais" onclick="modalInformation(<?=$id_jejum?>)"><i class="fa-solid fa-file-zipper"></i></button>
+						<button type="button" class="btn btn-secondary ml-2" title="Ver Colaboradores" onclick="modalColaboradores()"><i class="fa-solid fa-people-group"></i></button>
 					</div>
                 </div>
             </div>
@@ -177,7 +178,7 @@ $pag = 'jejuns-personalizados';
 					</div>
 					<div class="row mt-3"> 
 						<div class="col-md-3">
-							<label for="colab">Colaboradore(s) <i class="fa-regular fa-right"></i></label>
+							<label for="colab">Colaboradore(s)</label>
 							<input type="number" name="colab" id="colab"/>
 						</div>
 						<div class="col-md-3">
@@ -206,6 +207,12 @@ $pag = 'jejuns-personalizados';
 
 <!-- SCRIPTS -->
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script type="text/javascript">
+	function modalColaboradores() {
+		
+	}
+</script>
+
 <script type="text/javascript">
     function modalCapa(id_jejum) {
         $(document).ready(function() {
@@ -336,5 +343,4 @@ function carregarImg() {
 			})
 		})
 	})
-
 </script>
