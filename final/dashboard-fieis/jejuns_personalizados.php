@@ -6,6 +6,7 @@ require_once('../conexao.php');
 @session_start();
 
 $pag = 'jejuns-personalizados';
+$pagina = 'jejuns_personalizados';
 
 ?>
 
@@ -44,7 +45,7 @@ $pag = 'jejuns-personalizados';
                     <div class="d-flex mx-1">
                         <button type="button" class="btn btn-dark" title="Upload de Imagem" onclick="modalCapa(<?=$id_jejum?>)"><i class="fa-solid fa-cloud-arrow-up" style="color: #fff;"></i></button>
                     	<button type="button" class="btn btn-light ml-2" title="Ver Informações adicionais" onclick="modalInformation(<?=$id_jejum?>)"><i class="fa-solid fa-file-zipper"></i></button>
-						<a href="index.php?pag=<?=$pag?>&id_colab=<?=$id_jejum?>" class="btn btn-secondary ml-2" title="Ver Colaboradores"><i class="fa-solid fa-people-group"></i></a>
+						<a href="index.php?pag=<?=$pagina?>&id_colab=<?=$id_jejum?>" class="btn btn-secondary ml-2" title="Ver Colaboradores"><i class="fa-solid fa-people-group"></i></a>
 					</div>
                 </div>
             </div>
@@ -124,7 +125,41 @@ $pag = 'jejuns-personalizados';
 				?>
             </div>
 			<div class="modal-body">
-				Olá
+				<table class="table">
+			  		<thead>
+						<tr>
+					  		<th scope="col">Foto</th>
+					  		<th scope="col">Nome</th>
+					  		<th scope="col">Email</th>
+						</tr>
+				  	</thead>
+  					<tbody>
+						<?php
+							if (count($res) > 0) {
+								for ($i = 0; $i < count($res); $i++) {
+									foreach ($res[$i] as $key => $value) {
+									}
+									$nome = $res[$i]['nome'];
+									$email = $res[$i]['email'];
+									$foto = $res[$i]['perfil'];
+									?>
+										<tr>
+											<td><img src="<?=IMAGEM."/fotos/$foto"?>" alt="Foto de Perfil" width="80" height="80"></td>
+											<td><?=$nome?></td>
+											<td><?=$email?></td>
+										</tr>
+									<?php
+								}
+							} else {
+								?>
+									<div class="alert alert-primary" role="alert">
+  										Sem Colaboradores!
+									</div>
+								<?php
+							}
+						?>
+  					</tbody>
+				</table>
 			</div>
 			<div class="modal-footer">
 				<input type="hidden" name="id_jejum" id="id_jejum">
