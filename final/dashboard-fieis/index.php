@@ -405,5 +405,15 @@
         </script>
         <?php
     }
+	if (isset($_GET['id_part'])) {
+        ?>
+        <script type="text/javascript">
+            var myModal = new bootstrap.Modal(document.getElementById('modalParticipacaoJejum'), {
+
+            })
+            myModal.show();
+        </script>
+        <?php
+	}
     ?>
 </html>

@@ -44,8 +44,9 @@ $pagina = 'jejuns_personalizados';
                     <p class="card-text"><?=$desc?></p>
                     <div class="d-flex mx-1">
                         <button type="button" class="btn btn-dark" title="Upload de Imagem" onclick="modalCapa(<?=$id_jejum?>)"><i class="fa-solid fa-cloud-arrow-up" style="color: #fff;"></i></button>
-                    	<button type="button" class="btn btn-light ml-2" title="Ver Informações adicionais" onclick="modalInformation(<?=$id_jejum?>)"><i class="fa-solid fa-file-zipper"></i></button>
-						<a href="index.php?pag=<?=$pagina?>&id_colab=<?=$id_jejum?>" class="btn btn-secondary ml-2" title="Ver Colaboradores"><i class="fa-solid fa-people-group"></i></a>
+                    	<button type="button" class="btn btn-dark ml-2" title="Ver Informações adicionais" onclick="modalInformation(<?=$id_jejum?>)"><i class="fa-solid fa-file-zipper"></i></button>
+						<a href="index.php?pag=<?=$pagina?>&id_colab=<?=$id_jejum?>" class="btn btn-dark ml-2" title="Ver Colaboradores"><i class="fa-solid fa-people-group"></i></a>
+						<a href="index.php?pag=<?=$pagina?>&id_part=<?=$id_jejum?>" class="btn btn-dark ml-2" title="Ver Participantes"><i class="fa-sharp fa-solid fa-people-arrows"></i></a>
 					</div>
                 </div>
             </div>
@@ -175,6 +176,68 @@ $pagina = 'jejuns_personalizados';
     </div>
 </div>
 
+<div class="modal fade" id="modalParticipacaoJejum" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5" id="staticBackdropLabel">Sua capa do Jejum</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+				<?php
+					$id = addslashes($_GET['id_part']);
+					$query = $pdo->query("SELECT * FROM participando_do_jejum as cl JOIN usuarios as u ON cl.id_colaborando = u.id WHERE id_colaborando_jejum = '$id'");
+					$res = $query->fetchAll(PDO::FETCH_ASSOC);
+				?>
+            </div>
+			<div class="modal-body">
+				<table class="table">
+			  		<thead>
+						<tr>
+					  		<th scope="col">Foto</th>
+					  		<th scope="col">Nome</th>
+					  		<th scope="col">Email</th>
+						</tr>
+				  	</thead>
+  					<tbody>
+						<?php
+							if (count($res) > 0) {
+								for ($i = 0; $i < count($res); $i++) {
+									foreach ($res[$i] as $key => $value) {
+									}
+									$nome = $res[$i]['nome'];
+									$email = $res[$i]['email'];
+									$foto = $res[$i]['perfil'];
+									?>
+										<tr>
+											<td><img src="<?=IMAGEM."/fotos/$foto"?>" alt="Foto de Perfil" width="70" height="70"></td>
+											<td><?=$nome?></td>
+											<td><?=$email?></td>
+										</tr>
+									<?php
+								}
+							} else {
+								?>
+									<div class="d-flex alert alert-primary" role="alert">
+  										<div style="font-size: 32px;">
+											<i class="fa-solid fa-exclamation"></i>
+										</div>
+										<div class="ml-3 mt-3">
+											Sem Colaboradores!
+										</div>
+									</div>
+								<?php
+							}
+						?>
+  					</tbody>
+				</table>
+			</div>
+			<div class="modal-footer">
+				<input type="hidden" name="id_jejum" id="id_jejum">
+				<button type="button" name="btnfecharmodalphoto" id="btnfecharmodalphoto" class="btn btn-secondary" data-bs-dismiss="modal">Voltar</button>
+				<button type="submit" name="btnfotocapa" id="btnfotocapa" class="btn btn-primary">Upload</button>
+			</div>
+        </div>
+    </div>
+</div>
 
 <div class="modal fade" id="modalDetalhesHTML" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
     <div class="modal-dialog modal-xl">
