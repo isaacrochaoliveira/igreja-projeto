@@ -180,11 +180,11 @@ $pagina = 'jejuns_personalizados';
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
-                <h1 class="modal-title fs-5" id="staticBackdropLabel">Sua capa do Jejum</h1>
+                <h1 class="modal-title fs-5" id="staticBackdropLabel">Participando do Jejum</h1>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
 				<?php
 					$id = addslashes($_GET['id_part']);
-					$query = $pdo->query("SELECT * FROM participando_do_jejum as cl JOIN usuarios as u ON cl.id_colaborando = u.id WHERE id_colaborando_jejum = '$id'");
+					$query = $pdo->query("SELECT * FROM participando_do_jejum as cl JOIN usuarios as u ON cl.id_participante = u.id WHERE id_jejum_part = '$id'");
 					$res = $query->fetchAll(PDO::FETCH_ASSOC);
 				?>
             </div>
