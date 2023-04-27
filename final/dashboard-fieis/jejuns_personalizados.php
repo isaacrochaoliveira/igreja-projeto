@@ -119,7 +119,7 @@ $pagina = 'jejuns_personalizados';
                 <h1 class="modal-title fs-5" id="staticBackdropLabel">Sua capa do Jejum</h1>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
 				<?php
-					$id = addslashes($_POST['id_colab']);
+					$id = addslashes($_GET['id_colab']);
 					$query = $pdo->query("SELECT * FROM colaborando_jejum as cl JOIN usuarios as u ON cl.id_colaborando = u.id WHERE id_colaborando_jejum = '$id'");
 					$res = $query->fetchAll(PDO::FETCH_ASSOC);
 				?>
@@ -144,7 +144,7 @@ $pagina = 'jejuns_personalizados';
 									$foto = $res[$i]['perfil'];
 									?>
 										<tr>
-											<td><img src="<?=IMAGEM."/fotos/$foto"?>" alt="Foto de Perfil" width="80" height="80"></td>
+											<td><img src="<?=IMAGEM."/fotos/$foto"?>" alt="Foto de Perfil" width="70" height="70"></td>
 											<td><?=$nome?></td>
 											<td><?=$email?></td>
 										</tr>
@@ -152,8 +152,13 @@ $pagina = 'jejuns_personalizados';
 								}
 							} else {
 								?>
-									<div class="alert alert-primary" role="alert">
-  										Sem Colaboradores!
+									<div class="d-flex alert alert-primary" role="alert">
+  										<div style="font-size: 32px;">
+											<i class="fa-solid fa-exclamation"></i>
+										</div>
+										<div class="ml-3 mt-3">
+											Sem Colaboradores!
+										</div>
 									</div>
 								<?php
 							}
