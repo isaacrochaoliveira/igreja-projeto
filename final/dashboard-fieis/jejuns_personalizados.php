@@ -44,7 +44,7 @@ $pag = 'jejuns-personalizados';
                     <div class="d-flex mx-1">
                         <button type="button" class="btn btn-dark" title="Upload de Imagem" onclick="modalCapa(<?=$id_jejum?>)"><i class="fa-solid fa-cloud-arrow-up" style="color: #fff;"></i></button>
                     	<button type="button" class="btn btn-light ml-2" title="Ver Informações adicionais" onclick="modalInformation(<?=$id_jejum?>)"><i class="fa-solid fa-file-zipper"></i></button>
-						<button type="button" class="btn btn-secondary ml-2" title="Ver Colaboradores" onclick="modalColaboradores()"><i class="fa-solid fa-people-group"></i></button>
+						<button type="button" class="btn btn-secondary ml-2" title="Ver Colaboradores" onclick="modalColaboradores(<?=$id_jejum?>)"><i class="fa-solid fa-people-group"></i></button>
 					</div>
                 </div>
             </div>
@@ -208,8 +208,19 @@ $pag = 'jejuns-personalizados';
 <!-- SCRIPTS -->
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 <script type="text/javascript">
-	function modalColaboradores() {
-		
+	function modalColaboradores(id_jejum) {
+		$(document).ready(function() {
+			var pag = "<?=$pag?>";
+			$.ajax({
+				url: pag + '/colaboradores.php',
+				method: 'post',
+				data: {id_jejum},
+				dataType: 'text',
+				success: function(msg) {
+					
+				}
+			})
+		})
 	}
 </script>
 
