@@ -395,5 +395,15 @@
         </script>
         <?php
     }
+	if (isset($_GET['id_colab'])) {
+        ?>
+        <script type="text/javascript">
+            var myModal = new bootstrap.Modal(document.getElementById('modalColab'), {
+
+            })
+            myModal.show();
+        </script>
+        <?php
+    }
     ?>
 </html>

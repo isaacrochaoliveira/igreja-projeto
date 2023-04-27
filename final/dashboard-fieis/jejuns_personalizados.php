@@ -44,7 +44,7 @@ $pag = 'jejuns-personalizados';
                     <div class="d-flex mx-1">
                         <button type="button" class="btn btn-dark" title="Upload de Imagem" onclick="modalCapa(<?=$id_jejum?>)"><i class="fa-solid fa-cloud-arrow-up" style="color: #fff;"></i></button>
                     	<button type="button" class="btn btn-light ml-2" title="Ver Informações adicionais" onclick="modalInformation(<?=$id_jejum?>)"><i class="fa-solid fa-file-zipper"></i></button>
-						<button type="button" class="btn btn-secondary ml-2" title="Ver Colaboradores" onclick="modalColaboradores(<?=$id_jejum?>)"><i class="fa-solid fa-people-group"></i></button>
+						<a href="index.php?pag=<?=$pag?>&id_colab=<?=$id_jejum?>" class="btn btn-secondary ml-2" title="Ver Colaboradores"><i class="fa-solid fa-people-group"></i></a>
 					</div>
                 </div>
             </div>
@@ -110,6 +110,31 @@ $pag = 'jejuns-personalizados';
         </div>
     </div>
 </div>
+
+<div class="modal fade" id="modalColab" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5" id="staticBackdropLabel">Sua capa do Jejum</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+				<?php
+					$id = addslashes($_POST['id_colab']);
+					$query = $pdo->query("SELECT * FROM colaborando_jejum as cl JOIN usuarios as u ON cl.id_colaborando = u.id WHERE id_colaborando_jejum = '$id'");
+					$res = $query->fetchAll(PDO::FETCH_ASSOC);
+				?>
+            </div>
+			<div class="modal-body">
+				Olá
+			</div>
+			<div class="modal-footer">
+				<input type="hidden" name="id_jejum" id="id_jejum">
+				<button type="button" name="btnfecharmodalphoto" id="btnfecharmodalphoto" class="btn btn-secondary" data-bs-dismiss="modal">Voltar</button>
+				<button type="submit" name="btnfotocapa" id="btnfotocapa" class="btn btn-primary">Upload</button>
+			</div>
+        </div>
+    </div>
+</div>
+
 
 <div class="modal fade" id="modalDetalhesHTML" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
     <div class="modal-dialog modal-xl">
@@ -207,22 +232,6 @@ $pag = 'jejuns-personalizados';
 
 <!-- SCRIPTS -->
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-<script type="text/javascript">
-	function modalColaboradores(id_jejum) {
-		$(document).ready(function() {
-			var pag = "<?=$pag?>";
-			$.ajax({
-				url: pag + '/colaboradores.php',
-				method: 'post',
-				data: {id_jejum},
-				dataType: 'text',
-				success: function(msg) {
-					
-				}
-			})
-		})
-	}
-</script>
 
 <script type="text/javascript">
     function modalCapa(id_jejum) {
