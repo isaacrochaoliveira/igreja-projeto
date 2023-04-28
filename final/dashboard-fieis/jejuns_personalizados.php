@@ -43,8 +43,8 @@ $pagina = 'jejuns_personalizados';
                     <h5 class="card-title"><?=$title?></h5>
                     <p class="card-text"><?=$desc?></p>
                     <div class="d-flex mx-1">
-                        <button type="button" class="btn btn-dark" title="Upload de Imagem" onclick="modalCapa(<?=$id_jejum?>)"><i class="fa-solid fa-cloud-arrow-up" style="color: #fff;"></i></button>
-                    	<button type="button" class="btn btn-dark ml-2" title="Ver Informações adicionais" onclick="modalInformation(<?=$id_jejum?>)"><i class="fa-solid fa-file-zipper"></i></button>
+                        <button type="button" class="btn btn-primary" title="Upload de Imagem" onclick="modalCapa(<?=$id_jejum?>)"><i class="fa-solid fa-cloud-arrow-up" style="color: #fff;"></i></button>
+                    	<button type="button" class="btn btn-danger ml-2" title="Ver Informações adicionais" onclick="modalInformation(<?=$id_jejum?>)"><i class="fa-solid fa-file-zipper"></i></button>
 						<a href="index.php?pag=<?=$pagina?>&id_colab=<?=$id_jejum?>" class="btn btn-dark ml-2" title="Ver Colaboradores"><i class="fa-solid fa-people-group"></i></a>
 						<a href="index.php?pag=<?=$pagina?>&id_part=<?=$id_jejum?>" class="btn btn-dark ml-2" title="Ver Participantes"><i class="fa-sharp fa-solid fa-people-arrows"></i></a>
 					</div>
@@ -52,7 +52,20 @@ $pagina = 'jejuns_personalizados';
             </div>
             <?php
         }
-    }
+    } else {
+		?>
+			<div class="alert alert-danger w-100" role="alert">
+				<div class="d-flex justify-content-center">
+					<div style="font-size: 32px;">
+						<i class="fa-solid fa-exclamation"></i>
+					</div>
+					<div class="ml-3 mt-3">
+						Você não tem jejuns cadastrados!
+					</div>
+				</div>
+			</div>
+		<?php
+	}
     ?>
 </div>
 
