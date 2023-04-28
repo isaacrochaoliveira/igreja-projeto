@@ -60,7 +60,10 @@ $pagina = 'jejuns_personalizados';
 						<i class="fa-solid fa-exclamation"></i>
 					</div>
 					<div class="ml-3 mt-3">
-						Você não tem jejuns cadastrados!
+						<p>Você não tem jejuns cadastrados!</p>
+						<a href="index.php?pag=jejum-personalisado" class="btn btn-light w-100">
+							VOLTAR
+						</a>
 					</div>
 				</div>
 			</div>
@@ -338,6 +341,7 @@ $pagina = 'jejuns_personalizados';
 				</div>
 				<div class="modal-footer">
 					<input type="hidden" id="id_jejum_d" name="id_jejum_d" class="form-control">
+					<a href="#" class="mr-2" style="text-decoration: underline; color: blue" onclick="regras(<?=$id_jejum?>)">Editar Regras</a>
 					<button type="button" name="btnEditar" id="btnEditar" class="btn btn-primary">Editar Informações</button>
 					<button type="button" name="btnSalvar" id="btnSalvar" class="d-none">Salvar Informações</button>
 				</div>
