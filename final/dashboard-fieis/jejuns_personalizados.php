@@ -352,7 +352,16 @@ $pagina = 'jejuns_personalizados';
 
 <!-- SCRIPTS -->
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-
+<script>
+	function regras(id_jejum) {
+		$(document).ready(function() {
+			var pag = "<?=$pag?>";
+			$.ajax({
+				url
+			})
+		})
+	}
+</script>
 <script type="text/javascript">
     function modalCapa(id_jejum) {
         $(document).ready(function() {
