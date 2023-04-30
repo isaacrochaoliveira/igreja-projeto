@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1:3306
--- Tempo de geração: 09-Mar-2023 às 13:49
+-- Tempo de geração: 30-Abr-2023 às 02:48
 -- Versão do servidor: 8.0.31
 -- versão do PHP: 8.2.0
 
@@ -220,14 +220,15 @@ CREATE TABLE IF NOT EXISTS `colaborando_jejum` (
   PRIMARY KEY (`id_colab`),
   KEY `id_colaborando` (`id_colaborando`),
   KEY `id_colaborando_jejum` (`id_colaborando_jejum`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Extraindo dados da tabela `colaborando_jejum`
 --
 
 INSERT INTO `colaborando_jejum` (`id_colab`, `id_colaborando`, `id_colaborando_jejum`, `data_colaboracao`, `hora_colaboracao`) VALUES
-(2, 10, 1, '2023-03-08', '21:03:21');
+(2, 10, 1, '2023-03-08', '21:03:21'),
+(5, 8, 1, '2023-03-12', '00:38:13');
 
 -- --------------------------------------------------------
 
@@ -538,7 +539,7 @@ CREATE TABLE IF NOT EXISTS `emproposito_na_oracao` (
   PRIMARY KEY (`id`),
   KEY `id_usuario` (`id_usuario`),
   KEY `id_oracao` (`id_oracao`)
-) ENGINE=InnoDB AUTO_INCREMENT=50 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=52 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Extraindo dados da tabela `emproposito_na_oracao`
@@ -563,7 +564,9 @@ INSERT INTO `emproposito_na_oracao` (`id`, `id_usuario`, `id_oracao`) VALUES
 (45, 10, 9),
 (47, 1, 4),
 (48, 1, 9),
-(49, 10, 21);
+(49, 10, 21),
+(50, 6, 21),
+(51, 6, 9);
 
 -- --------------------------------------------------------
 
@@ -616,22 +619,27 @@ CREATE TABLE IF NOT EXISTS `jejuns` (
   `jejum` varchar(70) COLLATE utf8mb4_general_ci NOT NULL,
   `descricao_jejum` text COLLATE utf8mb4_general_ci,
   `versiculo_baseado` text COLLATE utf8mb4_general_ci,
-  `colaboracao` int DEFAULT NULL,
+  `colaboracao` tinyint DEFAULT '0',
   `quantidade_pessoas` int DEFAULT '0',
   `data_jejum` date DEFAULT NULL,
   `hora_jejum` time DEFAULT NULL,
   PRIMARY KEY (`id_jejum`),
   KEY `pastor_comando` (`pastor_comando`),
   KEY `pastora_comando` (`pastora_comando`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=21 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Extraindo dados da tabela `jejuns`
 --
 
 INSERT INTO `jejuns` (`id_jejum`, `id_criador_jejum`, `pastor_comando`, `pastora_comando`, `imagem`, `jejum`, `descricao_jejum`, `versiculo_baseado`, `colaboracao`, `quantidade_pessoas`, `data_jejum`, `hora_jejum`) VALUES
-(1, 10, 10, NULL, '1102016074_univ_cnt_2_xl.jpg', 'Jejum de Daniel', 'O Jejum de Daniel é para gente se aproximar de Deus e nos abundarmos na Tua presença', 'Daniel 3:3', 1, 0, '2023-02-13', '20:34:35'),
-(2, 8, NULL, 1, 'sem-foto.jpg', 'Jejum de Ester', 'O Jejum ', 'Ester 1:1', 0, 0, '2023-01-15', '22:15:03');
+(1, 10, 10, NULL, '1102016074_univ_cnt_2_xl.jpg', 'Jejum de Daniel', 'O jejum', '1Co 13:11', 2, 1, '2023-02-13', '20:34:35'),
+(2, 8, 9, NULL, 'sem-foto.jpg', 'Jejum de Ester', 'O jejum', '1Co 13:11', 0, 9, '2023-01-15', '22:15:03'),
+(3, 10, NULL, 2, '6445c4d9890a3.jpg', 'Jejum Intermitente de Paulo', 'O jejum de Teste', '1Jo 1:12', 0, 0, '2023-03-20', '21:57:20'),
+(6, 10, NULL, 1, 'sem-foto.jpg', 'O jejum do Senhor Jesus no deserto', 'O jejum', '1Co 13:11', 0, 0, '2023-03-29', '20:31:20'),
+(18, 13, 9, NULL, 'sem-foto.jpg', 'Rel', 'O jejum', '1Co 13:11', 0, 0, '2023-04-05', '19:58:29'),
+(19, 4, 9, NULL, '64433737e5095.png', 'Teste', 'O jejum', '1Co 13:11', 0, 0, '2023-04-21', '21:08:23'),
+(20, 6, NULL, 1, 'sem-foto.jpg', 'Teste1', 'Teste1', 'Mt 10:16', 0, 0, '2023-04-27', '21:41:05');
 
 -- --------------------------------------------------------
 
@@ -678,8 +686,8 @@ CREATE TABLE IF NOT EXISTS `oracao` (
 
 INSERT INTO `oracao` (`id_pray`, `id_criador`, `titulo`, `descricao`, `orando`) VALUES
 (4, 8, 'Varoa', 'A Mulher Prudente vem do Senhor. Me ajudem em oração', 127),
-(9, 10, 'Varão', 'Esposa, obedeça ao seu marido, como você obedece ao Senhor. Pois o marido tem autoridade sobre a esposa, assim como Cristo tem autoridade sobre a Igreja', 1),
-(21, 4, 'Obrigado!', 'Me ajudem a agradecer meu Deus por tudo. Obrigado', 3),
+(9, 10, 'Varão', 'Esposa, obedeça ao seu marido, como você obedece ao Senhor. Pois o marido tem autoridade sobre a esposa, assim como Cristo tem autoridade sobre a Igreja', 2),
+(21, 4, 'Obrigado!', 'Me ajudem a agradecer meu Deus por tudo. Obrigado', 4),
 (22, 9, 'Aqui é a Paula', 'Estou atualmente querendo entrar em um emprego, mas preciso saber se é da vontade do meu Pai. Me ajudem em oração, Obrigado!', 6),
 (23, 11, 'Oração', 'Estou em processo de um relacionamento pessoal\r\n', 4),
 (24, 11, 'Salmos 125:1', 'Me ajude a orar a ficar mais parecido com o Monte Sião. Além disso, quando vocês orarem ao meu favor, automaticamente Deus vai pelejar ao seu favor', 0),
@@ -771,7 +779,15 @@ CREATE TABLE IF NOT EXISTS `participando_do_jejum` (
   PRIMARY KEY (`id_part_jejum`),
   KEY `id_participante` (`id_participante`),
   KEY `id_jejum_part` (`id_jejum_part`)
-) ENGINE=InnoDB AUTO_INCREMENT=18 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Extraindo dados da tabela `participando_do_jejum`
+--
+
+INSERT INTO `participando_do_jejum` (`id_part_jejum`, `id_participante`, `id_jejum_part`, `data_participa`, `hora_participa`) VALUES
+(1, 5, 2, '2023-03-20', '21:54:39'),
+(11, 1, 1, '2023-04-23', '22:38:48');
 
 -- --------------------------------------------------------
 
@@ -831,6 +847,7 @@ CREATE TABLE IF NOT EXISTS `pastores` (
   `casado_pas` enum('Casado','Noivo','Solteiro','Namorando','Divorciado','Viúvo','Separado') COLLATE utf8mb4_general_ci DEFAULT 'Casado',
   `qunt_casado_pas` tinyint DEFAULT '10',
   `qunt_menbros_pas` int DEFAULT NULL,
+  `dirigente` varchar(50) COLLATE utf8mb4_general_ci DEFAULT 'Não',
   `data_cadastro_pas` date DEFAULT NULL,
   `hora_cadastro_pas` time DEFAULT NULL,
   PRIMARY KEY (`id_pas`),
@@ -841,17 +858,17 @@ CREATE TABLE IF NOT EXISTS `pastores` (
 -- Extraindo dados da tabela `pastores`
 --
 
-INSERT INTO `pastores` (`id_pas`, `id_insersor`, `perfil_pas`, `nome_pas`, `bio_pas`, `nasionalidade_pas`, `tempo_pas`, `telefone_pas`, `email_pas`, `profissao_pas`, `ministerio_pas`, `casado_pas`, `qunt_casado_pas`, `qunt_menbros_pas`, `data_cadastro_pas`, `hora_cadastro_pas`) VALUES
-(1, 3, '63e5aec150235.jpg', 'Edvaldo', 'Olá, Meu nome é Edvaldo! Estou nesse cargo há mais de 5 anos', 'Brazil', 5, '111111111', 'edvaldo@gmail.com', 'Advogado', 'Anápolis', 'Casado', 32, 120, '2023-02-11', '09:38:00'),
-(2, 5, 'sem-foto.jpg', 'Maria', NULL, 'Brazil', 10, '999999999', 'maria@gmail.com', 'Costureiro', 'Madureira', '', 2, 74, '0000-00-00', '06:06:04'),
-(3, 10, '63de23d4547ca.jpg', 'João Carlos', 'Olá, Mundo!', 'United States', 25, '981652770', 'joca@gmail.com', 'Sei lá', 'Anápolis', 'Casado', 2, 10, '0000-00-00', '06:05:12'),
-(4, 10, '63de1e77c6862.jpg', 'a', NULL, 'British Indian Ocean Territory', 12, '123456789', '', 'Advogado', 'Anápolis', 'Casado', 12, 32, '0000-00-00', '06:43:18'),
-(5, 10, NULL, 'Teste', NULL, 'Argentina', 24, '242424242', 'teste@gmail.com', 'Marceneiro', 'Madureira', 'Casado', 8, 80, '0000-00-00', '05:51:43'),
-(6, 10, '63de22a02f86b.png', 'Teste 02', 'Lorem vnkjfnvsndvknddlkvjnsldkfvlkdfnvçvnfvjlknçdjf[owdjjndvnaçdslkva', 'Spain', 12, '1212121221', 'teste@gmail.com', 'Advogado', 'Anápolis', 'Casado', 2, 80, '0000-00-00', '05:53:39'),
-(7, 10, '63de1e66552ed.jpg', 'Teste03', 'kçfçladslkjvknsldjfkvnskldfnvlksndfvjksdfnvjksvsndlkjsdfnlkvndsfjlvnslkdfvnsljkdnvlksjdnvlkjsdfnvlkjsndlvkjnfkfjvnsdkfjvnlksjdnvlkjsdnvlkjsdfnlvjksndlfkvjnslkdvnlskdfnvksfdfnjvsk', 'Angola', 100, '100001100', 'teste@gmail.com', 'Advogado', 'Anápolis', 'Casado', 23, 21, '2023-02-04', '05:56:03'),
-(8, NULL, 'sem-foto.jpg', 'Edvaldo', '', 'Brazil', 8, '111111111', 'edvaldo@gmail.com', 'Advogado', 'Anápolis', 'Casado', 32, 120, '2023-02-09', '23:59:46'),
-(9, 8, 'sem-foto.jpg', 'Marcos do Val', '', 'Argentina', 1, '62981652770', '', 'Ferragista', 'Anápolis', 'Casado', 4, 241, '2023-02-11', '10:55:55'),
-(10, 8, '63e98b4395d8a.webp', 'Juliano', 'Pastor temente a Deus! Quer um conselheiro, estou DISPONÍVEL. ', 'Brazil', 36, '62981652770', 'julianopastor_conselheiro@gmail.com', 'Designer UX', 'Anápolis', 'Casado', 25, 648, '2023-02-12', '21:59:28');
+INSERT INTO `pastores` (`id_pas`, `id_insersor`, `perfil_pas`, `nome_pas`, `bio_pas`, `nasionalidade_pas`, `tempo_pas`, `telefone_pas`, `email_pas`, `profissao_pas`, `ministerio_pas`, `casado_pas`, `qunt_casado_pas`, `qunt_menbros_pas`, `dirigente`, `data_cadastro_pas`, `hora_cadastro_pas`) VALUES
+(1, 3, '63e5aec150235.jpg', 'Edvaldo', 'Olá, Meu nome é Edvaldo! Estou nesse cargo há mais de 5 anos', 'Brazil', 5, '62995967587', 'edvaldo@gmail.com', 'Advogado', 'Anápolis', 'Casado', 32, 120, 'Pastor Dirigente', '2023-02-11', '09:38:00'),
+(2, 5, 'sem-foto.jpg', 'Maria', NULL, 'Brazil', 10, '999999999', 'maria@gmail.com', 'Costureiro', 'Madureira', '', 2, 74, 'Não', '0000-00-00', '06:06:04'),
+(3, 10, '63de23d4547ca.jpg', 'João Carlos', 'Olá, Mundo!', 'United States', 25, '981652770', 'joca@gmail.com', 'Sei lá', 'Anápolis', 'Casado', 2, 10, 'Não', '0000-00-00', '06:05:12'),
+(4, 10, '63de1e77c6862.jpg', 'a', NULL, 'British Indian Ocean Territory', 12, '123456789', '', 'Advogado', 'Anápolis', 'Casado', 12, 32, 'Não', '0000-00-00', '06:43:18'),
+(5, 10, NULL, 'Teste', NULL, 'Argentina', 24, '242424242', 'teste@gmail.com', 'Marceneiro', 'Madureira', 'Casado', 8, 80, 'Não', '0000-00-00', '05:51:43'),
+(6, 10, '63de22a02f86b.png', 'Teste 02', 'Lorem vnkjfnvsndvknddlkvjnsldkfvlkdfnvçvnfvjlknçdjf[owdjjndvnaçdslkva', 'Spain', 12, '1212121221', 'teste@gmail.com', 'Advogado', 'Anápolis', 'Casado', 2, 80, 'Não', '0000-00-00', '05:53:39'),
+(7, 10, '63de1e66552ed.jpg', 'Teste03', 'kçfçladslkjvknsldjfkvnskldfnvlksndfvjksdfnvjksvsndlkjsdfnlkvndsfjlvnslkdfvnsljkdnvlksjdnvlkjsdfnvlkjsndlvkjnfkfjvnsdkfjvnlksjdnvlkjsdnvlkjsdfnlvjksndlfkvjnslkdvnlskdfnvksfdfnjvsk', 'Angola', 100, '100001100', 'teste@gmail.com', 'Advogado', 'Anápolis', 'Casado', 23, 21, 'Não', '2023-02-04', '05:56:03'),
+(8, NULL, 'sem-foto.jpg', 'Edvaldo', '', 'Brazil', 8, '111111111', 'edvaldo@gmail.com', 'Advogado', 'Anápolis', 'Casado', 32, 120, 'Não', '2023-02-09', '23:59:46'),
+(9, 8, 'sem-foto.jpg', 'Marcos do Val', '', 'Argentina', 1, '62981652770', '', 'Ferragista', 'Anápolis', 'Casado', 4, 241, 'Não', '2023-02-11', '10:55:55'),
+(10, 8, '63e98b4395d8a.webp', 'Juliano', 'Pastor temente a Deus! Quer um conselheiro, estou DISPONÍVEL. ', 'Brazil', 36, '62981652770', 'julianopastor_conselheiro@gmail.com', 'Designer UX', 'Anápolis', 'Casado', 25, 648, 'Não', '2023-02-12', '21:59:28');
 
 -- --------------------------------------------------------
 
@@ -891,6 +908,29 @@ INSERT INTO `regras_do_grupo` (`id`, `id_grupo`, `_regras1`, `_regras2`, `_regra
 -- --------------------------------------------------------
 
 --
+-- Estrutura da tabela `regras_jejum`
+--
+
+DROP TABLE IF EXISTS `regras_jejum`;
+CREATE TABLE IF NOT EXISTS `regras_jejum` (
+  `_id_regras` tinyint NOT NULL AUTO_INCREMENT,
+  `_id_regras_jejum` tinyint DEFAULT NULL,
+  `_1` varchar(500) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `_2` varchar(500) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `_3` varchar(500) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `_4` varchar(500) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `_5` varchar(500) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `_6` varchar(500) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `_7` varchar(500) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `_8` varchar(500) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `_9` varchar(500) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `v_10` varchar(500) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  PRIMARY KEY (`_id_regras`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+-- --------------------------------------------------------
+
+--
 -- Estrutura da tabela `usuarios`
 --
 
@@ -913,7 +953,7 @@ CREATE TABLE IF NOT EXISTS `usuarios` (
   UNIQUE KEY `cpf` (`cpf`),
   UNIQUE KEY `email` (`email`),
   KEY `id_cargo` (`id_cargo`)
-) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
 -- Extraindo dados da tabela `usuarios`
@@ -931,7 +971,8 @@ INSERT INTO `usuarios` (`id`, `id_cargo`, `nome`, `nasc`, `sexo`, `cpf`, `email`
 (9, 7, 'Paula', '2003-04-12', 'F', '77777777777', 'paulinha@gmail.com', 'ppp123', 'sem-foto.jpg', 'Namorando', 'N', '00:00:00', '00:00:00'),
 (10, 12, 'CristHelly', '2013-06-12', 'F', '12213242352', 'crist@gmail.com', '1218', '63c375842db86.jpg', 'Namorando', 'N', '00:00:00', '00:00:00'),
 (11, 11, 'Latrel', '2004-07-23', 'M', '21316465464', 'latrel@gmail.com', 'latrel', '63c6adee0eb03.jpg', 'Namorando', 'S', '08:00:00', '18:30:00'),
-(12, 6, 'Mickaelle', '1993-10-05', 'F', '291804933019', 'mick@gmail.com', 'protegida', '63cc4531b77ca.png', 'Solteiro', 'S', '09:00:00', '18:30:00');
+(12, 6, 'Mickaelle', '1993-10-05', 'F', '291804933019', 'mick@gmail.com', 'protegida', '63cc4531b77ca.png', 'Solteiro', 'S', '09:00:00', '18:30:00'),
+(13, 12, 'Jenniffer', '2005-08-21', 'F', '70631871172', 'jenniffer@gmail.com', 'jenniffer_je', '642df99d91886.jpg', 'Solteiro', 'S', '09:00:00', '00:00:00');
 
 --
 -- Restrições para despejos de tabelas
