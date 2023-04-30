@@ -348,7 +348,7 @@ $pagina = 'jejuns_personalizados';
 	</div>
 </div>
 
-<div class="modal" tabindex="-1" id="modalRegras" data-bs-backdrop="static">
+<div class="modal" tabindex="-1" id="modalRegras" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
 	<div class="modal-dialog modal-lg">
 		<div class="modal-content">
 			<div class="modal-header">
@@ -368,8 +368,14 @@ $pagina = 'jejuns_personalizados';
 				</div>
 			</div>
 			<div class="modal-footer">
-				<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-				<button type="button" class="btn btn-primary">Save changes</button>
+				<input type="hidden" id="id_jejumRegras">
+				<div id="divregrasmodalfootererrado" class="d-none">
+					<button name="cadRegrasJejunsId" id="cadRegrasJejunsId" class="btn btn-light">Cadastrar Regras</button>
+				</div>
+				<div id="divregrasmodalfootercerto">
+					<button type="button" name="btnFecharModalRegras" id="btnFecharModalRegras" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+					<button type="button" class="btn btn-primary">Save changes</button>
+				</div>
 			</div>
 		</div>
 	</div>
@@ -392,21 +398,33 @@ $pagina = 'jejuns_personalizados';
 					let array = result.split('!@#');
 					if (array == "Algo deu errado") {
 						$('#semRegras').removeClass();
+						$('#divregrasmodalfootererrado').removeClass();
+						$('#divregrasmodalfootercerto').addClass('d-none');
+						$('#divregrasmodalfootererrado').addClass('d-block');
 						$('#semRegras').addClass('d-block');
 					} else {
+						$('')
 						$('#titulo_jejum_regras').html(array[0]);
 					}
+					$('#id_jejumRegras').val(id_jejum);
 					$('#modalRegras').modal('show');
 				}
 			})
 		})
 	}
 </script>
+<script>
+	$(document).ready(function() {
+		$('#cadRegrasJejunsId').click(function() {
+			let id_jejum = document.getElementById('id_jejumRegras');
+			$('#btnFecharModalRegras').click();
+		})
+	})
+</script>
 <script type="text/javascript">
 	function modalCapa(id_jejum) {
 		$(document).ready(function() {
 			document.getElementById('id_jejum').value = id_jejum;
-
 			$('#modalCapa').modal('show');
 		})
 	}
