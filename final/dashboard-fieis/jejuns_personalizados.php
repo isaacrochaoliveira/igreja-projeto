@@ -381,6 +381,39 @@ $pagina = 'jejuns_personalizados';
 	</div>
 </div>
 
+<div class="modal" tabindex="-1" id="modalCadastrarRegras" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+	<div class="modal-dialog modal-lg">
+		<div class="modal-content">
+			<div class="modal-header">
+				<h5 class="modal-title">Regras do Jejum - <span id="titulo_jejum_regras"></span></h5>
+				<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+			</div>
+			<form action="" method="post">
+				<div class="modal-body">
+					<div class="row">
+						<div class="col">
+							<div class="form-floating">
+								<textarea name="_1" id="_1" cols="40" rows="10" class="form-control" placeholder="1º Regra"></textarea>
+								<label for="_1">1º Regra</label>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="modal-footer">
+					<input type="hidden" id="id_jejumCadRegras">
+					<div id="divregrasmodalfootererrado" class="d-none">
+						<button name="cadRegrasJejunsId" id="cadRegrasJejunsId" class="btn btn-light">Cadastrar Regras</button>
+					</div>
+					<div id="divregrasmodalfootercerto">
+						<button type="button" name="btnFecharModalRegras" id="btnFecharModalRegras" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+						<button type="button" class="btn btn-primary">Save changes</button>
+					</div>
+				</div>
+			</form>
+		</div>
+	</div>
+</div>
+
 <!-- SCRIPTS -->
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 <script>
@@ -417,7 +450,9 @@ $pagina = 'jejuns_personalizados';
 	$(document).ready(function() {
 		$('#cadRegrasJejunsId').click(function() {
 			let id_jejum = document.getElementById('id_jejumRegras');
+			$('#id_jejumCadRegras').val(id_jejum);
 			$('#btnFecharModalRegras').click();
+			$('#modalCadastrarRegras').modal('show');
 		})
 	})
 </script>
