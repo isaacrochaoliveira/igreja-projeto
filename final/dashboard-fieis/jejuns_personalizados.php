@@ -393,6 +393,8 @@ $pagina = 'jejuns_personalizados';
 					if (array == "Algo deu errado") {
 						$('#semRegras').removeClass();
 						$('#semRegras').addClass('d-block');
+					} else {
+						$('#titulo_jejum_regras').html(array[0]);
 					}
 					$('#modalRegras').modal('show');
 				}
