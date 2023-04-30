@@ -249,7 +249,6 @@ $pagina = 'jejuns_personalizados';
 			<div class="modal-footer">
 				<input type="hidden" name="id_jejum" id="id_jejum">
 				<button type="button" name="btnfecharmodalphoto" id="btnfecharmodalphoto" class="btn btn-secondary" data-bs-dismiss="modal">Voltar</button>
-				<button type="submit" name="btnfotocapa" id="btnfotocapa" class="btn btn-primary">Upload</button>
 			</div>
         </div>
     </div>
@@ -357,7 +356,17 @@ $pagina = 'jejuns_personalizados';
 		$(document).ready(function() {
 			var pag = "<?=$pag?>";
 			$.ajax({
-				url
+				url: pag + '/regras',
+				method: 'post',
+				data: {id_jejum},
+				dataType: 'text',
+				success: function(msg) {
+					if (msg.trim() == "") {
+
+					} else {
+						alert(msg);
+					}
+				}
 			})
 		})
 	}
