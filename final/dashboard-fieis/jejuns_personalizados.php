@@ -349,14 +349,23 @@ $pagina = 'jejuns_personalizados';
 </div>
 
 <div class="modal" tabindex="-1" id="modalRegras" data-bs-backdrop="static">
-	<div class="modal-dialog modal-xl">
+	<div class="modal-dialog modal-lg">
 		<div class="modal-content">
 			<div class="modal-header">
-				<h5 class="modal-title">Modal title</h5>
+				<h5 class="modal-title">Regras do Jejum - <span id="titulo_jejum_regras"></span></h5>
 				<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
 			</div>
 			<div class="modal-body">
-				Olá
+				<div id="semRegras" class="d-none">
+					<div class="d-flex alert alert-danger" role="alert">
+						<div style="font-size: 32px;">
+							<i class="fa-solid fa-exclamation"></i>
+						</div>
+						<div class="ml-3 mt-3">
+							Nenhuma regra cadastrada!
+						</div>
+					</div>
+				</div>
 			</div>
 			<div class="modal-footer">
 				<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
@@ -373,12 +382,18 @@ $pagina = 'jejuns_personalizados';
 		$(document).ready(function() {
 			var pag = "<?= $pag ?>";
 			$.ajax({
-				url: pag + '/regras',
+				url: pag + '/regras.php',
 				method: 'post',
-				data: {id_jejum},
+				data: {
+					id_jejum
+				},
 				dataType: 'text',
 				success: function(result) {
 					let array = result.split('!@#');
+					if (array == "Algo deu errado") {
+						$('#semRegras').removeClass();
+						$('#semRegras').addClass('d-block');
+					}
 					$('#modalRegras').modal('show');
 				}
 			})
