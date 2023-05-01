@@ -399,14 +399,13 @@ $pagina = 'jejuns_personalizados';
 						</div>
 					</div>
 				</div>
+				<div class="ml-3">
+					<button class="btn btn-success">Cadastrar 2/10</button>
+				</div>
 				<div class="modal-footer">
 					<input type="hidden" id="id_jejumCadRegras">
-					<div id="divregrasmodalfootererrado" class="d-none">
-						<button name="cadRegrasJejunsId" id="cadRegrasJejunsId" class="btn btn-light">Cadastrar Regras</button>
-					</div>
 					<div id="divregrasmodalfootercerto">
-						<button type="button" name="btnFecharModalRegras" id="btnFecharModalRegras" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-						<button type="button" class="btn btn-primary">Save changes</button>
+						<button type="button" name="btnFecharModalRegras" id="btnFecharModalRegras" class="btn btn-secondary" data-bs-dismiss="modal">Voltar</button>
 					</div>
 				</div>
 			</form>
@@ -449,7 +448,7 @@ $pagina = 'jejuns_personalizados';
 <script>
 	$(document).ready(function() {
 		$('#cadRegrasJejunsId').click(function() {
-			let id_jejum = document.getElementById('id_jejumRegras');
+			let id_jejum = document.getElementById('id_jejumRegras').value;
 			$('#id_jejumCadRegras').val(id_jejum);
 			$('#btnFecharModalRegras').click();
 			$('#modalCadastrarRegras').modal('show');
