@@ -396,11 +396,71 @@ $pagina = 'jejuns_personalizados';
 								<textarea name="_1" id="_1" cols="40" rows="10" class="form-control" placeholder="1º Regra"></textarea>
 								<label for="_1">1º Regra</label>
 							</div>
+							<div class="form-floating">
+								<textarea name="_1" id="_1" cols="40" rows="10" class="form-control" placeholder="1º Regra"></textarea>
+								<label for="_1">1º Regra</label>
+							</div>
+							<div class="form-floating">
+								<textarea name="_1" id="_1" cols="40" rows="10" class="form-control" placeholder="1º Regra"></textarea>
+								<label for="_1">1º Regra</label>
+							</div>
+							<div class="form-floating">
+								<textarea name="_1" id="_1" cols="40" rows="10" class="form-control" placeholder="1º Regra"></textarea>
+								<label for="_1">1º Regra</label>
+							</div>
+							<div class="form-floating">
+								<textarea name="_1" id="_1" cols="40" rows="10" class="form-control" placeholder="1º Regra"></textarea>
+								<label for="_1">1º Regra</label>
+							</div>
+							<div class="form-floating">
+								<textarea name="_1" id="_1" cols="40" rows="10" class="form-control" placeholder="1º Regra"></textarea>
+								<label for="_1">1º Regra</label>
+							</div>
+							<div class="form-floating">
+								<textarea name="_1" id="_1" cols="40" rows="10" class="form-control" placeholder="1º Regra"></textarea>
+								<label for="_1">1º Regra</label>
+							</div>
+							<div class="form-floating">
+								<textarea name="_1" id="_1" cols="40" rows="10" class="form-control" placeholder="1º Regra"></textarea>
+								<label for="_1">1º Regra</label>
+							</div>
+							<div class="form-floating">
+								<textarea name="_1" id="_1" cols="40" rows="10" class="form-control" placeholder="1º Regra"></textarea>
+								<label for="_1">1º Regra</label>
+							</div>
+							<div class="form-floating">
+								<textarea name="_1" id="_1" cols="40" rows="10" class="form-control" placeholder="1º Regra"></textarea>
+								<label for="_1">1º Regra</label>
+							</div>
 						</div>
 					</div>
 				</div>
 				<div class="ml-3">
 					<button class="btn btn-success">Cadastrar 2/10</button>
+				</div>
+				<div class="d-none">
+					<button class="btn btn-success">Cadastrar 3/10</button>
+				</div>
+				<div class="d-none">
+					<button class="btn btn-success">Cadastrar 4/10</button>
+				</div>
+				<div class="d-none">
+					<button class="btn btn-success">Cadastrar 5/10</button>
+				</div>
+				<div class="d-none">
+					<button class="btn btn-success">Cadastrar 6/10</button>
+				</div>
+				<div class="d-none">
+					<button class="btn btn-success">Cadastrar 7/10</button>
+				</div>
+				<div class="d-none">
+					<button class="btn btn-success">Cadastrar 8/10</button>
+				</div>
+				<div class="d-none">
+					<button class="btn btn-success">Cadastrar 9/10</button>
+				</div>
+				<div class="d-none">
+					<button class="btn btn-success">Cadastrar 10/10</button>
 				</div>
 				<div class="modal-footer">
 					<input type="hidden" id="id_jejumCadRegras">
