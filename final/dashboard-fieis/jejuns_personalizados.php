@@ -520,12 +520,13 @@ $pagina = 'jejuns_personalizados';
 				dataType: 'text',
 				success: function(retorno) {
 					if ($.isNumeric(retorno)) {
+						let miss = retorno - 1;
 						// Textarea - Regras 1 - Disabilitado
-						$('#div-formfloating'+retorno-1).removeClass();
-						$('#div-formfloating'+retorno-1).addClass('form-floating disabled');
+						$('#div-formfloating'+miss).removeClass();
+						$('#div-formfloating'+miss).addClass('form-floating disabled');
 						// Botão cadastrar retorno-1/10 - Disabilitado 
-						$('#div-btnsuccess'+retorno-1).removeClass();
-						$('#div-btnsuccess'+retorno-1).addClass('d-none');
+						$('#div-btnsuccess'+miss).removeClass();
+						$('#div-btnsuccess'+miss).addClass('d-none');
 						// Textarea - Regras 2 _ Habilitado
 						$('#div-formfloating'+retorno).removeClass();
 						$('#div-formfloating'+retorno).addClass('form-floating mt-2');
