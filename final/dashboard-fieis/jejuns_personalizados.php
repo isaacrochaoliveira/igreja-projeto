@@ -388,7 +388,7 @@ $pagina = 'jejuns_personalizados';
 				<h5 class="modal-title">Regras do Jejum - <span id="titulo_jejum_regras"></span></h5>
 				<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
 			</div>
-			<form id="formRegrasCad" action="" method="post">
+			<form id="formRegrasCad" method="post">
 				<div class="modal-body">
 					<div class="row">
 						<div class="col">
@@ -440,7 +440,7 @@ $pagina = 'jejuns_personalizados';
 					</div>
 				</div>
 				<div class="ml-3" id="div-btnsuccess1">
-					<button class="btn btn-success" name="btn-btnsuccess1r" id="btn-btnsuccess1r">Cadastrar 2/10</button>
+					<button type="button" class="btn btn-success" name="btn-btnsuccess1r" id="btn-btnsuccess1r">Cadastrar 2/10</button>
 				</div>
 				<div class="d-none" id="div-btnsuccess2">
 					<button class="btn btn-success">Cadastrar 3/10</button>
@@ -467,7 +467,7 @@ $pagina = 'jejuns_personalizados';
 					<button class="btn btn-success">Cadastrar 10/10</button>
 				</div>
 				<div class="modal-footer">
-					<input type="hidden" id="id_jejumCadRegras">
+					<input type="hidden" name="id_jejumCadRegras" id="id_jejumCadRegras">
 					<div id="divregrasmodalfootercerto">
 						<button type="button" name="btnFecharModalRegras" id="btnFecharModalRegras" class="btn btn-secondary" data-bs-dismiss="modal">Voltar</button>
 					</div>
@@ -518,14 +518,22 @@ $pagina = 'jejuns_personalizados';
 				method: 'post',
 				data: $('#formRegrasCad').serialize(),
 				dataType: 'text',
-				success: function(msg) {
-					if (msg == "Certo!!") {
-						$('#div-formfloating1').removeClass();
-						$('#div-formfloating2').removeClass();
-						$('#div-formfloating2').addClass('form-floating');
-						$('#div-formfloating1').addClass('form-floating disabled');
+				success: function(retorno) {
+					if ($.isNumeric(retorno)) {
+						// Textarea - Regras 1 - Disabilitado
+						$('#div-formfloating'+retorno-1).removeClass();
+						$('#div-formfloating'+retorno-1).addClass('form-floating disabled');
+						// Botão cadastrar retorno-1/10 - Disabilitado 
+						$('#div-btnsuccess'+retorno-1).removeClass();
+						$('#div-btnsuccess'+retorno-1).addClass('d-none');
+						// Textarea - Regras 2 _ Habilitado
+						$('#div-formfloating'+retorno).removeClass();
+						$('#div-formfloating'+retorno).addClass('form-floating mt-2');
+						// Botão Cdastrar retorno/10 - Habilitado
+						$('#div-btnsuccess'+retorno).removeClass();
+						$('#div-btnsuccess'+retorno).addClass('d-block ml-3');
 					} else {
-						alert(msg);
+						alert(retorno);
 					}
 				}
 			})

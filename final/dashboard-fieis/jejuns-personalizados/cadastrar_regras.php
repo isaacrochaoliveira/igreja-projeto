@@ -18,5 +18,10 @@ $_10 = addslashes($_POST['_10']);
 if (!(empty($_1))) {
 	$r_1 = $pdo->prepare("INSERT INTO regras_jejum SET _1 = :_1, _id_regras_jejum = :id_jejum");
 	$r_1->bindValue(':_1', $_1);
-	$r_2->bindValue(':id_jejum', $id_jejum);
+	$r_1->bindValue(':id_jejum', $id_jejum);
+	if ($r_1->execute()) {
+		echo 2;
+	} else {
+		echo "Errado!";
+	}
 }
