@@ -396,41 +396,45 @@ $pagina = 'jejuns_personalizados';
 								<textarea name="_1" id="_1" cols="40" rows="10" class="form-control" placeholder="1º Regra"></textarea>
 								<label for="_1">1º Regra</label>
 							</div>
-							<div class="form-floating">
-								<textarea name="_1" id="_1" cols="40" rows="10" class="form-control" placeholder="1º Regra"></textarea>
-								<label for="_1">1º Regra</label>
+							<div class="d-none">
+								<textarea name="_2" id="_2" cols="40" rows="10" class="form-control" placeholder="2º Regra"></textarea>
+								<label for="_2">2º Regra</label>
 							</div>
-							<div class="form-floating">
-								<textarea name="_1" id="_1" cols="40" rows="10" class="form-control" placeholder="1º Regra"></textarea>
-								<label for="_1">1º Regra</label>
+							<div class="d-none">
+								<textarea name="_3" id="_3" cols="40" rows="10" class="form-control" placeholder="3º Regra"></textarea>
+								<label for="_3">3º Regra</label>
 							</div>
-							<div class="form-floating">
-								<textarea name="_1" id="_1" cols="40" rows="10" class="form-control" placeholder="1º Regra"></textarea>
-								<label for="_1">1º Regra</label>
+							<div class="d-none">
+								<textarea name="_4" id="_4" cols="40" rows="10" class="form-control" placeholder="4º Regra"></textarea>
+								<label for="_4">4º Regra</label>
 							</div>
-							<div class="form-floating">
-								<textarea name="_1" id="_1" cols="40" rows="10" class="form-control" placeholder="1º Regra"></textarea>
-								<label for="_1">1º Regra</label>
+							<div class="d-none">
+								<textarea name="_5" id="_5" cols="40" rows="10" class="form-control" placeholder="5º Regra"></textarea>
+								<label for="_5">5º Regra</label>
 							</div>
-							<div class="form-floating">
-								<textarea name="_1" id="_1" cols="40" rows="10" class="form-control" placeholder="1º Regra"></textarea>
-								<label for="_1">1º Regra</label>
+							<div class="d-none">
+								<textarea name="_6" id="_6" cols="40" rows="10" class="form-control" placeholder="6º Regra"></textarea>
+								<label for="_6">6º Regra</label>
 							</div>
-							<div class="form-floating">
-								<textarea name="_1" id="_1" cols="40" rows="10" class="form-control" placeholder="1º Regra"></textarea>
-								<label for="_1">1º Regra</label>
+							<div class="d-none">
+								<textarea name="_7" id="_7" cols="40" rows="10" class="form-control" placeholder="7º Regra"></textarea>
+								<label for="_7">7º Regra</label>
 							</div>
-							<div class="form-floating">
-								<textarea name="_1" id="_1" cols="40" rows="10" class="form-control" placeholder="1º Regra"></textarea>
-								<label for="_1">1º Regra</label>
+							<div class="d-none">
+								<textarea name="_7" id="_7" cols="40" rows="10" class="form-control" placeholder="7º Regra"></textarea>
+								<label for="_7">7º Regra</label>
 							</div>
-							<div class="form-floating">
-								<textarea name="_1" id="_1" cols="40" rows="10" class="form-control" placeholder="1º Regra"></textarea>
-								<label for="_1">1º Regra</label>
+							<div class="d-none">
+								<textarea name="_8" id="_8" cols="40" rows="10" class="form-control" placeholder="8º Regra"></textarea>
+								<label for="_8">8º Regra</label>
 							</div>
-							<div class="form-floating">
-								<textarea name="_1" id="_1" cols="40" rows="10" class="form-control" placeholder="1º Regra"></textarea>
-								<label for="_1">1º Regra</label>
+							<div class="d-none">
+								<textarea name="_9" id="_9" cols="40" rows="10" class="form-control" placeholder="9º Regra"></textarea>
+								<label for="_9">9º Regra</label>
+							</div>
+							<div class="d-none">
+								<textarea name="_10" id="_10" cols="40" rows="10" class="form-control" placeholder="10º Regra"></textarea>
+								<label for="_10">10º Regra</label>
 							</div>
 						</div>
 					</div>
