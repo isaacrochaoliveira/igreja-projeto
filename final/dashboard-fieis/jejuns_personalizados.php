@@ -388,15 +388,15 @@ $pagina = 'jejuns_personalizados';
 				<h5 class="modal-title">Regras do Jejum - <span id="titulo_jejum_regras"></span></h5>
 				<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
 			</div>
-			<form action="" method="post">
+			<form id="formRegrasCad" action="" method="post">
 				<div class="modal-body">
 					<div class="row">
 						<div class="col">
-							<div class="form-floating">
+							<div class="form-floating" id="div-formfloating1">
 								<textarea name="_1" id="_1" cols="40" rows="10" class="form-control" placeholder="1º Regra"></textarea>
 								<label for="_1">1º Regra</label>
 							</div>
-							<div class="d-none">
+							<div class="d-none" id="div-formfloating2">
 								<textarea name="_2" id="_2" cols="40" rows="10" class="form-control" placeholder="2º Regra"></textarea>
 								<label for="_2">2º Regra</label>
 							</div>
@@ -439,10 +439,10 @@ $pagina = 'jejuns_personalizados';
 						</div>
 					</div>
 				</div>
-				<div class="ml-3">
-					<button class="btn btn-success">Cadastrar 2/10</button>
+				<div class="ml-3" id="div-btnsuccess1">
+					<button class="btn btn-success" name="btn-btnsuccess1r" id="btn-btnsuccess1r">Cadastrar 2/10</button>
 				</div>
-				<div class="d-none">
+				<div class="d-none" id="div-btnsuccess2">
 					<button class="btn btn-success">Cadastrar 3/10</button>
 				</div>
 				<div class="d-none">
@@ -508,6 +508,29 @@ $pagina = 'jejuns_personalizados';
 			})
 		})
 	}
+</script>
+<script>
+	$(document).ready(function() {
+		$('#btn-btnsuccess1r').click(function() {
+			var pag = "<?=$pag?>";
+			$.ajax({
+				url: pag + '/cadastrar_regras.php',
+				method: 'post',
+				data: $('#formRegrasCad').serialize(),
+				dataType: 'text',
+				success: function(msg) {
+					if (msg == "Certo!!") {
+						$('#div-formfloating1').removeClass();
+						$('#div-formfloating2').removeClass();
+						$('#div-formfloating2').addClass('form-floating');
+						$('#div-formfloating1').addClass('form-floating disabled');
+					} else {
+						alert(msg);
+					}
+				}
+			})
+		})
+	})
 </script>
 <script>
 	$(document).ready(function() {
