@@ -400,39 +400,35 @@ $pagina = 'jejuns_personalizados';
 								<textarea name="_2" id="_2" cols="40" rows="10" class="form-control" placeholder="2º Regra"></textarea>
 								<label for="_2">2º Regra</label>
 							</div>
-							<div class="d-none">
+							<div class="d-none" id="div-formfloating3">
 								<textarea name="_3" id="_3" cols="40" rows="10" class="form-control" placeholder="3º Regra"></textarea>
 								<label for="_3">3º Regra</label>
 							</div>
-							<div class="d-none">
+							<div class="d-none" id="div-formfloating4">
 								<textarea name="_4" id="_4" cols="40" rows="10" class="form-control" placeholder="4º Regra"></textarea>
 								<label for="_4">4º Regra</label>
 							</div>
-							<div class="d-none">
+							<div class="d-none" id="div-formfloating5">
 								<textarea name="_5" id="_5" cols="40" rows="10" class="form-control" placeholder="5º Regra"></textarea>
 								<label for="_5">5º Regra</label>
 							</div>
-							<div class="d-none">
+							<div class="d-none" id="div-formfloating6">
 								<textarea name="_6" id="_6" cols="40" rows="10" class="form-control" placeholder="6º Regra"></textarea>
 								<label for="_6">6º Regra</label>
 							</div>
-							<div class="d-none">
+							<div class="d-none" id="div-formfloating7">
 								<textarea name="_7" id="_7" cols="40" rows="10" class="form-control" placeholder="7º Regra"></textarea>
 								<label for="_7">7º Regra</label>
 							</div>
-							<div class="d-none">
-								<textarea name="_7" id="_7" cols="40" rows="10" class="form-control" placeholder="7º Regra"></textarea>
-								<label for="_7">7º Regra</label>
-							</div>
-							<div class="d-none">
+							<div class="d-none" id="div-formfloating8">
 								<textarea name="_8" id="_8" cols="40" rows="10" class="form-control" placeholder="8º Regra"></textarea>
 								<label for="_8">8º Regra</label>
 							</div>
-							<div class="d-none">
+							<div class="d-none" id="div-formfloating9">
 								<textarea name="_9" id="_9" cols="40" rows="10" class="form-control" placeholder="9º Regra"></textarea>
 								<label for="_9">9º Regra</label>
 							</div>
-							<div class="d-none">
+							<div class="d-none" id="div-formfloating9">
 								<textarea name="_10" id="_10" cols="40" rows="10" class="form-control" placeholder="10º Regra"></textarea>
 								<label for="_10">10º Regra</label>
 							</div>
@@ -440,31 +436,31 @@ $pagina = 'jejuns_personalizados';
 					</div>
 				</div>
 				<div class="ml-3" id="div-btnsuccess1">
-					<button type="button" class="btn btn-success" name="btn-btnsuccess1r" id="btn-btnsuccess1r">Cadastrar 2/10</button>
+					<button type="button" onclick="cadRegrasFunction()" class="btn btn-success" name="btn-btnsuccess1r" id="btn-btnsuccess1r">Cadastrar 2/10</button>
 				</div>
 				<div class="d-none" id="div-btnsuccess2">
-					<button class="btn btn-success">Cadastrar 3/10</button>
+					<button type="button" onclick="cadRegrasFunction()" class="btn btn-success" name="btn-btnsuccess1r" id="btn-btnsuccess1r">Cadastrar 3/10</button>
 				</div>
-				<div class="d-none">
-					<button class="btn btn-success">Cadastrar 4/10</button>
+				<div class="d-none" id="div-btnsuccess3">
+					<button type="button" onclick="cadRegrasFunction()" class="btn btn-success" name="btn-btnsuccess1r" id="btn-btnsuccess1r">Cadastrar 4/10</button>
 				</div>
-				<div class="d-none">
-					<button class="btn btn-success">Cadastrar 5/10</button>
+				<div class="d-none" id="div-btnsuccess4">
+					<button type="button" onclick="cadRegrasFunction()" class="btn btn-success" name="btn-btnsuccess1r" id="btn-btnsuccess1r">Cadastrar 5/10</button>
 				</div>
-				<div class="d-none">
-					<button class="btn btn-success">Cadastrar 6/10</button>
+				<div class="d-none" id="div-btnsuccess5">
+					<button type="button" onclick="cadRegrasFunction()" class="btn btn-success" name="btn-btnsuccess1r" id="btn-btnsuccess1r">Cadastrar 6/10</button>
 				</div>
-				<div class="d-none">
-					<button class="btn btn-success">Cadastrar 7/10</button>
+				<div class="d-none" id="div-btnsuccess6">
+					<button type="button" onclick="cadRegrasFunction()" class="btn btn-success" name="btn-btnsuccess1r" id="btn-btnsuccess1r">Cadastrar 7/10</button>
 				</div>
-				<div class="d-none">
-					<button class="btn btn-success">Cadastrar 8/10</button>
+				<div class="d-none" id="div-btnsuccess7">
+					<button type="button" onclick="cadRegrasFunction()" class="btn btn-success" name="btn-btnsuccess1r" id="btn-btnsuccess1r">Cadastrar 8/10</button>
 				</div>
-				<div class="d-none">
-					<button class="btn btn-success">Cadastrar 9/10</button>
+				<div class="d-none" id="div-btnsuccess8">
+					<button type="button" onclick="cadRegrasFunction()" class="btn btn-success" name="btn-btnsuccess1r" id="btn-btnsuccess1r">Cadastrar 9/10</button>
 				</div>
-				<div class="d-none">
-					<button class="btn btn-success">Cadastrar 10/10</button>
+				<div class="d-none" id="div-btnsuccess9">
+					<button type="button" onclick="cadRegrasFunction()" class="btn btn-success" name="btn-btnsuccess1r" id="btn-btnsuccess1r">Cadastrar 10/10</button>
 				</div>
 				<div class="modal-footer">
 					<input type="hidden" name="id_jejumCadRegras" id="id_jejumCadRegras">
@@ -510,8 +506,8 @@ $pagina = 'jejuns_personalizados';
 	}
 </script>
 <script>
-	$(document).ready(function() {
-		$('#btn-btnsuccess1r').click(function() {
+	function cadRegrasFunction() {
+		$(document).ready(function() {
 			var pag = "<?=$pag?>";
 			$.ajax({
 				url: pag + '/cadastrar_regras.php',
@@ -539,7 +535,7 @@ $pagina = 'jejuns_personalizados';
 				}
 			})
 		})
-	})
+	}
 </script>
 <script>
 	$(document).ready(function() {
