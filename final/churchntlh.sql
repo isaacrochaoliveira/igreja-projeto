@@ -278,7 +278,7 @@ CREATE TABLE IF NOT EXISTS `country` (
   `numcode` smallint DEFAULT NULL,
   `phonecode` int NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=240 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=240 DEFAULT CHARSET=latin1;
 
 --
 -- Extraindo dados da tabela `country`
@@ -926,7 +926,7 @@ CREATE TABLE IF NOT EXISTS `regras_jejum` (
   `_9` varchar(500) COLLATE utf8mb4_general_ci DEFAULT NULL,
   `v_10` varchar(500) COLLATE utf8mb4_general_ci DEFAULT NULL,
   PRIMARY KEY (`_id_regras`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
 
