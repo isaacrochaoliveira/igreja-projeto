@@ -15,6 +15,8 @@ $_8 = addslashes($_POST['_8']);
 $_9 = addslashes($_POST['_9']);
 $_10 = addslashes($_POST['_10']);
 
+$cont = 1;
+
 if (!(empty($_1))) {
 	$query = $pdo->query("SELECT * FROM regras_jejum WHERE _id_regras_jejum = '$id_jejum'");
 	$res = $query->fetchAll(PDO::FETCH_ASSOC);
@@ -32,7 +34,7 @@ if (!(empty($_1))) {
 if (!(empty($_2))) {
 	$query = $pdo->query("SELECT * FROM regras_jejum WHERE _id_regras_jejum = '$id_jejum'");
 	$res = $query->fetchAll(PDO::FETCH_ASSOC);
-	if (isset($res[0]['_1'])) {
+	if (!(isset($res[0]['_2']))) {
 		$r_2 = $pdo->prepare("UPDATE regras_jejum SET _2 = :_2 WHERE _id_regras_jejum = :id_jejum");
 		$r_2->bindValue(':_2', $_2);
 		$r_2->bindValue(':id_jejum', $id_jejum);
@@ -46,12 +48,110 @@ if (!(empty($_2))) {
 if (!(empty($_3))) {
 	$query = $pdo->query("SELECT * FROM regras_jejum WHERE _id_regras_jejum = '$id_jejum'");
 	$res = $query->fetchAll(PDO::FETCH_ASSOC);
-	if (isset($res[0]['_2'])) {
+	if (!(isset($res[0]['_3']))) {
 		$r_3 = $pdo->prepare("UPDATE regras_jejum SET _3 = :_3 WHERE _id_regras_jejum = :id_jejum");
 		$r_3->bindValue(':_3', $_3);
 		$r_3->bindValue(':id_jejum', $id_jejum);
-		if ($r_2->execute()) {
+		if ($r_3->execute()) {
 			echo 4;
+		} else {
+			echo "Errado!";
+		}
+	}
+}
+if (!(empty($_4))) {
+	$query = $pdo->query("SELECT * FROM regras_jejum WHERE _id_regras_jejum = '$id_jejum'");
+	$res = $query->fetchAll(PDO::FETCH_ASSOC);
+	if (!(isset($res[0]['_4']))) {
+		$r_4 = $pdo->prepare("UPDATE regras_jejum SET _4 = :_4 WHERE _id_regras_jejum = :id_jejum");
+		$r_4->bindValue(':_4', $_4);
+		$r_4->bindValue(':id_jejum', $id_jejum);
+		if ($r_4->execute()) {
+			echo 5;
+		} else {
+			echo "Errado!";
+		}
+	}
+}
+if (!(empty($_5))) {
+	$query = $pdo->query("SELECT * FROM regras_jejum WHERE _id_regras_jejum = '$id_jejum'");
+	$res = $query->fetchAll(PDO::FETCH_ASSOC);
+	if (!(isset($res[0]['_5']))) {
+		$r_5 = $pdo->prepare("UPDATE regras_jejum SET _5 = :_5 WHERE _id_regras_jejum = :id_jejum");
+		$r_5->bindValue(':_5', $_5);
+		$r_5->bindValue(':id_jejum', $id_jejum);
+		if ($r_5->execute()) {
+			echo 6;
+		} else {
+			echo "Errado!";
+		}
+	}
+}
+if (!(empty($_6))) {
+	$query = $pdo->query("SELECT * FROM regras_jejum WHERE _id_regras_jejum = '$id_jejum'");
+	$res = $query->fetchAll(PDO::FETCH_ASSOC);
+	if (!(isset($res[0]['_6']))) {
+		$r_6 = $pdo->prepare("UPDATE regras_jejum SET _6 = :_6 WHERE _id_regras_jejum = :id_jejum");
+		$r_6->bindValue(':_6', $_6);
+		$r_6->bindValue(':id_jejum', $id_jejum);
+		if ($r_6->execute()) {
+			echo 7;
+		} else {
+			echo "Errado!";
+		}
+	}
+}
+if (!(empty($_7))) {
+	$query = $pdo->query("SELECT * FROM regras_jejum WHERE _id_regras_jejum = '$id_jejum'");
+	$res = $query->fetchAll(PDO::FETCH_ASSOC);
+	if (!(isset($res[0]['_7']))) {
+		$r_7 = $pdo->prepare("UPDATE regras_jejum SET _7 = :_7 WHERE _id_regras_jejum = :id_jejum");
+		$r_7->bindValue(':_7', $_7);
+		$r_7->bindValue(':id_jejum', $id_jejum);
+		if ($r_7->execute()) {
+			echo 8;
+		} else {
+			echo "Errado!";
+		}
+	}
+}
+if (!(empty($_8))) {
+	$query = $pdo->query("SELECT * FROM regras_jejum WHERE _id_regras_jejum = '$id_jejum'");
+	$res = $query->fetchAll(PDO::FETCH_ASSOC);
+	if (!(isset($res[0]['_8']))) {
+		$r_8 = $pdo->prepare("UPDATE regras_jejum SET _8 = :_8 WHERE _id_regras_jejum = :id_jejum");
+		$r_8->bindValue(':_8', $_8);
+		$r_8->bindValue(':id_jejum', $id_jejum);
+		if ($r_8->execute()) {
+			echo 9;
+		} else {
+			echo "Errado!";
+		}
+	}
+}
+if (!(empty($_9))) {
+	$query = $pdo->query("SELECT * FROM regras_jejum WHERE _id_regras_jejum = '$id_jejum'");
+	$res = $query->fetchAll(PDO::FETCH_ASSOC);
+	if (!(isset($res[0]['_9']))) {
+		$r_9 = $pdo->prepare("UPDATE regras_jejum SET _9 = :_9 WHERE _id_regras_jejum = :id_jejum");
+		$r_9->bindValue(':_9', $_9);
+		$r_9->bindValue(':id_jejum', $id_jejum);
+		if ($r_9->execute()) {
+			echo 10;
+		} else {
+			echo "Errado!";
+		}
+	}
+}
+if (!(empty($_10))) {
+	$query = $pdo->query("SELECT * FROM regras_jejum WHERE _id_regras_jejum = '$id_jejum'");
+	$res = $query->fetchAll(PDO::FETCH_ASSOC);
+	if (!(isset($res[0]['_10']))) {
+		$r_10 = $pdo->prepare("UPDATE regras_jejum SET _10 = :_10 WHERE _id_regras_jejum = :id_jejum");
+		$r_10->bindValue(':_10', $_10);
+		$r_10->bindValue(':id_jejum', $id_jejum);
+		if ($r_10->execute()) {
+			echo 11;
 		} else {
 			echo "Errado!";
 		}

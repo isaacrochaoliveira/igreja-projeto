@@ -7,7 +7,7 @@ $id_jejum = addslashes($_POST['id_jejum']);
 $query = $pdo->query("SELECT * FROM regras_jejum JOIN jejuns ON regras_jejum._id_regras_jejum = jejuns.id_jejum");
 $regras = $query->fetchAll(PDO::FETCH_ASSOC);
 if (count($regras) > 0) {
-    $jejum = $regras['jejum'];
+    $jejum = $regras[0]['jejum'];
     $_1 = $regras[0]['_1'];
     $_2 = $regras[0]['_2'];
     $_3 = $regras[0]['_3'];

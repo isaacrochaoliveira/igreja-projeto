@@ -349,7 +349,7 @@ $pagina = 'jejuns_personalizados';
 </div>
 
 <div class="modal" tabindex="-1" id="modalRegras" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
-	<div class="modal-dialog modal-lg">
+	<div class="modal-dialog modal-xl">
 		<div class="modal-content">
 			<div class="modal-header">
 				<h5 class="modal-title">Regras do Jejum - <span id="titulo_jejum_regras"></span></h5>
@@ -366,6 +366,13 @@ $pagina = 'jejuns_personalizados';
 						</div>
 					</div>
 				</div>
+				<form action="" method="post">
+					<div class="row">
+						<div class="col-md-4">
+							
+						</div>
+					</div>
+				</form>
 			</div>
 			<div class="modal-footer">
 				<input type="hidden" id="id_jejumRegras">
@@ -428,7 +435,7 @@ $pagina = 'jejuns_personalizados';
 								<textarea name="_9" id="_9" cols="40" rows="10" class="form-control" placeholder="9º Regra"></textarea>
 								<label for="_9">9º Regra</label>
 							</div>
-							<div class="d-none" id="div-formfloating9">
+							<div class="d-none" id="div-formfloating10">
 								<textarea name="_10" id="_10" cols="40" rows="10" class="form-control" placeholder="10º Regra"></textarea>
 								<label for="_10">10º Regra</label>
 							</div>
@@ -462,10 +469,13 @@ $pagina = 'jejuns_personalizados';
 				<div class="d-none" id="div-btnsuccess9">
 					<button type="button" onclick="cadRegrasFunction()" class="btn btn-success" name="btn-btnsuccess1r" id="btn-btnsuccess1r">Cadastrar 10/10</button>
 				</div>
+				<div class="d-none" id="div-btnsuccess10">
+					<button type="button" onclick="cadRegrasFunction()" class="btn btn-secondary" name="btn-btnsuccess1r" id="btn-btnsuccess1r">Cadastrar E Voltar</button>
+				</div>
 				<div class="modal-footer">
 					<input type="hidden" name="id_jejumCadRegras" id="id_jejumCadRegras">
-					<div id="divregrasmodalfootercerto">
-						<button type="button" name="btnFecharModalRegras" id="btnFecharModalRegras" class="btn btn-secondary" data-bs-dismiss="modal">Voltar</button>
+					<div>
+						<button type="button" name="btnFecharModalCadRegras" id="btnFecharModalCadRegras" class="d-none" data-bs-dismiss="modal">Voltar</button>
 					</div>
 				</div>
 			</form>
@@ -516,19 +526,25 @@ $pagina = 'jejuns_personalizados';
 				dataType: 'text',
 				success: function(retorno) {
 					if ($.isNumeric(retorno)) {
-						let miss = retorno - 1;
-						// Textarea - Regras 1 - Disabilitado
-						$('#div-formfloating'+miss).removeClass();
-						$('#div-formfloating'+miss).addClass('form-floating disabled');
-						// Botão cadastrar retorno-1/10 - Disabilitado 
-						$('#div-btnsuccess'+miss).removeClass();
-						$('#div-btnsuccess'+miss).addClass('d-none');
-						// Textarea - Regras 2 _ Habilitado
-						$('#div-formfloating'+retorno).removeClass();
-						$('#div-formfloating'+retorno).addClass('form-floating mt-2');
-						// Botão Cdastrar retorno/10 - Habilitado
-						$('#div-btnsuccess'+retorno).removeClass();
-						$('#div-btnsuccess'+retorno).addClass('d-block ml-3');
+						if (retorno < 11) {
+							let miss = retorno - 1;
+							// Textarea - Regras 1 - Disabilitado
+							$('#div-formfloating'+miss).removeClass();
+							$('#div-formfloating'+miss).addClass('form-floating disabled');
+							// Botão cadastrar retorno-1/10 - Disabilitado 
+							$('#div-btnsuccess'+miss).removeClass();
+							$('#div-btnsuccess'+miss).addClass('d-none');
+							// Textarea - Regras 2 _ Habilitado
+							$('#div-formfloating'+retorno).removeClass();
+							$('#div-formfloating'+retorno).addClass('form-floating mt-2');
+							// Botão Cdastrar retorno/10 - Habilitado
+							$('#div-btnsuccess'+retorno).removeClass();
+							$('#div-btnsuccess'+retorno).addClass('d-block ml-3');
+						} else {
+							id_jejum = $('#id_jejumCadRegras').val();
+							$('#btnFecharModalCadRegras').click();
+							regras(id_jejum);
+						}
 					} else {
 						alert(retorno);
 					}
