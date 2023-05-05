@@ -349,7 +349,7 @@ $pagina = 'jejuns_personalizados';
 </div>
 
 <div class="modal" tabindex="-1" id="modalRegras" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
-	<div class="modal-dialog modal-lg">
+	<div class="modal-dialog modal-xl">
 		<div class="modal-content">
 			<div class="modal-header">
 				<h5 class="modal-title">Regras do Jejum - <span id="titulo_jejum_regras"></span></h5>
@@ -366,6 +366,13 @@ $pagina = 'jejuns_personalizados';
 						</div>
 					</div>
 				</div>
+				<form action="" method="post">
+					<div class="row">
+						<div class="col-md-4">
+							
+						</div>
+					</div>
+				</form>
 			</div>
 			<div class="modal-footer">
 				<input type="hidden" id="id_jejumRegras">
@@ -467,8 +474,8 @@ $pagina = 'jejuns_personalizados';
 				</div>
 				<div class="modal-footer">
 					<input type="hidden" name="id_jejumCadRegras" id="id_jejumCadRegras">
-					<div id="divregrasmodalfootercerto">
-						<button type="button" name="btnFecharModalRegras" id="btnFecharModalRegras" class="d-none" data-bs-dismiss="modal">Voltar</button>
+					<div>
+						<button type="button" name="btnFecharModalCadRegras" id="btnFecharModalCadRegras" class="d-none" data-bs-dismiss="modal">Voltar</button>
 					</div>
 				</div>
 			</form>
@@ -535,7 +542,7 @@ $pagina = 'jejuns_personalizados';
 							$('#div-btnsuccess'+retorno).addClass('d-block ml-3');
 						} else {
 							id_jejum = $('#id_jejumCadRegras').val();
-							$('#btnFecharModalRegras').click();
+							$('#btnFecharModalCadRegras').click();
 							regras(id_jejum);
 						}
 					} else {
