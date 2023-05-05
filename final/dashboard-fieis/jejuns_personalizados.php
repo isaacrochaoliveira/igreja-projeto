@@ -428,7 +428,7 @@ $pagina = 'jejuns_personalizados';
 								<textarea name="_9" id="_9" cols="40" rows="10" class="form-control" placeholder="9º Regra"></textarea>
 								<label for="_9">9º Regra</label>
 							</div>
-							<div class="d-none" id="div-formfloating9">
+							<div class="d-none" id="div-formfloating10">
 								<textarea name="_10" id="_10" cols="40" rows="10" class="form-control" placeholder="10º Regra"></textarea>
 								<label for="_10">10º Regra</label>
 							</div>
@@ -517,18 +517,23 @@ $pagina = 'jejuns_personalizados';
 				success: function(retorno) {
 					if ($.isNumeric(retorno)) {
 						let miss = retorno - 1;
-						// Textarea - Regras 1 - Disabilitado
-						$('#div-formfloating'+miss).removeClass();
-						$('#div-formfloating'+miss).addClass('form-floating disabled');
-						// Botão cadastrar retorno-1/10 - Disabilitado 
-						$('#div-btnsuccess'+miss).removeClass();
-						$('#div-btnsuccess'+miss).addClass('d-none');
-						// Textarea - Regras 2 _ Habilitado
-						$('#div-formfloating'+retorno).removeClass();
-						$('#div-formfloating'+retorno).addClass('form-floating mt-2');
-						// Botão Cdastrar retorno/10 - Habilitado
-						$('#div-btnsuccess'+retorno).removeClass();
-						$('#div-btnsuccess'+retorno).addClass('d-block ml-3');
+						if (retorno < 11) {
+							// Textarea - Regras 1 - Disabilitado
+							$('#div-formfloating'+miss).removeClass();
+							$('#div-formfloating'+miss).addClass('form-floating disabled');
+							// Botão cadastrar retorno-1/10 - Disabilitado 
+							$('#div-btnsuccess'+miss).removeClass();
+							$('#div-btnsuccess'+miss).addClass('d-none');
+							// Textarea - Regras 2 _ Habilitado
+							$('#div-formfloating'+retorno).removeClass();
+							$('#div-formfloating'+retorno).addClass('form-floating mt-2');
+							// Botão Cdastrar retorno/10 - Habilitado
+							$('#div-btnsuccess'+retorno).removeClass();
+							$('#div-btnsuccess'+retorno).addClass('d-block ml-3');
+						} else {
+							$('#div-btnsuccess'+miss).removeClass();
+							$('#div-btnsuccess'+miss).addClass('d-none');
+						}
 					} else {
 						alert(retorno);
 					}
