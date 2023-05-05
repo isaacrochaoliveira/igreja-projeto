@@ -462,10 +462,13 @@ $pagina = 'jejuns_personalizados';
 				<div class="d-none" id="div-btnsuccess9">
 					<button type="button" onclick="cadRegrasFunction()" class="btn btn-success" name="btn-btnsuccess1r" id="btn-btnsuccess1r">Cadastrar 10/10</button>
 				</div>
+				<div class="d-none" id="div-btnsuccess10">
+					<button type="button" onclick="cadRegrasFunction()" class="btn btn-secondary" name="btn-btnsuccess1r" id="btn-btnsuccess1r">Cadastrar E Voltar</button>
+				</div>
 				<div class="modal-footer">
 					<input type="hidden" name="id_jejumCadRegras" id="id_jejumCadRegras">
 					<div id="divregrasmodalfootercerto">
-						<button type="button" name="btnFecharModalRegras" id="btnFecharModalRegras" class="btn btn-secondary" data-bs-dismiss="modal">Voltar</button>
+						<button type="button" name="btnFecharModalRegras" id="btnFecharModalRegras" class="d-none" data-bs-dismiss="modal">Voltar</button>
 					</div>
 				</div>
 			</form>
@@ -516,8 +519,8 @@ $pagina = 'jejuns_personalizados';
 				dataType: 'text',
 				success: function(retorno) {
 					if ($.isNumeric(retorno)) {
-						let miss = retorno - 1;
 						if (retorno < 11) {
+							let miss = retorno - 1;
 							// Textarea - Regras 1 - Disabilitado
 							$('#div-formfloating'+miss).removeClass();
 							$('#div-formfloating'+miss).addClass('form-floating disabled');
@@ -531,8 +534,9 @@ $pagina = 'jejuns_personalizados';
 							$('#div-btnsuccess'+retorno).removeClass();
 							$('#div-btnsuccess'+retorno).addClass('d-block ml-3');
 						} else {
-							$('#div-btnsuccess'+miss).removeClass();
-							$('#div-btnsuccess'+miss).addClass('d-none');
+							id_jejum = $('#id_jejumCadRegras').val();
+							$('#btnFecharModalRegras').click();
+							regras(id_jejum);
 						}
 					} else {
 						alert(retorno);
