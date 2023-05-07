@@ -3,14 +3,17 @@
 require_once('../../conexao.php');
 
 
-$id_jejum = isset($_POST['id_jejumCadRegras']) ? addslashes($_POST['id_jejumCadRegras']) : addslashes($_POST['id_jejumRegras']);
+$id_jejum = addslashes($_POST['id_jejumCadRegras']);
+if (empty($id_jejum)) {
+	$id_jejum = addslashes($_POST['id_jejumRegras']);
+}
 $_1 = addslashes($_POST['_1']);
 $_2 = addslashes($_POST['_2']);
 $_3 = addslashes($_POST['_3']);
 $_4 = addslashes($_POST['_4']);
 $_5 = addslashes($_POST['_5']);
 $_6 = addslashes($_POST['_6']);
-$_7 = addslashes($_POST['_7']);
+$_7 = addslashes($_POST['_7']); 
 $_8 = addslashes($_POST['_8']);
 $_9 = addslashes($_POST['_9']);
 $_10 = addslashes($_POST['_10']);
