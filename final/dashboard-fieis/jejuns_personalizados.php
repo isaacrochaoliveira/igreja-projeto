@@ -591,7 +591,23 @@ $pagina = 'jejuns_personalizados';
 		$('#btn-btnSaveRegras').click(function() {
 			var pag = "<?=$pag?>";
 			$.ajax({
-				url: pag + '/editar'
+				url: pag + '/cadastrar_regras.php',
+				method: 'post',
+				data: $('#form-edit').serialize(),
+				dataType: 'text',
+				success: function(res) {
+					let array = res.split('!@#');
+					$('#_1').val(array[0]);
+					$('#_2').val(array[1]);
+					$('#_3').val(array[2]);
+					$('#_4').val(array[3]);
+					$('#_5').val(array[4]);
+					$('#_6').val(array[5]);
+					$('#_7').val(array[6]);
+					$('#_8').val(array[7]);
+					$('#_9').val(array[8]);
+					$('#_10').val(array[9]);
+				}
 			})
 		}) 
 	})
