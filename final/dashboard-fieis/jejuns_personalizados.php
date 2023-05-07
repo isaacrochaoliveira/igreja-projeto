@@ -370,60 +370,68 @@ $pagina = 'jejuns_personalizados';
 					<div class="row">
 						<div class="col-md-4">
 							<div class="form-floating">
-								<input type="text" name="_1" id="_1" class="form-control" placeholder="1º Regra">
+								<input type="text" name="_1" id="_1" class="form-control disabled" placeholder="1º Regra">
 								<label for="_1">1º Regras</label>
 							</div>
 						</div>
 						<div class="col-md-4">
 							<div class="form-floating">
-								<input type="text" name="_2" id="_2" class="form-control" placeholder="2º Regra">
+								<input type="text" name="_2" id="_2" class="form-control disabled" placeholder="2º Regra">
 								<label for="_2">2º Regra</label>
 							</div>
 						</div>
 						<div class="col-md-4">
 							<div class="form-floating">
-								<input type="text" name="_3" id="_3" class="form-control" placeholder="3º Regra">
+								<input type="text" name="_3" id="_3" class="form-control disabled" placeholder="3º Regra">
 								<label for="_3">3º Regra</label>
 							</div>
 						</div>
 					</div>
-					<div class="row">
+					<div class="row mt-3">
 						<div class="col-md-4">
 							<div class="form-floating">
-								<input type="text" name="_4" id="_4" placeholder="4º Regra" class="form-control">
+								<input type="text" name="_4" id="_4" placeholder="4º Regra" class="form-control disabled">
 								<label for="_4">4º Regra</label>
 							</div>
 						</div>
 						<div class="col-md-4">
 							<div class="form-floating">
-								<input type="text" name="_5" id="_5" placeholder="5º Regra" class="form-control">
+								<input type="text" name="_5" id="_5" placeholder="5º Regra" class="form-control disabled">
 								<label for="_5">5º Regras</label>
 							</div>
 						</div>
 						<div class="col-md-4">
 							<div class="form-floating">
-								<input type="text" name="_6" id="_6" placeholder="6º Regra" class="form-control">
-								<label for="_6"></label>
+								<input type="text" name="_6" id="_6" placeholder="6º Regra" class="form-control disabled">
+								<label for="_6">6º Regra</label>
 							</div>
 						</div>
 					</div>
-					<div class="row">
+					<div class="row mt-3">
 						<div class="col-md-4">
 							<div class="form-floating">
-								<input type="text" name="_7" id="_7" placeholder="7º Regra" class="form-control">
+								<input type="text" name="_7" id="_7" placeholder="7º Regra" class="form-control disabled">
 								<label for="_7">7º Regra</label>
 							</div>
 						</div>
 						<div class="col-md-4">
 							<div class="form-floating">
-								<input type="text" name="_8" id="_8" placeholder="8º Regra" class="form-control">
+								<input type="text" name="_8" id="_8" placeholder="8º Regra" class="form-control disabled">
 								<label for="_8">8º Regra</label>
 							</div>
 						</div>
 						<div class="col-md-4">
 							<div class="form-floating">
-								<input type="text" name="_9" id="_9" placeholder="9º Regra" class="form-control">
+								<input type="text" name="_9" id="_9" placeholder="9º Regra" class="form-control disabled">
 								<label for="_9">9º Regra</label>
+							</div>
+						</div>
+					</div>
+					<div class="row mt-4">
+						<div class="col-md-4">
+							<div class="form-floating">
+								<input type="text" name="_10" id="_10" placeholder="10º Regra" class="form-control disabled">
+								<label for="_10">10º Regra</label>
 							</div>
 						</div>
 					</div>
@@ -562,6 +570,15 @@ $pagina = 'jejuns_personalizados';
 					} else {
 						$('#titulo_jejum_regras').html(array[0]);
 						$('#_1').val(array[1]);
+						$('#_2').val(array[2]);
+						$('#_3').val(array[3]);
+						$('#_4').val(array[4]);
+						$('#_5').val(array[5]);
+						$('#_6').val(array[6]);
+						$('#_7').val(array[7]);
+						$('#_8').val(array[8]);
+						$('#_9').val(array[9]);
+						$('#_10').val(array[10]);
 					}
 					$('#id_jejumRegras').val(id_jejum);
 					$('#modalRegras').modal('show');
