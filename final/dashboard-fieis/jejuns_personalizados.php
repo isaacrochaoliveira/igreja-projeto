@@ -410,7 +410,20 @@ $pagina = 'jejuns_personalizados';
 					<div class="row">
 						<div class="col-md-4">
 							<div class="form-floating">
-								
+								<input type="text" name="_7" id="_7" placeholder="7º Regra" class="form-control">
+								<label for="_7">7º Regra</label>
+							</div>
+						</div>
+						<div class="col-md-4">
+							<div class="form-floating">
+								<input type="text" name="_8" id="_8" placeholder="8º Regra" class="form-control">
+								<label for="_8">8º Regra</label>
+							</div>
+						</div>
+						<div class="col-md-4">
+							<div class="form-floating">
+								<input type="text" name="_9" id="_9" placeholder="9º Regra" class="form-control">
+								<label for="_9">9º Regra</label>
 							</div>
 						</div>
 					</div>
