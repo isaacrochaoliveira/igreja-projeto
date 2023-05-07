@@ -440,6 +440,7 @@ $pagina = 'jejuns_personalizados';
 				</div>
 				<div class="modal-footer">
 					<input type="hidden" id="id_jejumRegras" name="id_jejumRegras">
+					<input type="hidden" name="id_jejumCadRegras" id="id_jejumCadRegras">
 					<div id="divregrasmodalfootererrado" class="d-none">
 						<button name="cadRegrasJejunsId" id="cadRegrasJejunsId" class="btn btn-light">Cadastrar Regras</button>
 					</div>
