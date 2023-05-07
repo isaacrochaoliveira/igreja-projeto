@@ -445,11 +445,11 @@ $pagina = 'jejuns_personalizados';
 					</div>
 					<div id="divregrasmodalfootercerto">
 						<button type="button" name="btnFecharModalRegras" id="btnFecharModalRegras" class="btn btn-secondary" data-bs-dismiss="modal">Voltar</button>
-						<div class="d-block">
+						<div class="d-block mt-1" id="div-btnbtnedit">
 							<button type="button" class="btn btn-primary" name="btn-btnEditRegras" id="btn-btnEditRegras">Editar Regras</button>
 						</div>
-						<div class="d-none">
-							<button type="button" class="btn btn-outline-primary" name="btn-btnSaveRegras" id="btn-btnSaveRegras">Sarvar Regras</button>
+						<div class="d-none" id="div-btnbtnSaveAs">
+							<button type="button" class="btn btn-outline-primary" name="btn-btnSaveRegras" id="btn-btnSaveRegras">Salvar Regras</button>
 						</div>
 					</div>
 				</div>
@@ -558,16 +558,31 @@ $pagina = 'jejuns_personalizados';
 <script>
 	$(document).ready(function() {
 		$('#btn-btnEditRegras').click(function() {
-			var pag = "<?=$pag?>";
-			$.ajax({
-				url: pag + '/edit_regras.php',
-				method: 'post',
-				data: $('#form-edit').serialize(),
-				dataType: "text",
-				success: function() {
-					
-				}
-			})
+			$('#_1').removeClass();
+			$('#_2').removeClass();
+			$('#_3').removeClass();
+			$('#_4').removeClass();
+			$('#_5').removeClass();
+			$('#_6').removeClass();
+			$('#_7').removeClass();
+			$('#_8').removeClass();
+			$('#_9').removeClass();
+			$('#_10').removeClass();
+			$('#div-btnbtnedit').removeClass();
+			$('#div-btnbtnSaveAs').removeClass();
+
+			$('#_1').addClass('form-control');
+			$('#_2').addClass('form-control');
+			$('#_3').addClass('form-control');
+			$('#_4').addClass('form-control');
+			$('#_5').addClass('form-control');
+			$('#_6').addClass('form-control');
+			$('#_7').addClass('form-control');
+			$('#_8').addClass('form-control');
+			$('#_9').addClass('form-control');
+			$('#_10').addClass('form-control');
+			$('#div-btnbtnedit').addClass('d-none');
+			$('#div-btnbtnSaveAs').addClass('d-block mt-1');
 		}) 
 	})
 </script>
