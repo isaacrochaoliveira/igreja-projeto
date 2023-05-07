@@ -355,98 +355,105 @@ $pagina = 'jejuns_personalizados';
 				<h5 class="modal-title">Regras do Jejum - <span id="titulo_jejum_regras"></span></h5>
 				<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
 			</div>
-			<div class="modal-body">
-				<div id="semRegras" class="d-none">
-					<div class="d-flex alert alert-danger" role="alert">
-						<div style="font-size: 32px;">
-							<i class="fa-solid fa-exclamation"></i>
+			<form action="" emthod="post" id="form-edit">
+				<div class="modal-body">
+					<div id="semRegras" class="d-none">
+						<div class="d-flex alert alert-danger" role="alert">
+							<div style="font-size: 32px;">
+								<i class="fa-solid fa-exclamation"></i>
+							</div>
+							<div class="ml-3 mt-3">
+								Nenhuma regra cadastrada!
+							</div>
 						</div>
-						<div class="ml-3 mt-3">
-							Nenhuma regra cadastrada!
+					</div>
+					<form action="" method="post">
+						<div class="row">
+							<div class="col-md-4">
+								<div class="form-floating">
+									<input type="text" name="_1" id="_1" class="form-control disabled" placeholder="1º Regra">
+									<label for="_1">1º Regras</label>
+								</div>
+							</div>
+							<div class="col-md-4">
+								<div class="form-floating">
+									<input type="text" name="_2" id="_2" class="form-control disabled" placeholder="2º Regra">
+									<label for="_2">2º Regra</label>
+								</div>
+							</div>
+							<div class="col-md-4">
+								<div class="form-floating">
+									<input type="text" name="_3" id="_3" class="form-control disabled" placeholder="3º Regra">
+									<label for="_3">3º Regra</label>
+								</div>
+							</div>
+						</div>
+						<div class="row mt-3">
+							<div class="col-md-4">
+								<div class="form-floating">
+									<input type="text" name="_4" id="_4" placeholder="4º Regra" class="form-control disabled">
+									<label for="_4">4º Regra</label>
+								</div>
+							</div>
+							<div class="col-md-4">
+								<div class="form-floating">
+									<input type="text" name="_5" id="_5" placeholder="5º Regra" class="form-control disabled">
+									<label for="_5">5º Regras</label>
+								</div>
+							</div>
+							<div class="col-md-4">
+								<div class="form-floating">
+									<input type="text" name="_6" id="_6" placeholder="6º Regra" class="form-control disabled">
+									<label for="_6">6º Regra</label>
+								</div>
+							</div>
+						</div>
+						<div class="row mt-3">
+							<div class="col-md-4">
+								<div class="form-floating">
+									<input type="text" name="_7" id="_7" placeholder="7º Regra" class="form-control disabled">
+									<label for="_7">7º Regra</label>
+								</div>
+							</div>
+							<div class="col-md-4">
+								<div class="form-floating">
+									<input type="text" name="_8" id="_8" placeholder="8º Regra" class="form-control disabled">
+									<label for="_8">8º Regra</label>
+								</div>
+							</div>
+							<div class="col-md-4">
+								<div class="form-floating">
+									<input type="text" name="_9" id="_9" placeholder="9º Regra" class="form-control disabled">
+									<label for="_9">9º Regra</label>
+								</div>
+							</div>
+						</div>
+						<div class="row mt-4">
+							<div class="col-md-4">
+								<div class="form-floating">
+									<input type="text" name="_10" id="_10" placeholder="10º Regra" class="form-control disabled">
+									<label for="_10">10º Regra</label>
+								</div>
+							</div>
+						</div>
+					</form>
+				</div>
+				<div class="modal-footer">
+					<input type="hidden" id="id_jejumRegras">
+					<div id="divregrasmodalfootererrado" class="d-none">
+						<button name="cadRegrasJejunsId" id="cadRegrasJejunsId" class="btn btn-light">Cadastrar Regras</button>
+					</div>
+					<div id="divregrasmodalfootercerto">
+						<button type="button" name="btnFecharModalRegras" id="btnFecharModalRegras" class="btn btn-secondary" data-bs-dismiss="modal">Voltar</button>
+						<div class="d-block">
+							<button type="button" class="btn btn-primary" name="btn-btnEditRegras" id="btn-btnEditRegras">Editar Regras</button>
+						</div>
+						<div class="d-none">
+							<button type="button" class="btn btn-outline-primary" name="btn-btnSaveRegras" id="btn-btnSaveRegras">Sarvar Regras</button>
 						</div>
 					</div>
 				</div>
-				<form action="" method="post">
-					<div class="row">
-						<div class="col-md-4">
-							<div class="form-floating">
-								<input type="text" name="_1" id="_1" class="form-control disabled" placeholder="1º Regra">
-								<label for="_1">1º Regras</label>
-							</div>
-						</div>
-						<div class="col-md-4">
-							<div class="form-floating">
-								<input type="text" name="_2" id="_2" class="form-control disabled" placeholder="2º Regra">
-								<label for="_2">2º Regra</label>
-							</div>
-						</div>
-						<div class="col-md-4">
-							<div class="form-floating">
-								<input type="text" name="_3" id="_3" class="form-control disabled" placeholder="3º Regra">
-								<label for="_3">3º Regra</label>
-							</div>
-						</div>
-					</div>
-					<div class="row mt-3">
-						<div class="col-md-4">
-							<div class="form-floating">
-								<input type="text" name="_4" id="_4" placeholder="4º Regra" class="form-control disabled">
-								<label for="_4">4º Regra</label>
-							</div>
-						</div>
-						<div class="col-md-4">
-							<div class="form-floating">
-								<input type="text" name="_5" id="_5" placeholder="5º Regra" class="form-control disabled">
-								<label for="_5">5º Regras</label>
-							</div>
-						</div>
-						<div class="col-md-4">
-							<div class="form-floating">
-								<input type="text" name="_6" id="_6" placeholder="6º Regra" class="form-control disabled">
-								<label for="_6">6º Regra</label>
-							</div>
-						</div>
-					</div>
-					<div class="row mt-3">
-						<div class="col-md-4">
-							<div class="form-floating">
-								<input type="text" name="_7" id="_7" placeholder="7º Regra" class="form-control disabled">
-								<label for="_7">7º Regra</label>
-							</div>
-						</div>
-						<div class="col-md-4">
-							<div class="form-floating">
-								<input type="text" name="_8" id="_8" placeholder="8º Regra" class="form-control disabled">
-								<label for="_8">8º Regra</label>
-							</div>
-						</div>
-						<div class="col-md-4">
-							<div class="form-floating">
-								<input type="text" name="_9" id="_9" placeholder="9º Regra" class="form-control disabled">
-								<label for="_9">9º Regra</label>
-							</div>
-						</div>
-					</div>
-					<div class="row mt-4">
-						<div class="col-md-4">
-							<div class="form-floating">
-								<input type="text" name="_10" id="_10" placeholder="10º Regra" class="form-control disabled">
-								<label for="_10">10º Regra</label>
-							</div>
-						</div>
-					</div>
-				</form>
-			</div>
-			<div class="modal-footer">
-				<input type="hidden" id="id_jejumRegras">
-				<div id="divregrasmodalfootererrado" class="d-none">
-					<button name="cadRegrasJejunsId" id="cadRegrasJejunsId" class="btn btn-light">Cadastrar Regras</button>
-				</div>
-				<div id="divregrasmodalfootercerto">
-					<button type="button" name="btnFecharModalRegras" id="btnFecharModalRegras" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-					<button type="button" class="btn btn-primary">Save changes</button>
-				</div>
-			</div>
+			</form>
 		</div>
 	</div>
 </div>
@@ -549,6 +556,22 @@ $pagina = 'jejuns_personalizados';
 <!-- SCRIPTS -->
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 <script>
+	$(document).ready(function() {
+		$('#btn-btnEditRegras').click(function() {
+			var pag = "<?=$pag?>";
+			$.ajax({
+				url: pag + '/edit_regras.php',
+				method: 'post',
+				data: $('#form-edit').serialize(),
+				dataType: "text",
+				success: function() {
+					
+				}
+			})
+		}) 
+	})
+</script>
+<script>
 	function regras(id_jejum) {
 		$(document).ready(function() {
 			var pag = "<?= $pag ?>";
@@ -590,7 +613,7 @@ $pagina = 'jejuns_personalizados';
 <script>
 	function cadRegrasFunction() {
 		$(document).ready(function() {
-			var pag = "<?=$pag?>";
+			var pag = "<?= $pag ?>";
 			$.ajax({
 				url: pag + '/cadastrar_regras.php',
 				method: 'post',
@@ -601,17 +624,17 @@ $pagina = 'jejuns_personalizados';
 						if (retorno < 11) {
 							let miss = retorno - 1;
 							// Textarea - Regras 1 - Disabilitado
-							$('#div-formfloating'+miss).removeClass();
-							$('#div-formfloating'+miss).addClass('form-floating disabled');
+							$('#div-formfloating' + miss).removeClass();
+							$('#div-formfloating' + miss).addClass('form-floating disabled');
 							// Botão cadastrar retorno-1/10 - Disabilitado 
-							$('#div-btnsuccess'+miss).removeClass();
-							$('#div-btnsuccess'+miss).addClass('d-none');
+							$('#div-btnsuccess' + miss).removeClass();
+							$('#div-btnsuccess' + miss).addClass('d-none');
 							// Textarea - Regras 2 _ Habilitado
-							$('#div-formfloating'+retorno).removeClass();
-							$('#div-formfloating'+retorno).addClass('form-floating mt-2');
+							$('#div-formfloating' + retorno).removeClass();
+							$('#div-formfloating' + retorno).addClass('form-floating mt-2');
 							// Botão Cdastrar retorno/10 - Habilitado
-							$('#div-btnsuccess'+retorno).removeClass();
-							$('#div-btnsuccess'+retorno).addClass('d-block ml-3');
+							$('#div-btnsuccess' + retorno).removeClass();
+							$('#div-btnsuccess' + retorno).addClass('d-block ml-3');
 						} else {
 							id_jejum = $('#id_jejumCadRegras').val();
 							$('#btnFecharModalCadRegras').click();
