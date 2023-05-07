@@ -449,7 +449,7 @@ $pagina = 'jejuns_personalizados';
 							<button type="button" class="btn btn-primary" name="btn-btnEditRegras" id="btn-btnEditRegras">Editar Regras</button>
 						</div>
 						<div class="d-none" id="div-btnbtnSaveAs">
-							<button type="button" class="btn btn-outline-primary" name="btn-btnSaveRegras" id="btn-btnSaveRegras">Salvar Regras</button>
+							<button type="button" class="btn btn-primary" name="btn-btnSaveRegras" id="btn-btnSaveRegras">Salvar Regras</button>
 						</div>
 					</div>
 				</div>
@@ -583,6 +583,16 @@ $pagina = 'jejuns_personalizados';
 			$('#_10').addClass('form-control');
 			$('#div-btnbtnedit').addClass('d-none');
 			$('#div-btnbtnSaveAs').addClass('d-block mt-1');
+		}) 
+	})
+</script>
+<script>
+	$(document).ready(function() {
+		$('#btn-btnSaveRegras').click(function() {
+			var pag = "<?=$pag?>";
+			$.ajax({
+				url: pag + '/editar'
+			})
 		}) 
 	})
 </script>
