@@ -3,7 +3,7 @@
 require_once('../../conexao.php');
 
 
-$id_jejum = addslashes($_POST['id_jejumCadRegras']);
+$id_jejum = isset($_POST['id_jejumCadRegras']) ? addslashes($_POST['id_jejumCadRegras']) : addslashes($_POST['id_jejumRegras']);
 $_1 = addslashes($_POST['_1']);
 $_2 = addslashes($_POST['_2']);
 $_3 = addslashes($_POST['_3']);
@@ -26,8 +26,10 @@ if (!(empty($_1))) {
 		$r_1->bindValue(':id_jejum', $id_jejum);
 		if ($r_1->execute()) {
 			echo 2;
+			exit();
 		} else {
 			echo "Errado!";
+			exit();
 		}
 	} else {
 		$r_1 = $pdo->prepare("UPDATE regras_jejum SET _1 = :_1 WHERE _id_regras_jejum = :id_jejum");
@@ -47,8 +49,10 @@ if (!(empty($_2))) {
 		$r_2->bindValue(':id_jejum', $id_jejum);
 		if ($r_2->execute()) {
 			echo 3;
+			exit();
 		} else {
 			echo "Errado!";
+			exit();
 		}
 	} else {
 		$r_2 = $pdo->prepare("UPDATE regras_jejum SET _2 = :_2 WHERE _id_regras_jejum = :id_jejum");
@@ -68,8 +72,10 @@ if (!(empty($_3))) {
 		$r_3->bindValue(':id_jejum', $id_jejum);
 		if ($r_3->execute()) {
 			echo 4;
+			exit();
 		} else {
 			echo "Errado!";
+			exit();
 		}
 	} else {
 		$r_3 = $pdo->prepare("UPDATE regras_jejum SET _3 = :_3 WHERE _id_regras_jejum = :id_jejum");
@@ -89,8 +95,10 @@ if (!(empty($_4))) {
 		$r_4->bindValue(':id_jejum', $id_jejum);
 		if ($r_4->execute()) {
 			echo 5;
+			exit();
 		} else {
 			echo "Errado!";
+			exit();
 		}
 	} else {
 		$r_4 = $pdo->prepare("UPDATE regras_jejum SET _4 = :_4 WHERE _id_regras_jejum = :id_jejum");
@@ -110,8 +118,10 @@ if (!(empty($_5))) {
 		$r_5->bindValue(':id_jejum', $id_jejum);
 		if ($r_5->execute()) {
 			echo 6;
+			exit();
 		} else {
 			echo "Errado!";
+			exit();
 		}
 	} else {
 		$r_5 = $pdo->prepare("UPDATE regras_jejum SET _5 = :_5 WHERE _id_regras_jejum = :id_jejum");
@@ -131,8 +141,10 @@ if (!(empty($_6))) {
 		$r_6->bindValue(':id_jejum', $id_jejum);
 		if ($r_6->execute()) {
 			echo 7;
+			exit();
 		} else {
 			echo "Errado!";
+			exit();
 		}
 	} else {
 		$r_6 = $pdo->prepare("UPDATE regras_jejum SET _6 = :_6 WHERE _id_regras_jejum = :id_jejum");
@@ -152,8 +164,10 @@ if (!(empty($_7))) {
 		$r_7->bindValue(':id_jejum', $id_jejum);
 		if ($r_7->execute()) {
 			echo 8;
+			exit();
 		} else {
 			echo "Errado!";
+			exit();
 		}
 	} else {
 		$r_7 = $pdo->prepare("UPDATE regras_jejum SET _7 = :_7 WHERE _id_regras_jejum = :id_jejum");
@@ -173,8 +187,10 @@ if (!(empty($_8))) {
 		$r_8->bindValue(':id_jejum', $id_jejum);
 		if ($r_8->execute()) {
 			echo 9;
+			exit();
 		} else {
 			echo "Errado!";
+			exit();
 		}
 	} else {
 		$r_8 = $pdo->prepare("UPDATE regras_jejum SET _8 = :_8 WHERE _id_regras_jejum = :id_jejum");
@@ -194,8 +210,10 @@ if (!(empty($_9))) {
 		$r_9->bindValue(':id_jejum', $id_jejum);
 		if ($r_9->execute()) {
 			echo 10;
+			exit();
 		} else {
 			echo "Errado!";
+			exit();
 		}
 	} else {
 		$r_9 = $pdo->prepare("UPDATE regras_jejum SET _9 = :_9 WHERE _id_regras_jejum = :id_jejum");
@@ -215,8 +233,10 @@ if (!(empty($_10))) {
 		$r_10->bindValue(':id_jejum', $id_jejum);
 		if ($r_10->execute()) {
 			echo 11;
+			exit();
 		} else {
 			echo "Errado!";
+			exit();
 		}
 	} else {
 		$r_10 = $pdo->prepare("UPDATE regras_jejum SET _10 = :_10 WHERE _id_regras_jejum = :id_jejum");
@@ -227,3 +247,4 @@ if (!(empty($_10))) {
 		}
 	}
 }
+echo "$_1!@#$_2!@#$_3!@#$_4!@#$_5!@#$_6!@#$_7!@#$_8!@#$_9!@#$_10";
