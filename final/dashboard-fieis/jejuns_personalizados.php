@@ -369,7 +369,49 @@ $pagina = 'jejuns_personalizados';
 				<form action="" method="post">
 					<div class="row">
 						<div class="col-md-4">
-							
+							<div class="form-floating">
+								<input type="text" name="_1" id="_1" class="form-control" placeholder="1º Regra">
+								<label for="_1">1º Regras</label>
+							</div>
+						</div>
+						<div class="col-md-4">
+							<div class="form-floating">
+								<input type="text" name="_2" id="_2" class="form-control" placeholder="2º Regra">
+								<label for="_2">2º Regra</label>
+							</div>
+						</div>
+						<div class="col-md-4">
+							<div class="form-floating">
+								<input type="text" name="_3" id="_3" class="form-control" placeholder="3º Regra">
+								<label for="_3">3º Regra</label>
+							</div>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-md-4">
+							<div class="form-floating">
+								<input type="text" name="_4" id="_4" placeholder="4º Regra" class="form-control">
+								<label for="_4">4º Regra</label>
+							</div>
+						</div>
+						<div class="col-md-4">
+							<div class="form-floating">
+								<input type="text" name="_5" id="_5" placeholder="5º Regra" class="form-control">
+								<label for="_5">5º Regras</label>
+							</div>
+						</div>
+						<div class="col-md-4">
+							<div class="form-floating">
+								<input type="text" name="_6" id="_6" placeholder="6º Regra" class="form-control">
+								<label for="_6"></label>
+							</div>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-md-4">
+							<div class="form-floating">
+								
+							</div>
 						</div>
 					</div>
 				</form>
@@ -505,8 +547,8 @@ $pagina = 'jejuns_personalizados';
 						$('#divregrasmodalfootererrado').addClass('d-block');
 						$('#semRegras').addClass('d-block');
 					} else {
-						$('')
 						$('#titulo_jejum_regras').html(array[0]);
+						$('#_1').val(array[1]);
 					}
 					$('#id_jejumRegras').val(id_jejum);
 					$('#modalRegras').modal('show');
