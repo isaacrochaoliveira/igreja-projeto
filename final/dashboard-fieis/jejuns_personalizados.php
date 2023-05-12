@@ -367,7 +367,7 @@ $pagina = 'jejuns_personalizados';
 							</div>
 						</div>
 					</div>
-					<form action="" method="post">
+					<form action="" method="post" id="formeditregras">
 						<div class="row">
 							<div class="col-md-4">
 								<div class="form-floating">
@@ -628,10 +628,12 @@ $pagina = 'jejuns_personalizados';
 					let array = result.split('!@#');
 					if (array == "Algo deu errado") {
 						$('#semRegras').removeClass();
+						$('#formeditregras').removeClass();
 						$('#divregrasmodalfootererrado').removeClass();
 						$("#divregrasmodalfootercerto").removeClass();
 						$('#divregrasmodalfootercerto').addClass('d-none');
 						$('#divregrasmodalfootererrado').addClass('d-block');
+						$('#formeditregras').addClass('d-none');
 						$('#semRegras').addClass('d-block');
 					} else {
 						$('#titulo_jejum_regras').html(array[0]);
