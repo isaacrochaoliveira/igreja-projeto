@@ -631,6 +631,7 @@ $pagina = 'jejuns_personalizados';
 						$('#formeditregras').removeClass();
 						$('#divregrasmodalfootererrado').removeClass();
 						$("#divregrasmodalfootercerto").removeClass();
+						
 						$('#divregrasmodalfootercerto').addClass('d-none');
 						$('#divregrasmodalfootererrado').addClass('d-block');
 						$('#formeditregras').addClass('d-none');

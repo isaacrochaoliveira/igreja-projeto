@@ -4,9 +4,6 @@ require_once('../../conexao.php');
 
 
 $id_jejum = addslashes($_POST['id_jejumCadRegras']);
-if (empty($id_jejum)) {
-	$id_jejum = addslashes($_POST['id_jejumRegras']);
-}
 $_1 = addslashes($_POST['_1']);
 $_2 = addslashes($_POST['_2']);
 $_3 = addslashes($_POST['_3']);
@@ -17,8 +14,6 @@ $_7 = addslashes($_POST['_7']);
 $_8 = addslashes($_POST['_8']);
 $_9 = addslashes($_POST['_9']);
 $_10 = addslashes($_POST['_10']);
-
-$cont = 1;
 
 if (!(empty($_1))) {
 	$query = $pdo->query("SELECT * FROM regras_jejum WHERE _id_regras_jejum = '$id_jejum'");
