@@ -15,7 +15,7 @@ $_8 = addslashes($_POST['_8']);
 $_9 = addslashes($_POST['_9']);
 $_10 = addslashes($_POST['_10']);
 
-if (!(empty($_1))) {
+if (!(empty($_1)) || $_1 == "") {
 	$query = $pdo->query("SELECT * FROM regras_jejum WHERE _id_regras_jejum = '$id_jejum'");
 	$res = $query->fetchAll(PDO::FETCH_ASSOC);
 	if (!(isset($res[0]['_1']))) {
@@ -38,7 +38,7 @@ if (!(empty($_1))) {
 		}
 	}
 }
-if (!(empty($_2))) {
+if (!(empty($_2)) || $_2 == "") {
 	$query = $pdo->query("SELECT * FROM regras_jejum WHERE _id_regras_jejum = '$id_jejum'");
 	$res = $query->fetchAll(PDO::FETCH_ASSOC);
 	if (!(isset($res[0]['_2']))) {
@@ -61,7 +61,7 @@ if (!(empty($_2))) {
 		}
 	}
 }
-if (!(empty($_3))) {
+if (!(empty($_3)) || $_3 == "") {
 	$query = $pdo->query("SELECT * FROM regras_jejum WHERE _id_regras_jejum = '$id_jejum'");
 	$res = $query->fetchAll(PDO::FETCH_ASSOC);
 	if (!(isset($res[0]['_3']))) {
@@ -84,7 +84,7 @@ if (!(empty($_3))) {
 		}
 	}
 }
-if (!(empty($_4))) {
+if (!(empty($_4)) || $_4 == "") {
 	$query = $pdo->query("SELECT * FROM regras_jejum WHERE _id_regras_jejum = '$id_jejum'");
 	$res = $query->fetchAll(PDO::FETCH_ASSOC);
 	if (!(isset($res[0]['_4']))) {
@@ -107,7 +107,7 @@ if (!(empty($_4))) {
 		}
 	}
 }
-if (!(empty($_5))) {
+if (!(empty($_5)) || $_5 == "") {
 	$query = $pdo->query("SELECT * FROM regras_jejum WHERE _id_regras_jejum = '$id_jejum'");
 	$res = $query->fetchAll(PDO::FETCH_ASSOC);
 	if (!(isset($res[0]['_5']))) {
@@ -130,7 +130,7 @@ if (!(empty($_5))) {
 		}
 	}
 }
-if (!(empty($_6))) {
+if (!(empty($_6)) || $_6 == "") {
 	$query = $pdo->query("SELECT * FROM regras_jejum WHERE _id_regras_jejum = '$id_jejum'");
 	$res = $query->fetchAll(PDO::FETCH_ASSOC);
 	if (!(isset($res[0]['_6']))) {
@@ -153,7 +153,7 @@ if (!(empty($_6))) {
 		}	
 	}
 }
-if (!(empty($_7))) {
+if (!(empty($_7)) || $_7 == "") {
 	$query = $pdo->query("SELECT * FROM regras_jejum WHERE _id_regras_jejum = '$id_jejum'");
 	$res = $query->fetchAll(PDO::FETCH_ASSOC);
 	if (!(isset($res[0]['_7']))) {
@@ -176,7 +176,7 @@ if (!(empty($_7))) {
 		}
 	}
 }
-if (!(empty($_8))) {
+if (!(empty($_8)) || $_8 == "") {
 	$query = $pdo->query("SELECT * FROM regras_jejum WHERE _id_regras_jejum = '$id_jejum'");
 	$res = $query->fetchAll(PDO::FETCH_ASSOC);
 	if (!(isset($res[0]['_8']))) {
@@ -199,7 +199,7 @@ if (!(empty($_8))) {
 		}
 	}
 }
-if (!(empty($_9))) {
+if (!(empty($_9)) || $_9 == "") {
 	$query = $pdo->query("SELECT * FROM regras_jejum WHERE _id_regras_jejum = '$id_jejum'");
 	$res = $query->fetchAll(PDO::FETCH_ASSOC);
 	if (!(isset($res[0]['_9']))) {
@@ -222,7 +222,7 @@ if (!(empty($_9))) {
 		}
 	}
 }
-if (!(empty($_10))) {
+if (!(empty($_10)) || $_10 == "") {
 	$query = $pdo->query("SELECT * FROM regras_jejum WHERE _id_regras_jejum = '$id_jejum'");
 	$res = $query->fetchAll(PDO::FETCH_ASSOC);
 	if (!(isset($res[0]['_10']))) {
