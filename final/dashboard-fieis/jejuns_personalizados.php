@@ -437,8 +437,7 @@ $pagina = 'jejuns_personalizados';
 					</div>
 				</div>
 				<div class="modal-footer">
-					<input type="hidden" id="id_jejumRegras" name="id_jejumRegras">
-					<input type="hidden" name="id_jejumCadRegras" id="id_jejumCadRegras">
+					<input type="hidden" id="id_jejumRegras" name="id_jejumCadRegrasCad">
 					<div id="divregrasmodalfootererrado" class="d-none">
 						<button name="cadRegrasJejunsId" id="cadRegrasJejunsId" class="btn btn-light">Cadastrar Regras</button>
 					</div>
@@ -596,6 +595,33 @@ $pagina = 'jejuns_personalizados';
 				dataType: 'text',
 				success: function(res) {
 					let array = res.split('!@#');
+
+					$('#_1').removeClass();
+					$('#_2').removeClass();
+					$('#_3').removeClass();
+					$('#_4').removeClass();
+					$('#_5').removeClass();
+					$('#_6').removeClass();
+					$('#_7').removeClass();
+					$('#_8').removeClass();
+					$('#_9').removeClass();
+					$('#_10').removeClass();
+					$('#div-btnbtnedit').removeClass();
+					$('#div-btnbtnSaveAs').removeClass();
+
+					$('#_1').addClass('form-control disabled');
+					$('#_2').addClass('form-control disabled');
+					$('#_3').addClass('form-control disabled');
+					$('#_4').addClass('form-control disabled');
+					$('#_5').addClass('form-control disabled');
+					$('#_6').addClass('form-control disabled');
+					$('#_7').addClass('form-control disabled');
+					$('#_8').addClass('form-control disabled');
+					$('#_9').addClass('form-control disabled');
+					$('#_10').addClass('form-control disabled');
+					$('#div-btnbtnedit').addClass('d-block mt-1');
+					$('#div-btnbtnSaveAs').addClass('d-none');
+
 					$('#_1').val(array[0]);
 					$('#_2').val(array[1]);
 					$('#_3').val(array[2]);
