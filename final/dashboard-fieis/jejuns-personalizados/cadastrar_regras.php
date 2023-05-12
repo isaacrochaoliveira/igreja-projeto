@@ -3,7 +3,7 @@
 require_once('../../conexao.php');
 
 
-$id_jejum = addslashes($_POST['id_jejumCadRegras']);
+$id_jejum = addslashes($_POST['id_jejumCadRegrasCad']);
 $_1 = addslashes($_POST['_1']);
 $_2 = addslashes($_POST['_2']);
 $_3 = addslashes($_POST['_3']);

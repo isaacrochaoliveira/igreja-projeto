@@ -544,7 +544,7 @@ $pagina = 'jejuns_personalizados';
 					<button type="button" onclick="cadRegrasFunction()" class="btn btn-secondary" name="btn-btnsuccess1r" id="btn-btnsuccess1r">Cadastrar E Voltar</button>
 				</div>
 				<div class="modal-footer">
-					<input type="hidden" name="id_jejumCadRegras" id="id_jejumCadRegras">
+					<input type="hidden" name="id_jejumCadRegrasCad" id="id_jejumCadRegrasCad">
 					<div>
 						<button type="button" name="btnFecharModalCadRegras" id="btnFecharModalCadRegras" class="d-none" data-bs-dismiss="modal">Voltar</button>
 					</div>
@@ -614,8 +614,9 @@ $pagina = 'jejuns_personalizados';
 	})
 </script>
 <script>
-	function regras(id_jejum) {
+	function regras() {
 		$(document).ready(function() {
+			id_jejum = $('#id_jejum_d').val();
 			var pag = "<?= $pag ?>";
 			$.ajax({
 				url: pag + '/regras.php',
@@ -631,7 +632,7 @@ $pagina = 'jejuns_personalizados';
 						$('#formeditregras').removeClass();
 						$('#divregrasmodalfootererrado').removeClass();
 						$("#divregrasmodalfootercerto").removeClass();
-						
+
 						$('#divregrasmodalfootercerto').addClass('d-none');
 						$('#divregrasmodalfootererrado').addClass('d-block');
 						$('#formeditregras').addClass('d-none');
@@ -682,7 +683,7 @@ $pagina = 'jejuns_personalizados';
 							$('#div-btnsuccess' + retorno).removeClass();
 							$('#div-btnsuccess' + retorno).addClass('d-block ml-3');
 						} else {
-							id_jejum = $('#id_jejumCadRegras').val();
+							id_jejum = $('#id_jejumCadRegrasCad').val();
 							$('#btnFecharModalCadRegras').click();
 							regras(id_jejum);
 						}
@@ -698,7 +699,7 @@ $pagina = 'jejuns_personalizados';
 	$(document).ready(function() {
 		$('#cadRegrasJejunsId').click(function() {
 			let id_jejum = document.getElementById('id_jejumRegras').value;
-			$('#id_jejumCadRegras').val(id_jejum);
+			$('#id_jejumCadRegrasCad').val(id_jejum);
 			$('#btnFecharModalRegras').click();
 			$('#modalCadastrarRegras').modal('show');
 		})
