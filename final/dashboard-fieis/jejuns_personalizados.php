@@ -629,6 +629,7 @@ $pagina = 'jejuns_personalizados';
 					if (array == "Algo deu errado") {
 						$('#semRegras').removeClass();
 						$('#divregrasmodalfootererrado').removeClass();
+						$("#divregrasmodalfootercerto").removeClass();
 						$('#divregrasmodalfootercerto').addClass('d-none');
 						$('#divregrasmodalfootererrado').addClass('d-block');
 						$('#semRegras').addClass('d-block');
