@@ -185,7 +185,6 @@ $pagina = 'jejuns_personalizados';
 			<div class="modal-footer">
 				<input type="hidden" name="id_jejum" id="id_jejum">
 				<button type="button" name="btnfecharmodalphoto" id="btnfecharmodalphoto" class="btn btn-secondary" data-bs-dismiss="modal">Voltar</button>
-				<button type="submit" name="btnfotocapa" id="btnfotocapa" class="btn btn-primary">Upload</button>
 			</div>
 		</div>
 	</div>
@@ -581,7 +580,7 @@ $pagina = 'jejuns_personalizados';
 			$('#_10').addClass('form-control');
 			$('#div-btnbtnedit').addClass('d-none');
 			$('#div-btnbtnSaveAs').addClass('d-block mt-1');
-		}) 
+		})
 	})
 </script>
 <script>
@@ -634,7 +633,7 @@ $pagina = 'jejuns_personalizados';
 					$('#_10').val(array[9]);
 				}
 			})
-		}) 
+		})
 	})
 </script>
 <script>
@@ -653,18 +652,16 @@ $pagina = 'jejuns_personalizados';
 					let array = result.split('!@#');
 					if (array == "Algo deu errado") {
 						$('#semRegras').removeClass();
-						$('#formeditregras').removeClass();
 						$('#divregrasmodalfootererrado').removeClass();
 						$("#divregrasmodalfootercerto").removeClass();
 
 						$('#divregrasmodalfootercerto').addClass('d-none');
 						$('#divregrasmodalfootererrado').addClass('d-block');
-						$('#formeditregras').addClass('d-none');
 						$('#semRegras').addClass('d-block');
 					} else {
 						$('#semRegras').removeClass();
 						$('#semRegras').addClass('d-none');
-						
+
 						$('#titulo_jejum_regras').html(array[0]);
 						$('#_1').val(array[1]);
 						$('#_2').val(array[2]);
@@ -700,7 +697,7 @@ $pagina = 'jejuns_personalizados';
 							// Textarea - Regras 1 - Disabilitado
 							$('#div-formfloating' + miss).removeClass();
 							$('#div-formfloating' + miss).addClass('form-floating disabled');
-							// Botão cadastrar retorno-1/10 - Disabilitado 
+							// Botão cadastrar retorno-1/10 - Disabilitado
 							$('#div-btnsuccess' + miss).removeClass();
 							$('#div-btnsuccess' + miss).addClass('d-none');
 							// Textarea - Regras 2 _ Habilitado
@@ -851,7 +848,7 @@ $pagina = 'jejuns_personalizados';
 						$('#desc').val(array[2]);
 						$('#vers_base').val(array[3]);
 
-						// Colocando Elementos na tela 
+						// Colocando Elementos na tela
 						$('#nomepas').addClass('d-block');
 						$('#pastor_a').addClass('form-control disabled');
 						$('#desc').addClass('form-control disabled')
