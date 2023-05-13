@@ -4,7 +4,7 @@ require_once('../../conexao.php');
 
 $id_jejum = addslashes($_POST['id_jejum']);
 
-$query = $pdo->query("SELECT * FROM regras_jejum JOIN jejuns ON regras_jejum._id_regras_jejum = jejuns.id_jejum");
+$query = $pdo->query("SELECT * FROM regras_jejum JOIN jejuns ON regras_jejum._id_regras_jejum = jejuns.id_jejum WHERE id_jejum = '$id_jejum'");
 $regras = $query->fetchAll(PDO::FETCH_ASSOC);
 if (count($regras) > 0) {
     $jejum = $regras[0]['jejum'];

@@ -339,7 +339,7 @@ $pagina = 'jejuns_personalizados';
 				</div>
 				<div class="modal-footer">
 					<input type="hidden" id="id_jejum_d" name="id_jejum_d" class="form-control">
-					<a href="#" class="mr-2" style="text-decoration: underline; color: blue" onclick="regras(<?= $id_jejum ?>)">Editar Regras</a>
+					<a href="#" class="mr-2" style="text-decoration: underline; color: blue" onclick="regras()">Editar Regras</a>
 					<button type="button" name="btnEditar" id="btnEditar" class="btn btn-primary">Editar Informações</button>
 					<button type="button" name="btnSalvar" id="btnSalvar" class="d-none">Salvar Informações</button>
 				</div>
@@ -367,7 +367,7 @@ $pagina = 'jejuns_personalizados';
 							</div>
 						</div>
 					</div>
-					<div class="row">
+					<div class="row" id="formeditregras">
 						<div class="col-md-4">
 							<div class="form-floating">
 								<input type="text" name="_1" id="_1" class="form-control disabled" placeholder="1º Regra">
@@ -439,7 +439,7 @@ $pagina = 'jejuns_personalizados';
 				<div class="modal-footer">
 					<input type="hidden" id="id_jejumRegras" name="id_jejumCadRegrasCad">
 					<div id="divregrasmodalfootererrado" class="d-none">
-						<button name="cadRegrasJejunsId" id="cadRegrasJejunsId" class="btn btn-light">Cadastrar Regras</button>
+						<button type="button" name="cadRegrasJejunsId" id="cadRegrasJejunsId" class="btn btn-light">Cadastrar Regras</button>
 					</div>
 					<div id="divregrasmodalfootercerto">
 						<button type="button" name="btnFecharModalRegras" id="btnFecharModalRegras" class="btn btn-secondary" data-bs-dismiss="modal">Voltar</button>
