@@ -1,6 +1,8 @@
 <?php
 
+require_once('../conexao.php');
 require_once('../config.php');
+session_start();
 
 $pag = 'leitura-individual';
 
@@ -76,19 +78,28 @@ $pag = 'leitura-individual';
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 <script>
-	var events = [{
-			'Date': new Date(2023, 4, 5),
-			'Title': 'Doctor appointment at 3:25pm.'
-		},
+	var events = [
 		{
-			'Date': new Date(2016, 6, 18),
-			'Title': 'New Garfield movie comes out!',
-			'Link': 'https://garfield.com'
-		},
-		{
-			'Date': new Date(2016, 6, 27),
-			'Title': '25 year anniversary',
-			'Link': 'https://www.google.com.au/#q=anniversary+gifts'
+			<?php
+				$query = $pdo->query("SELECT * FROM leitura_individual WHERE autor_indLei = '$_SESSION[id]'");
+				$res = $query->fetchAll(PDO::FETCH_ASSOC);
+				if (count($res) > 0) {
+					for ($i = 0; $i < count($res); $i++) {
+						$data = explode('-', $res[$i]['data_job']);
+						$mes = $data[1] - 1;
+						$title = $res[$i]['desc_indLei'];
+						?>
+
+							var year = <?=$data[2]?>;
+							var day = <?=$data[0]?>;
+							var mes = <?=$mes?>;
+							var title = "<?=$title?>";
+							'Date': new Date(parseInt(year), parseInt(mes), parseInt(day)),
+							'Title': title
+						<?php
+					}
+				}
+			?>
 		},
 	];
 	var settings = {
@@ -141,7 +152,7 @@ $pag = 'leitura-individual';
 				method: 'post',
 				data: $('form').serialize(),
 				success: function(msg) {
-					if (msg == "Salvo com Sucesso") {
+					if (msg == "Salvo com Sucesso!") {
 						window.location = 'index.php?pag=leitua-individual';
 					} else {
 						alert(msg);
