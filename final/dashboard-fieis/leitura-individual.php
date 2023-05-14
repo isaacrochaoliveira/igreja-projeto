@@ -7,13 +7,57 @@ require_once('../config.php');
 <link rel="stylesheet" href="../assets/styles/demo.css">
 <script type="text/javascript" src="<?= JS ?>/calendar.js"></script>
 <div class="d-flex flex-wrap mt-3 mx-2">
-	<div id="caleandar" class="w-75">
+	<div id="caleandar" class="w-65porc">
 
 	</div>
 	<div class="w-25">
 		<h1 style="font-size: 40px">Faça seu plano de Leitura</h1>
 		<hr>
 		<p>Adicione o sua Leitura Diária, e acompanhe no calendário</p>
+		<form class="bg-light" action="" method="post">
+			<div class="row">
+				<div class="col">
+					<label for="data">Nos dê a data da leitura</label>
+					<input type="date" name="data" value="data" class="form-control">
+				</div>
+			</div>
+			<div class="row mt-3">
+				<label for="">Dê cor as suas anotações</label>
+				<div class="col-md-1">
+					<div class="text-danger" style="font-size: 26px">
+						<i class="fa-solid fa-square"></i>
+					</div>
+				</div>
+				<div class="col-md-1">
+					<div class="text-success" style="font-size: 26px">
+						<i class="fa-solid fa-square"></i>
+					</div>
+				</div>
+				<div class="col-md-1">
+					<div class="text-primary" style="font-size: 26px">
+						<i class="fa-solid fa-square"></i>
+					</div>
+				</div>
+				<div class="col-md-1">
+					<div class="text-warning" style="font-size: 26px">
+						<i class="fa-solid fa-square"></i>
+					</div>
+				</div>
+				<div class="col-md-1">
+					<div class="text-info" style="font-size: 26px">
+						<i class="fa-solid fa-square"></i>
+					</div>
+				</div>
+				<div class="col-md-1">
+					<div class="text-dark" style="font-size: 26px">
+						<i class="fa-solid fa-square"></i>
+					</div>
+				</div>
+				<div class="col-md-3">
+					<input type="color" name="cor" class="form-control">
+				</div>
+			</div>
+		</form>
 	</div>
 </div>
 <script>
