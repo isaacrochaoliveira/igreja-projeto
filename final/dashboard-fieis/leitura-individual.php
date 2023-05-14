@@ -6,9 +6,15 @@ require_once('../config.php');
 <link rel="stylesheet" href="../assets/styles/calendar.css">
 <link rel="stylesheet" href="../assets/styles/demo.css">
 <script type="text/javascript" src="<?= JS ?>/calendar.js"></script>
+<div class="d-flex flex-wrap mt-3 mx-2">
+	<div id="caleandar" class="w-75">
 
-<div id="caleandar">
-
+	</div>
+	<div class="w-25">
+		<h1 style="font-size: 40px">Faça seu plano de Leitura</h1>
+		<hr>
+		<p>Adicione o sua Leitura Diária, e acompanhe no calendário</p>
+	</div>
 </div>
 <script>
 	var events = [{
