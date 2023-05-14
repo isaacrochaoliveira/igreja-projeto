@@ -2,6 +2,8 @@
 
 require_once('../config.php');
 
+$pag = 'leitura-individual';
+
 ?>
 <link rel="stylesheet" href="../assets/styles/calendar.css">
 <link rel="stylesheet" href="../assets/styles/demo.css">
@@ -65,6 +67,8 @@ require_once('../config.php');
 		</form>
 	</div>
 </div>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 <script>
 	var events = [{
 			'Date': new Date(2023, 4, 5),
@@ -120,4 +124,24 @@ require_once('../config.php');
 			document.getElementById('salvarLeitura').style.background = color;
 		}
 	}
+</script>
+
+<script type="text/javascript">
+	$(document).ready(function() {
+		$('#salvarLeitura').click(function() {
+			var pag = "<?=$pag?>";
+			$.ajax({
+				url: pag + '/salvar.php',
+				method: 'post',
+				data: $('form').serialize(),
+				success: function(msg) {
+					if (msg == "Salvo com Sucesso") {
+						window.location = 'index.php?pag=leitua-individual';
+					} else {
+						alert(msg);
+					}
+				}
+			})
+		})
+	})
 </script>
