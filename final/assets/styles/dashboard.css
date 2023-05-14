@@ -204,3 +204,7 @@
 .line-height-33 {
     line-height: 33px;
 }
+
+.pointer {
+    cursor: pointer;
+}

@@ -25,36 +25,41 @@ require_once('../config.php');
 				<label for="">Dê cor as suas anotações</label>
 				<div class="col-md-1">
 					<div class="text-danger" style="font-size: 26px">
-						<i class="fa-solid fa-square"></i>
+						<i onclick="upCor('red')" class="fa-solid fa-square pointer"></i>
 					</div>
 				</div>
 				<div class="col-md-1">
 					<div class="text-success" style="font-size: 26px">
-						<i class="fa-solid fa-square"></i>
+						<i onclick="upCor('green')" class="fa-solid fa-square pointer"></i>
 					</div>
 				</div>
 				<div class="col-md-1">
 					<div class="text-primary" style="font-size: 26px">
-						<i class="fa-solid fa-square"></i>
+						<i onclick="upCor('blue')" class="fa-solid fa-square pointer"></i>
 					</div>
 				</div>
 				<div class="col-md-1">
 					<div class="text-warning" style="font-size: 26px">
-						<i class="fa-solid fa-square"></i>
+						<i onclick="upCor('yellow')" class="fa-solid fa-square pointer"></i>
 					</div>
 				</div>
 				<div class="col-md-1">
 					<div class="text-info" style="font-size: 26px">
-						<i class="fa-solid fa-square"></i>
+						<i onclick="upCor('navy-blue')" class="fa-solid fa-square pointer"></i>
 					</div>
 				</div>
 				<div class="col-md-1">
 					<div class="text-dark" style="font-size: 26px">
-						<i class="fa-solid fa-square"></i>
+						<i onclick="upCor('black')" class="fa-solid fa-square pointer"></i>
 					</div>
 				</div>
 				<div class="col-md-3">
-					<input type="color" name="cor" class="form-control">
+					<input type="color" name="cor"  id="cor" class="form-control" onchange="upCor('choose')">
+				</div>
+			</div>
+			<div class="row mt-3">
+				<div class="col">
+					<button type="button" name="salvarLeitura" id="salvarLeitura" class="btn btn-dark w-100">Add</button>
 				</div>
 			</div>
 		</form>
@@ -88,4 +93,31 @@ require_once('../config.php');
 	};
 	var element = document.getElementById('caleandar');
 	caleandar(element, events, settings);
+</script>
+
+<script type="text/javascript">
+	function upCor(option) {
+		if (option === 'red') {
+			document.getElementById('salvarLeitura').style.background = '#DC3545';
+		}
+		if (option === 'green') {
+			document.getElementById('salvarLeitura').style.background = '#28A745';
+		}
+		if (option === 'blue') {
+			document.getElementById('salvarLeitura').style.background = '#007BFF';
+		}
+		if (option === 'yellow') {
+			document.getElementById('salvarLeitura').style.background = '#FFC107';
+		}
+		if (option === 'navy-blue') {
+			document.getElementById('salvarLeitura').style.background = '#17A2B8';
+		}
+		if (option === 'black') {
+			document.getElementById('salvarLeitura').style.background = '#343A40';
+		}
+		if (option === 'choose') {
+			var color = document.getElementById('cor').value;
+			document.getElementById('salvarLeitura').style.background = color;
+		}
+	}
 </script>
