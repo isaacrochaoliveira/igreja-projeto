@@ -1,13 +1,13 @@
 <?php
 
 require_once('../../conexao.php');
+session_start();
 
 $data = addslashes($_POST['data']);
-$data_array = explode('-', $data);
-$dia = $data_array[0];
+$text = addslashes($_POST['text']);
+$id_user = $_SESSION['id'];
 
-$pdo->query("ALTER TABLE leitura_individual ADD '$dia' date;");
-
+$pdo->query("INSERT INTO leitura_individual SET autor_indLei = '$id_user', desc_indLei = '$text', data_job = '$data'");
 echo "Salvo com Sucesso!";
 
 ?>

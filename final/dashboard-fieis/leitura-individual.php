@@ -23,6 +23,12 @@ $pag = 'leitura-individual';
 					<input type="date" name="data" value="data" class="form-control">
 				</div>
 			</div>
+			<div class="row">
+				<div class="col">
+					<label for="text">Que Livro e capitulo vai ler</label>
+					<input type="text" name="text" id="text" class="form-control">
+				</div>
+			</div>
 			<div class="row mt-3">
 				<label for="">Dê cor as suas anotações</label>
 				<div class="col-md-1">
