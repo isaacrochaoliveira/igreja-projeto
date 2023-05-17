@@ -81,9 +81,6 @@ $pag = 'leitura-individual';
 <script>
 	function calendar(array) {
 		var events = [
-			for (var i = 0; i < array.length; i++) {
-				console.log(array[i]);
-			}
 			{
 				'Date': new Date(2023, 4, 16),
 				'Title': 'OI'
@@ -135,6 +132,7 @@ $pag = 'leitura-individual';
 	$(document).ready(function() {
 		var pag = "<?=$pag?>";
 		var id_usuario = <?=$_SESSION['id']?>;
+		var result = [];
 		$.ajax({
 			url: pag + '/datas.php',
 			method: 'post',

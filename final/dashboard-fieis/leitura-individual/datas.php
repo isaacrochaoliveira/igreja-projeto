@@ -1,3 +1,6 @@
+<script>
+	let res = []
+</script>
 <?php
 
 require_once('../../conexao.php');
@@ -16,7 +19,18 @@ if (count($res) > 0) {
 		$day = intVal($dataFull[0]);
 		$title = $res[$i]['desc_indLei'];
 		array_push($array, $year, $month, $day, $title);
+		?>
+			<script>
+				var year = <?=$year?>;
+				var month = <?=$month?>;
+				var day = <?=$day?>;
+				res.push(year);
+				res.push(month);
+				res.push(day);
+				console.log(res);		
+			</script>
+		<?php
 	}
 }
-
+exit();
 print_r($array);
