@@ -82,8 +82,8 @@ $pag = 'leitura-individual';
 	function calendar(array) {
 		var events = [
 			{
-				'Date': new Date(2023, 4, 16),
-				'Title': 'OI'
+				'Date': new Date(array[1], array[2], array[3]),
+				'Title': 'Gn 1:25'
 			},
 		];
 		var settings = {
@@ -132,13 +132,13 @@ $pag = 'leitura-individual';
 	$(document).ready(function() {
 		var pag = "<?=$pag?>";
 		var id_usuario = <?=$_SESSION['id']?>;
-		var result = [];
 		$.ajax({
 			url: pag + '/datas.php',
 			method: 'post',
 			data: {id_usuario},
 			success: function(msg) {
-				calendar(msg);
+				let array = msg.split('!@#');
+				calendar(array);
 			}
 		})
 	})

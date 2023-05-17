@@ -1,12 +1,10 @@
-<script>
-	let res = []
-</script>
 <?php
 
 require_once('../../conexao.php');
 $id_user = addslashes($_POST['id_usuario']);
-$array = [];
 
+$r = '';
+$result = '';
 $query = $pdo->query("SELECT * FROM leitura_individual WHERE autor_indLei = '$id_user'");
 $res = $query->fetchAll(PDO::FETCH_ASSOC);
 if (count($res) > 0) {
@@ -15,22 +13,12 @@ if (count($res) > 0) {
 		}
 		$dataFull = explode('-', $res[$i]['data_job']);
 		$month = intVal($dataFull[1] - 1);
-		$year = intVal($dataFull[2]);
-		$day = intVal($dataFull[0]);
+		$year = intVal($dataFull[0]);
+		$day = intVal($dataFull[2]);
 		$title = $res[$i]['desc_indLei'];
-		array_push($array, $year, $month, $day, $title);
-		?>
-			<script>
-				var year = <?=$year?>;
-				var month = <?=$month?>;
-				var day = <?=$day?>;
-				res.push(year);
-				res.push(month);
-				res.push(day);
-				console.log(res);		
-			</script>
-		<?php
+		
+		$r = "!@#$year!@#$month!@#$day!@#$title";
+		$result = $result.$r;
 	}
 }
-exit();
-print_r($array);
+print_r($result);
