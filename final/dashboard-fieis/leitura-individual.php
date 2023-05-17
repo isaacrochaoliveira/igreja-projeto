@@ -76,31 +76,6 @@ $pag = 'leitura-individual';
 		</form>
 	</div>
 </div>
-
-
-<script>
-	function calendar(array) {
-		var events = [
-			{
-				'Date': new Date(array[1], array[2], array[3]),
-				'Title': 'Gn 1:25'
-			},
-		];
-		var settings = {
-			Color: '#000', //(string - color) font color of whole calendar.
-			LinkColor: '#333', //(string - color) font color of event titles.
-			NavShow: true, //(bool) show navigation arrows.
-			NavVertical: false, //(bool) show previous and coming months.
-			NavLocation: '#caleandar', //(string - element) where to display navigation, if not in default position.
-			DateTimeShow: true, //(bool) show current date.
-			DateTimeFormat: 'mmm, yyyy', //(string - dateformat) format previously mentioned date is shown in.
-			DatetimeLocation: '', //(string - element) where to display previously mentioned date, if not in default position.
-		};
-		var element = document.getElementById('caleandar');
-		caleandar(element, events, settings);
-	}
-</script>
-
 <script type="text/javascript">
 	function upCor(option) {
 		if (option === 'red') {
@@ -130,6 +105,7 @@ $pag = 'leitura-individual';
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 <script type="text/javascript">
 	$(document).ready(function() {
+		var jobs = [];
 		var pag = "<?=$pag?>";
 		var id_usuario = <?=$_SESSION['id']?>;
 		$.ajax({
@@ -138,7 +114,27 @@ $pag = 'leitura-individual';
 			data: {id_usuario},
 			success: function(msg) {
 				let array = msg.split('!@#');
-				calendar(array);
+				if ($.isNumeric(array[1])) {
+					for (var i = 1; i < array.length; i++) {
+						var j = i + 1;
+						var k = i + 2;
+						var l = i + 3;
+						var events = [{'Date': new Date(array[i], array[j], array[k]), 'Title': array[l]}];
+					}
+					var settings = {
+						Color: '#000', //(string - color) font color of whole calendar.
+						LinkColor: '#333', //(string - color) font color of event titles.
+						NavShow: true, //(bool) show navigation arrows.
+						NavVertical: false, //(bool) show previous and coming months.
+						NavLocation: '#caleandar', //(string - element) where to display navigation, if not in default position.
+						DateTimeShow: true, //(bool) show current date.
+						DateTimeFormat: 'mmm, yyyy', //(string - dateformat) format previously mentioned date is shown in.
+						DatetimeLocation: '', //(string - element) where to display previously mentioned date, if not in default position.
+					};
+					alert(jobs);
+					var element = document.getElementById('caleandar');
+					caleandar(element, events, settings);
+				}
 			}
 		})
 	})
