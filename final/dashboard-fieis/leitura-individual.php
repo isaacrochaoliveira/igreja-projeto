@@ -4,6 +4,7 @@ require_once('../conexao.php');
 require_once('../config.php');
 session_start();
 
+$array = [];
 $pag = 'leitura-individual';
 
 ?>
@@ -76,44 +77,31 @@ $pag = 'leitura-individual';
 	</div>
 </div>
 
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-<script>
-	var events = [
-		{
-			<?php
-				$query = $pdo->query("SELECT * FROM leitura_individual WHERE autor_indLei = '$_SESSION[id]'");
-				$res = $query->fetchAll(PDO::FETCH_ASSOC);
-				if (count($res) > 0) {
-					for ($i = 0; $i < count($res); $i++) {
-						$data = explode('-', $res[$i]['data_job']);
-						$mes = $data[1] - 1;
-						$title = $res[$i]['desc_indLei'];
-						?>
 
-							var year = <?=$data[2]?>;
-							var day = <?=$data[0]?>;
-							var mes = <?=$mes?>;
-							var title = "<?=$title?>";
-							'Date': new Date(parseInt(year), parseInt(mes), parseInt(day)),
-							'Title': title
-						<?php
-					}
-				}
-			?>
-		},
-	];
-	var settings = {
-		Color: '#000', //(string - color) font color of whole calendar.
-		LinkColor: '#333', //(string - color) font color of event titles.
-		NavShow: true, //(bool) show navigation arrows.
-		NavVertical: false, //(bool) show previous and coming months.
-		NavLocation: '#caleandar', //(string - element) where to display navigation, if not in default position.
-		DateTimeShow: true, //(bool) show current date.
-		DateTimeFormat: 'mmm, yyyy', //(string - dateformat) format previously mentioned date is shown in.
-		DatetimeLocation: '', //(string - element) where to display previously mentioned date, if not in default position.
-	};
-	var element = document.getElementById('caleandar');
-	caleandar(element, events, settings);
+<script>
+	function calendar(array) {
+		var events = [
+			for (var i = 0; i < array.length; i++) {
+				console.log(array[i]);
+			}
+			{
+				'Date': new Date(2023, 4, 16),
+				'Title': 'OI'
+			},
+		];
+		var settings = {
+			Color: '#000', //(string - color) font color of whole calendar.
+			LinkColor: '#333', //(string - color) font color of event titles.
+			NavShow: true, //(bool) show navigation arrows.
+			NavVertical: false, //(bool) show previous and coming months.
+			NavLocation: '#caleandar', //(string - element) where to display navigation, if not in default position.
+			DateTimeShow: true, //(bool) show current date.
+			DateTimeFormat: 'mmm, yyyy', //(string - dateformat) format previously mentioned date is shown in.
+			DatetimeLocation: '', //(string - element) where to display previously mentioned date, if not in default position.
+		};
+		var element = document.getElementById('caleandar');
+		caleandar(element, events, settings);
+	}
 </script>
 
 <script type="text/javascript">
@@ -141,6 +129,21 @@ $pag = 'leitura-individual';
 			document.getElementById('salvarLeitura').style.background = color;
 		}
 	}
+</script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script type="text/javascript">
+	$(document).ready(function() {
+		var pag = "<?=$pag?>";
+		var id_usuario = <?=$_SESSION['id']?>;
+		$.ajax({
+			url: pag + '/datas.php',
+			method: 'post',
+			data: {id_usuario},
+			success: function(msg) {
+				calendar(msg);
+			}
+		})
+	})
 </script>
 
 <script type="text/javascript">
