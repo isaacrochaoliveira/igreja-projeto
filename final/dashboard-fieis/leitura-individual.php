@@ -12,9 +12,6 @@ $pag = 'leitura-individual';
 <link rel="stylesheet" href="../assets/styles/demo.css">
 <script type="text/javascript" src="<?= JS ?>/calendar.js"></script>
 <div class="d-flex flex-wrap mt-3 mx-2">
-	<div id="caleandar" class="w-65porc">
-
-	</div>
 	<div class="w-25">
 		<h1 style="font-size: 40px">Faça seu plano de Leitura</h1>
 		<hr>
@@ -113,28 +110,6 @@ $pag = 'leitura-individual';
 			method: 'post',
 			data: {id_usuario},
 			success: function(msg) {
-				let array = msg.split('!@#');
-				if ($.isNumeric(array[1])) {
-					for (var i = 1; i < array.length; i++) {
-						var j = i + 1;
-						var k = i + 2;
-						var l = i + 3;
-						var events = [{'Date': new Date(array[i], array[j], array[k]), 'Title': array[l]}];
-					}
-					var settings = {
-						Color: '#000', //(string - color) font color of whole calendar.
-						LinkColor: '#333', //(string - color) font color of event titles.
-						NavShow: true, //(bool) show navigation arrows.
-						NavVertical: false, //(bool) show previous and coming months.
-						NavLocation: '#caleandar', //(string - element) where to display navigation, if not in default position.
-						DateTimeShow: true, //(bool) show current date.
-						DateTimeFormat: 'mmm, yyyy', //(string - dateformat) format previously mentioned date is shown in.
-						DatetimeLocation: '', //(string - element) where to display previously mentioned date, if not in default position.
-					};
-					alert(jobs);
-					var element = document.getElementById('caleandar');
-					caleandar(element, events, settings);
-				}
 			}
 		})
 	})
