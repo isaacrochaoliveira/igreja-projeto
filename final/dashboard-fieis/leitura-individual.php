@@ -157,7 +157,9 @@ $pag = 'leitura-individual';
 				method: 'post',
 				data: $('#formBegin').serialize(),
 				success: function(msg) {
-					if (!(msg == "Salvo com Sucesso!")) {
+					if ((msg == "Salvo com Sucesso!")) {
+						window.location = 'index.php?pag=leitura-individual';
+					} else {
 						alert(msg);
 					}
 				}

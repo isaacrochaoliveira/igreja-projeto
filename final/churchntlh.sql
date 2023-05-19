@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1:3306
--- Tempo de geração: 30-Abr-2023 às 02:48
+-- Tempo de geração: 19-Maio-2023 às 03:02
 -- Versão do servidor: 8.0.31
 -- versão do PHP: 8.2.0
 
@@ -119,7 +119,7 @@ CREATE TABLE IF NOT EXISTS `cargos` (
   `id_cargo` tinyint NOT NULL AUTO_INCREMENT,
   `cargo` varchar(100) NOT NULL,
   PRIMARY KEY (`id_cargo`)
-) ENGINE=InnoDB AUTO_INCREMENT=15 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=15 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
 -- Extraindo dados da tabela `cargos`
@@ -152,7 +152,7 @@ CREATE TABLE IF NOT EXISTS `categorias` (
   `id_cat` tinyint NOT NULL AUTO_INCREMENT,
   `categorias` varchar(50) NOT NULL,
   PRIMARY KEY (`id_cat`)
-) ENGINE=InnoDB AUTO_INCREMENT=23 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=23 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
 -- Extraindo dados da tabela `categorias`
@@ -194,7 +194,7 @@ CREATE TABLE IF NOT EXISTS `citacoes` (
   `author` varchar(50) NOT NULL,
   `citacao` text,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
 -- Extraindo dados da tabela `citacoes`
@@ -278,7 +278,7 @@ CREATE TABLE IF NOT EXISTS `country` (
   `numcode` smallint DEFAULT NULL,
   `phonecode` int NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=240 DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM AUTO_INCREMENT=240 DEFAULT CHARSET=latin1;
 
 --
 -- Extraindo dados da tabela `country`
@@ -591,7 +591,7 @@ CREATE TABLE IF NOT EXISTS `grupos_de_oracao` (
   PRIMARY KEY (`id_group`),
   KEY `id_criador` (`id_criador`),
   KEY `id_licenca` (`id_licenca`)
-) ENGINE=InnoDB AUTO_INCREMENT=38 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=38 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
 -- Extraindo dados da tabela `grupos_de_oracao`
@@ -644,6 +644,23 @@ INSERT INTO `jejuns` (`id_jejum`, `id_criador_jejum`, `pastor_comando`, `pastora
 -- --------------------------------------------------------
 
 --
+-- Estrutura da tabela `leitura_individual`
+--
+
+DROP TABLE IF EXISTS `leitura_individual`;
+CREATE TABLE IF NOT EXISTS `leitura_individual` (
+  `id_indLei` tinyint NOT NULL AUTO_INCREMENT,
+  `autor_indLei` tinyint DEFAULT NULL,
+  `desc_indLei` text COLLATE utf8mb4_general_ci,
+  `color` varchar(40) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `data_job` date DEFAULT NULL,
+  `data_job_end` date DEFAULT NULL,
+  PRIMARY KEY (`id_indLei`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+-- --------------------------------------------------------
+
+--
 -- Estrutura da tabela `licenca`
 --
 
@@ -666,6 +683,20 @@ INSERT INTO `licenca` (`id`, `nome_da_licenca`, `descricao_da_licenca`) VALUES
 -- --------------------------------------------------------
 
 --
+-- Estrutura da tabela `meses`
+--
+
+DROP TABLE IF EXISTS `meses`;
+CREATE TABLE IF NOT EXISTS `meses` (
+  `id_meses` tinyint NOT NULL AUTO_INCREMENT,
+  `mes` varchar(250) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `dias` tinyint DEFAULT '31',
+  PRIMARY KEY (`id_meses`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+-- --------------------------------------------------------
+
+--
 -- Estrutura da tabela `oracao`
 --
 
@@ -678,7 +709,7 @@ CREATE TABLE IF NOT EXISTS `oracao` (
   `orando` int DEFAULT '0',
   PRIMARY KEY (`id_pray`),
   KEY `id_criador` (`id_criador`)
-) ENGINE=InnoDB AUTO_INCREMENT=26 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=26 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
 -- Extraindo dados da tabela `oracao`
@@ -707,7 +738,7 @@ CREATE TABLE IF NOT EXISTS `oracao_relacionada_com_a_categoria` (
   PRIMARY KEY (`id`),
   KEY `id_oracao` (`id_oracao`),
   KEY `id_categoria` (`id_categoria`)
-) ENGINE=InnoDB AUTO_INCREMENT=48 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=48 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
 -- Extraindo dados da tabela `oracao_relacionada_com_a_categoria`
@@ -754,7 +785,7 @@ CREATE TABLE IF NOT EXISTS `participando_do_grupo` (
   `id_usuario` tinyint DEFAULT NULL,
   `id_grupo` tinyint DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=26 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=26 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
 -- Extraindo dados da tabela `participando_do_grupo`
@@ -924,9 +955,17 @@ CREATE TABLE IF NOT EXISTS `regras_jejum` (
   `_7` varchar(500) COLLATE utf8mb4_general_ci DEFAULT NULL,
   `_8` varchar(500) COLLATE utf8mb4_general_ci DEFAULT NULL,
   `_9` varchar(500) COLLATE utf8mb4_general_ci DEFAULT NULL,
-  `v_10` varchar(500) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `_10` varchar(500) COLLATE utf8mb4_general_ci DEFAULT NULL,
   PRIMARY KEY (`_id_regras`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=MyISAM AUTO_INCREMENT=8 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Extraindo dados da tabela `regras_jejum`
+--
+
+INSERT INTO `regras_jejum` (`_id_regras`, `_id_regras_jejum`, `_1`, `_2`, `_3`, `_4`, `_5`, `_6`, `_7`, `_8`, `_9`, `_10`) VALUES
+(1, 20, 'q', 'Helllo My Friend', 'a', 's', 'c', 'as', 'qw', 'q', 'x', 'a'),
+(7, 1, 'HI', 'There', 'How', 'are', 'you', 'doing', 'i', 'am', 'Isaac', 'But');
 
 -- --------------------------------------------------------
 
@@ -953,7 +992,7 @@ CREATE TABLE IF NOT EXISTS `usuarios` (
   UNIQUE KEY `cpf` (`cpf`),
   UNIQUE KEY `email` (`email`),
   KEY `id_cargo` (`id_cargo`)
-) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
 -- Extraindo dados da tabela `usuarios`
