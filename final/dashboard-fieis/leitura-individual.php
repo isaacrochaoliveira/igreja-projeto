@@ -19,7 +19,7 @@ $pag = 'leitura-individual';
 		<h1 style="font-size: 40px">Faça seu plano de Leitura</h1>
 		<hr>
 		<p>Adicione o sua Leitura Diária, e acompanhe no calendário</p>
-		<form class="bg-light" action="" method="post">
+		<form class="bg-light" action="" method="post" id="formBegin">
 			<div class="row">
 				<div class="col">
 					<label for="data">Nos dê a data de Inicio</label>
@@ -76,7 +76,7 @@ $pag = 'leitura-individual';
 			</div>
 			<div class="row mt-3">
 				<div class="col">
-					<input type="text" name="chooise" id="chooise">
+					<input type="hidden" name="chooise" id="chooise">
 					<button type="button" name="salvarLeitura" id="salvarLeitura" class="btn btn-dark w-100">Add</button>
 				</div>
 			</div>
@@ -85,7 +85,7 @@ $pag = 'leitura-individual';
 </div>
 
 <div class="modal fade" id="datasJob" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
- 	<div class="modal-dialog modal-lg">
+ 	<div class="modal-dialog">
     	<div class="modal-content">
       		<div class="modal-header">
         		<h1 class="modal-title fs-5" id="staticBackdropLabel">Detalhes</h1>
@@ -93,15 +93,20 @@ $pag = 'leitura-individual';
       		</div>
       		<form action="" method="post" id="formCalendar">
 				<div class="modal-body">
-					<div>
-						<div class="col">
-							<img targer="Foto de Perfil do Usuário"/>
+					<div class="d-flex justify-content-around">
+						<div>
+							<img targer="Foto de Perfil do Usuário" id="perfil" width="150" height="150"/>
+						</div>
+						<div>
+							<p>Título: <span id="title"></span></p>
+							<p>Início: <span id="start"></span></p>
+							<p>Fim: <span id="end"></span></p>
 						</div>
 					</div>
 				</div>
 				<div class="modal-footer">
 					<input type="hidden" id="id_jobs" name="id_jobs"/>
-					<button id="btnCarregarDetalhes" onclick="btnCarregarDetalhes()"></button>
+					<button id="btnCarregarDetalhes"></button>
 					<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Voltar ao Calendário</button>
 				</div>
 			</form>
@@ -144,16 +149,15 @@ $pag = 'leitura-individual';
 </script>
 <script type="text/javascript">
 	$(document).ready(function() {
-		$('#salvarLeitura').click(function() {
+		$('#salvarLeitura').click(function(event) {
+			event.preventDefault();
 			var pag = "<?=$pag?>";
 			$.ajax({
 				url: pag + '/salvar.php',
 				method: 'post',
-				data: $('form').serialize(),
+				data: $('#formBegin').serialize(),
 				success: function(msg) {
-					if (msg == "Salvo com Sucesso!") {
-						window.location = 'index.php?pag=leitura-individual';
-					} else {
+					if (!(msg == "Salvo com Sucesso!")) {
 						alert(msg);
 					}
 				}
@@ -163,17 +167,22 @@ $pag = 'leitura-individual';
 </script>
 
 <script>
-	function btnCarregarDetalhes() {
-		$(document).ready(function() {
+	$(document).ready(function() {
+		$('#btnCarregarDetalhes').click(function(event) {
+			event.preventDefault();
 			var pag = "<?=$pag?>";
 			$.ajax({
-				url: pag + '/informacoes.php',
+				url: pag + '/informacoes',
 				method: 'post',
 				data: $('#formCalendar').serialize(),
 				success: function(msg) {
-					$('#datasJob').modal('show');
+					let array = msg.split("!@#");
+					$('#perfil').attr('src', '../assets/img/fotos/'+array[0]);
+					$('#title').text(array[1]);
+					$('#start').text(array[2]);
+					$('#end').text(array[3]);
 				}
 			})
 		})
-	}
+	})
 </script>

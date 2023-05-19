@@ -21,7 +21,8 @@ document.addEventListener('DOMContentLoaded', function() {
 		  info.jsEvent.preventDefault();
 		  $('#datasJob #id_jobs').val(info.event.id);
 		  $('#btnCarregarDetalhes').click();
-		  
+		  $('#datasJob').modal('show');
+
       }
     });
 
