@@ -24,62 +24,11 @@ $pag = 'leitura-individual';
       editable: true,
       dayMaxEvents: true, // allow "more" link when too many events
 	  events: 'leitura-individual/datas.php',
-      /*events: [
-        {
-          title: 'All Day Event',
-          start: '2023-01-01'
-        },
-        {
-          title: 'Long Event',
-          start: '2023-01-07',
-          end: '2023-01-10'
-        },
-        {
-          groupId: 999,
-          title: 'Repeating Event',
-          start: '2023-01-09T16:00:00'
-        },
-        {
-          groupId: 999,
-          title: 'Repeating Event',
-          start: '2023-01-16T16:00:00'
-        },
-        {
-          title: 'Conference',
-          start: '2023-01-11',
-          end: '2023-01-13'
-        },
-        {
-          title: 'Meeting',
-          start: '2023-01-12T10:30:00',
-          end: '2023-01-12T12:30:00'
-        },
-        {
-          title: 'Lunch',
-          start: '2023-01-12T12:00:00'
-        },
-        {
-          title: 'Meeting',
-          start: '2023-01-12T14:30:00'
-        },
-        {
-          title: 'Happy Hour',
-          start: '2023-01-12T17:30:00'
-        },
-        {
-          title: 'Dinner',
-          start: '2023-01-12T20:00:00'
-        },
-        {
-          title: 'Birthday Party',
-          start: '2023-01-13T07:00:00'
-        },
-        {
-          title: 'Click for Google',
-          url: 'http://google.com/',
-          start: '2023-01-28'
-        }
-      ]*/
+	  extraParams: function() {
+      	return {
+        	cachebuster: new Date().valueOf()
+      	};
+      }
     });
 
     calendar.render();
@@ -96,8 +45,14 @@ $pag = 'leitura-individual';
 		<form class="bg-light" action="" method="post">
 			<div class="row">
 				<div class="col">
-					<label for="data">Nos dê a data da leitura</label>
-					<input type="date" name="data" value="data" class="form-control">
+					<label for="data">Nos dê a data de Inicio</label>
+					<input type="date" name="data" id="data" class="form-control">
+				</div>
+			</div>
+			<div class="row">
+				<div class="col">
+					<label for="data">Nos dê a data do termino</label>
+					<input type="date" name="End" id="End" class="form-control">
 				</div>
 			</div>
 			<div class="row">
@@ -144,6 +99,7 @@ $pag = 'leitura-individual';
 			</div>
 			<div class="row mt-3">
 				<div class="col">
+					<input type="text" name="chooise" id="chooise">
 					<button type="button" name="salvarLeitura" id="salvarLeitura" class="btn btn-dark w-100">Add</button>
 				</div>
 			</div>
@@ -153,24 +109,31 @@ $pag = 'leitura-individual';
 <script type="text/javascript">
 	function upCor(option) {
 		if (option === 'red') {
+			document.getElementById('chooise').value = '#DC3545';
 			document.getElementById('salvarLeitura').style.background = '#DC3545';
 		}
 		if (option === 'green') {
+			document.getElementById('chooise').value = '#28A745';
 			document.getElementById('salvarLeitura').style.background = '#28A745';
 		}
 		if (option === 'blue') {
+			document.getElementById('chooise').value = '#007BFF';
 			document.getElementById('salvarLeitura').style.background = '#007BFF';
 		}
 		if (option === 'yellow') {
+			document.getElementById('chooise').value = '#FFC107';
 			document.getElementById('salvarLeitura').style.background = '#FFC107';
 		}
 		if (option === 'navy-blue') {
+			document.getElementById('chooise').value = '#17A2B8';
 			document.getElementById('salvarLeitura').style.background = '#17A2B8';
 		}
 		if (option === 'black') {
+			document.getElementById('chooise').value = '#343A40';
 			document.getElementById('salvarLeitura').style.background = '#343A40';
 		}
 		if (option === 'choose') {
+			document.getElementById('chooise').value = 'none';
 			var color = document.getElementById('cor').value;
 			document.getElementById('salvarLeitura').style.background = color;
 		}
