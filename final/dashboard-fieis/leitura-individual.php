@@ -10,34 +10,7 @@ $pag = 'leitura-individual';
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 <script src="../assets/dist/index.global.min.js"></script>
 <script src="../assets/lang/pt-br.global.js"></script>
-<script>
-	document.addEventListener('DOMContentLoaded', function() {
-	var calendarEl = document.getElementById('calendar');
-
-    var calendar = new FullCalendar.Calendar(calendarEl, {
-      headerToolbar: {
-        left: 'prevYear,prev,next,nextYear today',
-        center: 'title',
-        right: 'dayGridMonth,dayGridWeek,dayGridDay'
-      },
-      //initialDate: '2023-05-12',
-      navLinks: true, // can click day/week names to navigate views
-      editable: true,
-      dayMaxEvents: true, // allow "more" link when too many events
-	  events: 'leitura-individual/datas.php',
-	  extraParams: function() {
-      	return {
-        	cachebuster: new Date().valueOf()
-      	};
-      },
-	  eventClick: function(info) {
-		  $('#datasJob').modal('show');
-      }
-    });
-
-    calendar.render();
-  });
-</script>
+<script src="../assets/dist/fullcalendar.js"></script>
 <div class="d-flex flex-wrap mt-3 mx-2">
 	<div id="calendar" class="w-65porc">
 	
@@ -114,17 +87,24 @@ $pag = 'leitura-individual';
 <div class="modal fade" id="datasJob" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
  	<div class="modal-dialog modal-lg">
     	<div class="modal-content">
-      	<div class="modal-header">
-        	<h1 class="modal-title fs-5" id="staticBackdropLabel">Detalhes</h1>
-        	<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-      	</div>
-      	<div class="modal-body">
-        	Hi There
-      	</div>
-	  	<div class="modal-footer">
-			<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-			<button type="button" class="btn btn-primary">Understood</button>
-	  	</div>
+      		<div class="modal-header">
+        		<h1 class="modal-title fs-5" id="staticBackdropLabel">Detalhes</h1>
+        		<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      		</div>
+      		<form action="" method="post" id="formCalendar">
+				<div class="modal-body">
+					<div>
+						<div class="col">
+							<img targer="Foto de Perfil do Usuário"/>
+						</div>
+					</div>
+				</div>
+				<div class="modal-footer">
+					<input type="hidden" id="id_jobs" name="id_jobs"/>
+					<button id="btnCarregarDetalhes" onclick="btnCarregarDetalhes()"></button>
+					<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Voltar ao Calendário</button>
+				</div>
+			</form>
     	</div>
   	</div>
 </div>
@@ -180,4 +160,20 @@ $pag = 'leitura-individual';
 			})
 		})
 	})
+</script>
+
+<script>
+	function btnCarregarDetalhes() {
+		$(document).ready(function() {
+			var pag = "<?=$pag?>";
+			$.ajax({
+				url: pag + '/informacoes.php',
+				method: 'post',
+				data: $('#formCalendar').serialize(),
+				success: function(msg) {
+					$('#datasJob').modal('show');
+				}
+			})
+		})
+	}
 </script>
