@@ -7,6 +7,7 @@ session_start();
 $pag = 'leitura-individual';
 
 ?>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 <script src="../assets/dist/index.global.min.js"></script>
 <script src="../assets/lang/pt-br.global.js"></script>
 <script>
@@ -28,6 +29,9 @@ $pag = 'leitura-individual';
       	return {
         	cachebuster: new Date().valueOf()
       	};
+      },
+	  eventClick: function(info) {
+		  $('#datasJob').modal('show');
       }
     });
 
@@ -106,6 +110,25 @@ $pag = 'leitura-individual';
 		</form>
 	</div>
 </div>
+
+<div class="modal fade" id="datasJob" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+ 	<div class="modal-dialog modal-lg">
+    	<div class="modal-content">
+      	<div class="modal-header">
+        	<h1 class="modal-title fs-5" id="staticBackdropLabel">Detalhes</h1>
+        	<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      	</div>
+      	<div class="modal-body">
+        	Hi There
+      	</div>
+	  	<div class="modal-footer">
+			<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+			<button type="button" class="btn btn-primary">Understood</button>
+	  	</div>
+    	</div>
+  	</div>
+</div>
+
 <script type="text/javascript">
 	function upCor(option) {
 		if (option === 'red') {
@@ -139,7 +162,6 @@ $pag = 'leitura-individual';
 		}
 	}
 </script>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 <script type="text/javascript">
 	$(document).ready(function() {
 		$('#salvarLeitura').click(function() {
@@ -150,7 +172,7 @@ $pag = 'leitura-individual';
 				data: $('form').serialize(),
 				success: function(msg) {
 					if (msg == "Salvo com Sucesso!") {
-						window.location = 'index.php?pag=leitua-individual';
+						window.location = 'index.php?pag=leitura-individual';
 					} else {
 						alert(msg);
 					}
