@@ -4,7 +4,6 @@ require_once('../conexao.php');
 require_once('../config.php');
 session_start();
 
-$array = [];
 $pag = 'leitura-individual';
 
 ?>
@@ -12,10 +11,9 @@ $pag = 'leitura-individual';
 <script src="../assets/lang/pt-br.global.js"></script>
 <script>
 	document.addEventListener('DOMContentLoaded', function() {
-    var calendarEl = document.getElementById('calendar');
+	var calendarEl = document.getElementById('calendar');
 
     var calendar = new FullCalendar.Calendar(calendarEl, {
-	  locate: 'pt-br',
       headerToolbar: {
         left: 'prevYear,prev,next,nextYear today',
         center: 'title',
@@ -25,7 +23,8 @@ $pag = 'leitura-individual';
       navLinks: true, // can click day/week names to navigate views
       editable: true,
       dayMaxEvents: true, // allow "more" link when too many events
-      events: [
+	  events: 'leitura-individual/datas.php',
+      /*events: [
         {
           title: 'All Day Event',
           start: '2023-01-01'
@@ -80,7 +79,7 @@ $pag = 'leitura-individual';
           url: 'http://google.com/',
           start: '2023-01-28'
         }
-      ]
+      ]*/
     });
 
     calendar.render();
@@ -178,21 +177,6 @@ $pag = 'leitura-individual';
 	}
 </script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-<script type="text/javascript">
-	$(document).ready(function() {
-		var jobs = [];
-		var pag = "<?=$pag?>";
-		var id_usuario = <?=$_SESSION['id']?>;
-		$.ajax({
-			url: pag + '/datas.php',
-			method: 'post',
-			data: {id_usuario},
-			success: function(msg) {
-			}
-		})
-	})
-</script>
-
 <script type="text/javascript">
 	$(document).ready(function() {
 		$('#salvarLeitura').click(function() {
