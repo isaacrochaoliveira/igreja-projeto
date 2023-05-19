@@ -9,11 +9,13 @@ $pag = 'leitura-individual';
 
 ?>
 <script src="../assets/dist/index.global.min.js"></script>
+<script src="../assets/lang/pt-br.global.js"></script>
 <script>
 	document.addEventListener('DOMContentLoaded', function() {
     var calendarEl = document.getElementById('calendar');
 
     var calendar = new FullCalendar.Calendar(calendarEl, {
+	  locate: 'pt-br',
       headerToolbar: {
         left: 'prevYear,prev,next,nextYear today',
         center: 'title',
