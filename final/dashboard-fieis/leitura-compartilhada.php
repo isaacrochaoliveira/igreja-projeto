@@ -7,8 +7,16 @@ session_start();
 
 $pag = "leitura-compartilhada";
 ?>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 <div class="py-5 mx-5">
-    <h1 style="font-size: 36px">Leitura Compartilhada - Grupos</h1>
+    <div class="d-flex justify-content-between">
+        <div class="">
+            <h1 style="font-size: 36px">Leitura Compartilhada - Grupos</h1>
+        </div>
+        <div class="">
+            <button type="button" name="Leitura" id="Leitura" class="btn btn-primary">Criar seu próprio Grupo</button>
+        </div>
+    </div>
     <hr>
     <table class="table">
         <thead>
@@ -53,3 +61,59 @@ $pag = "leitura-compartilhada";
         </tbody>
     </table>
 </div>
+
+<div class="modal fade" id="modalCriLeitura" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5" id="staticBackdropLabel">Modal title</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <div class="text-center" id="divbemvindoModal">
+                    <h3 class="lobster-two-italic" style="text-transform: uppercase; font-size: 32px; letter-spacing: 2px">Bem Vindo!</h3>
+                    <p class="f-family-ComfortaaRegular">Para começar crie o seu grupo de Leitura Compartilhado. Nela, nossos irmãos podem trocar experiências, respostas de orações, e muito mais!</p>
+                </div>
+                <div class="">
+                    <form class="bg-dark" action="#" method="post" id="formCriarGrupoLeitura">
+                        <p>Vamos Lá!</p>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="input-group has-validation">
+                                    <span class="input-group-text">@</span>
+                                    <div class="form-floating is-invalid">
+                                        <input type="text" class="form-control is-invalid" id="floatingInputGroup2" placeholder="Username" required>
+                                        <label for="floatingInputGroup2" class="text-dark">Username</label>
+                                    </div>
+                                    <div class="invalid-feedback">
+                                        Please choose a username.
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary">Understood</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script type="text/javascript">
+    $(document).ready(function() {
+        $('#modalCriLeitura').modal('show');
+    })
+</script>
+
+<script type="text/javascript">
+    $(document).ready(function() {
+        $('#Leitura').click(function() {
+            $('#divbemvindoModal').removeClass();
+            $('#divbemvindoModal').addClass('d-none');
+            $('#modalCriLeitura').modal('show');
+        })
+    })
+</script>

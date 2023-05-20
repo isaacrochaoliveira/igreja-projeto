@@ -208,3 +208,7 @@
 .pointer {
     cursor: pointer;
 }
+
+.lobster-two-italic {
+    font-family: 'Lobster-Two-BoldItalic';
+}
