@@ -75,18 +75,18 @@ $pag = "leitura-compartilhada";
                     <p class="f-family-ComfortaaRegular">Para começar crie o seu grupo de Leitura Compartilhado. Nela, nossos irmãos podem trocar experiências, respostas de orações, e muito mais!</p>
                 </div>
                 <div class="">
-                    <form class="bg-dark" action="#" method="post" id="formCriarGrupoLeitura">
+                    <form class="bg-gradient-primary" action="#" method="post" id="formCriarGrupoLeitura">
                         <p>Vamos Lá!</p>
                         <div class="row">
                             <div class="col-md-6">
                                 <div class="input-group has-validation">
                                     <span class="input-group-text">@</span>
                                     <div class="form-floating is-invalid">
-                                        <input type="text" class="form-control is-invalid" id="floatingInputGroup2" placeholder="Username" required>
-                                        <label for="floatingInputGroup2" class="text-dark">Username</label>
+                                        <input type="text" class="form-control" onkeyup="verify()" id="nome_grupo" name="nome_grupo" placeholder="Username">
+                                        <label for="nome_grupo" class="text-dark">Username</label>
                                     </div>
-                                    <div class="invalid-feedback">
-                                        Please choose a username.
+                                    <div id="checkNomeGrupo" class="d-none">
+                                        Escolha um nome para o seu grupo.
                                     </div>
                                 </div>
                             </div>
@@ -116,4 +116,20 @@ $pag = "leitura-compartilhada";
             $('#modalCriLeitura').modal('show');
         })
     })
+</script>
+
+<script type="text/javascript">
+    function verify() {
+        var nome = $('#nome_grupo').val();
+        if (nome === "") {
+            $('#nome_grupo').addClass('is-invalid');
+            $('#checkNomeGrupo').removeClass();
+            $('#checkNomeGrupo').addClass('invalid-feedback text-light');
+        } else {
+            $('#nome_grupo').removeClass();
+            $('#nome_grupo').addClass('form-control');
+            $('#checkNomeGrupo').removeClass();
+            $('#checkNomeGrupo').addClass('d-none');
+        }
+    }
 </script>
