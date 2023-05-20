@@ -13,7 +13,7 @@ $pag = 'leitura-individual';
 <script src="../assets/dist/fullcalendar.js"></script>
 <div class="d-flex flex-wrap mt-3 mx-2">
 	<div id="calendar" class="w-65porc">
-	
+
 	</div>
 	<div class="w-25">
 		<h1 style="font-size: 40px">Faça seu plano de Leitura</h1>
@@ -98,9 +98,13 @@ $pag = 'leitura-individual';
 							<img targer="Foto de Perfil do Usuário" id="perfil" width="150" height="150"/>
 						</div>
 						<div>
+							<p>Índice: <span id="indice"></span></p>
 							<p>Título: <span id="title"></span></p>
 							<p>Início: <span id="start"></span></p>
 							<p>Fim: <span id="end"></span></p>
+							<div id="bg-color-jobs">
+								<br>
+							</div>
 						</div>
 					</div>
 				</div>
@@ -183,6 +187,8 @@ $pag = 'leitura-individual';
 					$('#title').text(array[1]);
 					$('#start').text(array[2]);
 					$('#end').text(array[3]);
+					$('#indice').text(array[5]);
+					document.getElementById('bg-color-jobs').style.background = array[4];
 				}
 			})
 		})

@@ -10,12 +10,13 @@ if (count($res) > 0) {
 	$title = $res[0]['desc_indLei'];
 	$start = $res[0]['data_job'];
 	$end = $res[0]['data_job_end'];
+	$cor = $res[0]['color'];
 }
 
 $start = implode('/', array_reverse(explode('-', $start)));
 $end = implode('/', array_reverse(explode('-', $end)));
 
 
-echo "$perfil!@#$title!@#$start!@#$end";
+echo "$perfil!@#$title!@#$start!@#$end!@#$cor!@#$id_indLei";
 
 ?>
