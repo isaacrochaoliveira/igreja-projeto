@@ -175,6 +175,7 @@ $pag = 'leitura-individual';
 			document.getElementById('salvarLeitura').style.background = color;
 		}
 		if (op2 === 'cor') {
+			document.getElementById('chooise').value = option;
 			document.getElementById('salvarLeitura').style.background = option;
 		}
 	}
