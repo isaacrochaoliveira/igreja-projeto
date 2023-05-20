@@ -41,7 +41,7 @@ $pag = 'leitura-individual';
 			<div class="row mt-3">
 				<label for="">Dê cor as suas anotações</label>
 				<?php
-					$query = $pdo->query("SELECT * FROM leitura_cores_favoritas WHERE id_userIndLei = '$_SESSEION[id]'");
+					$query = $pdo->query("SELECT * FROM leitura_cores_favoritas WHERE id_userIndLei = '$_SESSION[id]'");
 					$res = $query->fetchAll(PDO::FETCH_ASSOC);
 					if (count($res) > 0) {
 						for ($i = 0; $i < count($res); $i++) {
@@ -50,8 +50,8 @@ $pag = 'leitura-individual';
 							$hexa = $res[$i]['hexa'];
 							?>
 								<div class="col-md-1">
-									<div style="font-size: 26px; background: <?=$hexa?>">
-										<i onclick="upCor('<?=$hexa?>')" class="fa-solid fa-square pointer"></i>
+									<div style="font-size: 26px; ">
+										<i onclick="upCor('<?=$hexa?>', 'cor')" class="fa-solid fa-square pointer" style="color: <?=$hexa?>"></i>
 									</div>
 								</div>
 							<?php
@@ -142,7 +142,7 @@ $pag = 'leitura-individual';
 </div>
 
 <script type="text/javascript">
-	function upCor(option) {
+	function upCor(option, op2) {
 		if (option === 'red') {
 			document.getElementById('chooise').value = '#DC3545';
 			document.getElementById('salvarLeitura').style.background = '#DC3545';
@@ -168,11 +168,14 @@ $pag = 'leitura-individual';
 			document.getElementById('salvarLeitura').style.background = '#343A40';
 		}
 		if (option === 'choose') {
-			document.getElementById('chooise').value = 'none';
 			var color = document.getElementById('cor').value;
+			document.getElementById('chooise').value = color;
 			$('#divBtnSalvar').removeClass();
 			$('#divBtnSalvar').addClass('col-md-4');
 			document.getElementById('salvarLeitura').style.background = color;
+		}
+		if (op2 === 'cor') {
+			document.getElementById('salvarLeitura').style.background = option;
 		}
 	}
 </script>
@@ -225,7 +228,16 @@ $pag = 'leitura-individual';
 		$('#salvarCor').click(function() {
 			var pag = "<?=$pag?>";
 			$.ajax({
-				url: pag + ''
+				url: pag + '/cores.php',
+				method: 'post',
+				data: $('#formBegin').serialize(),
+				success: function(msg) {
+					if (msg == "Cor salva") {
+						alert('Sua cor foi salva com Sucesso!');
+					} else {
+						alert(msg);
+					}
+				}
 			})
 		})
 	})
