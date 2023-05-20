@@ -1,5 +1,6 @@
 <?php
 
+require_once('../protect.php');
 require_once('../conexao.php');
 require_once('../config.php');
 session_start();
