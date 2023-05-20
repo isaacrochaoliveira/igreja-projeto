@@ -15,7 +15,7 @@ $pag = 'leitura-individual';
 	<div id="calendar" class="w-65porc">
 
 	</div>
-	<div class="w-25">
+	<div class="w-30porc mx-auto">
 		<h1 style="font-size: 40px">Faça seu plano de Leitura</h1>
 		<hr>
 		<p>Adicione o sua Leitura Diária, e acompanhe no calendário</p>
@@ -40,6 +40,24 @@ $pag = 'leitura-individual';
 			</div>
 			<div class="row mt-3">
 				<label for="">Dê cor as suas anotações</label>
+				<?php
+					$query = $pdo->query("SELECT * FROM leitura_cores_favoritas WHERE id_userIndLei = '$_SESSEION[id]'");
+					$res = $query->fetchAll(PDO::FETCH_ASSOC);
+					if (count($res) > 0) {
+						for ($i = 0; $i < count($res); $i++) {
+							foreach ($res[$i] as $key => $value) {
+							}
+							$hexa = $res[$i]['hexa'];
+							?>
+								<div class="col-md-1">
+									<div style="font-size: 26px; background: <?=$hexa?>">
+										<i onclick="upCor('<?=$hexa?>')" class="fa-solid fa-square pointer"></i>
+									</div>
+								</div>
+							<?php
+						}
+					}
+				?>
 				<div class="col-md-1">
 					<div class="text-danger" style="font-size: 26px">
 						<i onclick="upCor('red')" class="fa-solid fa-square pointer"></i>
@@ -72,6 +90,11 @@ $pag = 'leitura-individual';
 				</div>
 				<div class="col-md-3">
 					<input type="color" name="cor"  id="cor" class="form-control" onchange="upCor('choose')">
+				</div>
+			</div>
+			<div class="row">
+				<div class="d-none" id="divBtnSalvar">
+					<button type="button" name="salvarCor" id="salvarCor" class="btn btn-light">Salvar cor</button>
 				</div>
 			</div>
 			<div class="row mt-3">
@@ -147,6 +170,8 @@ $pag = 'leitura-individual';
 		if (option === 'choose') {
 			document.getElementById('chooise').value = 'none';
 			var color = document.getElementById('cor').value;
+			$('#divBtnSalvar').removeClass();
+			$('#divBtnSalvar').addClass('col-md-4');
 			document.getElementById('salvarLeitura').style.background = color;
 		}
 	}
@@ -190,6 +215,17 @@ $pag = 'leitura-individual';
 					$('#indice').text(array[5]);
 					document.getElementById('bg-color-jobs').style.background = array[4];
 				}
+			})
+		})
+	})
+</script>
+
+<script type="text/javascript">
+	$(document).ready(function() {
+		$('#salvarCor').click(function() {
+			var pag = "<?=$pag?>";
+			$.ajax({
+				url: pag + ''
 			})
 		})
 	})
