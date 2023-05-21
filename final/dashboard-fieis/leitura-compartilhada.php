@@ -69,13 +69,13 @@ $pag = "leitura-compartilhada";
                 <h1 class="modal-title fs-5" id="staticBackdropLabel">Modal title</h1>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
-            <div class="modal-body">
-                <div class="text-center" id="divbemvindoModal">
-                    <h3 class="lobster-two-italic" style="text-transform: uppercase; font-size: 32px; letter-spacing: 2px">Bem Vindo!</h3>
-                    <p class="f-family-ComfortaaRegular">Para começar crie o seu grupo de Leitura Compartilhado. Nela, nossos irmãos podem trocar experiências, respostas de orações, e muito mais!</p>
-                </div>
-                <div class="">
-                    <form class="border" action="#" method="post" id="formCriarGrupoLeitura">
+            <form action="#" method="post" id="formLeituraCompartilhada">
+                <div class="modal-body">
+                    <div class="text-center" id="divbemvindoModal">
+                        <h3 class="lobster-two-italic" style="text-transform: uppercase; font-size: 32px; letter-spacing: 2px">Bem Vindo!</h3>
+                        <p class="f-family-ComfortaaRegular">Para começar crie o seu grupo de Leitura Compartilhado. Nela, nossos irmãos podem trocar experiências, respostas de orações, e muito mais!</p>
+                    </div>
+                    <div class="">
                         <p>Vamos Lá!</p>
                         <div class="row mb-3">
                             <div class="col">
@@ -128,13 +128,13 @@ $pag = "leitura-compartilhada";
                                 </div>
                             </div>
                         </div>
-                    </form>
+                    </div>
                 </div>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-primary">Understood</button>
-            </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Voltar</button>
+                    <button type="button" class="btn btn-primary" id="btnEnviarFormLeitura">Enviar</button>
+                </div>
+            </form>
         </div>
     </div>
 </div>
@@ -196,4 +196,25 @@ $pag = "leitura-compartilhada";
             $('#DataLancamento').addClass('d-none');
         }       
     }
+</script>
+
+<script>
+    $(document).ready(function() {
+        $('#btnEnviarFormLeitura').click(function() {
+            var pag = "<?=$pag?>";
+            $.ajax({
+                url: pag + '/enviar.php',
+                method: 'post',
+                data: $('#formLeituraCompartilhada').serialize(),
+                beforeSend: function() {
+                    $('#btnEnviarFormLeitura').text('Enviando...');
+                },
+                success: function(msg) {
+                    if (msg === "ENVIADO") {
+                        window.location = 'index.php?pag=leitura-compartilhada';
+                    }
+                }
+            })
+        })
+    })
 </script>
