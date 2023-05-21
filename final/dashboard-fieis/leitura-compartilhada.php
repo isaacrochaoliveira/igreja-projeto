@@ -75,10 +75,10 @@ $pag = "leitura-compartilhada";
                     <p class="f-family-ComfortaaRegular">Para começar crie o seu grupo de Leitura Compartilhado. Nela, nossos irmãos podem trocar experiências, respostas de orações, e muito mais!</p>
                 </div>
                 <div class="">
-                    <form class="bg-gradient-primary" action="#" method="post" id="formCriarGrupoLeitura">
+                    <form class="border" action="#" method="post" id="formCriarGrupoLeitura">
                         <p>Vamos Lá!</p>
-                        <div class="row">
-                            <div class="col-md-6">
+                        <div class="row mb-3">
+                            <div class="col">
                                 <div class="input-group has-validation">
                                     <span class="input-group-text">@</span>
                                     <div class="form-floating is-invalid">
@@ -87,6 +87,20 @@ $pag = "leitura-compartilhada";
                                     </div>
                                     <div id="checkNomeGrupo" class="d-none">
                                         Escolha um nome para o seu grupo.
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row mb-3">
+                            <div class="col">
+                                <div class="input-group has-validation">
+                                    <span class="input-group-text"><i class="fa-solid fa-book-bible"></i></span>
+                                    <div class="form-floating is-invalid">
+                                        <textarea cols="10" rows="80" class="form-control" onkeyup="verifyPlano()" id="plano_de_leitura" name="plano_de_leitura" placeholder="Plano de Leitura"></textarea>
+                                        <label for="plano_de_leitura" class="text-dark">Define seu plano</label>
+                                    </div>
+                                    <div id="checkplanodeleitura" class="d-none">
+                                        Defina um plano de leitura para o seu grupo
                                     </div>
                                 </div>
                             </div>
@@ -124,12 +138,25 @@ $pag = "leitura-compartilhada";
         if (nome === "") {
             $('#nome_grupo').addClass('is-invalid');
             $('#checkNomeGrupo').removeClass();
-            $('#checkNomeGrupo').addClass('invalid-feedback text-light');
+            $('#checkNomeGrupo').addClass('invalid-feedback');
         } else {
             $('#nome_grupo').removeClass();
             $('#nome_grupo').addClass('form-control');
             $('#checkNomeGrupo').removeClass();
             $('#checkNomeGrupo').addClass('d-none');
+        }
+    }
+    function verifyPlano() {
+        var plano = $('#plano_de_leitura').val();
+        if (plano === "") {
+            $('#plano_de_leitura').addClass('is-invalid');
+            $('#checkplanodeleitura').removeClass();
+            $('#checkplanodeleitura').addClass('invalid-feedback');
+        } else {
+            $('#plano_de_leitura').removeClass();
+            $('#plano_de_leitura').addClass('form-control');
+            $('#checkplanodeleitura').removeClass();
+            $('#checkplanodeleitura').addClass('d-none');
         }
     }
 </script>
