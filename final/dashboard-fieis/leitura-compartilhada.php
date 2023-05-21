@@ -105,6 +105,29 @@ $pag = "leitura-compartilhada";
                                 </div>
                             </div>
                         </div>
+                        <div class="row mb-3">
+                            <div class="col" id="AtivoouInvativo">
+                                <div class="input-group">
+                                    <span class="input-group-text"><i class="fa-solid fa-question"></i></span>
+                                    <div class="form-floating">
+                                        <select name="ativoLeitura" id="ativoLeitura" class="form-select" onchange="AtivoouInativo()">
+                                            <option value="S">Ativo</option>
+                                            <option value="N">Inativo</option>
+                                        </select>
+                                        <label for="plano_de_leitura" class="text-dark">Seu grupo ficará ativo ou inativo</label>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="d-none" id="DataLancamento">
+                                <div class="input-group">
+                                    <span class="input-group-text"><i class="fa-solid fa-calendar"></i></span>
+                                    <div class="form-floating">
+                                        <input type="date" name="data_de_lancamento" id="data_de_lancamento" placeholder="Data de Lançamento" class="form-control">
+                                        <label for="data_de_lancamento">Data de lançamento do grupo</label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </form>
                 </div>
             </div>
@@ -158,5 +181,19 @@ $pag = "leitura-compartilhada";
             $('#checkplanodeleitura').removeClass();
             $('#checkplanodeleitura').addClass('d-none');
         }
+    }
+    function AtivoouInativo() {
+        var ativo = $('#ativoLeitura').val();
+        if (ativo === "N") {
+            $('#AtivoouInvativo').removeClass();
+            $('#AtivoouInvativo').addClass('col-md-6');
+            $('#DataLancamento').removeClass();
+            $('#DataLancamento').addClass('col-md-6');
+        } else if (ativo === "S") {
+            $('#AtivoouInvativo').removeClass();
+            $('#AtivoouInvativo').addClass('col');
+            $('#DataLancamento').removeClass();
+            $('#DataLancamento').addClass('d-none');
+        }       
     }
 </script>
