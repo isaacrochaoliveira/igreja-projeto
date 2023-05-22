@@ -165,11 +165,23 @@ $pag = "leitura-compartilhada";
     <div class="modal-dialog modal-lg">
         <div class="modal-content">
             <div class="modal-header">
-                <h1 class="modal-title fs-5" id="staticBackdropLabel">Detalhes dO Grupo</h1>
+                <h1 class="modal-title fs-5" id="staticBackdropLabel">Detalhes do Grupo</h1>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
-            <div class="modal-body">
-
+            <div class="modal-body bg-dark text-light">
+                <div class="row">
+                    <div class="col-md-9">
+                        <label for="">GRUPO</label>
+                        <input type="text" name="grupo" id="grupo" class="form-control">
+                        <label for="" class="mt-3">PLANO</label>
+                        <textarea name="name" rows="5" cols="74"></textarea>
+                    </div>
+                    <div class="col-md-3">
+                        <img src="../assets/img/fotos/sem-foto.jpg" alt="Perfil do Usuario" id="userLeitura" width="180">
+                        <label for="" class="mt-3">CRIADOR DO GRUPO</label>
+                        <input type="text" name="criador" id="criador">
+                    </div>
+                </div>
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Voltar</button>
@@ -274,8 +286,10 @@ $pag = "leitura-compartilhada";
                 data: {id},
                 success: function(msg) {
                     var array = msg.split('!');
-                    if (array == 'Modal') {
+                    if (array[0] == 'Modal') {
                         $('#detalhesLeituraCompartilhada').modal('show');
+                    } else {
+                        alert(array);
                     }
                 }
             })
