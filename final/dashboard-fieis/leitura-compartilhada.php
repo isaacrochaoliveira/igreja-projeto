@@ -24,35 +24,43 @@ $pag = "leitura-compartilhada";
                 <th scope="col">#</th>
                 <th scope="col">Grupo</th>
                 <th scope="col">Plano</th>
-                <th scope="col">Criado</th>
                 <th scope="col">Ativo</th>
+                <th scope="col">Lançanmento</th>
                 <th scope="col"></th>
             </tr>
         </thead>
         <tbody>
             <?php
-                $query = $pdo->query("SELECT * FROM leitura_compartilhada WHERE id_autorLeiCom = '$_SESSION[id]'");
+                $query = $pdo->query("SELECT * FROM leitura_compartilhada JOIN usuarios ON leitura_compartilhada.id_autorLeiCom = usuarios.id WHERE id_autorLeiCom = '$_SESSION[id]'");
                 $res = $query->fetchAll(PDO::FETCH_ASSOC);
                 if (count($res) > 0) {
                     for ($i = 0; $i < count($res); $i++) {
                         foreach ($res[$i] as $key => $value) {
                         }
                         $id = $res[$i]['id_leiCom'];
-                        $autor = $res[$i]['id_autorLeiCom'];
+                        $autor = $res[$i]['nome'];
                         $grupo = $res[$i]['nome_LeiCom'];
                         $plano = $res[$i]['plano_LeiCom'];
                         $ativo = $res[$i]['ativo_LeiCom'];
                         $data = $res[$i]['data_LeiCom'];
+                        $lancamento = $res[$i]['data_de_lancamento'];
+                        $dataF = implode('/', array_reverse(explode('-', $lancamento)));
 
-                        $dataF = implode('/', array_reverse(explode('-', $data)));
+                        if ($ativo == "N") {
+                            $ativo = "Não Publicado!";
+                        } else {
+                            if ($ativo == "S") {
+                                $ativo = "Publicado";
+                            }
+                        }
+
                         ?>
                             <tr>
-                                <td><?=$id?></td>
-                                <td><?=$autor?></td>
+                                <th><?=$id?></th>
                                 <td><?=$grupo?></td>
                                 <td><?=$plano?></td>
-                                <td><?=$dataF?></td>
                                 <td><?=$ativo?></td>
+                                <td><?=$dataF?></td>
                             </tr>
                         <?php
                     }
@@ -62,11 +70,11 @@ $pag = "leitura-compartilhada";
     </table>
 </div>
 
-<div class="modal fade" id="modalCriLeitura" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+<div class="modal fade" id="modalCriLeitura"  tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
     <div class="modal-dialog modal-lg">
         <div class="modal-content">
             <div class="modal-header">
-                <h1 class="modal-title fs-5" id="staticBackdropLabel">Modal title</h1>
+                <h1 class="modal-title fs-5" id="staticBackdropLabel">Leiutra Compartilhada</h1>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <form action="#" method="post" id="formLeituraCompartilhada">
@@ -131,6 +139,9 @@ $pag = "leitura-compartilhada";
                     </div>
                 </div>
                 <div class="modal-footer">
+                    <div class="d-none" role="alert" id="somethingwrong">
+                        <span id="text_danger"></span>
+                    </div>
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Voltar</button>
                     <button type="button" class="btn btn-primary" id="btnEnviarFormLeitura">Enviar</button>
                 </div>
@@ -194,7 +205,7 @@ $pag = "leitura-compartilhada";
             $('#AtivoouInvativo').addClass('col');
             $('#DataLancamento').removeClass();
             $('#DataLancamento').addClass('d-none');
-        }       
+        }
     }
 </script>
 
@@ -212,6 +223,10 @@ $pag = "leitura-compartilhada";
                 success: function(msg) {
                     if (msg === "ENVIADO") {
                         window.location = 'index.php?pag=leitura-compartilhada';
+                    } else {
+                        $('#somethingwrong').removeClass();
+                        $('#somethingwrong').addClass('alert alert-danger');
+                        $('#text_danger').text(msg);
                     }
                 }
             })
