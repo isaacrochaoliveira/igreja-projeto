@@ -25,7 +25,7 @@ $pag = "leitura-compartilhada";
                 <th scope="col">Grupo</th>
                 <th scope="col">Plano</th>
                 <th scope="col">Membros</th>
-                <th scope="col">Lançanmento</th>
+                <th scope="col">Criado</th>
                 <th scope="col" style="width: 0px"></th>
             </tr>
         </thead>
@@ -42,9 +42,10 @@ $pag = "leitura-compartilhada";
                         $grupo = $res[$i]['nome_LeiCom'];
                         $plano = $res[$i]['plano_LeiCom'];
                         $ativo = $res[$i]['ativo_LeiCom'];
+                        $membros = $res[$i]['part_indLei'];
                         $data = $res[$i]['data_LeiCom'];
                         $lancamento = $res[$i]['data_de_lancamento'];
-                        $dataF = implode('/', array_reverse(explode('-', $lancamento)));
+                        $dataF = implode('/', array_reverse(explode('-', $data)));
 
                         if ($ativo == "N") {
                             $ativo = "Não Publicado!";
@@ -66,9 +67,9 @@ $pag = "leitura-compartilhada";
                                 <th><?=$id?></th>
                                 <td><?=$grupo?></td>
                                 <td><?=$plano?></td>
-                                <td><?=$ativo?></td>
+                                <td><?=$membros?> Membros</td>
                                 <td><?=$dataF?></td>
-                                <td style="cursor: pointer;" class="<?=$background?>">
+                                <td onclick="modalInformacoes(<?=$id?>)" style="cursor: pointer;" class="<?=$background?>">
                                     <i class="fa-solid fa-plus"></i>
                                 </td>
                             </tr>
@@ -160,6 +161,25 @@ $pag = "leitura-compartilhada";
     </div>
 </div>
 
+<div class="modal fade" id="detalhesLeituraCompartilhada"  tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5" id="staticBackdropLabel">Detalhes dO Grupo</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Voltar</button>
+                <button type="button" class="btn btn-primary" id="btnEnviarFormLeitura">Enviar</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
 <script type="text/javascript">
     $(document).ready(function() {
         $('#modalCriLeitura').modal('show');
@@ -242,4 +262,23 @@ $pag = "leitura-compartilhada";
             })
         })
     })
+</script>
+
+<script type="text/javascript">
+    function modalInformacoes(id) {
+        $(document).ready(function() {
+            var pag = "<?=$pag?>";
+            $.ajax({
+                url: pag + '/detalhes.php',
+                method: 'post',
+                data: {id},
+                success: function(msg) {
+                    var array = msg.split('!');
+                    if (array == 'Modal') {
+                        $('#detalhesLeituraCompartilhada').modal('show');
+                    }
+                }
+            })
+        })
+    }
 </script>
