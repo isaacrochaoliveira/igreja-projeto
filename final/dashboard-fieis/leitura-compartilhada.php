@@ -171,15 +171,37 @@ $pag = "leitura-compartilhada";
             <div class="modal-body bg-dark text-light">
                 <div class="row">
                     <div class="col-md-9">
-                        <label for="">GRUPO</label>
-                        <input type="text" name="grupo" id="grupo" class="form-control">
+                        <div class="row">
+                            <div class="col-md-9">
+                                <label for="">GRUPO</label>
+                                <input type="text" name="grupo" id="grupo" class="form-control">
+                            </div>
+                            <div class="col-md-3">
+                                <label for="">MEMBROS</label>
+                                <input type="number" name="membros_ind" id="membros_ind" class="form-control">
+                            </div>
+                        </div>
                         <label for="" class="mt-3">PLANO</label>
-                        <textarea name="name" rows="5" cols="74"></textarea>
+                        <textarea name="plano" id="plano" rows="5" cols="74" class="form-control"></textarea>
                     </div>
                     <div class="col-md-3">
                         <img src="../assets/img/fotos/sem-foto.jpg" alt="Perfil do Usuario" id="userLeitura" width="180">
                         <label for="" class="mt-3">CRIADOR DO GRUPO</label>
-                        <input type="text" name="criador" id="criador">
+                        <input type="text" name="criador" id="criador" class="form-control">
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-4">
+                        <label for="">Data de Criação</label>
+                        <input type="date" name="criado" id="criado" class="form-control">
+                    </div>
+                    <div class="col-md-4">
+                        <label for="">Hora da Criação</label>
+                        <input type="time" name="hora_criado" id="hora_criado" class="form-control">
+                    </div>
+                    <div class="col-md-4">
+                        <label for="">Ativo</label>
+                        <input type="text" name="ativo" id="ativo" class="form-control">
                     </div>
                 </div>
             </div>
@@ -287,6 +309,12 @@ $pag = "leitura-compartilhada";
                 success: function(msg) {
                     var array = msg.split('!');
                     if (array[0] == 'Modal') {
+                        $('#grupo').val(array[1]);
+                        $('#plano').val(array[2]);
+                        $('#ativo').val(array[3]);
+                        $('#criado').val(array[4]);
+                        $('#membros_ind').val(array[5]);
+                        $('#hora_criado').val(array[6]);
                         $('#detalhesLeituraCompartilhada').modal('show');
                     } else {
                         alert(array);

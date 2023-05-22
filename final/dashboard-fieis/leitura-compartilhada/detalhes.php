@@ -17,8 +17,20 @@ if (count($res) > 0) {
     $criador = $res[0]['nome'];
     $nasc = $res[0]['nasc'];
     $perfil = $res[0]['perfil'];
+
+    if ($ativo == "N") {
+        $ativo = "Não Publicado!";
+    } else {
+        if ($ativo == "A") {
+            $ativo = "Publicado";
+        } else {
+            if ($ativo == "S") {
+                $ativo = "Suspenso";
+            }
+        }
+    }
 }
 
-echo "Modal!$grupo!$plano!$ativo!$criado!$membros!$hora_criado!$lancamento!$criado!$nasc!$nasc!$perfil";
+echo "Modal!$grupo!$plano!$ativo!$criado!$membros!$hora_criado!$lancamento!$criador!$nasc!$nasc!$perfil";
 
 ?>
