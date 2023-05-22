@@ -28,6 +28,6 @@ if ($ativo == "N") {
     }
 }
 
-$query = $pdo->query("INSERT INTO leitura_compartilhada SET id_autorLeiCom = '$id_user', nome_LeiCom = '$grupo', plano_LeiCom = '$plano', ativo_LeiCom = '$ativo', part_indLei = '$data_lancamento', data_LeiCom = '$today', hora_LeiCom = '$rightnow'");
+$query = $pdo->query("INSERT INTO leitura_compartilhada SET id_autorLeiCom = '$id_user', nome_LeiCom = '$grupo', plano_LeiCom = '$plano', ativo_LeiCom = '$ativo', data_de_lancamento = '$data_lancamento', data_LeiCom = '$today', hora_LeiCom = '$rightnow'");
 echo "ENVIADO";
 ?>

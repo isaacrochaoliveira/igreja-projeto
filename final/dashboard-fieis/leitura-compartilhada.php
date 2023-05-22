@@ -24,9 +24,9 @@ $pag = "leitura-compartilhada";
                 <th scope="col">#</th>
                 <th scope="col">Grupo</th>
                 <th scope="col">Plano</th>
-                <th scope="col">Ativo</th>
+                <th scope="col">Membros</th>
                 <th scope="col">Lançanmento</th>
-                <th scope="col"></th>
+                <th scope="col" style="width: 0px"></th>
             </tr>
         </thead>
         <tbody>
@@ -48,9 +48,16 @@ $pag = "leitura-compartilhada";
 
                         if ($ativo == "N") {
                             $ativo = "Não Publicado!";
+                            $background = 'bg-danger';
                         } else {
-                            if ($ativo == "S") {
+                            if ($ativo == "A") {
                                 $ativo = "Publicado";
+                                $background = 'bg-success';
+                            } else {
+                                if ($ativo == "S") {
+                                    $ativo = "Suspenso";
+                                    $background = 'bg-dark';
+                                }
                             }
                         }
 
@@ -61,6 +68,9 @@ $pag = "leitura-compartilhada";
                                 <td><?=$plano?></td>
                                 <td><?=$ativo?></td>
                                 <td><?=$dataF?></td>
+                                <td style="cursor: pointer;" class="<?=$background?>">
+                                    <i class="fa-solid fa-plus"></i>
+                                </td>
                             </tr>
                         <?php
                     }
