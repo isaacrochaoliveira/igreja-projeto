@@ -185,7 +185,7 @@ $pag = "leitura-compartilhada";
                         <textarea name="plano" id="plano" rows="5" cols="74" class="form-control"></textarea>
                     </div>
                     <div class="col-md-3">
-                        <img src="../assets/img/fotos/sem-foto.jpg" alt="Perfil do Usuario" id="userLeitura" width="180">
+                        <img src="../assets/img/fotos/sem-foto.jpg" alt="Perfil do Usuario" id="userLeitura" width="180" height="180">
                         <label for="" class="mt-3">CRIADOR DO GRUPO</label>
                         <input type="text" name="criador" id="criador" class="form-control">
                     </div>
@@ -312,9 +312,11 @@ $pag = "leitura-compartilhada";
                         $('#grupo').val(array[1]);
                         $('#plano').val(array[2]);
                         $('#ativo').val(array[3]);
-                        $('#criado').val(array[4]);
-                        $('#membros_ind').val(array[5]);
-                        $('#hora_criado').val(array[6]);
+                        $('#criado').val(array[5]);
+                        $('#membros_ind').val(array[6]);
+                        $('#hora_criado').val(array[7]);
+                        $('#criador').val(array[9]);
+                        $('#userLeitura').attr('src', '../assets/img/fotos/'+array[10]);
                         $('#detalhesLeituraCompartilhada').modal('show');
                     } else {
                         alert(array);

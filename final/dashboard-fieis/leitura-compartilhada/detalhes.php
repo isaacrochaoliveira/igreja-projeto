@@ -15,7 +15,6 @@ if (count($res) > 0) {
     $hora_criado = $res[0]['hora_LeiCom'];
     $lancamento = $res[0]['data_de_lancamento'];
     $criador = $res[0]['nome'];
-    $nasc = $res[0]['nasc'];
     $perfil = $res[0]['perfil'];
 
     if ($ativo == "N") {
@@ -30,7 +29,6 @@ if (count($res) > 0) {
         }
     }
 }
-
-echo "Modal!$grupo!$plano!$ativo!$criado!$membros!$hora_criado!$lancamento!$criador!$nasc!$nasc!$perfil";
+echo "Modal!$grupo!$plano!$ativo!$criado!$membros!$hora_criado!$lancamento!$criador!$perfil";
 
 ?>
