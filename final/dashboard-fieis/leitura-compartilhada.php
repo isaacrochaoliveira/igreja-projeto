@@ -130,7 +130,7 @@ $pag = "leitura-compartilhada";
                                     <span class="input-group-text"><i class="fa-solid fa-question"></i></span>
                                     <div class="form-floating">
                                         <select name="ativoLeitura" id="ativoLeitura" class="form-select" onchange="AtivoouInativo()">
-                                            <option value="S">Ativo</option>
+                                            <option value="A">Ativo</option>
                                             <option value="N">Inativo</option>
                                         </select>
                                         <label for="plano_de_leitura" class="text-dark">Seu grupo ficará ativo ou inativo</label>
@@ -210,11 +210,13 @@ $pag = "leitura-compartilhada";
                 </div>
             </div>
             <div class="modal-footer">
-				<div>
-					
+				<div id="btnEntrarLeiCom">
+                	<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Voltar</button>
+                	<button type="button" class="btn btn-primary" id="btnEnviarFormLeitura">Enviar</button>
 				</div>
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Voltar</button>
-                <button type="button" class="btn btn-primary" id="btnEnviarFormLeitura">Enviar</button>
+				<div id="alertComeOutLeiCom">
+					<p class="text-danger">OPS! Parece que este grupo não está aberto para entrada de novos participantes! Volte mais tarde</p>
+				</div>
             </div>
         </div>
     </div>
@@ -325,6 +327,13 @@ $pag = "leitura-compartilhada";
 						$('#lancamento').val(array[8]);
                         $('#criador').val(array[9]);
                         $('#userLeitura').attr('src', '../assets/img/fotos/'+array[10]);
+						if (!(array[3] == "Publicado")) {
+							$('#alertComeOutLeiCom').addClass('d-block');
+							$('#btnEntrarLeiCom').addClass('d-none');
+						} else {
+							$('#alertComeOutLeiCom').addClass('d-none');
+							$('#btnEntrarLeiCom').addClass('d-block');
+						}
                         $('#detalhesLeituraCompartilhada').modal('show');
                     } else {
                         alert(array);
