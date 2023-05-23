@@ -191,21 +191,28 @@ $pag = "leitura-compartilhada";
                     </div>
                 </div>
                 <div class="row">
-                    <div class="col-md-4">
+                    <div class="col-md-3">
                         <label for="">Data de Criação</label>
                         <input type="date" name="criado" id="criado" class="form-control">
                     </div>
-                    <div class="col-md-4">
+                    <div class="col-md-3">
                         <label for="">Hora da Criação</label>
                         <input type="time" name="hora_criado" id="hora_criado" class="form-control">
                     </div>
-                    <div class="col-md-4">
+                    <div class="col-md-3">
                         <label for="">Ativo</label>
                         <input type="text" name="ativo" id="ativo" class="form-control">
                     </div>
+					<div class="col-md-3">
+						<label for="">Lançamento</label>
+						<input type="date" id="lancamento" name="lancamento" class="form-control">
+					</div>
                 </div>
             </div>
             <div class="modal-footer">
+				<div>
+					
+				</div>
                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Voltar</button>
                 <button type="button" class="btn btn-primary" id="btnEnviarFormLeitura">Enviar</button>
             </div>
@@ -315,6 +322,7 @@ $pag = "leitura-compartilhada";
                         $('#criado').val(array[5]);
                         $('#membros_ind').val(array[6]);
                         $('#hora_criado').val(array[7]);
+						$('#lancamento').val(array[8]);
                         $('#criador').val(array[9]);
                         $('#userLeitura').attr('src', '../assets/img/fotos/'+array[10]);
                         $('#detalhesLeituraCompartilhada').modal('show');
