@@ -328,9 +328,13 @@ $pag = "leitura-compartilhada";
                         $('#criador').val(array[9]);
                         $('#userLeitura').attr('src', '../assets/img/fotos/'+array[10]);
 						if (!(array[3] == "Publicado")) {
+							$('#alertComeOutLeiCom').removeClass();
+							$('#btnEntrarLeiCom').removeClass();
 							$('#alertComeOutLeiCom').addClass('d-block');
 							$('#btnEntrarLeiCom').addClass('d-none');
 						} else {
+							$('#alertComeOutLeiCom').removeClass();
+							$('#btnEntrarLeiCom').removeClass();
 							$('#alertComeOutLeiCom').addClass('d-none');
 							$('#btnEntrarLeiCom').addClass('d-block');
 						}
