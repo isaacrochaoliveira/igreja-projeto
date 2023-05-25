@@ -316,17 +316,17 @@ $pag = "leitura-compartilhada";
                 method: 'post',
                 data: {id},
                 success: function(msg) {
-                    var array = msg.split('!');
+                    var array = msg.split('!@#');
                     if (array[0] == 'Modal') {
                         $('#grupo').val(array[1]);
                         $('#plano').val(array[2]);
                         $('#ativo').val(array[3]);
-                        $('#criado').val(array[5]);
-                        $('#membros_ind').val(array[6]);
-                        $('#hora_criado').val(array[7]);
-						$('#lancamento').val(array[8]);
-                        $('#criador').val(array[9]);
-                        $('#userLeitura').attr('src', '../assets/img/fotos/'+array[10]);
+                        $('#criado').val(array[4]);
+                        $('#membros_ind').val(array[5]);
+                        $('#hora_criado').val(array[6]);
+						$('#lancamento').val(array[7]);
+                        $('#criador').val(array[8]);
+                        $('#userLeitura').attr('src', '../assets/img/fotos/'+array[9]);
 						if (!(array[3] == "Publicado")) {
 							$('#alertComeOutLeiCom').removeClass();
 							$('#btnEntrarLeiCom').removeClass();

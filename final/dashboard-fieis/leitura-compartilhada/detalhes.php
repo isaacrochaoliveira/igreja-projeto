@@ -29,6 +29,6 @@ if (count($res) > 0) {
         }
     }
 }
-echo "Modal!$grupo!$plano!$ativo!$criado!$membros!$hora_criado!$lancamento!$criador!$perfil";
+echo "Modal!@#$grupo!@#$plano!@#$ativo!@#$criado!@#$membros!@#$hora_criado!@#$lancamento!@#$criador!@#$perfil";
 
 ?>
