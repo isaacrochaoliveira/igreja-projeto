@@ -165,17 +165,13 @@ $pag = "leitura-compartilhada";
     <div class="modal-dialog modal-lg">
         <div class="modal-content">
             <div class="modal-header">
-                <div class="d-flex">
-					<div>
-						<h1 class="modal-title fs-5" id="staticBackdropLabel">Detalhes do Grupo</h1>
-					</div>
-					<div class="mx-2">
-						<a href="#" onclick="reportarAbuso()"><i class="fa-solid fa-skull-crossbones text-danger" style="font-size: 18px"></i></a>
-					</div>
+				<div class="">
+					<a href="#" onclick="reportarAbuso()" title="Reportar Abuso/Erro"><i class="fa-solid fa-skull-crossbones text-danger" style="font-size: 20px"></i></a>
+					<span class="badge bg-secondary" style="font-size: 18px">Reportar Abuso/Erro</span>
 				</div>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
-            <div class="modal-body bg-dark text-light py-5">
+            <div class="modal-body bg-dark text-light py-3">
                 <div class="row">
                     <div class="col-md-9">
                         <div class="row">
@@ -228,7 +224,6 @@ $pag = "leitura-compartilhada";
         </div>
     </div>
 </div>
-
 
 <script type="text/javascript">
     $(document).ready(function() {
