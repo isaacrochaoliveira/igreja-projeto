@@ -85,7 +85,7 @@ $pag = "leitura-compartilhada";
     <div class="modal-dialog modal-lg">
         <div class="modal-content">
             <div class="modal-header">
-                <h1 class="modal-title fs-5" id="staticBackdropLabel">Leiutra Compartilhada</h1>
+				<h1 class="modal-title fs-5" id="staticBackdropLabel">Leiutra Compartilhada</h1>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <form action="#" method="post" id="formLeituraCompartilhada">
@@ -165,47 +165,54 @@ $pag = "leitura-compartilhada";
     <div class="modal-dialog modal-lg">
         <div class="modal-content">
             <div class="modal-header">
-                <h1 class="modal-title fs-5" id="staticBackdropLabel">Detalhes do Grupo</h1>
+                <div class="d-flex">
+					<div>
+						<h1 class="modal-title fs-5" id="staticBackdropLabel">Detalhes do Grupo</h1>
+					</div>
+					<div class="mx-2">
+						<a href="#" onclick="reportarAbuso()"><i class="fa-solid fa-skull-crossbones text-danger" style="font-size: 18px"></i></a>
+					</div>
+				</div>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
-            <div class="modal-body bg-dark text-light">
+            <div class="modal-body bg-dark text-light py-5">
                 <div class="row">
                     <div class="col-md-9">
                         <div class="row">
                             <div class="col-md-9">
                                 <label for="">GRUPO</label>
-                                <input type="text" name="grupo" id="grupo" class="form-control">
+                                <input type="text" name="grupo" id="grupo" class="form-control" disabled>
                             </div>
                             <div class="col-md-3">
                                 <label for="">MEMBROS</label>
-                                <input type="number" name="membros_ind" id="membros_ind" class="form-control">
+                                <input type="number" name="membros_ind" id="membros_ind" class="form-control" disabled>
                             </div>
                         </div>
                         <label for="" class="mt-3">PLANO</label>
-                        <textarea name="plano" id="plano" rows="5" cols="74" class="form-control"></textarea>
+                        <textarea name="plano" id="plano" rows="5" cols="74" class="form-control" disabled></textarea>
                     </div>
                     <div class="col-md-3">
                         <img src="../assets/img/fotos/sem-foto.jpg" alt="Perfil do Usuario" id="userLeitura" width="180" height="180">
                         <label for="" class="mt-3">CRIADOR DO GRUPO</label>
-                        <input type="text" name="criador" id="criador" class="form-control">
+                        <input type="text" name="criador" id="criador" disabled class="form-control">
                     </div>
                 </div>
                 <div class="row">
                     <div class="col-md-3">
                         <label for="">Data de Criação</label>
-                        <input type="date" name="criado" id="criado" class="form-control">
+                        <input type="date" name="criado" id="criado" class="form-control" disabled>
                     </div>
                     <div class="col-md-3">
                         <label for="">Hora da Criação</label>
-                        <input type="time" name="hora_criado" id="hora_criado" class="form-control">
+                        <input type="time" name="hora_criado" id="hora_criado" class="form-control" disabled>
                     </div>
                     <div class="col-md-3">
                         <label for="">Ativo</label>
-                        <input type="text" name="ativo" id="ativo" class="form-control">
+                        <input type="text" name="ativo" id="ativo" class="form-control" disabled>
                     </div>
 					<div class="col-md-3">
 						<label for="">Lançamento</label>
-						<input type="date" id="lancamento" name="lancamento" class="form-control">
+						<input type="date" id="lancamento" name="lancamento" class="form-control" disabled>
 					</div>
                 </div>
             </div>
