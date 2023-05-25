@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1:3306
--- Tempo de geração: 19-Maio-2023 às 03:02
+-- Tempo de geração: 25-Maio-2023 às 02:21
 -- Versão do servidor: 8.0.31
 -- versão do PHP: 8.2.0
 
@@ -119,7 +119,7 @@ CREATE TABLE IF NOT EXISTS `cargos` (
   `id_cargo` tinyint NOT NULL AUTO_INCREMENT,
   `cargo` varchar(100) NOT NULL,
   PRIMARY KEY (`id_cargo`)
-) ENGINE=InnoDB AUTO_INCREMENT=15 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=15 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
 -- Extraindo dados da tabela `cargos`
@@ -152,7 +152,7 @@ CREATE TABLE IF NOT EXISTS `categorias` (
   `id_cat` tinyint NOT NULL AUTO_INCREMENT,
   `categorias` varchar(50) NOT NULL,
   PRIMARY KEY (`id_cat`)
-) ENGINE=InnoDB AUTO_INCREMENT=23 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=23 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
 -- Extraindo dados da tabela `categorias`
@@ -194,7 +194,7 @@ CREATE TABLE IF NOT EXISTS `citacoes` (
   `author` varchar(50) NOT NULL,
   `citacao` text,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
 -- Extraindo dados da tabela `citacoes`
@@ -591,7 +591,7 @@ CREATE TABLE IF NOT EXISTS `grupos_de_oracao` (
   PRIMARY KEY (`id_group`),
   KEY `id_criador` (`id_criador`),
   KEY `id_licenca` (`id_licenca`)
-) ENGINE=InnoDB AUTO_INCREMENT=38 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=38 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
 -- Extraindo dados da tabela `grupos_de_oracao`
@@ -644,6 +644,62 @@ INSERT INTO `jejuns` (`id_jejum`, `id_criador_jejum`, `pastor_comando`, `pastora
 -- --------------------------------------------------------
 
 --
+-- Estrutura da tabela `leitura_compartilhada`
+--
+
+DROP TABLE IF EXISTS `leitura_compartilhada`;
+CREATE TABLE IF NOT EXISTS `leitura_compartilhada` (
+  `id_leiCom` tinyint NOT NULL AUTO_INCREMENT,
+  `id_autorLeiCom` tinyint DEFAULT NULL,
+  `nome_LeiCom` varchar(200) COLLATE utf8mb4_general_ci NOT NULL,
+  `plano_LeiCom` text COLLATE utf8mb4_general_ci NOT NULL,
+  `part_indLei` int DEFAULT '0',
+  `ativo_LeiCom` enum('A','N','S') COLLATE utf8mb4_general_ci NOT NULL,
+  `data_LeiCom` date DEFAULT NULL,
+  `hora_LeiCom` varchar(50) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `data_de_lancamento` date DEFAULT NULL,
+  PRIMARY KEY (`id_leiCom`),
+  KEY `id_autorLeiCom` (`id_autorLeiCom`)
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Extraindo dados da tabela `leitura_compartilhada`
+--
+
+INSERT INTO `leitura_compartilhada` (`id_leiCom`, `id_autorLeiCom`, `nome_LeiCom`, `plano_LeiCom`, `part_indLei`, `ativo_LeiCom`, `data_LeiCom`, `hora_LeiCom`, `data_de_lancamento`) VALUES
+(1, 10, 'Wrong', 'wrong', 0, 'A', '2023-05-23', '20:38:54', '0000-00-00'),
+(2, 10, 'Wrong', 'wrong', 0, 'N', '2023-05-23', '20:42:09', '2023-05-25');
+
+-- --------------------------------------------------------
+
+--
+-- Estrutura da tabela `leitura_cores_favoritas`
+--
+
+DROP TABLE IF EXISTS `leitura_cores_favoritas`;
+CREATE TABLE IF NOT EXISTS `leitura_cores_favoritas` (
+  `id_indLeifav` tinyint NOT NULL AUTO_INCREMENT,
+  `id_userIndLei` tinyint DEFAULT NULL,
+  `hexa` varchar(10) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  PRIMARY KEY (`id_indLeifav`),
+  KEY `id_userIndLei` (`id_userIndLei`)
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Extraindo dados da tabela `leitura_cores_favoritas`
+--
+
+INSERT INTO `leitura_cores_favoritas` (`id_indLeifav`, `id_userIndLei`, `hexa`) VALUES
+(1, 10, '#ec6f6f'),
+(2, 10, '#8000ff'),
+(3, 10, '#5f941e'),
+(4, 10, '#1affe4'),
+(5, 6, '#a600ff'),
+(6, 10, '#084032');
+
+-- --------------------------------------------------------
+
+--
 -- Estrutura da tabela `leitura_individual`
 --
 
@@ -656,7 +712,27 @@ CREATE TABLE IF NOT EXISTS `leitura_individual` (
   `data_job` date DEFAULT NULL,
   `data_job_end` date DEFAULT NULL,
   PRIMARY KEY (`id_indLei`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=15 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Extraindo dados da tabela `leitura_individual`
+--
+
+INSERT INTO `leitura_individual` (`id_indLei`, `autor_indLei`, `desc_indLei`, `color`, `data_job`, `data_job_end`) VALUES
+(1, 10, 'Proverbios 9', '#DC3545', '2023-05-19', '2023-05-19'),
+(2, 10, 'Hebreus 3', '#007BFF', '2023-05-19', '2023-05-19'),
+(3, 10, '', '#b25791', '2023-05-31', '2023-05-31'),
+(4, 10, 'Paulo\'s Day', '#ec6f6f', '2023-05-22', '2023-05-22'),
+(5, 10, 'Devocional', '#8000ff', '2023-05-26', '2023-05-31'),
+(6, 10, 'Jejum', '#000000', '2023-06-12', '2023-05-31'),
+(7, 10, 'Livro de Cantares - Cap 4', '', '2023-06-13', '2023-06-29'),
+(8, 10, 'Nothing', '#8000ff', '2023-05-11', '2023-05-11'),
+(9, 10, 'Hello', '#ec6f6f', '2023-05-01', '2023-05-11'),
+(10, 10, 'Lucas', '#5f941e', '2023-05-17', '2023-05-17'),
+(11, 10, 'OI', '#1affe4', '2023-05-14', '2023-05-17'),
+(12, 6, 'Latrel', '#a600ff', '2023-05-31', '2023-06-02'),
+(13, 10, 'Livro de Lucas', '#084032', '2023-05-31', '2023-06-10'),
+(14, 10, 'j o ', '#8000ff', '2023-05-02', '2023-05-22');
 
 -- --------------------------------------------------------
 
@@ -785,7 +861,7 @@ CREATE TABLE IF NOT EXISTS `participando_do_grupo` (
   `id_usuario` tinyint DEFAULT NULL,
   `id_grupo` tinyint DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=26 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=26 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
 -- Extraindo dados da tabela `participando_do_grupo`
@@ -992,7 +1068,7 @@ CREATE TABLE IF NOT EXISTS `usuarios` (
   UNIQUE KEY `cpf` (`cpf`),
   UNIQUE KEY `email` (`email`),
   KEY `id_cargo` (`id_cargo`)
-) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
 -- Extraindo dados da tabela `usuarios`
@@ -1070,6 +1146,18 @@ ALTER TABLE `grupos_de_oracao`
 ALTER TABLE `jejuns`
   ADD CONSTRAINT `jejuns_ibfk_1` FOREIGN KEY (`pastor_comando`) REFERENCES `pastores` (`id_pas`),
   ADD CONSTRAINT `jejuns_ibfk_2` FOREIGN KEY (`pastora_comando`) REFERENCES `pastoras` (`id_pas_ras`);
+
+--
+-- Limitadores para a tabela `leitura_compartilhada`
+--
+ALTER TABLE `leitura_compartilhada`
+  ADD CONSTRAINT `leitura_compartilhada_ibfk_1` FOREIGN KEY (`id_autorLeiCom`) REFERENCES `usuarios` (`id`);
+
+--
+-- Limitadores para a tabela `leitura_cores_favoritas`
+--
+ALTER TABLE `leitura_cores_favoritas`
+  ADD CONSTRAINT `leitura_cores_favoritas_ibfk_1` FOREIGN KEY (`id_userIndLei`) REFERENCES `usuarios` (`id`);
 
 --
 -- Limitadores para a tabela `oracao`
