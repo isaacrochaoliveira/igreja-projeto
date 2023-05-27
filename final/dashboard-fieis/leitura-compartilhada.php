@@ -215,8 +215,8 @@ $pag = "leitura-compartilhada";
             <div class="modal-footer">
 				<input type="hidden" name="id_LeituraCompartilhada" id="id_LeituraCompartilhada">
 				<div id="btnEntrarLeiCom">
-                	<button type="button" class="btn btn-secondary" data-bs-dismiss="modal" name="FecharModalDestalhes" id="FecharModalDestalhes">Voltar</button>
-                	<button type="button" class="btn btn-primary" id="btnEnviarFormLeitura">Enviar</button>
+                	<button type="button" class="btn btn-secondary" data-bs-dismiss="modal" name="FecharModalDestalhes" id="FecharModalDestalhes">Cancelar</button>
+                	<button type="button" class="btn btn-primary" onclick="JoinToUs()">JOIN</button>
 				</div>
 				<div id="alertComeOutLeiCom">
 					<p class="text-danger">OPS! Parece que este grupo não está aberto para entrada de novos participantes! Volte mais tarde</p>
@@ -230,7 +230,7 @@ $pag = "leitura-compartilhada";
     <div class="modal-dialog modal-lg">
         <div class="modal-content">
             <div class="modal-header">
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" id="btnFecharModalReportar"></button>
             </div>
 			<form action="" method="POST" id="FormDenunciaAbuso">
 				<div class="modal-body">
@@ -254,6 +254,8 @@ $pag = "leitura-compartilhada";
     </div>
 </div>
 
+script
+
 <script>
 	$(document).ready(function() {
 		$('#publicarabuso').click(function() {
@@ -262,7 +264,7 @@ $pag = "leitura-compartilhada";
 				alert('Denúncia Descartada!');
 			} else {
 				if (yon) {
-					var pag = "<?+$pag?>";
+					var pag = "<?=$pag?>";
 					$.ajax({
 						url: pag + '/add-denucia.php',
 						method: 'post',
@@ -271,6 +273,7 @@ $pag = "leitura-compartilhada";
 						success: function(msg) {
 							if (msg == "SUCCESS") {
 								alert('Reclamação Publicada! Você pode ver na página de Reclamações');
+								$('#btnFecharModalReportar').click();	
 							} else {
 								alert(msg);
 							}
