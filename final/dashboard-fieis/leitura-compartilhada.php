@@ -225,6 +225,12 @@ $pag = "leitura-compartilhada";
     </div>
 </div>
 
+<script>
+	function reportarAbuso() {
+
+	}
+</script>
+
 <script type="text/javascript">
     $(document).ready(function() {
         $('#modalCriLeitura').modal('show');
