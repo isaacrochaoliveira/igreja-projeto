@@ -232,7 +232,7 @@ $pag = "leitura-compartilhada";
             <div class="modal-header">
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
-			<form>
+			<form action="" method="POST" id="FormDenunciaAbuso">
 				<div class="modal-body">
 					<div class="row">
 						<div class="col">
@@ -265,7 +265,16 @@ $pag = "leitura-compartilhada";
 					var pag = "<?+$pag?>";
 					$.ajax({
 						url: pag + '/add-denucia.php',
-						method: 'post'
+						method: 'post',
+						data: $('#FormDenunciaAbuso').serialize(),
+						dataType: 'text',
+						success: function(msg) {
+							if (msg == "SUCCESS") {
+								alert('Reclamação Publicada! Você pode ver na página de Reclamações');
+							} else {
+								alert(msg);
+							}
+						}
 					})
 				}
 			}
