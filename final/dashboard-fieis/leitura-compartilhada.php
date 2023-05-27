@@ -254,7 +254,28 @@ $pag = "leitura-compartilhada";
     </div>
 </div>
 
-script
+<script>
+	function JoinToUs() {
+		$(document).ready(function() {
+			var pag = "<?=$pag?>";
+			var LeiCom = $('#id_LeituraCompartilhada').val();
+			$.ajax({
+				url: pag + '/jointous.php',
+				method: 'post',
+				data: {LeiCom},
+				dataType: 'text',
+				success: function(msg) {
+					if (msg == "JOIN") {
+						alert('Agora você tem acesso ao painel! Aproveite');
+						$('#FecharModalDestalhes').click();
+					} else {
+						alert(msg);
+					}
+				}
+			})
+		})
+	}
+</script>
 
 <script>
 	$(document).ready(function() {
