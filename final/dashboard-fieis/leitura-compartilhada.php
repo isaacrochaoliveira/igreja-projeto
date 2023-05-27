@@ -213,6 +213,7 @@ $pag = "leitura-compartilhada";
                 </div>
             </div>
             <div class="modal-footer">
+				<input type="hidden" name="id_LeituraCompartilhada" id="id_LeituraCompartilhada">
 				<div id="btnEntrarLeiCom">
                 	<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Voltar</button>
                 	<button type="button" class="btn btn-primary" id="btnEnviarFormLeitura">Enviar</button>
@@ -225,9 +226,42 @@ $pag = "leitura-compartilhada";
     </div>
 </div>
 
+<div class="modal fade" id="FormModalReportarAbuso" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+				<div class="">
+					<a href="#" onclick="reportarAbuso()" title="Reportar Abuso/Erro"><i class="fa-solid fa-skull-crossbones text-danger" style="font-size: 20px"></i></a>
+					<span class="badge bg-secondary" style="font-size: 18px">Reportar Abuso/Erro</span>
+				</div>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+			<form>
+				<div class="modal-body">
+					<div class="row">
+						<div class="col">
+							<div class="form-floating">
+								<input type="text" name="reportarabuso" id="reportarabuso" class="form-control" placeholder="...">
+								<label>Informe a sua reclamação aqui e nós analisaremos</label>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="modal-footer">
+					<input type="hidden" name="id_indLeiCom" id="id_indLeiCom"/>
+				</div>
+			</form>
+        </div>
+    </div>
+</div>
+
 <script>
 	function reportarAbuso() {
-
+		$(document).ready(function() {
+			let id_Lei = $('#id_LeituraCompartilhada').val();
+			$('#id_indLeiCom').val(id_Lei);
+			$('#FormModalReportarAbuso').modal('show');
+		})
 	}
 </script>
 
@@ -319,6 +353,7 @@ $pag = "leitura-compartilhada";
     function modalInformacoes(id) {
         $(document).ready(function() {
             var pag = "<?=$pag?>";
+			$('#id_LeituraCompartilhada').val(id);
             $.ajax({
                 url: pag + '/detalhes.php',
                 method: 'post',
