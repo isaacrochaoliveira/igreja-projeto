@@ -215,7 +215,7 @@ $pag = "leitura-compartilhada";
             <div class="modal-footer">
 				<input type="hidden" name="id_LeituraCompartilhada" id="id_LeituraCompartilhada">
 				<div id="btnEntrarLeiCom">
-                	<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Voltar</button>
+                	<button type="button" class="btn btn-secondary" data-bs-dismiss="modal" name="FecharModalDestalhes" id="FecharModalDestalhes">Voltar</button>
                 	<button type="button" class="btn btn-primary" id="btnEnviarFormLeitura">Enviar</button>
 				</div>
 				<div id="alertComeOutLeiCom">
@@ -230,10 +230,6 @@ $pag = "leitura-compartilhada";
     <div class="modal-dialog modal-lg">
         <div class="modal-content">
             <div class="modal-header">
-				<div class="">
-					<a href="#" onclick="reportarAbuso()" title="Reportar Abuso/Erro"><i class="fa-solid fa-skull-crossbones text-danger" style="font-size: 20px"></i></a>
-					<span class="badge bg-secondary" style="font-size: 18px">Reportar Abuso/Erro</span>
-				</div>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
 			<form>
@@ -241,7 +237,7 @@ $pag = "leitura-compartilhada";
 					<div class="row">
 						<div class="col">
 							<div class="form-floating">
-								<input type="text" name="reportarabuso" id="reportarabuso" class="form-control" placeholder="...">
+								<textarea cols="80" rpws="07" name="reportarabuso" id="reportarabuso" class="form-control" placeholder="..."></textarea>
 								<label>Informe a sua reclamação aqui e nós analisaremos</label>
 							</div>
 						</div>
@@ -249,6 +245,9 @@ $pag = "leitura-compartilhada";
 				</div>
 				<div class="modal-footer">
 					<input type="hidden" name="id_indLeiCom" id="id_indLeiCom"/>
+					<button type="button" class="btn btn-danger" name="publicarabuso" id="publicarabuso">
+						Publicar Abuso
+					</button>
 				</div>
 			</form>
         </div>
@@ -256,10 +255,30 @@ $pag = "leitura-compartilhada";
 </div>
 
 <script>
+	$(document).ready(function() {
+		$('#publicarabuso').click(function() {
+			let yon = confirm('Essa Denúncia poderá ser vista por todo mundo que quizer entrar ao grupo! Realmente Publicar Denúncia?');
+			if (!(yon)) {
+				alert('Denúncia Descartada!');
+			} else {
+				if (yon) {
+					var pag = "<?+$pag?>";
+					$.ajax({
+						url: pag + '/add-denucia.php',
+						method: 'post'
+					})
+				}
+			}
+		}) 
+	})
+</script>
+
+<script>
 	function reportarAbuso() {
 		$(document).ready(function() {
 			let id_Lei = $('#id_LeituraCompartilhada').val();
 			$('#id_indLeiCom').val(id_Lei);
+			$('#FecharModalDestalhes').click();
 			$('#FormModalReportarAbuso').modal('show');
 		})
 	}
