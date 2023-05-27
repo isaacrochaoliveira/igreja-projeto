@@ -67,8 +67,13 @@ $pag = "leitura-compartilhada";
                                 <th><?=$id?></th>
                                 <td><?=$grupo?></td>
                                 <td><?=$plano?></td>
-                                <td><?=$membros?> Membros</td>
+                                <td><span id="part_leiCom"><?=$membros?></span> Membros</td>
                                 <td><?=$dataF?></td>
+								<td>
+									<a href="#" target="_blank">
+										<i class="fa-regular fa-address-card" style="font-size: 18px"></i>
+									</a>
+								</td>
                                 <td onclick="modalInformacoes(<?=$id?>)" style="cursor: pointer;" class="<?=$background?>">
                                     <i class="fa-solid fa-plus"></i>
                                 </td>
@@ -265,8 +270,11 @@ $pag = "leitura-compartilhada";
 				data: {LeiCom},
 				dataType: 'text',
 				success: function(msg) {
-					if (msg == "JOIN") {
+					let array = msg.split('!@#');
+					if (array[0] == "JOIN") {
 						alert('Agora você tem acesso ao painel! Aproveite');
+						var json = JSON.parse(array[1]);
+						$('#part_leiCom').text(json);
 						$('#FecharModalDestalhes').click();
 					} else {
 						alert(msg);
