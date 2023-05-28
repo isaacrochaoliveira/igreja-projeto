@@ -74,7 +74,7 @@ $pag = "leitura-compartilhada";
 									$res_jtu = $query_jtu->fetchAll(PDO::FETCH_ASSOC);
 									if (count($res_jtu) > 0) {
 										?>
-											<td class="d-none" id="ComeInsideToProfile">
+											<td id="ComeInsideToProfile">
 												<a href="#" target="_blank">
 													<i class="fa-regular fa-address-card" style="font-size: 18px"></i>
 												</a>
@@ -287,9 +287,7 @@ $pag = "leitura-compartilhada";
 						var json = JSON.parse(array[1]);
 						$('#part_leiCom').text(json);
 
-						$('#ComeInsideToProfile').removeClass();
 						$('#Youdonthaveanyacess').removeClass();
-						$('#ComeInsideToProfile').addClass('d-block');
 						$('#Youdonthaveanyacess').addClass('d-none');
 						
 						$('#FecharModalDestalhes').click();
