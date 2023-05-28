@@ -69,14 +69,25 @@ $pag = "leitura-compartilhada";
                                 <td><?=$plano?></td>
                                 <td><span id="part_leiCom"><?=$membros?></span> Membros</td>
                                 <td><?=$dataF?></td>
-								<td>
-									<a href="#" target="_blank">
-										<i class="fa-regular fa-address-card" style="font-size: 18px"></i>
-									</a>
-								</td>
-                                <td onclick="modalInformacoes(<?=$id?>)" style="cursor: pointer;" class="<?=$background?>">
-                                    <i class="fa-solid fa-plus"></i>
-                                </td>
+								<?php
+									$query = $pdo->query("SELECT * FROM JoinToUsLeiCom WHERE leiCom_JTU = '$id' AND usuario_JTU = '$_SESSION[id]'");
+									$res = $query->fetchAll(PDO::FETCH_ASSOC);
+									if (count($res) > 0) {
+										?>
+											<td class="d-none" id="ComeInsideToProfile">
+												<a href="#" target="_blank">
+													<i class="fa-regular fa-address-card" style="font-size: 18px"></i>
+												</a>
+											</td>
+										<?php
+									} else {
+										?>
+											<td onclick="modalInformacoes(<?=$id?>)" style="cursor: pointer;" class="<?=$background?>" id="Youdonthaveanyacess">
+												<i class="fa-solid fa-plus"></i>
+											</td>
+										<?php
+									}
+								?>
                             </tr>
                         <?php
                     }
@@ -275,7 +286,15 @@ $pag = "leitura-compartilhada";
 						alert('Agora você tem acesso ao painel! Aproveite');
 						var json = JSON.parse(array[1]);
 						$('#part_leiCom').text(json);
+
+						$('#ComeInsideToProfile').removeClass();
+						$('#Youdonthaveanyacess').removeClass();
+						$('#ComeInsideToProfile').addClass('d-block');
+						$('#Youdonthaveanyacess').addClass('d-none');
+						
 						$('#FecharModalDestalhes').click();
+						
+						
 					} else {
 						alert(msg);
 					}
