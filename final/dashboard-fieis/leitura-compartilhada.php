@@ -70,9 +70,9 @@ $pag = "leitura-compartilhada";
                                 <td><span id="part_leiCom"><?=$membros?></span> Membros</td>
                                 <td><?=$dataF?></td>
 								<?php
-									$query = $pdo->query("SELECT * FROM JoinToUsLeiCom WHERE leiCom_JTU = '$id' AND usuario_JTU = '$_SESSION[id]'");
-									$res = $query->fetchAll(PDO::FETCH_ASSOC);
-									if (count($res) > 0) {
+									$query_jtu = $pdo->query("SELECT * FROM JoinToUsLeiCom WHERE leiCom_JTU = '$id' AND usuario_JTU = '$_SESSION[id]'");
+									$res_jtu = $query_jtu->fetchAll(PDO::FETCH_ASSOC);
+									if (count($res_jtu) > 0) {
 										?>
 											<td class="d-none" id="ComeInsideToProfile">
 												<a href="#" target="_blank">
